@@ -53,3 +53,10 @@ env ENVIRONMENT=... ACTION=apply make state-bootstrap
 env ENVIRONMENT=... make account-bootstrap
 env ENVIRONMENT=... ACTION=apply make account-bootstrap
 ```
+
+Following this, update your Named AWS Profiles to use the credentials created in the previous step (`tf_user_key`, `tf_user_secret` and `tf_user_name`) for the Terraform account from hereon in.
+
+```bash
+aws configure --profile vbr-staging
+aws configure --profile vbr-production
+```
