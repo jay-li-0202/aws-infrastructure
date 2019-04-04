@@ -4,7 +4,7 @@ resource "aws_db_subnet_group" "basisregisters" {
   subnet_ids  = ["${var.subnet_ids}"]
 
   tags {
-    Name = "DB Subnet Group // ${var.environment_label} ${var.environment_name}"
+    Name        = "DB Subnet Group // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
@@ -18,7 +18,7 @@ resource "aws_db_parameter_group" "basisregisters" {
   family      = "${var.sql_family}"
 
   tags {
-    Name = "DB Parameter Group // ${var.environment_label} ${var.environment_name}"
+    Name        = "DB Parameter Group // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
@@ -42,7 +42,7 @@ resource "aws_db_option_group" "basisregisters" {
   }
 
   tags {
-    Name = "DB Option Group // ${var.environment_label} ${var.environment_name}"
+    Name        = "DB Option Group // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
@@ -87,8 +87,11 @@ resource "aws_db_instance" "basisregisters" {
 
   apply_immediately = true
 
+  skip_final_snapshot = false
+  final_snapshot_identifier = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}-final"
+
   tags {
-    Name = "SQL Server // ${var.environment_label} ${var.environment_name}"
+    Name        = "SQL Server // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"

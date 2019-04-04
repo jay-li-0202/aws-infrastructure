@@ -134,6 +134,22 @@ sqlserver: roots/sqlserver/.terraform/terraform.tfstate ## Run Terraform to crea
 
 ##############
 
+roots/fargate/.terraform/terraform.tfstate:
+	@cd roots/fargate && \
+		terraform init \
+			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: fargate
+fargate: roots/fargate/.terraform/terraform.tfstate ## Run Terraform to create a Fargate (ECS) cluster
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, terraform action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd roots/fargate && \
+		terraform $(ACTION) \
+			-var-file=../../../$(ENVIRONMENT).tfvars
+
+##############
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"

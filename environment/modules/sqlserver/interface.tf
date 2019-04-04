@@ -63,12 +63,12 @@ variable "sql_backup_retention_period" {
 }
 
 variable "sql_backup_window" {
-  type = "string"
+  type    = "string"
   default = "03:00-05:00"
 }
 
 variable "sql_maintenance_window" {
-  type = "string"
+  type    = "string"
   default = "Sun:00:00-Sun:02:00"
 }
 

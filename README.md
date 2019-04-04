@@ -1,5 +1,11 @@
 # AWS Infrastructure
 
+## Goal
+
+> Easily provision an AWS environment required to run our applications.
+
+## Getting started
+
 This guide assumes you are using [fish](https://fishshell.com/) as a shell.
 
 We will be building two environments, one for production and one for staging. Start off by cloning this in separate directories for each environment.
@@ -92,8 +98,6 @@ env ENVIRONMENT=... ACTION=apply make dns
 
 At this moment, you can configure your public domain name to use the new nameservers.
 
-# Base Registries Specific
-
 ## Build a Docker Repository
 
 All our work will be running on Docker, in orde to host our images, we will use
@@ -134,3 +138,23 @@ cd environment/
 env ENVIRONMENT=... make sqlserver
 env ENVIRONMENT=... ACTION=apply make sqlserver
 ```
+
+## Build a Fargate cluster
+
+Our workload will run as Docker containers on a Fargate (ECS) cluster. To setup, run the following commands:
+
+```bash
+cd environment/
+env ENVIRONMENT=... make fargate
+env ENVIRONMENT=... ACTION=apply make fargate
+```
+
+## Credits
+
+// TODO: Populate credits
+
+* Terraform
+* Packer
+* Ansible
+* All ansible roles
+* AWS Labs for devortal & cli tools
