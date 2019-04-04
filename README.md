@@ -1,8 +1,10 @@
 # AWS Infrastructure
 
+This guide assumes you are using [fish](https://fishshell.com/) as a shell.
+
 We will be building two environments, one for production and one for staging. Start off by cloning this in separate directories for each environment.
 
-```bash
+```console
 git clone git clone git@github.com:informatievlaanderen/aws-infrastructure.git vbr-staging
 git clone git clone git@github.com:informatievlaanderen/aws-infrastructure.git vbr-production
 ```
