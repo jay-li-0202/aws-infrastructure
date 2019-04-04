@@ -9,7 +9,7 @@ roots/state_bootstrap/.terraform/terraform.tfstate:
 		terraform init
 
 .PHONY: state-bootstrap
-state-bootstrap: roots/state_bootstrap/.terraform/terraform.tfstate ## Run Terraform to bootstrap remote state bucket
+state-bootstrap: roots/state_bootstrap/.terraform/terraform.tfstate ## Run Terraform to bootstrap an S3 remote state bucket
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
@@ -28,7 +28,7 @@ roots/account_bootstrap/.terraform/terraform.tfstate:
 			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: account-bootstrap
-account-bootstrap: roots/account_bootstrap/.terraform/terraform.tfstate ## Run Terraform to bootstrap empty AWS account
+account-bootstrap: roots/account_bootstrap/.terraform/terraform.tfstate ## Run Terraform to bootstrap an empty AWS account
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
@@ -44,7 +44,7 @@ roots/base_vpc/.terraform/terraform.tfstate:
 			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: base-vpc
-base-vpc: roots/base_vpc/.terraform/terraform.tfstate ## Run Terraform to create base VPC
+base-vpc: roots/base_vpc/.terraform/terraform.tfstate ## Run Terraform to create a base VPC
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
@@ -76,7 +76,7 @@ roots/docker_repo/.terraform/terraform.tfstate:
 			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: docker-repo
-docker-repo: roots/docker_repo/.terraform/terraform.tfstate ## Run Terraform to create Docker repository
+docker-repo: roots/docker_repo/.terraform/terraform.tfstate ## Run Terraform to create Docker repositories
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
@@ -92,7 +92,7 @@ roots/elasticsearch/.terraform/terraform.tfstate:
 			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: elasticsearch
-elasticsearch: roots/elasticsearch/.terraform/terraform.tfstate ## Run Terraform to create Elastic Search cluster
+elasticsearch: roots/elasticsearch/.terraform/terraform.tfstate ## Run Terraform to create an Elasticsearch cluster
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
@@ -108,11 +108,27 @@ roots/cache/.terraform/terraform.tfstate:
 			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: cache
-cache: roots/cache/.terraform/terraform.tfstate ## Run Terraform to create Elastic Search cluster
+cache: roots/cache/.terraform/terraform.tfstate ## Run Terraform to create an Elasticache Redis cluster
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
 	@cd roots/cache && \
+		terraform $(ACTION) \
+			-var-file=../../../$(ENVIRONMENT).tfvars
+
+##############
+
+roots/sqlserver/.terraform/terraform.tfstate:
+	@cd roots/sqlserver && \
+		terraform init \
+			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: sqlserver
+sqlserver: roots/sqlserver/.terraform/terraform.tfstate ## Run Terraform to create a SQL Server database
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, terraform action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd roots/sqlserver && \
 		terraform $(ACTION) \
 			-var-file=../../../$(ENVIRONMENT).tfvars
 

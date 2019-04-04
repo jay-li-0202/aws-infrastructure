@@ -124,3 +124,13 @@ environment/
 env ENVIRONMENT=... make cache
 env ENVIRONMENT=... ACTION=apply make cache
 ```
+
+## Build a SQL Server instance
+
+For storage we use SQL Server. To setup, run the following commands and input a dbo username and password to use when prompted:
+
+```bash
+cd environment/
+env ENVIRONMENT=... make sqlserver
+env ENVIRONMENT=... ACTION=apply make sqlserver
+```

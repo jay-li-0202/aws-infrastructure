@@ -36,3 +36,13 @@ cache_redis_version = "5.0.3"
 cache_parameter_group = "default.redis5.0.cluster.on"
 cache_instance_type = "cache.m5.large"
 cache_cluster_size = 3
+
+// SQL Server Information
+sql_version = "14.00.3049.1.v1"
+sql_major_version = "14.00"
+sql_family = "sqlserver-se-14.0"
+sql_instance_type = "db.r4.large"
+// sql_username = "x"
+// sql_password = "x"
+sql_storage = 500
+sql_backup_retention_period = 7
