@@ -49,4 +49,7 @@ Then, run the following commands prefixed with `ENVIRONMENT=vbr-staging` or `ENV
 environment/
 env ENVIRONMENT=... make state-bootstrap
 env ENVIRONMENT=... ACTION=apply make state-bootstrap
+
+env ENVIRONMENT=... make account-bootstrap
+env ENVIRONMENT=... ACTION=apply make account-bootstrap
 ```

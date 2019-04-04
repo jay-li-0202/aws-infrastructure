@@ -8,6 +8,10 @@ state_bucket = "basisregisters-staging-aws-state"
 
 // Tag information
 tag_environment = "Test"
-tag_product     = "PXXX"
+tag_product     = "P009"
 tag_program     = "AGB"
 tag_contact     = "david.cumps@kb.vlaanderen.be"
+
+// General Information
+environment_label = "Basisregisters"
+environment_name = "Staging"

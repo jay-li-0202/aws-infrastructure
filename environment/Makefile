@@ -22,6 +22,22 @@ state-bootstrap: roots/state_bootstrap/.terraform/terraform.tfstate ## Run Terra
 
 ##############
 
+roots/account_bootstrap/.terraform/terraform.tfstate:
+	@cd roots/account_bootstrap && \
+		terraform init \
+			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: account-bootstrap
+account-bootstrap: roots/account_bootstrap/.terraform/terraform.tfstate ## Run Terraform to bootstrap empty AWS account
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, terraform action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd roots/account_bootstrap && \
+		terraform $(ACTION) \
+			-var-file=../../../$(ENVIRONMENT).tfvars
+
+##############
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"
