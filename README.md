@@ -10,7 +10,7 @@ This guide assumes you are using [fish](https://fishshell.com/) as a shell.
 
 We will be building two environments, one for production and one for staging. Start off by cloning this in separate directories for each environment.
 
-```console
+```bash
 git clone git clone git@github.com:informatievlaanderen/aws-infrastructure.git vbr-staging
 git clone git clone git@github.com:informatievlaanderen/aws-infrastructure.git vbr-production
 ```
@@ -119,7 +119,7 @@ env ENVIRONMENT=... make elasticsearch
 env ENVIRONMENT=... ACTION=apply make elasticsearch
 ```
 
-## Build an ElastiCache cluster
+## Build an Elasticache cluster
 
 For caching we use ElastiCache with Redis. To setup, run the following commands:
 
