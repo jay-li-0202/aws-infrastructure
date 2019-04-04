@@ -134,7 +134,7 @@ env ENVIRONMENT=... ACTION=apply make cache
 For storage we use SQL Server. To setup, run the following commands and input a dbo username and password to use when prompted:
 
 ```bash
-cd environment/
+environment/
 env ENVIRONMENT=... make sqlserver
 env ENVIRONMENT=... ACTION=apply make sqlserver
 ```
@@ -144,7 +144,7 @@ env ENVIRONMENT=... ACTION=apply make sqlserver
 Our workload will run as Docker containers on a Fargate (ECS) cluster. To setup, run the following commands:
 
 ```bash
-cd environment/
+environment/
 env ENVIRONMENT=... make fargate
 env ENVIRONMENT=... ACTION=apply make fargate
 ```
@@ -152,10 +152,19 @@ env ENVIRONMENT=... ACTION=apply make fargate
 ## Credits
 
 // TODO: Populate credits
+### Tools
 
 * [Terraform](https://github.com/hashicorp/terraform/blob/master/LICENSE) - _Terraform is a tool for building, changing, and combining infrastructure safely and efficiently._ - [MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
 * [Packer](https://github.com/hashicorp/packer/blob/master/LICENSE) - _Packer is a tool for creating identical machine images for multiple platforms from a single source configuration._ - [MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
 * [Ansible](https://github.com/ansible/ansible/blob/devel/COPYING) - _Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy._ - [GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
-* All ansible roles
 * AWS Labs for devortal & cli tools
-* [Fargate](https://github.com/jpignata/fargate/blob/master/LICENSE) - _CLI for AWS Fargate_ [Apache-2.0](https://choosealicense.com/licenses/apache-2.0/)
+* [Fargate](https://github.com/jpignata/fargate/blob/master/LICENSE) - _CLI for AWS Fargate._ - [Apache-2.0](https://choosealicense.com/licenses/apache-2.0/)
+
+### Ansible Roles
+
+* [ansible-docker](https://github.com/geerlingguy/ansible-role-docker/blob/master/LICENSE) - _Ansible Role - Docker._ - [MIT](https://choosealicense.com/licenses/mit/)
+* [ansible-role-dotnet-core](https://github.com/ocha/ansible-role-dotnet-core/blob/master/LICENSE) - _Ansible Role - .NET Core for Ubuntu/RHEL/CentOS._ - [MIT](https://choosealicense.com/licenses/mit/)
+* [ansible-latest-git](https://github.com/Oefenweb/ansible-latest-git/blob/master/LICENSE.txt) - _Ansible role to set up the latest version of git in Ubuntu systems._ - [MIT](https://choosealicense.com/licenses/mit/)
+* [ansible-locales](https://github.com/Oefenweb/ansible-locales/blob/master/LICENSE.txt) - _Ansible role to set up locales in Debian-like systems._ - [MIT](https://choosealicense.com/licenses/mit/)
+* [ansible-role-nodejs](https://github.com/geerlingguy/ansible-role-nodejs/blob/master/LICENSE) - _Ansible Role - Node.js_ - [MIT](https://choosealicense.com/licenses/mit/)
+* [ansible-pip](https://github.com/Oefenweb/ansible-pip/blob/master/LICENSE.txt) - _Ansible role to set up (the latest version of) pip, wheel and setuptools in Debian-like systems._ - [MIT](https://choosealicense.com/licenses/mit/)
