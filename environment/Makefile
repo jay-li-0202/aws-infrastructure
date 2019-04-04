@@ -102,6 +102,22 @@ elasticsearch: roots/elasticsearch/.terraform/terraform.tfstate ## Run Terraform
 
 ##############
 
+roots/cache/.terraform/terraform.tfstate:
+	@cd roots/cache && \
+		terraform init \
+			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: cache
+cache: roots/cache/.terraform/terraform.tfstate ## Run Terraform to create Elastic Search cluster
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, terraform action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd roots/cache && \
+		terraform $(ACTION) \
+			-var-file=../../../$(ENVIRONMENT).tfvars
+
+##############
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"

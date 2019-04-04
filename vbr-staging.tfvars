@@ -30,3 +30,9 @@ elasticsearch_master_instance_type = "t2.small.elasticsearch"
 elasticsearch_master_cluster_size = 3
 elasticsearch_data_instance_type = "t2.small.elasticsearch"
 elasticsearch_data_cluster_size = 2
+
+// ElastiCache Information
+cache_redis_version = "5.0.3"
+cache_parameter_group = "default.redis5.0.cluster.on"
+cache_instance_type = "cache.t2.medium"
+cache_cluster_size = 3

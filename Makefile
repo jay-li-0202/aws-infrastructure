@@ -24,11 +24,13 @@ init: ## Init Terraform configs
 	@cd environment/roots/dns && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 	@cd environment/roots/docker_repo && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 	@cd environment/roots/elasticsearch && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+	@cd environment/roots/cache && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: destroy
 destroy: ## Destroy infrastructure created by Terraform
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd environment/roots/cache && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
 	@cd environment/roots/elasticsearch && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
 	@cd environment/roots/docker_repo && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
 	# @cd environment/roots/dns && terraform destroy -var "state_bucket=$(STATE_BUCKET)"

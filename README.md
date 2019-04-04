@@ -114,3 +114,13 @@ environment/
 env ENVIRONMENT=... make elasticsearch
 env ENVIRONMENT=... ACTION=apply make elasticsearch
 ```
+
+## Build an ElastiCache cluster
+
+For caching we use ElastiCache with Redis. To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make cache
+env ENVIRONMENT=... ACTION=apply make cache
+```
