@@ -60,3 +60,19 @@ Following this, update your Named AWS Profiles to use the credentials created in
 aws configure --profile vbr-staging
 aws configure --profile vbr-production
 ```
+
+## Build a VPC
+
+The VPC composition root creates a VPC following all known AWS best practices -
+public and private subnets distributed over three availability zones, a VPC
+endpoint for S3, NAT and Internet gateways with appropriate routing tables for
+each subnet. Flow logs are also enabled, along with a DHCP options set
+customizing the domain name assigned to new instances.
+
+Customise the address space in the `vbr-staging.tfvars` and `vbr-production.tfvars` files, and then run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make base-vpc
+env ENVIRONMENT=... ACTION=apply make base-vpc
+```

@@ -15,3 +15,6 @@ tag_contact     = "david.cumps@kb.vlaanderen.be"
 // General Information
 environment_label = "Basisregisters"
 environment_name = "Staging"
+
+// VPC Information
+vpc_cidr_block = "172.21.0.0/16"
