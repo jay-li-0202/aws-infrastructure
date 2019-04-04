@@ -153,8 +153,9 @@ env ENVIRONMENT=... ACTION=apply make fargate
 
 // TODO: Populate credits
 
-* Terraform
-* Packer
-* Ansible
+* [Terraform](https://github.com/hashicorp/terraform/blob/master/LICENSE) - _Terraform is a tool for building, changing, and combining infrastructure safely and efficiently._ - [MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
+* [Packer](https://github.com/hashicorp/packer/blob/master/LICENSE) - _Packer is a tool for creating identical machine images for multiple platforms from a single source configuration._ - [MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
+* [Ansible](https://github.com/ansible/ansible/blob/devel/COPYING) - _Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy._ - [GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
 * All ansible roles
 * AWS Labs for devortal & cli tools
+* [Fargate](https://github.com/jpignata/fargate/blob/master/LICENSE) - _CLI for AWS Fargate_ [Apache-2.0](https://choosealicense.com/licenses/apache-2.0/)
