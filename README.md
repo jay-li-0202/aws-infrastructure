@@ -91,3 +91,16 @@ env ENVIRONMENT=... ACTION=apply make dns
 ```
 
 At this moment, you can configure your public domain name to use the new nameservers.
+
+# Base Registries Specific
+
+## Build a Docker Repository
+
+All our work will be running on Docker, in orde to host our images, we will use
+`Amazon Elastic Container Registry`. To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make docker-repo
+env ENVIRONMENT=... ACTION=apply make docker-repo
+```
