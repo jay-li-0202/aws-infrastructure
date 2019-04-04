@@ -78,3 +78,16 @@ environment/
 env ENVIRONMENT=... make base-vpc
 env ENVIRONMENT=... ACTION=apply make base-vpc
 ```
+
+## Build Route 53 Zones
+
+To easily manage our DNS records, we use a public and private Route 53 zone.
+To setup these zones, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make dns
+env ENVIRONMENT=... ACTION=apply make dns
+```
+
+At this moment, you can configure your public domain name to use the new nameservers.

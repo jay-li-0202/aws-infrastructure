@@ -18,3 +18,7 @@ environment_name  = "Production"
 
 // VPC Information
 vpc_cidr_block = "172.21.0.0/16"
+
+// DNS Information
+public_zone_name  = "basisregisters.vlaanderen"
+private_zone_name = "basisregisters.local"

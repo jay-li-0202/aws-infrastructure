@@ -54,6 +54,22 @@ base-vpc: roots/base_vpc/.terraform/terraform.tfstate ## Run Terraform to create
 
 ##############
 
+roots/dns/.terraform/terraform.tfstate:
+	@cd roots/dns && \
+		terraform init \
+			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: dns
+dns: roots/dns/.terraform/terraform.tfstate ## Run Terraform to create DNS zones
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, terraform action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd roots/dns && \
+		terraform $(ACTION) \
+			-var-file=../../../$(ENVIRONMENT).tfvars
+
+##############
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"

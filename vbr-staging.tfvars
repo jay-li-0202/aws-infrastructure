@@ -18,3 +18,7 @@ environment_name = "Staging"
 
 // VPC Information
 vpc_cidr_block = "172.21.0.0/16"
+
+// DNS Information
+public_zone_name = "staging-basisregisters.vlaanderen"
+private_zone_name = "staging-basisregisters.local"

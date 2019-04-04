@@ -21,11 +21,13 @@ init: ## Init Terraform configs
 	@find -type d -name ".terraform" -exec rm -rf {} \;
 	@cd environment/roots/account_bootstrap && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 	@cd environment/roots/base_vpc && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+	@cd environment/roots/dns && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: destroy
 destroy: ## Destroy infrastructure created by Terraform
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	# @cd environment/roots/dns && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
 	@cd environment/roots/base_vpc && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
 	# @cd environment/roots/account_bootstrap && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
 
