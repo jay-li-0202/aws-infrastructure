@@ -1,0 +1,28 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+###############################################################################
+# behavior for image files
+# image files are treated as binary by default.
+###############################################################################
+*.jpg   binary
+*.png   binary
+*.gif   binary
+
+###############################################################################
+# Force bash scripts to always use lf line endings so that if a repo is accessed
+# in Unix via a file share from Windows, the scripts will work.
+###############################################################################
+*.sh text eol=lf
+
+###############################################################################
+# These files are text and should be normalized (Convert crlf => lf)
+###############################################################################
+.gitignore text
+*.gitattributes text
+*.md text
+*.list text
+*.yml text
+*.json text
