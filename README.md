@@ -104,3 +104,13 @@ environment/
 env ENVIRONMENT=... make docker-repo
 env ENVIRONMENT=... ACTION=apply make docker-repo
 ```
+
+## Build an Elasticsearch cluster
+
+For searching we use Elasticsearch, running in a cluster. To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make elasticsearch
+env ENVIRONMENT=... ACTION=apply make elasticsearch
+```

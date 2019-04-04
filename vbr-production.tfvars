@@ -22,3 +22,11 @@ vpc_cidr_block = "172.21.0.0/16"
 // DNS Information
 public_zone_name  = "basisregisters.vlaanderen"
 private_zone_name = "basisregisters.local"
+
+// Elasticsearch Information
+elasticsearch_version = "6.4"
+elasticsearch_volume_size = 30
+elasticsearch_master_instance_type = "t2.small.elasticsearch"
+elasticsearch_master_cluster_size = 3
+elasticsearch_data_instance_type = "t2.medium.elasticsearch"
+elasticsearch_data_cluster_size = 4
