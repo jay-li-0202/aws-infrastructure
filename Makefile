@@ -14,6 +14,21 @@ format:
 	@$(eval TF_DIRECTORIES := $(shell find . -type f -name "*.tf" -exec dirname {} \; | sort -u))
 	@$(foreach var, $(TF_DIRECTORIES), terraform fmt "$(var)" && echo "√ $(var)";)
 
+.PHONY: init
+init: ## Init Terraform configs
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@find -type d -name ".terraform" -exec rm -rf {} \;
+	@cd environment/roots/account_bootstrap && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+	@cd environment/roots/base_vpc && terraform init -upgrade -backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: destroy
+destroy: ## Destroy infrastructure created by Terraform
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd environment/roots/base_vpc && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
+	# @cd environment/roots/account_bootstrap && terraform destroy -var "state_bucket=$(STATE_BUCKET)"
+
 .PHONY: help
 help: ## Display this information. Default target.
 	@echo "Valid targets:"
