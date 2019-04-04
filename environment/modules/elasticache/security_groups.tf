@@ -1,6 +1,6 @@
 resource "aws_security_group" "elasticache" {
   name        = "elasticache-sg"
-  description = "Security group for elasticache Server Instances"
+  description = "Security group for Elasticache Server Instances"
   vpc_id      = "${var.vpc_id}"
 
   tags {
