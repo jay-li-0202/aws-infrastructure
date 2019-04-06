@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: ansible-dotnet-core
+    dotnet_rhel_package: "{{ dotnet_sdk_version }}"
+    dotnet_ubuntu_package: "{{ dotnet_sdk_version }}"

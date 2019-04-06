@@ -1,0 +1,7 @@
+# vars file for pip
+---
+pip_dependencies:
+  - python
+  - python-dev
+  - curl
+  - python-setuptools

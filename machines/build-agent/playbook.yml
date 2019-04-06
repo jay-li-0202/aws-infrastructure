@@ -1,0 +1,55 @@
+---
+- name: Prepare Build agent and dependencies
+  hosts: all
+
+  pre_tasks:
+  - name: Agent | Install basic command-line utilities
+    package:
+      name: "{{ item }}"
+      state: present
+      update_cache: true
+    with_items:
+    - curl
+    - jq
+    - libcurl3
+    - libicu55
+    - libunwind8
+    - dnsutils
+    - file
+    - ftp
+    - iproute2
+    - iputils-ping
+    - openssh-client
+    - sudo
+    - telnet
+    - time
+    - unzip
+    - wget
+    - zip
+    - tzdata
+
+  - name: Agent | Install essential build tools
+    package:
+      name: "build-essential"
+      state: present
+      update_cache: true
+
+  tasks:
+  - name: Markdown2Confluence | Install dependencies via pip
+    pip:
+      name: "{{ item }}"
+    with_items:
+    - requests
+    - markdown
+    - argparse
+
+  roles:
+    - ca-certificates
+    - locales
+    - git
+    - pip
+    - awscli
+    - dotnet-core
+    - mono
+    - nodejs
+    - docker

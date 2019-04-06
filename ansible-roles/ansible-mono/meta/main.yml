@@ -1,0 +1,17 @@
+galaxy_info:
+  author: David Cumps
+  description: Install Mono for Ubuntu
+  license: license (BSD, MIT)
+
+  min_ansible_version: 2.1
+
+  platforms:
+    - name: Ubuntu
+      versions:
+      - xenial
+
+  galaxy_tags:
+    - mono
+    - system
+
+dependencies: []

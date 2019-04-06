@@ -1,0 +1,4 @@
+---
+dependencies:
+  - role: ansible-git
+    latest_git_dependencies: "{{git_dependencies}}"

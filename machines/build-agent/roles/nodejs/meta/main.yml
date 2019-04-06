@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: ansible-nodejs
+    nodejs_version: "{{ node_version }}"
+    nodejs_npm_global_packages: "{{ node_npm_global_packages }}"

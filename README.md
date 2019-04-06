@@ -149,15 +149,27 @@ env ENVIRONMENT=... make fargate
 env ENVIRONMENT=... ACTION=apply make fargate
 ```
 
+## Build the infrastructure for a Build Server Agent
+
+We create a base Docker image to use as a build agent for our project.
+
+You can have a look at the image definition and perhaps edit it to only include the .NET Core versions you need: [build-agent.json](https://github.com/Informatievlaanderen/aws-infrastructure/blob/master/machines/build-agent/build-agent.json)
+
+This image is stored in Docker Hub, to build the image, run the following commands, make sure to configure `DOCKERHUB_USER` and `DOCKERHUB_PASS` to be able to push to Docker Hub:
+
+```bash
+images/
+env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... make build-agent
+env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... ACTION=build make build-agent
+```
+
 ## Credits
 
-// TODO: Populate credits
 ### Tools
 
 * [Terraform](https://github.com/hashicorp/terraform/blob/master/LICENSE) - _Terraform is a tool for building, changing, and combining infrastructure safely and efficiently._ - [MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
 * [Packer](https://github.com/hashicorp/packer/blob/master/LICENSE) - _Packer is a tool for creating identical machine images for multiple platforms from a single source configuration._ - [MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
 * [Ansible](https://github.com/ansible/ansible/blob/devel/COPYING) - _Ansible is a radically simple IT automation platform that makes your applications and systems easier to deploy._ - [GPL-3.0](https://choosealicense.com/licenses/gpl-3.0/)
-* AWS Labs for devortal & cli tools
 * [Fargate](https://github.com/jpignata/fargate/blob/master/LICENSE) - _CLI for AWS Fargate._ - [Apache-2.0](https://choosealicense.com/licenses/apache-2.0/)
 
 ### Ansible Roles

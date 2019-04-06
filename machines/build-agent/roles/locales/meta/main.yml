@@ -1,0 +1,7 @@
+---
+dependencies:
+  - role: ansible-locales
+    locales_present:
+    - "{{ locale }}"
+    locales_default:
+      lang: "{{ locale }}"

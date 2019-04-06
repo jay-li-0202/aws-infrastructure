@@ -1,0 +1,7 @@
+---
+- name: CA-certificates | Install the CA certificates
+  package:
+    name: ca-certificates
+    state: present
+    update_cache: true
+  when: ansible_os_family == 'Debian'

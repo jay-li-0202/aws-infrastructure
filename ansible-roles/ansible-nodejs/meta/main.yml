@@ -1,0 +1,16 @@
+galaxy_info:
+  author: geerlingguy
+  description: Node.js installation for Linux
+  company: "Midwestern Mac, LLC"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.9
+  platforms:
+    - name: Ubuntu
+      versions:
+      - trusty
+      - xenial
+  galaxy_tags:
+    - development
+    - web
+
+dependencies: []

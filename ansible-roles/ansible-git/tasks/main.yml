@@ -1,0 +1,27 @@
+# tasks file for latest-git
+---
+- name: Git | Add apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: E1DD270288B4E6030699E45FA1715D88E1DF1F24
+    state: present
+
+- name: Git | Add repository
+  apt_repository:
+    repo: deb [arch=amd64] http://ppa.launchpad.net/git-core/ppa/ubuntu xenial main
+    state: present
+  when: ansible_distribution == "Ubuntu" and ansible_distribution_major_version == "16"
+  tags:
+    - configuration
+    - latest-git
+    - latest-git-add-repository
+
+- name: Git | Install
+  apt:
+    name: "{{ item }}"
+    state: "{{ apt_install_state | default('latest') }}"
+  with_items: "{{ latest_git_dependencies }}"
+  tags:
+    - configuration
+    - latest-git
+    - latest-git-install

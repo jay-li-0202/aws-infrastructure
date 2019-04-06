@@ -1,0 +1,7 @@
+---
+node_version: "10.x"
+
+node_npm_global_packages:
+  - name: bower
+  - name: grunt
+  - name: gulp

@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: ansible-docker
+    docker_compose_version: "{{ docker_compose }}"
+    docker_package_state: 'latest'

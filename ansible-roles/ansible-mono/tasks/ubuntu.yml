@@ -1,0 +1,51 @@
+---
+- name: Mono | Make sure HTTPS is supported by apt
+  package:
+    name: apt-transport-https
+    state: present
+    update_cache: true
+
+- name: Mono | Add apt key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+    state: present
+
+- name: Mono | Add repo for Ubuntu Xenial
+  apt_repository:
+    repo: deb [arch=amd64] http://download.mono-project.com/repo/ubuntu xenial main
+    state: present
+  when: ansible_distribution_major_version == "16"
+
+- name: Mono | Install Mono Development
+  package:
+    name: mono-devel
+    state: present
+    update_cache: true
+  async: 600
+  poll: 5
+
+- name: Mono | Install Mono
+  package:
+    name: mono-complete
+    state: present
+    update_cache: true
+  async: 600
+  poll: 5
+
+- name: Mono | Install Mono Reference Assemblies
+  package:
+    name: referenceassemblies-pcl
+    state: present
+    update_cache: true
+  async: 600
+  poll: 5
+
+- name: Mono | Install Mono CA Certificates
+  package:
+    name: ca-certificates-mono
+    state: present
+    update_cache: true
+
+- name: Mono | Add certs
+  shell: "cat /etc/ssl/certs/* > ca-bundle.crt && cert-sync ca-bundle.crt && rm ca-bundle.crt"
