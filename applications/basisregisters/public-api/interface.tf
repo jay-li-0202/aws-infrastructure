@@ -118,3 +118,11 @@ variable "service_registry_arn" {
 variable "public_zone_name" {
   type = "string"
 }
+
+variable "private_zone_name" {
+  type = "string"
+}
+
+variable "disco_zone_name" {
+  type = "string"
+}

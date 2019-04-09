@@ -21,7 +21,7 @@ resource "aws_iam_role_policy_attachment" "ecsTaskExecutionRole_policy" {
 }
 
 resource "aws_service_discovery_private_dns_namespace" "basisregisters" {
-  name        = "basisregisters.disco"
+  name        = "${var.disco_zone_name}"
   description = "Basisregisters Vlaanderen Service Discovery"
   vpc         = "${data.terraform_remote_state.vpc.vpc_id}"
 }

@@ -12,6 +12,11 @@ variable "tag_contact" {}
 
 variable "state_bucket" {}
 
+variable "disco_zone_name" {
+  type    = "string"
+  default = "basisregisters.disco"
+}
+
 provider "aws" {
   version             = "~> 2.4.0"
   region              = "${var.aws_region}"
@@ -54,6 +59,8 @@ module "public-api" {
 
   public_zone_id        = "${data.terraform_remote_state.dns.public_zone_id}"
   public_zone_name      = "${data.terraform_remote_state.dns.public_zone_name}"
+  private_zone_name     = "${data.terraform_remote_state.dns.private_zone_name}"
+  disco_zone_name       = "${var.disco_zone_name}"
   cert_public_zone_name = "${data.terraform_remote_state.dns.public_zone_name}"
   cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
 

@@ -2,14 +2,17 @@ data "template_file" "app" {
   template = "${file("${path.module}/app.json.tpl")}"
 
   vars {
-    app_name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
-    image    = "${var.image}"
-    cpu      = "${var.cpu}"
-    memory   = "${var.memory}"
-    region   = "${var.region}"
-    port     = "${var.container_port}"
+    environment_name = "${var.environment_name}"
+    app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+    image            = "${var.image}"
+    cpu              = "${var.cpu}"
+    memory           = "${var.memory}"
+    region           = "${var.region}"
+    port             = "${var.container_port}"
 
-    public_zone_name = "${replace(var.public_zone_name, "/[.]$/", "")}"
+    public_zone_name  = "${replace(var.public_zone_name, "/[.]$/", "")}"
+    private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
+    disco_zone_name   = "${replace(var.public_zone_name, "/[.]$/", "")}"
   }
 }
 
