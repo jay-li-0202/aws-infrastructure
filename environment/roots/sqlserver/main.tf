@@ -96,10 +96,10 @@ data "terraform_remote_state" "dns" {
   }
 }
 
-output "address " {
+output "address" {
   value = "${module.sqlserver.address}"
 }
 
-output "endpoint " {
+output "endpoint" {
   value = "${module.sqlserver.endpoint}"
 }

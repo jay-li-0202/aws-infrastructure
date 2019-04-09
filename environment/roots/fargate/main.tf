@@ -37,10 +37,10 @@ module "fargate" {
   tag_contact     = "${var.tag_contact}"
 }
 
-output "fargate_cluster_id " {
+output "fargate_cluster_id" {
   value = "${module.fargate.cluster_id}"
 }
 
-output "fargate_cluster_arn " {
+output "fargate_cluster_arn" {
   value = "${module.fargate.cluster_arn}"
 }

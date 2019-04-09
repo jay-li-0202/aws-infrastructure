@@ -78,6 +78,6 @@ data "terraform_remote_state" "dns" {
   }
 }
 
-output "cache_endpoint " {
+output "cache_endpoint" {
   value = "${module.elasticache.endpoint}"
 }

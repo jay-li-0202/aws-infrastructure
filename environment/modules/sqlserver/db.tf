@@ -87,7 +87,7 @@ resource "aws_db_instance" "basisregisters" {
 
   apply_immediately = true
 
-  skip_final_snapshot = false
+  skip_final_snapshot       = false
   final_snapshot_identifier = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}-final"
 
   tags {

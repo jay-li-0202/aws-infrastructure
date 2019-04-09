@@ -87,10 +87,10 @@ data "terraform_remote_state" "dns" {
   }
 }
 
-output "es_endpoint " {
+output "es_endpoint" {
   value = "${module.elasticsearch.endpoint}"
 }
 
-output "kibana_endpoint " {
+output "kibana_endpoint" {
   value = "${module.elasticsearch.kibana_endpoint}"
 }
