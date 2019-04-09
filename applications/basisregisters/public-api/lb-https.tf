@@ -10,6 +10,43 @@ resource "aws_lb_listener" "https" {
   }
 }
 
+resource "aws_lb_listener_rule" "redirect_docs" {
+  listener_arn = "${aws_lb_listener.https.arn}"
+
+  action {
+    type = "redirect"
+
+    redirect {
+      host = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
+      path = "/docs/api-documentation.html"
+      status_code = "HTTP_301"
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["docs.*"]
+  }
+}
+
+resource "aws_lb_listener_rule" "redirect_alternate_host_headers" {
+  listener_arn = "${aws_lb_listener.https.arn}"
+
+  action {
+    type = "redirect"
+
+    redirect {
+      host = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
+      status_code = "HTTP_301"
+    }
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["legacy-api.*"]
+  }
+}
+
 # Incoming HTTPS
 resource "aws_security_group_rule" "ingress_https" {
   type = "ingress"

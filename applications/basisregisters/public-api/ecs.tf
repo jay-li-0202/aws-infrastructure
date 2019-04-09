@@ -58,6 +58,16 @@ resource "aws_ecs_service" "main" {
     registry_arn = "${var.service_registry_arn}"
   }
 
+  // ordered_placement_strategy {
+  //   type   = "spread"
+  //   field  = "attribute:ecs.availability-zone"
+  // }
+
+  // ordered_placement_strategy {
+  //   type   = "spread"
+  //   field  = "instanceId"
+  // }
+
   # workaround for https://github.com/hashicorp/terraform/issues/12634
   depends_on = [
     "aws_lb_listener.http",

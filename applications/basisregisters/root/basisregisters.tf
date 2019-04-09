@@ -45,10 +45,11 @@ module "public-api" {
   tag_program       = "${var.tag_program}"
   tag_contact       = "${var.tag_contact}"
 
-  app    = "basisregisters"
-  cpu    = 256
-  memory = 512
-  image  = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.3.3"
+  app      = "basisregisters"
+  cpu      = 256
+  memory   = 512
+  replicas = 2
+  image    = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.3.3"
 
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
   service_registry_arn    = "${aws_service_discovery_service.basisregisters.arn}"
