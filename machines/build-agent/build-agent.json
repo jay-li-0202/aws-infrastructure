@@ -64,7 +64,8 @@
         "./dotnet-install.sh --no-path --runtime aspnetcore --version 2.2.0   # 2.2.0",
         "./dotnet-install.sh --no-path --runtime aspnetcore --version 2.2.1   # 2.2.1",
         "./dotnet-install.sh --no-path --runtime aspnetcore --version 2.2.2   # 2.2.2",
-        "./dotnet-install.sh --no-path --version 2.2.202                      # 2.2.3",
+        "./dotnet-install.sh --no-path --runtime aspnetcore --version 2.2.3   # 2.2.3",
+        "./dotnet-install.sh --no-path --version 2.2.203                      # 2.2.4",
         "sudo rm -rf /usr/share/dotnet",
         "ln -s ~/.dotnet /usr/share/dotnet",
         "export PATH=\"$PATH:/usr/share/dotnet\" >> ~/.profile"
