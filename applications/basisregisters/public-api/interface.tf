@@ -126,3 +126,7 @@ variable "private_zone_name" {
 variable "disco_zone_name" {
   type = "string"
 }
+
+provider "template" {
+  version = "~> 2.1.1"
+}

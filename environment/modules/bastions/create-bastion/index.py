@@ -13,6 +13,7 @@ bastion_cluster = os.environ['BASTION_CLUSTER']
 subnet_string = os.environ['BASTION_SUBNETS']
 subnet_array = subnet_string.split(',')
 vpc = os.environ['BASTION_VPC']
+suffix = os.environ['BASTION_SUFFIX']
 
 tag_namesuffix = os.environ['TAG_NameSuffix']
 tag_environment = os.environ['TAG_Environment']
@@ -38,7 +39,7 @@ def lambda_handler(event, context):
     ec2 = boto3.client('ec2')
     ecs = boto3.client('ecs')
 
-    bastion_name = 'bastion-' + user
+    bastion_name = user + suffix
 
     try:
         # Check if everything already exists, if so return that
@@ -108,8 +109,6 @@ def lambda_handler(event, context):
         IpProtocol='tcp',
         ToPort=22
     )
-
-    return ipResponse("OK")
 
     # Start the bastion container
     response = ecs.run_task(

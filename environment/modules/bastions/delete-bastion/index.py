@@ -10,6 +10,7 @@ import re
 
 bastion_cluster = os.environ['BASTION_CLUSTER']
 vpc = os.environ['BASTION_VPC']
+suffix = os.environ['BASTION_SUFFIX']
 
 def successResponse():
     response = {}
@@ -27,7 +28,7 @@ def lambda_handler(event, context):
     ec2 = boto3.client('ec2')
     ecs = boto3.client('ecs')
 
-    bastion_name = 'bastion-' + user
+    bastion_name = user + suffix
     print("Starting to delete")
 
     try:

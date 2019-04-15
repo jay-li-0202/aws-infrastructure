@@ -24,10 +24,6 @@ provider "aws" {
   allowed_account_ids = ["${var.aws_account_id}"]
 }
 
-provider "template" {
-  version = "~> 2.1.0"
-}
-
 terraform {
   backend "s3" {
     key = "app-basisregisters/terraform.tfstate"

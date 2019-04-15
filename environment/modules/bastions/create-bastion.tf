@@ -119,6 +119,7 @@ resource "aws_lambda_function" "create-bastion" {
       BASTION_CLUSTER = "${var.bastion_cluster}"
       BASTION_SUBNETS = "${join(",", var.bastion_subnets)}"
       BASTION_VPC     = "${var.bastion_vpc}"
+      BASTION_SUFFIX  = "-${lower(replace(var.environment_name, " ", "-"))}-bastion"
 
       TAG_NameSuffix  = " // ${var.environment_label} ${var.environment_name}"
       TAG_Environment = "${var.tag_environment}"

@@ -42,6 +42,23 @@ module "bastions" {
   cleanup_schedule = ""
 }
 
+module "bastion-cumpsd" {
+  source = "../../modules/bastion_user"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
+  task_execution_role_arn = "${data.terraform_remote_state.fargate.fargate_execution_role_arn}"
+  region                  = "${var.aws_region}"
+
+  bastion_user = "cumpsd"
+}
+
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 

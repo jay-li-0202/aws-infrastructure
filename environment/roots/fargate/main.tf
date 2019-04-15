@@ -44,3 +44,7 @@ output "fargate_cluster_id" {
 output "fargate_cluster_arn" {
   value = "${module.fargate.cluster_arn}"
 }
+
+output "fargate_execution_role_arn" {
+  value = "${module.fargate.execution_role_arn}"
+}

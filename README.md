@@ -167,6 +167,8 @@ env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKE
 
 We create a base Docker image to use as a bastion host to connect to resources on our private VPC.
 
+Allowed public SSH keys are present in [authorized_keys](https://github.com/Informatievlaanderen/aws-infrastructure/blob/master/machines/bastion/authorized_keys).
+
 This image is stored in Docker Hub, to build the image, run the following commands, make sure to configure `DOCKERHUB_USER` and `DOCKERHUB_PASS` to be able to push to Docker Hub:
 
 ```bash
