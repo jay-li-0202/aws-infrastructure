@@ -100,8 +100,6 @@ def lambda_handler(event, context):
       {'Key': 'Contact', 'Value': tag_contact}
     ])
 
-    return ipResponse("OK")
-
     # Add the ingress rule to it
     ec2.authorize_security_group_ingress(
         CidrIp=ip,
@@ -110,6 +108,8 @@ def lambda_handler(event, context):
         IpProtocol='tcp',
         ToPort=22
     )
+
+    return ipResponse("OK")
 
     # Start the bastion container
     response = ecs.run_task(
