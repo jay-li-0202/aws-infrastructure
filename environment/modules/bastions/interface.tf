@@ -37,3 +37,11 @@ variable "bastion_vpc" {
 variable "cleanup_schedule" {
   type = "string"
 }
+
+provider "archive" {
+  version = "~> 1.2.0"
+}
+
+output "bastion_api_key" {
+  value = "${aws_api_gateway_api_key.bastions.value}"
+}

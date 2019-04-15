@@ -63,3 +63,7 @@ data "terraform_remote_state" "fargate" {
     profile = "${var.aws_profile}"
   }
 }
+
+output "bastion_api_key" {
+  value = "${module.bastions.bastion_api_key}"
+}

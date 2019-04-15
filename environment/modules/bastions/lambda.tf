@@ -1,7 +1,3 @@
-provider "archive" {
-  version = "~> 1.2.0"
-}
-
 data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
@@ -34,7 +30,8 @@ data "aws_iam_policy_document" "bastions-lambda" {
       "ec2:DescribeNetworkInterfaces",
       "ec2:DescribeSecurityGroups",
       "ec2:AuthorizeSecurityGroupIngress",
-      "ec2:CreateSecurityGroup"
+      "ec2:CreateSecurityGroup",
+      "ec2:CreateTags"
     ]
   }
 

@@ -30,7 +30,13 @@ resource "aws_lambda_function" "create-bastion" {
     variables = {
       BASTION_CLUSTER = "${var.bastion_cluster}"
       BASTION_SUBNETS = "${join(",", var.bastion_subnets)}"
-      BASTION_VPC = "${var.bastion_vpc}"
+      BASTION_VPC     = "${var.bastion_vpc}"
+
+      TAG_NameSuffix  = " // ${var.environment_label} ${var.environment_name}"
+      TAG_Environment = "${var.tag_environment}"
+      TAG_Productcode = "${var.tag_product}"
+      TAG_Programma   = "${var.tag_program}"
+      TAG_Contact     = "${var.tag_contact}"
     }
   }
 }

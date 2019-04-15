@@ -14,6 +14,12 @@ subnet_string = os.environ['BASTION_SUBNETS']
 subnet_array = subnet_string.split(',')
 vpc = os.environ['BASTION_VPC']
 
+tag_namesuffix = os.environ['TAG_NameSuffix']
+tag_environment = os.environ['TAG_Environment']
+tag_productcode = os.environ['TAG_Productcode']
+tag_programma = os.environ['TAG_Programma']
+tag_contact = os.environ['TAG_Contact']
+
 def ipResponse(ip):
     response = {}
     response['statusCode'] = 200
@@ -42,12 +48,14 @@ def lambda_handler(event, context):
                 {'Name': 'group-name', 'Values': [bastion_name]}
             ]
         )
+
         # TODO: check that the IPs still match, otherwise switch them out
         running_tasks = ecs.list_tasks(
             cluster=bastion_cluster,
             family=bastion_name,
             desiredStatus='RUNNING'
         )
+
         # TODO: if securitygroup found, but no task delete the securitygroup before proceeding
         if len(running_tasks['taskArns']) > 0:
             tasklist = ecs.describe_tasks(cluster=bastion_cluster, tasks=running_tasks['taskArns'])
@@ -63,6 +71,7 @@ def lambda_handler(event, context):
                     }
                 ]
             )
+
             ip = eni_description['NetworkInterfaces'][0]['Association']['PublicIp']
 
             return ipResponse(ip)
@@ -74,12 +83,24 @@ def lambda_handler(event, context):
 
     # Create the security group
     sg_response = ec2.create_security_group(
-        Description='Bastion access for ' + user,
+        Description='Security group for Bastion access for ' + user + '',
         GroupName=bastion_name,
         VpcId=vpc
     )
 
     sg = sg_response['GroupId']
+
+    ec2_resource = boto3.resource('ec2')
+    new_security_group = ec2_resource.SecurityGroup(sg)
+    new_security_group.create_tags(Tags=[
+      {'Key': 'Name', 'Value': 'Bastion ' + user + tag_namesuffix},
+      {'Key': 'Environment', 'Value': tag_environment},
+      {'Key': 'Productcode', 'Value': tag_productcode},
+      {'Key': 'Programma', 'Value': tag_programma},
+      {'Key': 'Contact', 'Value': tag_contact}
+    ])
+
+    return ipResponse("OK")
 
     # Add the ingress rule to it
     ec2.authorize_security_group_ingress(
@@ -105,11 +126,11 @@ def lambda_handler(event, context):
             }
         }
     )
+
     task_arn = response['tasks'][0]['taskArn']
     attachment_id = response['tasks'][0]['attachments'][0]['id']
     attachment_identifier = "attachment/" + attachment_id
-    attachment_description = re.sub(
-        r'task/.*', attachment_identifier, task_arn)
+    attachment_description = re.sub(r'task/.*', attachment_identifier, task_arn)
 
     # It takes a bit of time to get the ENI, check after a couple of seconds and then loop
     time.sleep(2)
@@ -121,6 +142,7 @@ def lambda_handler(event, context):
             }
         ]
     )
+
     while len(eni_description['NetworkInterfaces']) == 0:
         time.sleep(2)
         eni_description = ec2.describe_network_interfaces(
@@ -131,6 +153,7 @@ def lambda_handler(event, context):
                 }
             ]
         )
+
     ip = eni_description['NetworkInterfaces'][0]['Association']['PublicIp']
 
     return ipResponse(ip)
