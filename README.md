@@ -163,6 +163,18 @@ env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKE
 env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... ACTION=build make build-agent
 ```
 
+## Build the infrastructure for a Bastion Host
+
+We create a base Docker image to use as a bastion host to connect to resources on our private VPC.
+
+This image is stored in Docker Hub, to build the image, run the following commands, make sure to configure `DOCKERHUB_USER` and `DOCKERHUB_PASS` to be able to push to Docker Hub:
+
+```bash
+images/
+env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... make bastion
+env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... ACTION=build make bastion
+```
+
 ## Credits
 
 ### Tools

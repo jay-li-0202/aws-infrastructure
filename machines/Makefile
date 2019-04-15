@@ -4,7 +4,25 @@ ACTION ?= validate
 REPOSITORY ?= basisregisters
 DOCKERHUB_REPOSITORY ?= basisregisters
 
-ECR_URI = $(shell cd ../environment/roots/docker_repo && terraform output ecr_uri)
+##############
+
+.PHONY: bastion
+bastion: ## Create a Docker image which serves as a bastion
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, Packer action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	$(call check_defined, DOCKERHUB_USER, DockerHub username to use)
+	$(call check_defined, DOCKERHUB_PASS, DockerHub password to use)
+	@cd bastion && \
+		packer $(ACTION) \
+			-var 'image=bastion' \
+			-var 'repository=$(REPOSITORY)' \
+			-var 'dockerhub_repository=$(DOCKERHUB_REPOSITORY)' \
+			-var 'dockerhub_user=$(DOCKERHUB_USER)' \
+			-var 'dockerhub_pass=$(DOCKERHUB_PASS)' \
+			bastion.json
+
+##############
 
 .PHONY: build-agent
 build-agent: ## Create a Docker image which serves as a base build images
@@ -20,7 +38,6 @@ build-agent: ## Create a Docker image which serves as a base build images
 			-var 'dockerhub_repository=$(DOCKERHUB_REPOSITORY)' \
 			-var 'dockerhub_user=$(DOCKERHUB_USER)' \
 			-var 'dockerhub_pass=$(DOCKERHUB_PASS)' \
-			-var 'ecr_uri=$(ECR_URI)' \
 			build-agent.json
 
 .PHONY: help
