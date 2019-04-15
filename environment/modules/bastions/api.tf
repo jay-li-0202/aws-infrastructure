@@ -1,7 +1,7 @@
 resource "aws_api_gateway_rest_api" "bastions" {
-  name        = "bastions-api"
-  description = "Bastions API // ${var.environment_label} ${var.environment_name}"
-  api_key_source = "HEADER"
+  name                     = "bastions-api"
+  description              = "Bastions API // ${var.environment_label} ${var.environment_name}"
+  api_key_source           = "HEADER"
   minimum_compression_size = 0
 }
 
@@ -18,8 +18,11 @@ resource "aws_api_gateway_deployment" "bastions" {
 ${md5("
   ${file("${path.module}/api.tf")}
   ${file("${path.module}/create-bastion.tf")}
-  ${file("${path.module}/create-bastion-api.tf")}
-  ${file("${path.module}/create-bastion.zip")}
+  ${file("${path.module}/create-bastion/index.py")}
+  ${file("${path.module}/delete-bastion.tf")}
+  ${file("${path.module}/delete-bastion/index.py")}
+  ${file("${path.module}/delete-all-bastions.tf")}
+  ${file("${path.module}/delete-all-bastions/index.py")}
 ")}
 EOF
 
@@ -45,7 +48,7 @@ resource "aws_api_gateway_usage_plan" "bastions" {
 }
 
 resource "aws_api_gateway_api_key" "bastions" {
-  name = "bastions"
+  name        = "bastions"
   description = "Bastions API // ${var.environment_label} ${var.environment_name}"
 }
 

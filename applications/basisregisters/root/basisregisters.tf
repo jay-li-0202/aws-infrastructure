@@ -54,8 +54,8 @@ module "public-api" {
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
   service_registry_arn    = "${aws_service_discovery_service.basisregisters.arn}"
 
-  vpc_id  = "${data.terraform_remote_state.vpc.vpc_id}"
-  public_subnets = ["${data.terraform_remote_state.vpc.public_subnet_ids}"]
+  vpc_id          = "${data.terraform_remote_state.vpc.vpc_id}"
+  public_subnets  = ["${data.terraform_remote_state.vpc.public_subnet_ids}"]
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
   public_zone_id        = "${data.terraform_remote_state.dns.public_zone_id}"

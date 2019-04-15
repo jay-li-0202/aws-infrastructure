@@ -23,7 +23,7 @@ def failResponse(error):
     return response
 
 def lambda_handler(event, context):
-    user = event['user']
+    user = event['queryStringParameters']['user']
     ec2 = boto3.client('ec2')
     ecs = boto3.client('ecs')
 
@@ -37,21 +37,22 @@ def lambda_handler(event, context):
             family=bastion_name,
             desiredStatus='RUNNING'
         )
+
         for task_arn in running_tasks['taskArns']:
             print("Found a task")
             # Retrieve the ENI information
-            tasklist = ecs.describe_tasks(
-                cluster=bastion_cluster, tasks=[task_arn])
+            tasklist = ecs.describe_tasks(cluster=bastion_cluster, tasks=[task_arn])
             attachment_id = tasklist['tasks'][0]['attachments'][0]['id']
             attachment_identifier = "attachment/" + attachment_id
-            attachment_description = re.sub(
-                r'task/.*', attachment_identifier, task_arn)
+            attachment_description = re.sub(r'task/.*', attachment_identifier, task_arn)
+
             # Stop the task
             ecs.stop_task(
                 cluster=bastion_cluster,
                 task=task_arn,
                 reason='Requested by user'
             )
+
             # Wait until the ENI is deleted to prevent dependency conflict for removing security group
             eni_description = ec2.describe_network_interfaces(
                 Filters=[
@@ -61,6 +62,7 @@ def lambda_handler(event, context):
                     }
                 ]
             )
+
             while len(eni_description['NetworkInterfaces']) > 0:
                 time.sleep(2)
                 eni_description = ec2.describe_network_interfaces(
@@ -71,7 +73,9 @@ def lambda_handler(event, context):
                         }
                     ]
                 )
+
         print("Task is deleted")
+
         # Now find the security group to delete
         security_group = ec2.describe_security_groups(
             Filters=[
@@ -79,6 +83,7 @@ def lambda_handler(event, context):
                 {'Name': 'group-name', 'Values': [bastion_name]}
             ]
         )
+
         for group in security_group['SecurityGroups']:
             ec2.delete_security_group(GroupId=group['GroupId'])
 
