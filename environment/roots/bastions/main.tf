@@ -81,6 +81,10 @@ data "terraform_remote_state" "fargate" {
   }
 }
 
+output "bastion_api_endpoint" {
+  value = "${module.bastions.bastion_api_endpoint}"
+}
+
 output "bastion_api_key" {
   value = "${module.bastions.bastion_api_key}"
 }

@@ -42,6 +42,10 @@ provider "archive" {
   version = "~> 1.2.1"
 }
 
+output "bastion_api_endpoint" {
+  value = "${aws_api_gateway_deployment.bastions.invoke_url}"
+}
+
 output "bastion_api_key" {
   value = "${aws_api_gateway_api_key.bastions.value}"
 }

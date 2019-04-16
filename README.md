@@ -177,6 +177,41 @@ env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKE
 env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... ACTION=build make bastion
 ```
 
+## Using Bastions
+
+Starting a bastion is done through an API call which triggers a Lamba function to start a task running an SSH daemon.
+
+You can configure additional users in [environment/roots/bastions/main.tf](https://github.com/Informatievlaanderen/aws-infrastructure/blob/master/environment/roots/bastions/main.tf).
+
+To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make bastions
+env ENVIRONMENT=... ACTION=apply make bastions
+```
+
+The API endpoint is output as `bastion_api_endpoint`, together with `bastion_api_key`. Together these allow you to start a bastion with:
+
+```bash
+curl -X POST -H "X-Api-Key: abcdefghi....xyz" "https://abcdefg.execute-api.eu-west-1.amazonaws.com/bastions-production/bastion?user=cumpsd"
+```
+
+Which will start a bastion and return it's IP:
+
+```json
+{
+  "ip": "54.123.123.123",
+  "status": "created"
+}
+```
+
+To delete it, you can run:
+
+```bash
+curl -X DELETE -H "X-Api-Key: abcdefghi....xyz" "https://abcdefg.execute-api.eu-west-1.amazonaws.com/bastions-production/bastion?user=cumpsd"
+```
+
 ## Credits
 
 ### Tools
