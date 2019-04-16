@@ -1,0 +1,75 @@
+{
+  "variables": {
+    "image": "",
+    "repository": "",
+    "dockerhub_repository": "",
+    "dockerhub_user": "",
+    "dockerhub_pass": "",
+    "version": "latest"
+  },
+  "builders": [{
+    "type": "docker",
+    "image": "alpine:3.9.3",
+    "commit": "true",
+    "changes": [
+      "ENTRYPOINT /root/run.sh",
+      "EXPOSE 22"
+    ],
+    "run_command": [
+      "-d",
+      "-i",
+      "-t",
+      "--name", "{{ user `image` }}",
+      "{{.Image}}",
+      "/bin/sh" ]
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "mkdir -p /root/.ssh/"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "authorized_keys",
+      "destination": "/root/.ssh/authorized_keys"
+    },
+    {
+      "type": "file",
+      "source": "run.sh",
+      "destination": "/root/run.sh"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "apk update",
+        "apk upgrade",
+        "apk --update --no-cache add openssh",
+        "chmod 644 /root/.ssh/authorized_keys",
+        "chmod 744 /root/run.sh",
+        "echo \"root:root\" | chpasswd"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "sshd_config",
+      "destination": "/etc/ssh/sshd_config"
+    }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository": "{{ user `dockerhub_repository` }}/{{ user `image` }}",
+        "tag": "{{ user `version` }}"
+      },
+      {
+        "type": "docker-push",
+        "login": true,
+        "login_username": "{{ user `dockerhub_user` }}",
+        "login_password": "{{ user `dockerhub_pass` }}"
+      }
+    ]
+  ]
+}

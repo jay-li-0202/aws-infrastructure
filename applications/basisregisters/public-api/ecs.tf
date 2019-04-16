@@ -63,6 +63,7 @@ resource "aws_ecs_service" "main" {
   //   field  = "attribute:ecs.availability-zone"
   // }
 
+
   // ordered_placement_strategy {
   //   type   = "spread"
   //   field  = "instanceId"
@@ -71,7 +72,7 @@ resource "aws_ecs_service" "main" {
   # workaround for https://github.com/hashicorp/terraform/issues/12634
   depends_on = [
     "aws_lb_listener.http",
-    "aws_lb_listener.https"
+    "aws_lb_listener.https",
   ]
 
   # [after initial apply] don't override changes made to task_definition

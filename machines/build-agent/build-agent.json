@@ -1,7 +1,6 @@
 {
   "variables": {
     "image": "",
-    "ecr_uri": "",
     "repository": "",
     "dockerhub_repository": "",
     "dockerhub_user": "",

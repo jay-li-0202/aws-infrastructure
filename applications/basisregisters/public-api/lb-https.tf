@@ -17,8 +17,8 @@ resource "aws_lb_listener_rule" "redirect_docs" {
     type = "redirect"
 
     redirect {
-      host = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
-      path = "/docs/api-documentation.html"
+      host        = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
+      path        = "/docs/api-documentation.html"
       status_code = "HTTP_301"
     }
   }
@@ -36,7 +36,7 @@ resource "aws_lb_listener_rule" "redirect_alternate_host_headers" {
     type = "redirect"
 
     redirect {
-      host = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
+      host        = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
       status_code = "HTTP_301"
     }
   }

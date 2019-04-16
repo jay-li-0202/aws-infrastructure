@@ -22,14 +22,23 @@ variable "tag_contact" {
   type = "string"
 }
 
-output "cluster_id" {
-  value = "${aws_ecs_cluster.basisregisters.id}"
+variable "region" {
+  type = "string"
 }
 
-output "cluster_arn" {
-  value = "${aws_ecs_cluster.basisregisters.arn}"
+variable "bastion_user" {
+  type = "string"
 }
 
-output "execution_role_arn" {
-  value = "${aws_iam_role.ecsTaskExecutionRole.arn}"
+variable "image" {
+  type    = "string"
+  default = "basisregisters/bastion:latest"
+}
+
+variable "task_execution_role_arn" {
+  type = "string"
+}
+
+provider "template" {
+  version = "~> 2.1.1"
 }
