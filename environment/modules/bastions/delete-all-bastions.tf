@@ -3,7 +3,7 @@ resource "aws_lambda_permission" "delete-all-bastions-api" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.delete-all-bastions.arn}"
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_deployment.bastions.execution_arn}/*/bastions"
+  source_arn    = "${aws_api_gateway_rest_api.bastions.execution_arn}/*/DELETE/bastions"
 }
 
 resource "aws_api_gateway_resource" "delete-all-bastions" {
@@ -85,7 +85,7 @@ resource "aws_lambda_function" "delete-all-bastions" {
   handler       = "index.lambda_handler"
 
   role    = "${aws_iam_role.delete-all-bastions-lambda.arn}"
-  timeout = 30
+  timeout = 900
 
   filename         = "${data.archive_file.delete-all-bastions.output_path}"
   source_code_hash = "${data.archive_file.delete-all-bastions.output_base64sha256}"

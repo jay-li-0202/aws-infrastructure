@@ -24,7 +24,12 @@ tag_contact = os.environ['TAG_Contact']
 def ipResponse(ip):
     response = {}
     response['statusCode'] = 200
-    response['body'] = ip
+    response['body'] = json.dumps(
+      {
+        'status': 'created',
+        'ip': ip
+      }, indent=2, sort_keys=True)
+
     return response
 
 def failResponse(error):

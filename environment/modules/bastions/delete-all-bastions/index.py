@@ -14,6 +14,11 @@ vpc = os.environ['BASTION_VPC']
 def successResponse():
     response = {}
     response['statusCode'] = 200
+    response['body'] = json.dumps(
+      {
+        'status': 'deleted'
+      }, indent=2, sort_keys=True)
+
     return response
 
 def failResponse(error):
@@ -35,19 +40,19 @@ def lambda_handler(event, context):
             startedBy='bastion-builder',
             desiredStatus='RUNNING'
         )
+
         related_securitygroups = []
         enis = []
+
         print(running_tasks)
         for task_arn in running_tasks['taskArns']:
             print("Found a task")
             # Retrieve the ENI information
-            tasklist = ecs.describe_tasks(
-                cluster=bastion_cluster, tasks=[task_arn])
+            tasklist = ecs.describe_tasks(cluster=bastion_cluster, tasks=[task_arn])
 
             attachment_id = tasklist['tasks'][0]['attachments'][0]['id']
             attachment_identifier = "attachment/" + attachment_id
-            attachment_description = re.sub(
-                r'task/.*', attachment_identifier, task_arn)
+            attachment_description = re.sub(r'task/.*', attachment_identifier, task_arn)
             enis.append(attachment_description)
 
             group = tasklist['tasks'][0]['group']
@@ -71,6 +76,7 @@ def lambda_handler(event, context):
                 }
             ]
         )
+
         while len(eni_description['NetworkInterfaces']) > 0:
             time.sleep(2)
             eni_description = ec2.describe_network_interfaces(
@@ -81,6 +87,7 @@ def lambda_handler(event, context):
                     }
                 ]
             )
+
         print("All tasks are deleted")
         # Now find the security group to delete
         security_group = ec2.describe_security_groups(
@@ -89,6 +96,7 @@ def lambda_handler(event, context):
                 {'Name': 'group-name', 'Values': related_securitygroups}
             ]
         )
+
         for group in security_group['SecurityGroups']:
             ec2.delete_security_group(GroupId=group['GroupId'])
 

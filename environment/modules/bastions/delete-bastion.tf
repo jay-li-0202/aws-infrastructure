@@ -1,40 +1,3 @@
-resource "aws_lambda_permission" "delete-bastion-api" {
-  statement_id  = "AllowDeleteBastionInvoke"
-  action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.delete-bastion.arn}"
-  principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_deployment.bastions.execution_arn}/*/bastion"
-}
-
-resource "aws_api_gateway_resource" "delete-bastion" {
-  rest_api_id = "${aws_api_gateway_rest_api.bastions.id}"
-  parent_id   = "${aws_api_gateway_rest_api.bastions.root_resource_id}"
-  path_part   = "bastion"
-}
-
-resource "aws_api_gateway_method" "delete-bastion" {
-  rest_api_id          = "${aws_api_gateway_rest_api.bastions.id}"
-  resource_id          = "${aws_api_gateway_resource.delete-bastion.id}"
-  http_method          = "DELETE"
-  authorization        = "NONE"
-  api_key_required     = true
-  request_validator_id = "${aws_api_gateway_request_validator.bastions.id}"
-
-  request_parameters = {
-    "method.request.querystring.user" = true
-  }
-}
-
-resource "aws_api_gateway_integration" "delete-bastion" {
-  rest_api_id = "${aws_api_gateway_rest_api.bastions.id}"
-  resource_id = "${aws_api_gateway_method.delete-bastion.resource_id}"
-  http_method = "${aws_api_gateway_method.delete-bastion.http_method}"
-
-  integration_http_method = "POST"
-  type                    = "AWS_PROXY"
-  uri                     = "${aws_lambda_function.delete-bastion.invoke_arn}"
-}
-
 data "archive_file" "delete-bastion" {
   type        = "zip"
   source_file = "${path.module}/delete-bastion/index.py"
@@ -89,7 +52,7 @@ resource "aws_lambda_function" "delete-bastion" {
   handler       = "index.lambda_handler"
 
   role    = "${aws_iam_role.delete-bastions-lambda.arn}"
-  timeout = 30
+  timeout = 900
 
   filename         = "${data.archive_file.delete-bastion.output_path}"
   source_code_hash = "${data.archive_file.delete-bastion.output_base64sha256}"
@@ -106,6 +69,7 @@ resource "aws_lambda_function" "delete-bastion" {
     variables = {
       BASTION_CLUSTER = "${var.bastion_cluster}"
       BASTION_VPC     = "${var.bastion_vpc}"
+      BASTION_SUFFIX  = "-${lower(replace(var.environment_name, " ", "-"))}-bastion"
     }
   }
 }

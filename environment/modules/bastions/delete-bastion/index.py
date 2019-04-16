@@ -5,6 +5,7 @@ import boto3
 from botocore.exceptions import ClientError
 import datetime
 import os
+import json
 import time
 import re
 
@@ -15,6 +16,11 @@ suffix = os.environ['BASTION_SUFFIX']
 def successResponse():
     response = {}
     response['statusCode'] = 200
+    response['body'] = json.dumps(
+      {
+        'status': 'deleted'
+      }, indent=2, sort_keys=True)
+
     return response
 
 def failResponse(error):
@@ -24,7 +30,7 @@ def failResponse(error):
     return response
 
 def lambda_handler(event, context):
-    user = event['queryStringParameters']['user']
+    user = event['user']
     ec2 = boto3.client('ec2')
     ecs = boto3.client('ecs')
 
@@ -38,6 +44,9 @@ def lambda_handler(event, context):
             family=bastion_name,
             desiredStatus='RUNNING'
         )
+
+        print("Tasks:")
+        print(running_tasks)
 
         for task_arn in running_tasks['taskArns']:
             print("Found a task")

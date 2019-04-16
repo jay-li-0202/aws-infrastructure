@@ -3,7 +3,7 @@ resource "aws_lambda_permission" "create-bastion-api" {
   action        = "lambda:InvokeFunction"
   function_name = "${aws_lambda_function.create-bastion.arn}"
   principal     = "apigateway.amazonaws.com"
-  source_arn    = "${aws_api_gateway_deployment.bastions.execution_arn}/*/bastion"
+  source_arn    = "${aws_api_gateway_rest_api.bastions.execution_arn}/*/POST/bastion"
 }
 
 resource "aws_api_gateway_resource" "create-bastion" {
