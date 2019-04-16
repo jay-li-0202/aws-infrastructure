@@ -49,3 +49,7 @@ output "bastion_api_endpoint" {
 output "bastion_api_key" {
   value = "${aws_api_gateway_api_key.bastions.value}"
 }
+
+output "bastion_security_group" {
+  value = "${aws_security_group.bastion.arn}"
+}

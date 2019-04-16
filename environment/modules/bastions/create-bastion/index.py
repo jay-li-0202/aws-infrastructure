@@ -14,6 +14,7 @@ subnet_string = os.environ['BASTION_SUBNETS']
 subnet_array = subnet_string.split(',')
 vpc = os.environ['BASTION_VPC']
 suffix = os.environ['BASTION_SUFFIX']
+bastion_sg = os.environ['BASTION_SECURITY_GROUP']
 
 tag_namesuffix = os.environ['TAG_NameSuffix']
 tag_environment = os.environ['TAG_Environment']
@@ -125,7 +126,7 @@ def lambda_handler(event, context):
         networkConfiguration={
             'awsvpcConfiguration': {
                 'subnets': subnet_array,
-                'securityGroups': [sg],
+                'securityGroups': [sg, bastion_sg],
                 'assignPublicIp': 'ENABLED'
             }
         }

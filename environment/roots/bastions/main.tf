@@ -88,3 +88,7 @@ output "bastion_api_endpoint" {
 output "bastion_api_key" {
   value = "${module.bastions.bastion_api_key}"
 }
+
+output "bastion_security_group" {
+  value = "${module.bastions.bastion_security_group}"
+}
