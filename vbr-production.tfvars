@@ -24,7 +24,7 @@ public_zone_name  = "basisregisters.vlaanderen"
 private_zone_name = "basisregisters.local"
 
 // Elasticsearch Information
-elasticsearch_version = "6.4"
+elasticsearch_version = "6.5"
 elasticsearch_volume_size = 30
 elasticsearch_master_instance_type = "t2.small.elasticsearch"
 elasticsearch_master_cluster_size = 3
