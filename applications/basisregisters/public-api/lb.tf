@@ -100,3 +100,20 @@ resource "aws_s3_bucket_policy" "lb_access_logs" {
 }
 POLICY
 }
+
+resource "aws_lambda_permission" "lb_access_logs" {
+  statement_id  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-lb-access-logs"
+  action        = "lambda:InvokeFunction"
+  function_name = "${var.datadog_logging_lambda}"
+  principal     = "s3.amazonaws.com"
+  source_arn    = "${aws_s3_bucket.lb_access_logs.arn}"
+}
+
+resource "aws_s3_bucket_notification" "lb_access_logs" {
+  bucket = "${aws_s3_bucket.lb_access_logs.id}"
+
+  lambda_function {
+    lambda_function_arn = "${var.datadog_logging_lambda}"
+    events              = ["s3:ObjectCreated:*"]
+  }
+}

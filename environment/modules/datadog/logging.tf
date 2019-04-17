@@ -44,6 +44,17 @@ data "aws_iam_policy_document" "logging-lambda" {
       "iam:PassRole",
     ]
   }
+
+ statement {
+    sid       = "ReadS3"
+    effect    = "Allow"
+    resources = ["*"]
+
+    actions = [
+      "s3:Get*",
+      "s3:List*"
+    ]
+  }
 }
 
 resource "aws_iam_role_policy" "logging-lambda" {
