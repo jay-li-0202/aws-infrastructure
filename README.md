@@ -149,6 +149,18 @@ env ENVIRONMENT=... make fargate
 env ENVIRONMENT=... ACTION=apply make fargate
 ```
 
+## Build the infrastructure for Datadog monitoring
+
+We monitor using Datadog, which [requires some AWS setup](https://docs.datadoghq.com/integrations/amazon_web_services/?tab=allpermissions#installation) to work.
+
+To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make monitoring
+env ENVIRONMENT=... ACTION=apply make monitoring
+```
+
 ## Build the infrastructure for a Build Server Agent
 
 We create a base Docker image to use as a build agent for our project.

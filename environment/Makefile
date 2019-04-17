@@ -118,6 +118,22 @@ cache: roots/cache/.terraform/terraform.tfstate ## Run Terraform to create an El
 
 ##############
 
+roots/monitoring/.terraform/terraform.tfstate:
+	@cd roots/monitoring && \
+		terraform init \
+			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
+
+.PHONY: monitoring
+monitoring: roots/monitoring/.terraform/terraform.tfstate ## Run Terraform to setup Datadog infrastructure
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ACTION, terraform action to perform)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@cd roots/monitoring && \
+		terraform $(ACTION) \
+			-var-file=../../../$(ENVIRONMENT).tfvars
+
+##############
+
 roots/sqlserver/.terraform/terraform.tfstate:
 	@cd roots/sqlserver && \
 		terraform init \

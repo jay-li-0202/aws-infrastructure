@@ -46,6 +46,14 @@ resource "aws_iam_role" "create-bastions-lambda" {
 
   description        = "Allows Lambda to create Bastions"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
+
+  tags {
+    Name        = "Create Bastion Host // ${var.environment_label} ${var.environment_name}"
+    Environment = "${var.tag_environment}"
+    Productcode = "${var.tag_product}"
+    Programma   = "${var.tag_program}"
+    Contact     = "${var.tag_contact}"
+  }
 }
 
 data "aws_iam_policy_document" "create-bastions-lambda" {

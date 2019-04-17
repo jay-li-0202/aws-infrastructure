@@ -46,6 +46,14 @@ resource "aws_iam_role" "delete-bastions-trigger-lambda" {
 
   description        = "Allows Lambda to trigger Lambda to delete Bastions"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
+
+  tags {
+    Name        = "Delete Bastion Host Trigger // ${var.environment_label} ${var.environment_name}"
+    Environment = "${var.tag_environment}"
+    Productcode = "${var.tag_product}"
+    Programma   = "${var.tag_program}"
+    Contact     = "${var.tag_contact}"
+  }
 }
 
 data "aws_iam_policy_document" "delete-bastions-trigger-lambda" {
