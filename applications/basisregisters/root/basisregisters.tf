@@ -46,7 +46,8 @@ module "public-api" {
   cpu      = 256
   memory   = 512
   replicas = 2
-  image    = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.3.3"
+  image    = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.4.0"
+  container_port = 2080
 
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
   service_registry_arn    = "${aws_service_discovery_service.basisregisters.arn}"
@@ -63,6 +64,8 @@ module "public-api" {
   cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
 
   datadog_api_key = "${data.terraform_remote_state.datadog.datadog_api_key}"
+  datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
+  datadog_env = "vbr-${lower(var.environment_name)}"
 
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
 }

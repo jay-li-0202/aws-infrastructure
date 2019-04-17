@@ -30,6 +30,14 @@ variable "datadog_api_key" {
   type = "string"
 }
 
+variable "datadog_logging_lambda" {
+  type = "string"
+}
+
+variable "datadog_env" {
+  type = "string"
+}
+
 variable "task_execution_role_arn" {
   type = "string"
 }
@@ -112,7 +120,6 @@ variable "replicas" {
 
 variable "container_port" {
   type    = "string"
-  default = 5000
 }
 
 variable "service_registry_arn" {

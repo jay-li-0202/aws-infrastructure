@@ -33,3 +33,18 @@ resource "aws_cloudwatch_log_stream" "monitoring_log_stream" {
   name           = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-datadog"
   log_group_name = "${aws_cloudwatch_log_group.monitoring_log_group.name}"
 }
+
+resource "aws_lambda_permission" "app_log" {
+  statement_id  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+  action        = "lambda:InvokeFunction"
+  function_name = "${var.datadog_logging_lambda}"
+  principal     = "logs.eu-west-1.amazonaws.com"
+  source_arn    = "${aws_cloudwatch_log_group.app_log_group.arn}"
+}
+
+resource "aws_cloudwatch_log_subscription_filter" "app_logfilter" {
+  name            = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+  log_group_name  = "${aws_cloudwatch_log_group.app_log_group.name}"
+  destination_arn = "${var.datadog_logging_lambda}"
+  filter_pattern  = ""
+}

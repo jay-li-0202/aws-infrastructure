@@ -63,7 +63,11 @@
     "environment": [
       { "name": "DD_API_KEY", "value": "${datadog_api_key}" },
       { "name": "ECS_FARGATE", "value": "true" },
-      { "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC", "value": "true" }
+      { "name": "DD_APM_ENABLED", "value": "true" },
+      { "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC", "value": "true" },
+      { "name": "DD_APM_NON_LOCAL_TRAFFIC", "value": "true" },
+      { "name": "DD_APM_ENV", "value": "${datadog_env}" }
+
     ],
     "logConfiguration": {
         "logDriver": "awslogs",
