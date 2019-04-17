@@ -26,6 +26,10 @@ variable "tag_contact" {
   type = "string"
 }
 
+variable "datadog_api_key" {
+  type = "string"
+}
+
 variable "task_execution_role_arn" {
   type = "string"
 }

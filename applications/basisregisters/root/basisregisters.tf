@@ -36,6 +36,7 @@ module "public-api" {
   region            = "${var.aws_region}"
   environment_label = "${var.environment_label}"
   environment_name  = "${var.environment_name}"
+
   tag_environment   = "${var.tag_environment}"
   tag_product       = "${var.tag_product}"
   tag_program       = "${var.tag_program}"
@@ -60,6 +61,8 @@ module "public-api" {
   disco_zone_name       = "${var.disco_zone_name}"
   cert_public_zone_name = "${data.terraform_remote_state.dns.public_zone_name}"
   cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
+
+  datadog_api_key = "${data.terraform_remote_state.datadog.datadog_api_key}"
 
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
 }
@@ -96,6 +99,18 @@ data "terraform_remote_state" "fargate" {
     profile = "${var.aws_profile}"
   }
 }
+
+data "terraform_remote_state" "datadog" {
+  backend = "s3"
+
+  config {
+    bucket  = "${var.state_bucket}"
+    region  = "${var.aws_region}"
+    key     = "datadog_aws/terraform.tfstate"
+    profile = "${var.aws_profile}"
+  }
+}
+
 
 // output "vpc_id" {
 //   value = "${module.vpc.vpc_id}"

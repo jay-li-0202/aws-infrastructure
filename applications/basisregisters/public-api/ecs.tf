@@ -3,10 +3,9 @@ data "template_file" "app" {
 
   vars {
     environment_name = "${var.environment_name}"
+    datadog_api_key  = "${var.datadog_api_key}"
     app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
     image            = "${var.image}"
-    cpu              = "${var.cpu}"
-    memory           = "${var.memory}"
     region           = "${var.region}"
     port             = "${var.container_port}"
 

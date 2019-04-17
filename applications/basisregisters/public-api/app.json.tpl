@@ -3,8 +3,6 @@
     "name": "${app_name}",
     "image": "${image}",
     "essential": true,
-    "cpu": ${cpu},
-    "memory": ${memory},
     "networkMode": "awsvpc",
     "environment" : [
       { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
@@ -51,6 +49,26 @@
         "logDriver": "awslogs",
         "options": {
           "awslogs-group": "/fargate/task/${app_name}",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }
+  },
+  {
+    "name": "datadog-agent",
+    "image": "datadog/agent:latest",
+    "essential": true,
+    "networkMode": "awsvpc",
+    "command": ["sh", "-c", "echo 'expvar_port: 15000' >> /etc/datadog-agent/datadog.yaml ; /init"],
+    "environment": [
+      { "name": "DD_API_KEY", "value": "${datadog_api_key}" },
+      { "name": "ECS_FARGATE", "value": "true" },
+      { "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC", "value": "true" }
+    ],
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/fargate/task/${app_name}-datadog",
           "awslogs-region": "${region}",
           "awslogs-stream-prefix": "ecs"
         }
