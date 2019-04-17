@@ -38,6 +38,10 @@ variable "cleanup_schedule" {
   type = "string"
 }
 
+variable "datadog_logging_lambda" {
+  type = "string"
+}
+
 provider "archive" {
   version = "~> 1.2.1"
 }

@@ -40,6 +40,8 @@ module "bastions" {
   bastion_subnets  = ["${data.terraform_remote_state.vpc.public_subnet_ids}"]
   bastion_vpc      = "${data.terraform_remote_state.vpc.vpc_id}"
   cleanup_schedule = ""
+
+  datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
 }
 
 module "bastion-cumpsd" {
@@ -77,6 +79,17 @@ data "terraform_remote_state" "fargate" {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "fargate/terraform.tfstate"
+    profile = "${var.aws_profile}"
+  }
+}
+
+data "terraform_remote_state" "datadog" {
+  backend = "s3"
+
+  config {
+    bucket  = "${var.state_bucket}"
+    region  = "${var.aws_region}"
+    key     = "datadog_aws/terraform.tfstate"
     profile = "${var.aws_profile}"
   }
 }
