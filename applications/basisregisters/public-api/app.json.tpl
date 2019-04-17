@@ -48,7 +48,7 @@
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/fargate/task/${app_name}",
+          "awslogs-group": "/ecs/task/${app_name}",
           "awslogs-region": "${region}",
           "awslogs-stream-prefix": "ecs"
         }
@@ -66,13 +66,14 @@
       { "name": "DD_APM_ENABLED", "value": "true" },
       { "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC", "value": "true" },
       { "name": "DD_APM_NON_LOCAL_TRAFFIC", "value": "true" },
-      { "name": "DD_APM_ENV", "value": "${datadog_env}" }
-
+      { "name": "DD_APM_ENV", "value": "${datadog_env}" },
+      { "name": "DD_HOSTNAME", "value": "${app_name}" },
+      { "name": "DD_TAGS", "value": "env:${datadog_env}" }
     ],
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/fargate/task/${app_name}-datadog",
+          "awslogs-group": "/ecs/task/${app_name}-datadog",
           "awslogs-region": "${region}",
           "awslogs-stream-prefix": "ecs"
         }

@@ -16,7 +16,7 @@
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/fargate/task/${app_name}",
+          "awslogs-group": "/ecs/task/${app_name}",
           "awslogs-region": "${region}",
           "awslogs-stream-prefix": "ecs"
         }

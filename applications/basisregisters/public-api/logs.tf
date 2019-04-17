@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_log_group" "app_log_group" {
-  name              = "/fargate/task/${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+  name              = "/ecs/task/${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
   retention_in_days = 30
 
   tags {
@@ -17,7 +17,7 @@ resource "aws_cloudwatch_log_stream" "app_log_stream" {
 }
 
 resource "aws_cloudwatch_log_group" "monitoring_log_group" {
-  name              = "/fargate/task/${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-datadog"
+  name              = "/ecs/task/${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-datadog"
   retention_in_days = 30
 
   tags {

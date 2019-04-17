@@ -34,7 +34,7 @@ resource "aws_ecs_task_definition" "bastion" {
 }
 
 resource "aws_cloudwatch_log_group" "app_log_group" {
-  name              = "/fargate/task/${var.bastion_user}-${lower(replace(var.environment_name, " ", "-"))}-bastion"
+  name              = "/ecs/task/${var.bastion_user}-${lower(replace(var.environment_name, " ", "-"))}-bastion"
   retention_in_days = 30
 
   tags {
