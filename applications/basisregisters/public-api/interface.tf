@@ -119,7 +119,7 @@ variable "replicas" {
 }
 
 variable "container_port" {
-  type    = "string"
+  type = "string"
 }
 
 variable "service_registry_arn" {

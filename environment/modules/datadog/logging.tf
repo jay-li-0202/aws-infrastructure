@@ -60,8 +60,8 @@ resource "aws_lambda_function" "logging" {
   runtime       = "python2.7"
   handler       = "index.lambda_handler"
 
-  role    = "${aws_iam_role.logging-lambda.arn}"
-  timeout = 120
+  role        = "${aws_iam_role.logging-lambda.arn}"
+  timeout     = 120
   memory_size = 1024
 
   filename         = "${data.archive_file.logging.output_path}"

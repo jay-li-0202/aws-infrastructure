@@ -130,7 +130,7 @@ data "aws_iam_policy_document" "datadog" {
       "tag:GetTagKeys",
       "tag:GetTagValues",
       "xray:BatchGetTraces",
-      "xray:GetTraceSummaries"
+      "xray:GetTraceSummaries",
     ]
   }
 }

@@ -9,7 +9,7 @@ resource "aws_api_gateway_deployment" "bastions" {
   depends_on = [
     "aws_api_gateway_integration.create-bastion",
     "aws_api_gateway_integration.delete-bastion",
-    "aws_api_gateway_integration.delete-all-bastions"
+    "aws_api_gateway_integration.delete-all-bastions",
   ]
 
   rest_api_id = "${aws_api_gateway_rest_api.bastions.id}"
@@ -68,7 +68,7 @@ resource "aws_api_gateway_stage" "bastions" {
 
   access_log_settings {
     destination_arn = "${aws_cloudwatch_log_group.bastions.arn}"
-    format = "{ \"requestId\":\"$context.requestId\", \"ip\":\"$context.identity.sourceIp\", \"caller\":\"$context.identity.caller\", \"user\":\"$context.identity.user\", \"requestTime\":$context.requestTimeEpoch, \"httpMethod\":\"$context.httpMethod\", \"resourcePath\":\"$context.resourcePath\", \"status\":$context.status, \"protocol\":\"$context.protocol\", \"responseLength\":$context.responseLength }"
+    format          = "{ \"requestId\":\"$context.requestId\", \"ip\":\"$context.identity.sourceIp\", \"caller\":\"$context.identity.caller\", \"user\":\"$context.identity.user\", \"requestTime\":$context.requestTimeEpoch, \"httpMethod\":\"$context.httpMethod\", \"resourcePath\":\"$context.resourcePath\", \"status\":$context.status, \"protocol\":\"$context.protocol\", \"responseLength\":$context.responseLength }"
   }
 
   tags {

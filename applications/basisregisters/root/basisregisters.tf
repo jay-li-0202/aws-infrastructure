@@ -37,16 +37,16 @@ module "public-api" {
   environment_label = "${var.environment_label}"
   environment_name  = "${var.environment_name}"
 
-  tag_environment   = "${var.tag_environment}"
-  tag_product       = "${var.tag_product}"
-  tag_program       = "${var.tag_program}"
-  tag_contact       = "${var.tag_contact}"
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
-  app      = "basisregisters"
-  cpu      = 256
-  memory   = 512
-  replicas = 2
-  image    = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.4.0"
+  app            = "basisregisters"
+  cpu            = 256
+  memory         = 512
+  replicas       = 2
+  image          = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.6.0"
   container_port = 2080
 
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
@@ -63,9 +63,9 @@ module "public-api" {
   cert_public_zone_name = "${data.terraform_remote_state.dns.public_zone_name}"
   cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
 
-  datadog_api_key = "${data.terraform_remote_state.datadog.datadog_api_key}"
+  datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"
   datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
-  datadog_env = "vbr-${lower(var.environment_name)}"
+  datadog_env            = "vbr-${lower(var.environment_name)}"
 
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
 }
@@ -113,7 +113,6 @@ data "terraform_remote_state" "datadog" {
     profile = "${var.aws_profile}"
   }
 }
-
 
 // output "vpc_id" {
 //   value = "${module.vpc.vpc_id}"
