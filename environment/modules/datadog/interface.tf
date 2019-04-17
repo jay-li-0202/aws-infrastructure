@@ -23,9 +23,14 @@ variable "tag_contact" {
 }
 
 variable "datadog_external_id" {}
+variable "datadog_api_key" {}
 
 variable "datadog_aws_account_id" {
   default = "464622532012"
+}
+
+provider "archive" {
+  version = "~> 1.2.1"
 }
 
 output "datadog_user_name" {
@@ -42,4 +47,8 @@ output "datadog_user_secret" {
 
 output "datadog_role" {
   value = "${aws_iam_role.datadog.name}"
+}
+
+output "datadog_lambda_arn" {
+  value = "${aws_lambda_function.logging.arn}"
 }

@@ -38,6 +38,7 @@ module "datadog" {
   tag_contact     = "${var.tag_contact}"
 
   datadog_external_id = "${var.datadog_external_id}"
+  datadog_api_key = "${var.datadog_api_key}"
 }
 
 output "datadog_user_name" {
@@ -58,4 +59,8 @@ output "datadog_role" {
 
 output "datadog_api_key" {
   value = "${var.datadog_api_key}"
+}
+
+output "datadog_lambda_arn" {
+  value = "${module.datadog.datadog_lambda_arn}"
 }

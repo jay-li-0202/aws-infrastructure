@@ -153,6 +153,8 @@ env ENVIRONMENT=... ACTION=apply make fargate
 
 We monitor using Datadog, which [requires some AWS setup](https://docs.datadoghq.com/integrations/amazon_web_services/?tab=allpermissions#installation) to work.
 
+You will need [an API key](https://app.datadoghq.com/account/settings#api) and [an external id](https://app.datadoghq.com/account/settings#integrations/amazon_web_services) for this.
+
 To setup, run the following commands:
 
 ```bash
@@ -160,6 +162,8 @@ environment/
 env ENVIRONMENT=... make monitoring
 env ENVIRONMENT=... ACTION=apply make monitoring
 ```
+
+Copy the `datadog_lambda_arn` output to the `Collect Logs` tab on the [Amazon Web Services Integration tile in Datadog](https://app.datadoghq.com/account/settings#integrations/amazon_web_services).
 
 ## Build the infrastructure for a Build Server Agent
 

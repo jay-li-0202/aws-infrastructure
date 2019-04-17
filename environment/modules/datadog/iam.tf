@@ -124,6 +124,7 @@ data "aws_iam_policy_document" "datadog" {
       "sns:List*",
       "sns:Publish",
       "sqs:ListQueues",
+      "sts:AssumeRole",
       "support:*",
       "tag:GetResources",
       "tag:GetTagKeys",
