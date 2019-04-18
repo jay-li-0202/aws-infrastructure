@@ -283,7 +283,7 @@ def s3_handler(event, context, metadata):
             # Trace Ids need to be numeric...
             x = re.search("\"Root=([a-zA-Z0-9\-]*)\"", line)
             trace_id = x.group()
-            new_trace_id = int(hashlib.sha1(trace_id.encode('utf-8')).hexdigest(), 16) % (10 ** 14)
+            new_trace_id = abs(nt(hashlib.sha1(trace_id.encode('utf-8')).hexdigest(), 16) % (10 ** 14))
             line = re.sub(trace_id, '"Root=' + str(new_trace_id) + '"', line)
 
             # Create structured object and send it
