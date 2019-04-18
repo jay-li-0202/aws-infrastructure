@@ -13,7 +13,10 @@
       { "name": "Redis__ClientName", "value": "Legacy - API" },
       { "name": "Redis__ConnectionString", "value": "cache.${private_zone_name}" },
 
-      { "name": "DataDog__Enabled", "value": "false" },
+      { "name": "DataDog__Enabled", "value": "true" },
+      { "name": "DataDog__Debug", "value": "false" },
+      { "name": "DataDog__ServiceName", "value": "${app_name}" },
+      { "name": "DataDog__HostIp", "value": "localhost" },
 
       { "name": "ApiConfiguration__MunicipalityRegistry__ApiUrl", "value": "https://legacy.gemeente.${disco_zone_name}/v1" },
       { "name": "ApiConfiguration__MunicipalityRegistry__UseCache", "value": "true" },
@@ -38,6 +41,12 @@
       { "name": "ApiConfiguration__PublicServiceRegistry__ApiUrl", "value": "https://dienstverlening.${disco_zone_name}/api/v1/" },
       { "name": "ApiConfiguration__PublicServiceRegistry__UseCache", "value": "true" }
     ],
+    "dockerLabels": {
+      "environment": "${tag_environment}",
+      "productcode": "${tag_product}",
+      "programma": "${tag_program}",
+      "contact": "${tag_contact}"
+    },
     "portMappings": [
       {
         "protocol": "tcp",
@@ -70,6 +79,12 @@
       { "name": "DD_HOSTNAME", "value": "${app_name}" },
       { "name": "DD_TAGS", "value": "env:${datadog_env}" }
     ],
+    "dockerLabels": {
+      "environment": "${tag_environment}",
+      "productcode": "${tag_product}",
+      "programma": "${tag_program}",
+      "contact": "${tag_contact}"
+    },
     "logConfiguration": {
         "logDriver": "awslogs",
         "options": {

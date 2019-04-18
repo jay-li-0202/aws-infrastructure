@@ -9,6 +9,10 @@ data "template_file" "app" {
     region           = "${var.region}"
     port             = "${var.container_port}"
     datadog_env      = "${var.datadog_env}"
+    tag_environment  = "${var.tag_environment}"
+    tag_product      = "${var.tag_product}"
+    tag_program      = "${var.tag_program}"
+    tag_contact      = "${var.tag_contact}"
 
     public_zone_name  = "${replace(var.public_zone_name, "/[.]$/", "")}"
     private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
