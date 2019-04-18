@@ -67,7 +67,8 @@
         "./dotnet-install.sh --no-path --version 2.2.203                      # 2.2.4",
         "sudo rm -rf /usr/share/dotnet",
         "ln -s ~/.dotnet /usr/share/dotnet",
-        "export PATH=\"$PATH:/usr/share/dotnet\" >> ~/.profile"
+        "export PATH=\"$PATH:/usr/share/dotnet\" >> ~/.profile",
+        "/usr/share/dotnet/dotnet --help"
       ]
     }
   ],
