@@ -13,6 +13,7 @@ import re
 import socket
 import ssl
 import urllib
+import hashlib
 from io import BytesIO, BufferedReader
 
 import boto3
@@ -279,6 +280,12 @@ def s3_handler(event, context, metadata):
     else:
         # Send lines to Datadog
         for line in data.splitlines():
+            # Trace Ids need to be numeric...
+            x = re.search("\"Root=([a-zA-Z0-9\-]*)\"", line)
+            trace_id = x.group()
+            new_trace_id = int(hashlib.sha1(trace_id.encode('utf-8')).hexdigest(), 16) % (10 ** 14)
+            line = re.sub(trace_id, '"Root=' + str(new_trace_id) + '"', line)
+
             # Create structured object and send it
             structured_line = {
                 "aws": {"s3": {"bucket": bucket, "key": key}},
