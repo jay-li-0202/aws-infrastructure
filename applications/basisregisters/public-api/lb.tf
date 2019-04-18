@@ -31,6 +31,10 @@ resource "aws_lb_target_group" "main" {
   target_type          = "ip"
   deregistration_delay = "${var.deregistration_delay}"
 
+  health_check {
+    path    = "/health"
+  }
+
   tags {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
