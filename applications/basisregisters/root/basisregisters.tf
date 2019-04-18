@@ -46,7 +46,7 @@ module "public-api" {
   cpu            = 256
   memory         = 512
   replicas       = 2
-  image          = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.6.0"
+  image          = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.7.3"
   container_port = 2080
 
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
