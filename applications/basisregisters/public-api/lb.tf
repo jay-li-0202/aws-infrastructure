@@ -118,6 +118,6 @@ resource "aws_s3_bucket_notification" "lb_access_logs" {
 
   lambda_function {
     lambda_function_arn = "${var.datadog_logging_lambda}"
-    events              = ["s3:ObjectCreated:*"]
+    events              = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
   }
 }

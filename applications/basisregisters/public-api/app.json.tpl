@@ -100,7 +100,6 @@
       { "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC", "value": "true" },
       { "name": "DD_APM_NON_LOCAL_TRAFFIC", "value": "true" },
       { "name": "DD_APM_ENV", "value": "${datadog_env}" },
-      { "name": "DD_HOSTNAME", "value": "${app_name}" },
       { "name": "DD_TAGS", "value": "env:${datadog_env}" }
     ],
     "dockerLabels": {
