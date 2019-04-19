@@ -16,7 +16,7 @@ data "template_file" "app" {
 
     public_zone_name  = "${replace(var.public_zone_name, "/[.]$/", "")}"
     private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
-    disco_zone_name   = "${replace(var.public_zone_name, "/[.]$/", "")}"
+    disco_zone_name   = "${replace(var.disco_zone_name, "/[.]$/", "")}"
   }
 }
 
