@@ -31,5 +31,5 @@ output "cluster_arn" {
 }
 
 output "execution_role_arn" {
-  value = "${aws_iam_role.ecsTaskExecutionRole.arn}"
+  value = "${aws_iam_role.ecs-task.arn}"
 }
