@@ -46,6 +46,7 @@ sql_instance_type = "db.r4.large"
 // sql_password = "x"
 sql_storage = 500
 sql_backup_retention_period = 2
+sql_multi_az = false
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services

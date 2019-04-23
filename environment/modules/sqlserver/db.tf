@@ -54,7 +54,7 @@ resource "aws_db_instance" "basisregisters" {
   identifier          = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}"
   publicly_accessible = false
 
-  multi_az             = true
+  multi_az             = "${var.sql_multi_az}"
   db_subnet_group_name = "${aws_db_subnet_group.basisregisters.id}"
   parameter_group_name = "${aws_db_parameter_group.basisregisters.id}"
   option_group_name    = "${aws_db_option_group.basisregisters.id}"

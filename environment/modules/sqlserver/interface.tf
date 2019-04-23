@@ -58,6 +58,10 @@ variable "sql_storage" {
   type = "string"
 }
 
+variable "sql_multi_az" {
+  type = "string"
+}
+
 variable "sql_backup_retention_period" {
   type = "string"
 }

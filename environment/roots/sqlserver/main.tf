@@ -20,6 +20,7 @@ variable "sql_username" {}
 variable "sql_password" {}
 variable "sql_storage" {}
 variable "sql_backup_retention_period" {}
+variable "sql_multi_az" {}
 
 provider "aws" {
   version             = "~> 2.4.0"
@@ -53,6 +54,7 @@ module "sqlserver" {
   sql_password                = "${var.sql_password}"
   sql_storage                 = "${var.sql_storage}"
   sql_backup_retention_period = "${var.sql_backup_retention_period}"
+  sql_multi_az                = "${var.sql_multi_az}"
 
   vpc_id            = "${data.terraform_remote_state.vpc.vpc_id}"
   monitoring_role   = "${data.terraform_remote_state.bootstrap.rds_cloudwatch_role}"
