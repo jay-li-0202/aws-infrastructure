@@ -32,7 +32,7 @@ resource "aws_lb_target_group" "main" {
   deregistration_delay = "${var.deregistration_delay}"
 
   health_check {
-    path    = "/health"
+    path = "/health"
   }
 
   tags {

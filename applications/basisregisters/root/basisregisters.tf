@@ -17,6 +17,11 @@ variable "disco_zone_name" {
   default = "basisregisters.disco"
 }
 
+variable "sql_username" {}
+variable "sql_password" {}
+
+variable "municipality_password" {}
+
 provider "aws" {
   version             = "~> 2.4.0"
   region              = "${var.aws_region}"
@@ -68,6 +73,14 @@ module "public-api" {
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+}
+
+module "municipality-registry" {
+  source   = "../grar/municipality"
+  password = "${var.municipality_password}"
+
+  sa_user = "${var.sql_username}"
+  sa_pass = "${var.sql_password}"
 }
 
 data "terraform_remote_state" "vpc" {

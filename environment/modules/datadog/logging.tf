@@ -45,14 +45,14 @@ data "aws_iam_policy_document" "logging-lambda" {
     ]
   }
 
- statement {
+  statement {
     sid       = "ReadS3"
     effect    = "Allow"
     resources = ["*"]
 
     actions = [
       "s3:Get*",
-      "s3:List*"
+      "s3:List*",
     ]
   }
 }
