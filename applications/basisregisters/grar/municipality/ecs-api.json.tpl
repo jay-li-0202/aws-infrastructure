@@ -1,0 +1,125 @@
+[
+  {
+    "name": "${app_name}",
+    "image": "${import_api_image}",
+    "essential": true,
+    "networkMode": "awsvpc",
+    "environment" : [
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+    ],
+    "dockerLabels": {
+      "environment": "${tag_environment}",
+      "productcode": "${tag_product}",
+      "programma": "${tag_program}",
+      "contact": "${tag_contact}"
+    },
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": ${import_port},
+        "hostPort": ${import_port}
+      }
+    ],
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/task/${logging_name}",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }
+  },
+
+  {
+    "name": "${app_name}",
+    "image": "${legacy_api_image}",
+    "essential": true,
+    "networkMode": "awsvpc",
+    "environment" : [
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+    ],
+    "dockerLabels": {
+      "environment": "${tag_environment}",
+      "productcode": "${tag_product}",
+      "programma": "${tag_program}",
+      "contact": "${tag_contact}"
+    },
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": ${legacy_port},
+        "hostPort": ${legacy_port}
+      }
+    ],
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/task/${logging_name}",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }
+  },
+
+  {
+    "name": "${app_name}",
+    "image": "${extract_api_image}",
+    "essential": true,
+    "networkMode": "awsvpc",
+    "environment" : [
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+    ],
+    "dockerLabels": {
+      "environment": "${tag_environment}",
+      "productcode": "${tag_product}",
+      "programma": "${tag_program}",
+      "contact": "${tag_contact}"
+    },
+    "portMappings": [
+      {
+        "protocol": "tcp",
+        "containerPort": ${extract_port},
+        "hostPort": ${extract_port}
+      }
+    ],
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/task/${logging_name}",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }
+  },
+
+  {
+    "name": "datadog-agent",
+    "image": "datadog/agent:latest",
+    "essential": true,
+    "networkMode": "awsvpc",
+    "command": ["sh", "-c", "echo 'expvar_port: 15000' >> /etc/datadog-agent/datadog.yaml ; /init"],
+    "environment": [
+      { "name": "DD_API_KEY", "value": "${datadog_api_key}" },
+      { "name": "ECS_FARGATE", "value": "true" },
+      { "name": "DD_APM_ENABLED", "value": "true" },
+      { "name": "DD_DOGSTATSD_NON_LOCAL_TRAFFIC", "value": "true" },
+      { "name": "DD_APM_NON_LOCAL_TRAFFIC", "value": "true" },
+      { "name": "DD_APM_ENV", "value": "${datadog_env}" },
+      { "name": "DD_TAGS", "value": "env:${datadog_env}" }
+    ],
+    "dockerLabels": {
+      "environment": "${tag_environment}",
+      "productcode": "${tag_product}",
+      "programma": "${tag_program}",
+      "contact": "${tag_contact}"
+    },
+    "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/task/${logging_name}-datadog",
+          "awslogs-region": "${region}",
+          "awslogs-stream-prefix": "ecs"
+        }
+    }
+  }
+]
