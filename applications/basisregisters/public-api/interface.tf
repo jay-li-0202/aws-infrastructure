@@ -141,3 +141,7 @@ variable "disco_zone_name" {
 provider "template" {
   version = "~> 2.1.1"
 }
+
+output "task_security_group_id" {
+  value = "${aws_security_group.task.id}"
+}

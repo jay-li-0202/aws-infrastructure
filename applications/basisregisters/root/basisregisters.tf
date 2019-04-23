@@ -77,10 +77,25 @@ module "public-api" {
 
 module "municipality-registry" {
   source   = "../grar/municipality"
-  password = "${var.municipality_password}"
+
+  region            = "${var.aws_region}"
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
+  datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
+  task_security_group_id = "${module.public-api.task_security_group_id}"
 
   sa_user = "${var.sql_username}"
   sa_pass = "${var.sql_password}"
+  password = "${var.municipality_password}"
+
+  app = "basisregisters"
+  port_range = 2000
 }
 
 data "terraform_remote_state" "vpc" {
