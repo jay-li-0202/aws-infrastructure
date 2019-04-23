@@ -109,36 +109,6 @@ env ENVIRONMENT=... make docker-repo
 env ENVIRONMENT=... ACTION=apply make docker-repo
 ```
 
-## Build an Elasticsearch cluster
-
-For searching we use Elasticsearch, running in a cluster. To setup, run the following commands:
-
-```bash
-environment/
-env ENVIRONMENT=... make elasticsearch
-env ENVIRONMENT=... ACTION=apply make elasticsearch
-```
-
-## Build an Elasticache cluster
-
-For caching we use ElastiCache with Redis. To setup, run the following commands:
-
-```bash
-environment/
-env ENVIRONMENT=... make cache
-env ENVIRONMENT=... ACTION=apply make cache
-```
-
-## Build a SQL Server instance
-
-For storage we use SQL Server. To setup, run the following commands and input a dbo username and password to use when prompted:
-
-```bash
-environment/
-env ENVIRONMENT=... make sqlserver
-env ENVIRONMENT=... ACTION=apply make sqlserver
-```
-
 ## Build a Fargate cluster
 
 Our workload will run as Docker containers on a Fargate (ECS) cluster. To setup, run the following commands:
@@ -147,36 +117,6 @@ Our workload will run as Docker containers on a Fargate (ECS) cluster. To setup,
 environment/
 env ENVIRONMENT=... make fargate
 env ENVIRONMENT=... ACTION=apply make fargate
-```
-
-## Build the infrastructure for Datadog monitoring
-
-We monitor using Datadog, which [requires some AWS setup](https://docs.datadoghq.com/integrations/amazon_web_services/?tab=allpermissions#installation) to work.
-
-You will need [an API key](https://app.datadoghq.com/account/settings#api) and [an external id](https://app.datadoghq.com/account/settings#integrations/amazon_web_services) for this.
-
-To setup, run the following commands:
-
-```bash
-environment/
-env ENVIRONMENT=... make monitoring
-env ENVIRONMENT=... ACTION=apply make monitoring
-```
-
-Copy the `datadog_lambda_arn` output to the `Collect Logs` tab on the [Amazon Web Services Integration tile in Datadog](https://app.datadoghq.com/account/settings#integrations/amazon_web_services).
-
-## Build the infrastructure for a Build Server Agent
-
-We create a base Docker image to use as a build agent for our project.
-
-You can have a look at the image definition and perhaps edit it to only include the .NET Core versions you need: [build-agent.json](https://github.com/Informatievlaanderen/aws-infrastructure/blob/master/machines/build-agent/build-agent.json)
-
-This image is stored in Docker Hub, to build the image, run the following commands, make sure to configure `DOCKERHUB_USER` and `DOCKERHUB_PASS` to be able to push to Docker Hub:
-
-```bash
-images/
-env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... make build-agent
-env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... ACTION=build make build-agent
 ```
 
 ## Build the infrastructure for a Bastion Host
@@ -226,6 +166,66 @@ To delete it, you can run:
 
 ```bash
 curl -X DELETE -H "X-Api-Key: abcdefghi....xyz" "https://abcdefg.execute-api.eu-west-1.amazonaws.com/bastions-production/bastion?user=cumpsd"
+```
+
+## Build an Elasticsearch cluster
+
+For searching we use Elasticsearch, running in a cluster. To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make elasticsearch
+env ENVIRONMENT=... ACTION=apply make elasticsearch
+```
+
+## Build an Elasticache cluster
+
+For caching we use ElastiCache with Redis. To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make cache
+env ENVIRONMENT=... ACTION=apply make cache
+```
+
+## Build a SQL Server instance
+
+For storage we use SQL Server. To setup, run the following commands and input a dbo username and password to use when prompted:
+
+```bash
+environment/
+env ENVIRONMENT=... make sqlserver
+env ENVIRONMENT=... ACTION=apply make sqlserver
+```
+
+## Build the infrastructure for Datadog monitoring
+
+We monitor using Datadog, which [requires some AWS setup](https://docs.datadoghq.com/integrations/amazon_web_services/?tab=allpermissions#installation) to work.
+
+You will need [an API key](https://app.datadoghq.com/account/settings#api) and [an external id](https://app.datadoghq.com/account/settings#integrations/amazon_web_services) for this.
+
+To setup, run the following commands:
+
+```bash
+environment/
+env ENVIRONMENT=... make monitoring
+env ENVIRONMENT=... ACTION=apply make monitoring
+```
+
+Copy the `datadog_lambda_arn` output to the `Collect Logs` tab on the [Amazon Web Services Integration tile in Datadog](https://app.datadoghq.com/account/settings#integrations/amazon_web_services).
+
+## Build the infrastructure for a Build Server Agent
+
+We create a base Docker image to use as a build agent for our project.
+
+You can have a look at the image definition and perhaps edit it to only include the .NET Core versions you need: [build-agent.json](https://github.com/Informatievlaanderen/aws-infrastructure/blob/master/machines/build-agent/build-agent.json)
+
+This image is stored in Docker Hub, to build the image, run the following commands, make sure to configure `DOCKERHUB_USER` and `DOCKERHUB_PASS` to be able to push to Docker Hub:
+
+```bash
+images/
+env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... make build-agent
+env ENVIRONMENT=... DOCKERHUB_REPOSITORY=basisregisters DOCKERHUB_USER=... DOCKERHUB_PASS=... ACTION=build make build-agent
 ```
 
 ## Credits

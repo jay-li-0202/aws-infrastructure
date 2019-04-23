@@ -60,9 +60,9 @@ module "sqlserver" {
   monitoring_role   = "${data.terraform_remote_state.bootstrap.rds_cloudwatch_role}"
   rds_s3backup_role = "${data.terraform_remote_state.bootstrap.rds_s3backup_role}"
 
+  bastion_sg_id   = "${data.terraform_remote_state.bastions.bastion_security_group_id}"
   private_zone_id = "${data.terraform_remote_state.dns.private_zone_id}"
-
-  subnet_ids = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
+  subnet_ids      = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 }
 
 data "terraform_remote_state" "bootstrap" {
@@ -94,6 +94,17 @@ data "terraform_remote_state" "dns" {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "dns/terraform.tfstate"
+    profile = "${var.aws_profile}"
+  }
+}
+
+data "terraform_remote_state" "bastions" {
+  backend = "s3"
+
+  config {
+    bucket  = "${var.state_bucket}"
+    region  = "${var.aws_region}"
+    key     = "bastions/terraform.tfstate"
     profile = "${var.aws_profile}"
   }
 }

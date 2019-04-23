@@ -57,3 +57,7 @@ output "bastion_api_key" {
 output "bastion_security_group" {
   value = "${aws_security_group.bastion.arn}"
 }
+
+output "bastion_security_group_id" {
+  value = "${aws_security_group.bastion.id}"
+}
