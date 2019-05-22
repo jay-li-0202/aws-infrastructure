@@ -2,10 +2,10 @@ data "template_file" "sql" {
   template = "${file("${path.module}/../registry.sql")}"
 
   vars {
-    database = "municipality-registry"
+    database = "${var.db_name}"
     registry = "MunicipalityRegistry"
-    user     = "municipality"
-    password = "${var.password}"
+    user     = "${var.db_user}"
+    password = "${var.db_password}"
   }
 }
 

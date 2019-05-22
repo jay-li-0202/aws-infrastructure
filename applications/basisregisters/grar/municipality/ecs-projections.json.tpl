@@ -5,7 +5,20 @@
     "essential": true,
     "networkMode": "awsvpc",
     "environment" : [
-      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
+
+      { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LegacyProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LegacyProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__ExtractProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__ExtractProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LastChangedList", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LastChangedListAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+
+      { "name": "DataDog__Enabled", "value": "true" },
+      { "name": "DataDog__Debug", "value": "false" },
+      { "name": "DataDog__ServiceName", "value": "${app_name}" },
+      { "name": "DataDog__HostIp", "value": "localhost" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

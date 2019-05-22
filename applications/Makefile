@@ -16,7 +16,8 @@ basisregisters: basisregisters/root/.terraform/terraform.tfstate ## Run Terrafor
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
 	@cd basisregisters/root && \
 		terraform $(ACTION) \
-			-var-file=../../../$(ENVIRONMENT).tfvars
+			-var-file=../../../$(ENVIRONMENT).tfvars \
+			-var-file=../../../$(ENVIRONMENT).secret.tfvars
 
 ##############
 

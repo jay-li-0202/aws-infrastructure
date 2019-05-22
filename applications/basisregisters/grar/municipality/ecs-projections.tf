@@ -1,3 +1,22 @@
+resource "aws_service_discovery_service" "projections" {
+  name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-projections"
+
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+
+  dns_config {
+    namespace_id = "${var.disco_namespace_id}"
+
+    dns_records {
+      ttl  = 10
+      type = "A"
+    }
+
+    routing_policy = "MULTIVALUE"
+  }
+}
+
 resource "aws_ecs_service" "projections" {
   name            = "${var.app}-municipality-registry-projections"
   cluster         = "${var.fargate_cluster_id}"
@@ -11,7 +30,7 @@ resource "aws_ecs_service" "projections" {
   }
 
   service_registries {
-    registry_arn = "${var.service_registry_arn}"
+    registry_arn = "${aws_service_discovery_service.projections.arn}"
   }
 
   // ordered_placement_strategy {
@@ -55,8 +74,9 @@ data "template_file" "projections" {
   template = "${file("${path.module}/ecs-projections.json.tpl")}"
 
   vars {
-    environment_name  = "${var.environment_name}"
+    environment_name  = "${lower(replace(var.environment_name, " ", "-"))}"
     datadog_api_key   = "${var.datadog_api_key}"
+    disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
     app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-projections"
     logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry"
     projections_image = "${var.projections_image}"
@@ -68,8 +88,13 @@ data "template_file" "projections" {
     tag_program       = "${var.tag_program}"
     tag_contact       = "${var.tag_contact}"
 
-    // public_zone_name  = "${replace(var.public_zone_name, "/[.]$/", "")}"
+    public_zone_name  = "${replace(var.public_zone_name, "/[.]$/", "")}"
     // private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
     // disco_zone_name   = "${replace(var.disco_zone_name, "/[.]$/", "")}"
+
+    db_server = "${var.db_server}"
+    db_name   = "${var.db_name}"
+    db_user   = "${var.db_user}"
+    db_pass   = "${var.db_password}"
   }
 }

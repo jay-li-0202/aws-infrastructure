@@ -1,11 +1,22 @@
 [
   {
-    "name": "${app_name}",
+    "name": "${app_name}-import",
     "image": "${import_api_image}",
     "essential": true,
     "networkMode": "awsvpc",
     "environment" : [
-      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
+
+      { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "Idempotency__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+
+      { "name": "DataDog__Enabled", "value": "true" },
+      { "name": "DataDog__Debug", "value": "false" },
+      { "name": "DataDog__ServiceName", "value": "${app_name}-import" },
+      { "name": "DataDog__HostIp", "value": "localhost" },
+
+      { "name": "Cors__0", "value": "http://localhost:3000" },
+      { "name": "Cors__1", "value": "http://localhost:5000" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
@@ -31,12 +42,35 @@
   },
 
   {
-    "name": "${app_name}",
+    "name": "${app_name}-legacy",
     "image": "${legacy_api_image}",
     "essential": true,
     "networkMode": "awsvpc",
     "environment" : [
-      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
+
+      { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LegacyProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LegacyProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+
+      { "name": "DataDog__Enabled", "value": "true" },
+      { "name": "DataDog__Debug", "value": "false" },
+      { "name": "DataDog__ServiceName", "value": "${app_name}-legacy" },
+      { "name": "DataDog__HostIp", "value": "localhost" },
+
+      { "name": "Cors__0", "value": "http://localhost:3000" },
+      { "name": "Cors__1", "value": "http://localhost:5000" },
+
+      { "name": "Naamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
+
+      { "name": "DetailUrl", "value": "https://api.${public_zone_name}/v1/gemeenten/{0}" },
+      { "name": "VolgendeUrl", "value": "https://api.${public_zone_name}/v1/gemeenten?offset={0}&limit={1}" },
+
+      { "name": "Syndication__Category", "value": "https://data.vlaanderen.be/ns/gemeente" },
+      { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/gemeenten.atom" },
+      { "name": "Syndication__Self", "value": "https://api.${public_zone_name}/syndication/feed/municipality.atom" },
+      { "name": "Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/gemeenten.atom?offset={0}&limit={1}" },
+      { "name": "Syndication__Related__0", "value": "https://api.${public_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
@@ -62,12 +96,24 @@
   },
 
   {
-    "name": "${app_name}",
+    "name": "${app_name}-extract",
     "image": "${extract_api_image}",
     "essential": true,
     "networkMode": "awsvpc",
     "environment" : [
-      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" }
+      { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
+
+      { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__ExtractProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__ExtractProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+
+      { "name": "DataDog__Enabled", "value": "true" },
+      { "name": "DataDog__Debug", "value": "false" },
+      { "name": "DataDog__ServiceName", "value": "${app_name}-extract" },
+      { "name": "DataDog__HostIp", "value": "localhost" },
+
+      { "name": "Cors__0", "value": "http://localhost:3000" },
+      { "name": "Cors__1", "value": "http://localhost:5000" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

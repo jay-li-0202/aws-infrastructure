@@ -122,10 +122,6 @@ variable "container_port" {
   type = "string"
 }
 
-variable "service_registry_arn" {
-  type = "string"
-}
-
 variable "public_zone_name" {
   type = "string"
 }
@@ -138,10 +134,18 @@ variable "disco_zone_name" {
   type = "string"
 }
 
+variable "ecs_sg_id"{
+  type = "string"
+}
+
+variable "disco_namespace_id" {
+  type = "string"
+}
+
 provider "template" {
   version = "~> 2.1.1"
 }
 
 output "task_security_group_id" {
-  value = "${aws_security_group.task.id}"
+  value = "${var.ecs_sg_id}"
 }

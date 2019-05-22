@@ -1,3 +1,22 @@
+resource "aws_service_discovery_service" "main" {
+  name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+
+  health_check_custom_config {
+    failure_threshold = 1
+  }
+
+  dns_config {
+    namespace_id = "${var.disco_namespace_id}"
+
+    dns_records {
+      ttl  = 10
+      type = "A"
+    }
+
+    routing_policy = "MULTIVALUE"
+  }
+}
+
 resource "aws_ecs_service" "main" {
   name            = "${var.app}-public-api"
   cluster         = "${var.fargate_cluster_id}"
@@ -6,7 +25,7 @@ resource "aws_ecs_service" "main" {
   desired_count   = "${var.replicas}"
 
   network_configuration {
-    security_groups = ["${aws_security_group.task.id}"]
+    security_groups = ["${var.ecs_sg_id}"]
     subnets         = ["${var.private_subnets}"]
   }
 
@@ -17,7 +36,7 @@ resource "aws_ecs_service" "main" {
   }
 
   service_registries {
-    registry_arn = "${var.service_registry_arn}"
+    registry_arn = "${aws_service_discovery_service.main.arn}"
   }
 
   // ordered_placement_strategy {
@@ -68,9 +87,10 @@ data "template_file" "app" {
   template = "${file("${path.module}/app.json.tpl")}"
 
   vars {
-    environment_name = "${var.environment_name}"
+    environment_name = "${lower(replace(var.environment_name, " ", "-"))}"
     datadog_api_key  = "${var.datadog_api_key}"
     app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+    disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
     image            = "${var.image}"
     region           = "${var.region}"
     port             = "${var.container_port}"

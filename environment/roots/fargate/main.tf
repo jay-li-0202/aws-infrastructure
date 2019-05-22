@@ -31,10 +31,23 @@ module "fargate" {
   environment_label = "${var.environment_label}"
   environment_name  = "${var.environment_name}"
 
+  vpc_id            = "${data.terraform_remote_state.vpc.vpc_id}"
+
   tag_environment = "${var.tag_environment}"
   tag_product     = "${var.tag_product}"
   tag_program     = "${var.tag_program}"
   tag_contact     = "${var.tag_contact}"
+}
+
+data "terraform_remote_state" "vpc" {
+  backend = "s3"
+
+  config {
+    bucket  = "${var.state_bucket}"
+    region  = "${var.aws_region}"
+    key     = "vpc/terraform.tfstate"
+    profile = "${var.aws_profile}"
+  }
 }
 
 output "fargate_cluster_id" {
@@ -47,4 +60,12 @@ output "fargate_cluster_arn" {
 
 output "fargate_execution_role_arn" {
   value = "${module.fargate.execution_role_arn}"
+}
+
+output "fargate_security_group" {
+  value = "${module.fargate.ecs_security_group}"
+}
+
+output "fargate_security_group_id" {
+  value = "${module.fargate.ecs_security_group_id}"
 }

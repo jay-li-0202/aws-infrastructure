@@ -112,7 +112,21 @@ variable "sa_pass" {
   type = "string"
 }
 
-variable "password" {
+variable "db_server" {
+  type = "string"
+}
+
+variable "db_name" {
+  type = "string"
+  default = "municipality-registry"
+}
+
+variable "db_user" {
+  type = "string"
+  default = "municipality"
+}
+
+variable "db_password" {
   type = "string"
 }
 
@@ -120,16 +134,15 @@ variable "task_security_group_id" {
   type = "string"
 }
 
-variable "service_registry_arn" {
+variable "port_range" {}
+
+variable "public_zone_name" {
   type = "string"
 }
 
-variable "port_range" {}
-
-// variable "public_zone_name" {
-//   type = "string"
-// }
-
+variable "disco_namespace_id" {
+  type = "string"
+}
 
 // variable "private_zone_name" {
 //   type = "string"

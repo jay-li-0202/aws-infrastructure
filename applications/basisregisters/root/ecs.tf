@@ -25,22 +25,3 @@ resource "aws_service_discovery_private_dns_namespace" "basisregisters" {
   description = "Basisregisters Vlaanderen Service Discovery"
   vpc         = "${data.terraform_remote_state.vpc.vpc_id}"
 }
-
-resource "aws_service_discovery_service" "basisregisters" {
-  name = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}"
-
-  health_check_custom_config {
-    failure_threshold = 1
-  }
-
-  dns_config {
-    namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
-
-    dns_records {
-      ttl  = 10
-      type = "A"
-    }
-
-    routing_policy = "MULTIVALUE"
-  }
-}

@@ -92,6 +92,10 @@ variable "bastion_sg_id" {
   type = "string"
 }
 
+variable "ecs_sg_id" {
+  type = "string"
+}
+
 output "address" {
   value = "${aws_db_instance.basisregisters.address}"
 }

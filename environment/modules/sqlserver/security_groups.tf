@@ -13,12 +13,22 @@ resource "aws_security_group" "basisregisters-db" {
 }
 
 # Incoming SQL
-resource "aws_security_group_rule" "ingress_sql" {
+resource "aws_security_group_rule" "ingress_bastion" {
   description              = "Bastion To SQL Server"
   type                     = "ingress"
   from_port                = "1433"
   to_port                  = "1433"
   protocol                 = "tcp"
   source_security_group_id = "${var.bastion_sg_id}"
+  security_group_id        = "${aws_security_group.basisregisters-db.id}"
+}
+
+resource "aws_security_group_rule" "ingress_ecs" {
+  description              = "ECS To SQL Server"
+  type                     = "ingress"
+  from_port                = "1433"
+  to_port                  = "1433"
+  protocol                 = "tcp"
+  source_security_group_id = "${var.ecs_sg_id}"
   security_group_id        = "${aws_security_group.basisregisters-db.id}"
 }
