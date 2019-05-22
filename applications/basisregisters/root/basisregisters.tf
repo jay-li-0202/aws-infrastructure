@@ -51,7 +51,7 @@ module "public-api" {
   cpu            = 256
   memory         = 512
   replicas       = 2
-  image          = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.14.0"
+  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.15.0"
   container_port = 2080
 
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
@@ -75,50 +75,50 @@ module "public-api" {
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
 }
 
-module "municipality-registry" {
-  source = "../grar/municipality"
+// module "municipality-registry" {
+//   source = "../grar/municipality"
 
-  region            = "${var.aws_region}"
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+//   region            = "${var.aws_region}"
+//   environment_label = "${var.environment_label}"
+//   environment_name  = "${var.environment_name}"
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+//   tag_environment = "${var.tag_environment}"
+//   tag_product     = "${var.tag_product}"
+//   tag_program     = "${var.tag_program}"
+//   tag_contact     = "${var.tag_contact}"
 
-  app        = "basisregisters"
-  port_range = 2000
+//   app        = "basisregisters"
+//   port_range = 2000
 
-  api_cpu           = 256
-  api_memory        = 512
-  api_replicas      = 2
-  legacy_api_image  = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.14.0"
-  import_api_image  = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-import:2.14.0"
-  extract_api_image = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.14.0"
+//   api_cpu           = 256
+//   api_memory        = 512
+//   api_replicas      = 2
+//   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.14.0"
+//   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-import:2.14.0"
+//   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.14.0"
 
-  projections_cpu      = 256
-  projections_memory   = 512
-  projections_replicas = 1
-  projections_image    = "921707234258.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projections:2.14.0"
+//   projections_cpu      = 256
+//   projections_memory   = 512
+//   projections_replicas = 1
+//   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projections:2.14.0"
 
-  sa_user  = "${var.sql_username}"
-  sa_pass  = "${var.sql_password}"
-  password = "${var.municipality_password}"
+//   sa_user  = "${var.sql_username}"
+//   sa_pass  = "${var.sql_password}"
+//   password = "${var.municipality_password}"
 
-  task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
-  task_security_group_id  = "${module.public-api.task_security_group_id}"
-  service_registry_arn    = "${aws_service_discovery_service.basisregisters.arn}"
+//   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
+//   task_security_group_id  = "${module.public-api.task_security_group_id}"
+//   service_registry_arn    = "${aws_service_discovery_service.basisregisters.arn}"
 
-  vpc_id          = "${data.terraform_remote_state.vpc.vpc_id}"
-  private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
+//   vpc_id          = "${data.terraform_remote_state.vpc.vpc_id}"
+//   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
-  datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"
-  datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
-  datadog_env            = "vbr-${lower(var.environment_name)}"
+//   datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"
+//   datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
+//   datadog_env            = "vbr-${lower(var.environment_name)}"
 
-  fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
-}
+//   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+// }
 
 data "terraform_remote_state" "vpc" {
   backend = "s3"

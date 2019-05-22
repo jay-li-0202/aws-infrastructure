@@ -9,7 +9,7 @@ ssh -i <your_private_key.pem> \
     -L 9000:es.basisregisters.local:443 \
     -L 9001:db.basisregisters.local:1433 \
     -L 6379:cache.basisregisters.local:6379 \
-    ops@<bastion_ip>
+    root@<bastion_ip>
 ```
 
 ### SSH - Port Forward via Bastion (Staging)
@@ -19,7 +19,7 @@ ssh -i <your_private_key.pem> \
     -L 9000:es.staging-basisregisters.local:443 \
     -L 9001:db.staging-basisregisters.local:1433 \
     -L 6379:cache.staging-basisregisters.local:6379 \
-    ops@<bastion_ip>
+    root@<bastion_ip>
 ```
 
 ## SQL
