@@ -57,7 +57,7 @@
       { "name": "ApiConfiguration__BuildingRegistry__ApiUrl", "value": "http://${disco_namespace}-building-registry-api.${disco_zone_name}:6002/v1" },
       { "name": "ApiConfiguration__BuildingRegistry__UseCache", "value": "false" },
 
-      { "name": "ApiConfiguration__ParcelRegistry__ApiUrl", "value": ""http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/v1" },
+      { "name": "ApiConfiguration__ParcelRegistry__ApiUrl", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/v1" },
       { "name": "ApiConfiguration__ParcelRegistry__UseCache", "value": "false" },
       { "name": "ApiConfiguration__ParcelRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/perceel" },
       { "name": "ApiConfiguration__ParcelRegistry__DetailUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
