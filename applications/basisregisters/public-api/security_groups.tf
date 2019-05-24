@@ -1,5 +1,5 @@
 resource "aws_security_group" "main-lb" {
-  name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-lb"
+  name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-lb"
   description = "Security group for Public Api Balancer"
   vpc_id      = "${var.vpc_id}"
 

@@ -1,10 +1,9 @@
 resource "aws_acm_certificate" "main" {
   validation_method = "DNS"
-  domain_name       = "public-api.${var.cert_public_zone_name}"
+  domain_name       = "ops-api.${var.cert_public_zone_name}"
 
   subject_alternative_names = [
-    "legacy-api.${var.cert_public_zone_name}",
-    "docs.${var.cert_public_zone_name}",
+    "dev-api.${var.cert_public_zone_name}"
   ]
 
   lifecycle {
@@ -12,7 +11,7 @@ resource "aws_acm_certificate" "main" {
   }
 
   tags {
-    Name        = "Basisregisters Public Api Certificate // ${var.environment_label} ${var.environment_name}"
+    Name        = "Basisregisters Ops Api Certificate // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"

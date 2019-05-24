@@ -4,11 +4,11 @@ resource "aws_api_gateway_account" "basisregisters" {
 
 resource "aws_iam_role" "api_gateway" {
   name               = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-api-gateway-logs"
-  description        = "Allows API Gateway to log to CloudWatch."
+  description        = "Allows Api Gateway to log to CloudWatch."
   assume_role_policy = "${data.aws_iam_policy_document.api_gateway_assume_role.json}"
 
   tags {
-    Name        = "API Gateway Logs // ${var.environment_label} ${var.environment_name}"
+    Name        = "Api Gateway Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"

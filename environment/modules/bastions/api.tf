@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "bastions" {
   name                     = "bastions-api"
-  description              = "Bastions API // ${var.environment_label} ${var.environment_name}"
+  description              = "Bastions Api // ${var.environment_label} ${var.environment_name}"
   api_key_source           = "HEADER"
   minimum_compression_size = 0
 }
@@ -13,7 +13,7 @@ resource "aws_api_gateway_deployment" "bastions" {
   ]
 
   rest_api_id = "${aws_api_gateway_rest_api.bastions.id}"
-  description = "Bastions API // ${var.environment_label} ${var.environment_name}"
+  description = "Bastions Api // ${var.environment_label} ${var.environment_name}"
   stage_name  = ""
 
   stage_description = <<EOF
@@ -51,7 +51,7 @@ resource "aws_api_gateway_usage_plan" "bastions" {
 
 resource "aws_api_gateway_api_key" "bastions" {
   name        = "bastions"
-  description = "Bastions API // ${var.environment_label} ${var.environment_name}"
+  description = "Bastions Api // ${var.environment_label} ${var.environment_name}"
 }
 
 resource "aws_api_gateway_usage_plan_key" "bastions" {
@@ -64,7 +64,7 @@ resource "aws_api_gateway_stage" "bastions" {
   rest_api_id   = "${aws_api_gateway_rest_api.bastions.id}"
   stage_name    = "bastions-${lower(var.environment_name)}"
   deployment_id = "${aws_api_gateway_deployment.bastions.id}"
-  description   = "Bastions API // ${var.environment_label} ${var.environment_name}"
+  description   = "Bastions Api // ${var.environment_label} ${var.environment_name}"
 
   access_log_settings {
     destination_arn = "${aws_cloudwatch_log_group.bastions.arn}"
@@ -72,7 +72,7 @@ resource "aws_api_gateway_stage" "bastions" {
   }
 
   tags {
-    Name        = "Bastions API // ${var.environment_label} ${var.environment_name}"
+    Name        = "Bastions Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
@@ -101,7 +101,7 @@ resource "aws_cloudwatch_log_group" "bastions" {
   retention_in_days = 30
 
   tags {
-    Name        = "Bastions API Gateway // ${var.environment_label} ${var.environment_name}"
+    Name        = "Bastions Api Gateway // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
