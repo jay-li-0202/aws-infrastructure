@@ -12,6 +12,7 @@ resource "aws_security_group" "main-lb" {
   }
 }
 
+// TODO: Set to fixed ip of API gateway, or use authentication on load balancer
 resource "aws_security_group_rule" "lb_egress_rule" {
   description              = "Load Balancer To Task on port ${var.container_port}"
   type                     = "egress"
