@@ -12,6 +12,7 @@ resource "aws_security_group" "main-lb" {
   }
 }
 
+// TODO: Set to fixed ip, or use authentication on load balancer
 resource "aws_security_group_rule" "lb_egress_rule" {
   count = "${length(var.container_ports)}"
 
