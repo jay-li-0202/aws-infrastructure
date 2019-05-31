@@ -18,8 +18,8 @@ resource "aws_security_group_rule" "lb_egress_rule" {
 
   description              = "Load Balancer To Task on port ${element(var.container_ports, count.index)}"
   type                     = "egress"
-  from_port                = "${element(var.container_ports, count.index)}"
-  to_port                  = "${element(var.container_ports, count.index)}"
+  from_port                = "${element(split("-", element(var.container_ports, count.index)), 0)}"
+  to_port                  = "${element(split("-", element(var.container_ports, count.index)), 1)}"
   protocol                 = "tcp"
   source_security_group_id = "${var.ecs_sg_id}"
   security_group_id        = "${aws_security_group.main-lb.id}"
@@ -30,8 +30,8 @@ resource "aws_security_group_rule" "task_ingress_rule" {
 
   description              = "Load Balancer To Task on port ${element(var.container_ports, count.index)}"
   type                     = "ingress"
-  from_port                = "${element(var.container_ports, count.index)}"
-  to_port                  = "${element(var.container_ports, count.index)}"
+  from_port                = "${element(split("-", element(var.container_ports, count.index)), 0)}"
+  to_port                  = "${element(split("-", element(var.container_ports, count.index)), 1)}"
   protocol                 = "tcp"
   source_security_group_id = "${aws_security_group.main-lb.id}"
   security_group_id        = "${var.ecs_sg_id}"

@@ -1,5 +1,5 @@
 resource "aws_lb" "main" {
-  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-ops-api"
+  name               = "${var.app}-ops-api"
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.main-lb.id}"]
@@ -25,7 +25,7 @@ resource "aws_lb" "main" {
 
 // TODO: Its possible we need to move this to each grar service to register their own target group and routing rules
 resource "aws_lb_target_group" "main" {
-  name                 = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-ops-api"
+  name                 = "${var.app}-ops-api"
   port                 = "${var.lb_port}"
   protocol             = "${var.lb_protocol}"
   vpc_id               = "${var.vpc_id}"

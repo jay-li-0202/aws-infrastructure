@@ -33,6 +33,14 @@ provider "aws" {
   allowed_account_ids = ["${var.aws_account_id}"]
 }
 
+provider "aws" {
+  alias               = "cert"
+  version             = "~> 2.4.0"
+  region              = "us-east-1"
+  profile             = "${var.aws_profile}"
+  allowed_account_ids = ["${var.aws_account_id}"]
+}
+
 terraform {
   backend "s3" {
     key = "app-basisregisters/terraform.tfstate"

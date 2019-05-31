@@ -7,14 +7,14 @@ resource "aws_api_gateway_deployment" "gw" {
 
   stage_description = <<EOF
 ${md5("
-  ${file("api.tf")}
-  ${file("status.tf")}
-  ${file("feeds/main.tf")}
-  ${file("adressen/main.tf")}
-  ${file("dienstverleningen/main.tf")}
-  ${file("gemeenten/main.tf")}
-  ${file("postinfo/main.tf")}
-  ${file("straatnamen/main.tf")}
+  ${file("${path.module}/api.tf")}
+  ${file("${path.module}/status.tf")}
+  ${file("${path.module}/feeds/main.tf")}
+  ${file("${path.module}/adressen/main.tf")}
+  ${file("${path.module}/dienstverleningen/main.tf")}
+  ${file("${path.module}/gemeenten/main.tf")}
+  ${file("${path.module}/postinfo/main.tf")}
+  ${file("${path.module}/straatnamen/main.tf")}
 ")}
 EOF
 
@@ -111,7 +111,7 @@ resource "aws_api_gateway_stage" "gw" {
   description   = "Basisregisters Vlaanderen // ${var.environment_label} ${var.environment_name}"
 
   variables = {
-    baseHost  = "${var.base_host}"
+    baseHost  = "${replace(var.base_host, "/[.]$/", "")}"
   }
 
   tags {

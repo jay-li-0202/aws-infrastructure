@@ -1,4 +1,6 @@
 resource "aws_acm_certificate" "cert" {
+  provider = "aws.cert"
+
   validation_method = "DNS"
   domain_name       = "${var.api_url}.${var.cert_public_zone_name}"
 
@@ -25,6 +27,8 @@ resource "aws_route53_record" "public_cert_validation0" {
 }
 
 resource "aws_acm_certificate_validation" "cert" {
+  provider = "aws.cert"
+
   certificate_arn = "${aws_acm_certificate.cert.arn}"
 
   validation_record_fqdns = [

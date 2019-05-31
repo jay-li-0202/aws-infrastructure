@@ -83,6 +83,10 @@ variable "lb_protocol" {
   default = "HTTP"
 }
 
+variable "ecs_sg_id"{
+  type = "string"
+}
+
 variable "deregistration_delay" {
   type    = "string"
   default = "30"

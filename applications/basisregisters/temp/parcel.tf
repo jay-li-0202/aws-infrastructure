@@ -28,7 +28,7 @@ module "parcel-registry" {
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projector:1.4.0"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projections-syndication:1.4.0"
 
-  db_server = "${data.terraform_remote_state.sqlserver.parcel}"
+  db_server = "${data.terraform_remote_state.sqlserver.address}"
   sa_user  = "${var.sql_username}"
   sa_pass  = "${var.sql_password}"
   db_password = "${var.parcel_password}"

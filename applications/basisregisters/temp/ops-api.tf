@@ -20,6 +20,8 @@ module "ops-api" {
     "7000-7006",
   ]
 
+  ecs_sg_id = "${data.terraform_remote_state.fargate.fargate_security_group_id}"
+
   vpc_id          = "${data.terraform_remote_state.vpc.vpc_id}"
   public_subnets  = ["${data.terraform_remote_state.vpc.public_subnet_ids}"]
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]

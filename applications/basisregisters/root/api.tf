@@ -24,4 +24,9 @@ module "api" {
   cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
 
   base_host = "public-api.${data.terraform_remote_state.dns.public_zone_name}"
+
+  providers = {
+    aws = "aws"
+    aws.cert = "aws.cert"
+  }
 }

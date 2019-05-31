@@ -1,11 +1,11 @@
 resource "aws_api_gateway_domain_name" "gw" {
-  domain_name = "${var.api_url}.${var.public_zone_name}"
+  domain_name = "${var.api_url}.${replace(var.public_zone_name, "/[.]$/", "")}"
 
   certificate_arn = "${aws_acm_certificate.cert.arn}"
 }
 
 data "aws_route53_zone" "gw_zone" {
-  name         = "${var.public_zone_name}."
+  name         = "${var.public_zone_name}"
   private_zone = false
 }
 
