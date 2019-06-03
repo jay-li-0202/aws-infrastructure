@@ -32,6 +32,9 @@ module "municipality-registry" {
   sa_pass     = "${var.sql_password}"
   db_password = "${var.municipality_password}"
 
+  ops_lb_arn = "${module.ops-api.lb_arn}"
+  ops_cert_arn = "${module.ops-api.cert_arn}"
+
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
   task_security_group_id  = "${module.public-api.task_security_group_id}"
 

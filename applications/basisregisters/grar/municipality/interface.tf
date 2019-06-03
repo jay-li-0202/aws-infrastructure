@@ -18,6 +18,14 @@ variable "tag_product" {
   type = "string"
 }
 
+variable "ops_lb_arn" {
+  type = "string"
+}
+
+variable "ops_cert_arn" {
+  type = "string"
+}
+
 variable "tag_program" {
   type = "string"
 }
@@ -142,6 +150,11 @@ variable "public_zone_name" {
 
 variable "disco_namespace_id" {
   type = "string"
+}
+
+variable "deregistration_delay" {
+  type    = "string"
+  default = "30"
 }
 
 // variable "private_zone_name" {

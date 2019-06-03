@@ -30,6 +30,12 @@ resource "aws_ecs_service" "api" {
     subnets         = ["${var.private_subnets}"]
   }
 
+  load_balancer {
+    target_group_arn = "${aws_lb_target_group.import.id}"
+    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-api-import"
+    container_port   = "${var.port_range}"
+  }
+
   service_registries {
     registry_arn = "${aws_service_discovery_service.api.arn}"
   }

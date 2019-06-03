@@ -132,3 +132,12 @@ variable "disco_namespace_id" {
 provider "template" {
   version = "~> 2.1.1"
 }
+
+output "lb_arn" {
+  value = "${aws_lb.main.arn}"
+}
+
+output "cert_arn" {
+  value = "${aws_acm_certificate.main.arn}"
+}
+
