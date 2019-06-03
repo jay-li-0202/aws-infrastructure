@@ -137,7 +137,10 @@ output "lb_arn" {
   value = "${aws_lb.main.arn}"
 }
 
+output "lb_listener_arn" {
+  value = "${aws_lb_listener.https.arn}"
+}
+
 output "cert_arn" {
   value = "${aws_acm_certificate.main.arn}"
 }
-

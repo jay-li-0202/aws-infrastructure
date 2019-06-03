@@ -22,6 +22,10 @@ variable "ops_lb_arn" {
   type = "string"
 }
 
+variable "ops_lb_listener_arn" {
+  type = "string"
+}
+
 variable "ops_cert_arn" {
   type = "string"
 }
@@ -145,6 +149,10 @@ variable "task_security_group_id" {
 variable "port_range" {}
 
 variable "public_zone_name" {
+  type = "string"
+}
+
+variable "public_zone_id" {
   type = "string"
 }
 

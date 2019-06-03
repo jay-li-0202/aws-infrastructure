@@ -30,7 +30,7 @@ resource "aws_security_group" "main-lb" {
 resource "aws_security_group_rule" "lb_egress_rule" {
   count = "${length(var.container_ports)}"
 
-  description              = "Load Balancer To Task on port ${element(var.container_ports, count.index)}"
+  description              = "Ops Load Balancer To Task on port ${element(var.container_ports, count.index)}"
   type                     = "egress"
   from_port                = "${element(split("-", element(var.container_ports, count.index)), 0)}"
   to_port                  = "${element(split("-", element(var.container_ports, count.index)), 1)}"
@@ -42,7 +42,7 @@ resource "aws_security_group_rule" "lb_egress_rule" {
 resource "aws_security_group_rule" "task_ingress_rule" {
   count = "${length(var.container_ports)}"
 
-  description              = "Load Balancer To Task on port ${element(var.container_ports, count.index)}"
+  description              = "Ops Load Balancer To Task on port ${element(var.container_ports, count.index)}"
   type                     = "ingress"
   from_port                = "${element(split("-", element(var.container_ports, count.index)), 0)}"
   to_port                  = "${element(split("-", element(var.container_ports, count.index)), 1)}"

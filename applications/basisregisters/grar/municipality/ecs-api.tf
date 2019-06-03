@@ -17,7 +17,6 @@ resource "aws_service_discovery_service" "api" {
   }
 }
 
-// TODO: Figure out how to get this into ops-api
 resource "aws_ecs_service" "api" {
   name            = "${var.app}-municipality-registry-api"
   cluster         = "${var.fargate_cluster_id}"

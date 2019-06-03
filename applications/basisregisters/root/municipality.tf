@@ -18,14 +18,14 @@ module "municipality-registry" {
   api_cpu           = 256
   api_memory        = 512
   api_replicas      = 2
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.4.0"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.4.0"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.4.0"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.4.1"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.4.1"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.4.1"
 
   projections_cpu      = 256
   projections_memory   = 512
   projections_replicas = 1
-  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.4.0"
+  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.4.1"
 
   db_server   = "${data.terraform_remote_state.sqlserver.address}"
   sa_user     = "${var.sql_username}"
@@ -33,6 +33,7 @@ module "municipality-registry" {
   db_password = "${var.municipality_password}"
 
   ops_lb_arn = "${module.ops-api.lb_arn}"
+  ops_lb_listener_arn = "${module.ops-api.lb_listener_arn}"
   ops_cert_arn = "${module.ops-api.cert_arn}"
 
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
@@ -42,6 +43,7 @@ module "municipality-registry" {
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
   disco_namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
+  public_zone_id     = "${data.terraform_remote_state.dns.public_zone_id}"
   public_zone_name   = "${data.terraform_remote_state.dns.public_zone_name}"
 
   datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"

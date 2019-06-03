@@ -6,6 +6,11 @@ resource "aws_lb_target_group" "import" {
   target_type          = "ip"
   deregistration_delay = "${var.deregistration_delay}"
 
+  health_check {
+    interval = 300
+    timeout  = 60
+  }
+
   tags {
     Name        = "Municipality Import // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
@@ -15,14 +20,16 @@ resource "aws_lb_target_group" "import" {
   }
 }
 
-resource "aws_lb_listener" "https" {
-  load_balancer_arn = "${var.ops_lb_arn}"
-  port              = "${var.port_range}"
-  protocol          = "HTTPS"
-  certificate_arn   = "${var.ops_cert_arn}"
+resource "aws_lb_listener_rule" "import" {
+  listener_arn = "${var.ops_lb_listener_arn}"
 
-  default_action {
+  action {
+    type = "forward"
     target_group_arn = "${aws_lb_target_group.import.id}"
-    type             = "forward"
+  }
+
+  condition {
+    field  = "host-header"
+    values = ["municipality-import.*"]
   }
 }
