@@ -27,16 +27,3 @@ resource "aws_lb_listener_rule" "redirect_alternate_host_headers" {
     values = ["dev-api.*"]
   }
 }
-
-# Incoming HTTPS
-resource "aws_security_group_rule" "ingress_https" {
-  type = "ingress"
-
-  from_port   = "${var.lb_https_port}"
-  to_port     = "${var.lb_https_port}"
-  protocol    = "tcp"
-  cidr_blocks = ["0.0.0.0/0"]
-  description = "Ops Api Load Balancer (HTTPS)"
-
-  security_group_id = "${aws_security_group.main-lb.id}"
-}

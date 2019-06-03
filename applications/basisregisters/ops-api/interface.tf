@@ -42,6 +42,10 @@ variable "app" {
   type = "string"
 }
 
+variable "admin_cidr_blocks" {
+  type = "list"
+}
+
 variable "cpu" {
   type    = "string"
   default = 256
@@ -83,7 +87,7 @@ variable "lb_protocol" {
   default = "HTTP"
 }
 
-variable "ecs_sg_id"{
+variable "ecs_sg_id" {
   type = "string"
 }
 

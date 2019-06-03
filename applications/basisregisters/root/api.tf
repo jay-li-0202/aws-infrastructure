@@ -12,13 +12,13 @@ module "api" {
 
   anon_key = "${var.anon_key}"
   demo_key = "${var.demo_key}"
-  ui_key = "${var.ui_key}"
+  ui_key   = "${var.ui_key}"
   test_key = "${var.test_key}"
 
-  api_name = "basisregisters"
+  api_name       = "basisregisters"
   api_stage_name = "basisregisters"
 
-  api_url = "api"
+  api_url               = "api"
   public_zone_name      = "${data.terraform_remote_state.dns.public_zone_name}"
   cert_public_zone_name = "${data.terraform_remote_state.dns.public_zone_name}"
   cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
@@ -26,7 +26,7 @@ module "api" {
   base_host = "public-api.${data.terraform_remote_state.dns.public_zone_name}"
 
   providers = {
-    aws = "aws"
+    aws      = "aws"
     aws.cert = "aws.cert"
   }
 }

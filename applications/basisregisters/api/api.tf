@@ -111,7 +111,7 @@ resource "aws_api_gateway_stage" "gw" {
   description   = "Basisregisters Vlaanderen // ${var.environment_label} ${var.environment_name}"
 
   variables = {
-    baseHost  = "${replace(var.base_host, "/[.]$/", "")}"
+    baseHost = "${replace(var.base_host, "/[.]$/", "")}"
   }
 
   tags {

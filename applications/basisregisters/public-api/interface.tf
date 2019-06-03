@@ -134,7 +134,7 @@ variable "disco_zone_name" {
   type = "string"
 }
 
-variable "ecs_sg_id"{
+variable "ecs_sg_id" {
   type = "string"
 }
 

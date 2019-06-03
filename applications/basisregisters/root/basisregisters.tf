@@ -22,9 +22,14 @@ variable "sql_password" {}
 
 // Predefined API keys
 variable "anon_key" {}
+
 variable "demo_key" {}
 variable "ui_key" {}
 variable "test_key" {}
+
+variable "admin_cidr_blocks" {
+  type = "list"
+}
 
 provider "aws" {
   version             = "~> 2.4.0"

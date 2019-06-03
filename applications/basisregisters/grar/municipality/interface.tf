@@ -117,12 +117,12 @@ variable "db_server" {
 }
 
 variable "db_name" {
-  type = "string"
+  type    = "string"
   default = "municipality-registry"
 }
 
 variable "db_user" {
-  type = "string"
+  type    = "string"
   default = "municipality"
 }
 

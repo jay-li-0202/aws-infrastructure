@@ -60,8 +60,8 @@ module "sqlserver" {
   monitoring_role   = "${data.terraform_remote_state.bootstrap.rds_cloudwatch_role}"
   rds_s3backup_role = "${data.terraform_remote_state.bootstrap.rds_s3backup_role}"
 
-  bastion_sg_id   = "${data.terraform_remote_state.bastions.bastion_security_group_id}"
-  ecs_sg_id       = "${data.terraform_remote_state.fargate.fargate_security_group_id}"
+  bastion_sg_id = "${data.terraform_remote_state.bastions.bastion_security_group_id}"
+  ecs_sg_id     = "${data.terraform_remote_state.fargate.fargate_security_group_id}"
 
   private_zone_id = "${data.terraform_remote_state.dns.private_zone_id}"
   subnet_ids      = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]

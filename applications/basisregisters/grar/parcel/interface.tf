@@ -12,7 +12,6 @@ variable "environment_name" {
 
 variable "tag_environment" {
   type = "string"
-
 }
 
 variable "tag_product" {
@@ -122,12 +121,12 @@ variable "db_server" {
 }
 
 variable "db_name" {
-  type = "string"
+  type    = "string"
   default = "parcel-registry"
 }
 
 variable "db_user" {
-  type = "string"
+  type    = "string"
   default = "parcel"
 }
 
@@ -156,4 +155,3 @@ variable "disco_namespace_id" {
 variable "disco_zone_name" {
   type = "string"
 }
-

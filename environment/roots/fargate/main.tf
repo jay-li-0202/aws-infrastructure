@@ -31,7 +31,7 @@ module "fargate" {
   environment_label = "${var.environment_label}"
   environment_name  = "${var.environment_name}"
 
-  vpc_id            = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id = "${data.terraform_remote_state.vpc.vpc_id}"
 
   tag_environment = "${var.tag_environment}"
   tag_product     = "${var.tag_product}"

@@ -14,9 +14,9 @@ resource "aws_api_gateway_method" "get-status" {
   authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
 
   request_parameters {
-    "method.request.header.Accept"   = false
-    "method.request.header.Cookie"   = false
-    "method.request.header.Host"     = true
+    "method.request.header.Accept" = false
+    "method.request.header.Cookie" = false
+    "method.request.header.Host"   = true
   }
 }
 

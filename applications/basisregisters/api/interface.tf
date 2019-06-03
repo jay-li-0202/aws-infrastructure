@@ -28,6 +28,7 @@ variable "tag_contact" {
 
 // Predefined API keys
 variable "anon_key" {}
+
 variable "demo_key" {}
 variable "ui_key" {}
 variable "test_key" {}
@@ -50,7 +51,7 @@ variable "cert_public_zone_id" {
 }
 
 variable "base_host" {
-  type    = "string"
+  type = "string"
 }
 
 variable "api_stage_name" {
@@ -58,9 +59,7 @@ variable "api_stage_name" {
   default = "api"
 }
 
-
 variable "api_name" {
   type    = "string"
   default = "api"
 }
-

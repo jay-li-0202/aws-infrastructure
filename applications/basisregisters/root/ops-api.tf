@@ -10,7 +10,8 @@ module "ops-api" {
   tag_program     = "${var.tag_program}"
   tag_contact     = "${var.tag_contact}"
 
-  app            = "basisregisters"
+  app = "basisregisters"
+
   container_ports = [
     "2000-2006",
     "3000-3006",
@@ -25,6 +26,7 @@ module "ops-api" {
   vpc_id          = "${data.terraform_remote_state.vpc.vpc_id}"
   public_subnets  = ["${data.terraform_remote_state.vpc.public_subnet_ids}"]
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
+  admin_cidr_blocks = ["${var.admin_cidr_blocks}"]
 
   disco_namespace_id    = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
   public_zone_id        = "${data.terraform_remote_state.dns.public_zone_id}"

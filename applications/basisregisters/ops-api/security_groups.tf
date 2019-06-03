@@ -1,3 +1,17 @@
+# Incoming HTTP
+resource "aws_security_group_rule" "ingress_http" {
+  count = "${length(var.admin_cidr_blocks)}"
+  type  = "ingress"
+
+  from_port   = "0"
+  to_port     = "65535"
+  protocol    = "tcp"
+  cidr_blocks = ["${element(split("|", element(var.admin_cidr_blocks, count.index)), 0)}"]
+  description = "Ops Api Load Balancer (${element(split("|", element(var.admin_cidr_blocks, count.index)), 1)})"
+
+  security_group_id = "${aws_security_group.main-lb.id}"
+}
+
 resource "aws_security_group" "main-lb" {
   name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-ops-api-lb"
   description = "Security group for Ops Api Balancer"

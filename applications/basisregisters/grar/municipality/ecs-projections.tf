@@ -88,7 +88,8 @@ data "template_file" "projections" {
     tag_program       = "${var.tag_program}"
     tag_contact       = "${var.tag_contact}"
 
-    public_zone_name  = "${replace(var.public_zone_name, "/[.]$/", "")}"
+    public_zone_name = "${replace(var.public_zone_name, "/[.]$/", "")}"
+
     // private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
     // disco_zone_name   = "${replace(var.disco_zone_name, "/[.]$/", "")}"
 
