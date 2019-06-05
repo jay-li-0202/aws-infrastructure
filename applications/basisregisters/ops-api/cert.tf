@@ -43,6 +43,6 @@ resource "aws_acm_certificate_validation" "main" {
 
   validation_record_fqdns = [
     "${aws_route53_record.public_cert_validation0.fqdn}",
-    "${aws_route53_record.public_cert_validation1.fqdn}"
+    "${aws_route53_record.public_cert_validation1.fqdn}",
   ]
 }

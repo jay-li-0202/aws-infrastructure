@@ -33,6 +33,10 @@ module "parcel-registry" {
   sa_pass     = "${var.sql_password}"
   db_password = "${var.parcel_password}"
 
+  ops_lb_arn          = "${module.ops-api.lb_arn}"
+  ops_lb_listener_arn = "${module.ops-api.lb_listener_arn}"
+  ops_cert_arn        = "${module.ops-api.cert_arn}"
+
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
   task_security_group_id  = "${module.public-api.task_security_group_id}"
 
@@ -40,6 +44,7 @@ module "parcel-registry" {
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
   disco_namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
+  public_zone_id     = "${data.terraform_remote_state.dns.public_zone_id}"
   public_zone_name   = "${data.terraform_remote_state.dns.public_zone_name}"
   disco_zone_name    = "${var.disco_zone_name}"
 

@@ -18,6 +18,14 @@ variable "tag_product" {
   type = "string"
 }
 
+variable "tag_program" {
+  type = "string"
+}
+
+variable "tag_contact" {
+  type = "string"
+}
+
 variable "ops_lb_arn" {
   type = "string"
 }
@@ -27,14 +35,6 @@ variable "ops_lb_listener_arn" {
 }
 
 variable "ops_cert_arn" {
-  type = "string"
-}
-
-variable "tag_program" {
-  type = "string"
-}
-
-variable "tag_contact" {
   type = "string"
 }
 

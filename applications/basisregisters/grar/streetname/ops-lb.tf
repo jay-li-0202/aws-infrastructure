@@ -1,5 +1,5 @@
 resource "aws_lb_target_group" "import" {
-  name                 = "municipality-import"
+  name                 = "streetname-import"
   port                 = "${var.port_range}"
   protocol             = "HTTP"
   vpc_id               = "${var.vpc_id}"
@@ -12,7 +12,7 @@ resource "aws_lb_target_group" "import" {
   }
 
   tags {
-    Name        = "Municipality Import // ${var.environment_label} ${var.environment_name}"
+    Name        = "Streetname Import // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
@@ -30,6 +30,6 @@ resource "aws_lb_listener_rule" "import" {
 
   condition {
     field  = "host-header"
-    values = ["municipality-import.*"]
+    values = ["streetname-import.*"]
   }
 }
