@@ -18,14 +18,14 @@ module "municipality-registry" {
   api_cpu           = 256
   api_memory        = 512
   api_replicas      = 2
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.4.1"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.4.1"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.4.1"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.5.0"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.5.0"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.5.0"
 
   projections_cpu      = 256
   projections_memory   = 512
   projections_replicas = 1
-  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.4.1"
+  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.5.0"
 
   db_server   = "${data.terraform_remote_state.sqlserver.address}"
   sa_user     = "${var.sql_username}"

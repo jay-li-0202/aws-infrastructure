@@ -8,6 +8,7 @@
       { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
 
       { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__CrabImport", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "Idempotency__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
       { "name": "DataDog__Enabled", "value": "true" },
