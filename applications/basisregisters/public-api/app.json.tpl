@@ -26,7 +26,7 @@
       { "name": "ApiConfiguration__MunicipalityRegistry__Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/gemeenten.atom?offset={0}&limit={1}" },
 
       { "name": "ApiConfiguration__PostalRegistry__ApiUrl", "value": "http://${disco_namespace}-postal-registry-api.${disco_zone_name}:3002/v1" },
-      { "name": "ApiConfiguration__PostalRegistry__UseCache", "value": "false" },
+      { "name": "ApiConfiguration__PostalRegistry__UseCache", "value": "true" },
       { "name": "ApiConfiguration__PostalRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/postinfo" },
       { "name": "ApiConfiguration__PostalRegistry__DetailUrl", "value": "https://api.${public_zone_name}/v1/postinfo/{0}" },
       { "name": "ApiConfiguration__PostalRegistry__VolgendeUrl", "value": "https://api.${public_zone_name}/v1/postinfo?offset={0}&limit={1}" },
