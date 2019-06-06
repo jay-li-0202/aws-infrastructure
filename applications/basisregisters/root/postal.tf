@@ -44,9 +44,9 @@ module "postal-registry" {
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
   disco_namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
+  disco_zone_name    = "${var.disco_zone_name}"
   public_zone_id     = "${data.terraform_remote_state.dns.public_zone_id}"
   public_zone_name   = "${data.terraform_remote_state.dns.public_zone_name}"
-  disco_zone_name    = "${var.disco_zone_name}"
 
   datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"
   datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"

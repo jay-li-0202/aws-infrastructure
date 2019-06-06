@@ -9,7 +9,7 @@
 
       { "name": "BaseUrl", "value": "https://api.${public_zone_name}/" },
 
-      { "name": "Redis__Enabled", "value": "false" },
+      { "name": "Redis__Enabled", "value": "true" },
       { "name": "Redis__ClientName", "value": "Legacy - API" },
       { "name": "Redis__ConnectionString", "value": "cache.${private_zone_name}" },
 
@@ -19,7 +19,7 @@
       { "name": "DataDog__HostIp", "value": "localhost" },
 
       { "name": "ApiConfiguration__MunicipalityRegistry__ApiUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1" },
-      { "name": "ApiConfiguration__MunicipalityRegistry__UseCache", "value": "false" },
+      { "name": "ApiConfiguration__MunicipalityRegistry__UseCache", "value": "true" },
       { "name": "ApiConfiguration__MunicipalityRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
       { "name": "ApiConfiguration__MunicipalityRegistry__DetailUrl", "value": "https://api.${public_zone_name}/v1/gemeenten/{0}" },
       { "name": "ApiConfiguration__MunicipalityRegistry__VolgendeUrl", "value": "https://api.${public_zone_name}/v1/gemeenten?offset={0}&limit={1}" },

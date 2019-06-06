@@ -53,6 +53,9 @@ module "elasticache" {
 
   private_zone_id = "${data.terraform_remote_state.dns.private_zone_id}"
 
+  bastion_sg_id = "${data.terraform_remote_state.bastions.bastion_security_group_id}"
+  ecs_sg_id     = "${data.terraform_remote_state.fargate.fargate_security_group_id}"
+
   subnet_ids = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 }
 
@@ -74,6 +77,28 @@ data "terraform_remote_state" "dns" {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "dns/terraform.tfstate"
+    profile = "${var.aws_profile}"
+  }
+}
+
+data "terraform_remote_state" "bastions" {
+  backend = "s3"
+
+  config {
+    bucket  = "${var.state_bucket}"
+    region  = "${var.aws_region}"
+    key     = "bastions/terraform.tfstate"
+    profile = "${var.aws_profile}"
+  }
+}
+
+data "terraform_remote_state" "fargate" {
+  backend = "s3"
+
+  config {
+    bucket  = "${var.state_bucket}"
+    region  = "${var.aws_region}"
+    key     = "fargate/terraform.tfstate"
     profile = "${var.aws_profile}"
   }
 }

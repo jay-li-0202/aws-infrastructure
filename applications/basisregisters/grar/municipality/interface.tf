@@ -70,6 +70,10 @@ variable "fargate_cluster_id" {
   type = "string"
 }
 
+variable "fargate_cluster_arn" {
+  type = "string"
+}
+
 variable "api_replicas" {
   type    = "string"
   default = 1
@@ -88,6 +92,10 @@ variable "import_api_image" {
 }
 
 variable "extract_api_image" {
+  type = "string"
+}
+
+variable "cache_server" {
   type = "string"
 }
 
@@ -188,8 +196,7 @@ variable "deregistration_delay" {
 //   type = "string"
 // }
 
-
-// variable "disco_zone_name" {
-//   type = "string"
-// }
+variable "disco_zone_name" {
+  type = "string"
+}
 

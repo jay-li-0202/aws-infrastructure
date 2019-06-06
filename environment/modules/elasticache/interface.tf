@@ -71,6 +71,14 @@ variable "node_instance_count" {
   type = "string"
 }
 
+variable "bastion_sg_id" {
+  type = "string"
+}
+
+variable "ecs_sg_id" {
+  type = "string"
+}
+
 variable "subnet_ids" {
   type = "list"
 }

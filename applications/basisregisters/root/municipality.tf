@@ -48,6 +48,7 @@ module "municipality-registry" {
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
   disco_namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
+  disco_zone_name    = "${var.disco_zone_name}"
   public_zone_id     = "${data.terraform_remote_state.dns.public_zone_id}"
   public_zone_name   = "${data.terraform_remote_state.dns.public_zone_name}"
 
@@ -56,4 +57,5 @@ module "municipality-registry" {
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+  fargate_cluster_arn = "${data.terraform_remote_state.fargate.fargate_cluster_arn}"
 }
