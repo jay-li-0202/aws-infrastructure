@@ -30,6 +30,7 @@ module "municipality-registry" {
   cache_cpu    = 256
   cache_memory = 512
   cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
+  cache_server = "${data.terraform_remote_state.cache.cache_endpoint}"
 
   db_server   = "${data.terraform_remote_state.sqlserver.address}"
   sa_user     = "${var.sql_username}"
