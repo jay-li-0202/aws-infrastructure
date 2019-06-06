@@ -1,0 +1,5 @@
+IF DB_ID(N'${database}') IS NULL EXEC(N'CREATE DATABASE [${database}];');
+GO
+
+IF SERVERPROPERTY('EngineEdition') <> 5 EXEC(N'ALTER DATABASE [${database}] SET READ_COMMITTED_SNAPSHOT ON;');
+GO
