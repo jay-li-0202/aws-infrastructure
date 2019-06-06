@@ -12,7 +12,7 @@
       { "name": "Redis__ConnectionString", "value": "${redis_server}" },
       { "name": "Redis__ClientName", "value": "Redis - Postal Populator" },
 
-      { "name": "ApiBaseAddress", "value": "http://${disco_namespace}-postal-registry-api.${disco_zone_name}:2002" },
+      { "name": "ApiBaseAddress", "value": "http://${disco_namespace}-postal-registry-api.${disco_zone_name}:3002" },
 
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
