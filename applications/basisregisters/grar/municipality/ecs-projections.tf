@@ -90,9 +90,6 @@ data "template_file" "projections" {
 
     public_zone_name = "${replace(var.public_zone_name, "/[.]$/", "")}"
 
-    // private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
-    // disco_zone_name   = "${replace(var.disco_zone_name, "/[.]$/", "")}"
-
     db_server = "${var.db_server}"
     db_name   = "${var.db_name}"
     db_user   = "${var.db_user}"
