@@ -28,6 +28,11 @@ module "streetname-registry" {
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:1.4.0"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:1.4.0"
 
+  cache_cpu    = 256
+  cache_memory = 512
+  cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
+  cache_server = "${data.terraform_remote_state.cache.cache_endpoint}"
+
   db_server   = "${data.terraform_remote_state.sqlserver.address}"
   sa_user     = "${var.sql_username}"
   sa_pass     = "${var.sql_password}"
@@ -44,13 +49,14 @@ module "streetname-registry" {
   private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
 
   disco_namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
+  disco_zone_name    = "${var.disco_zone_name}"
   public_zone_id     = "${data.terraform_remote_state.dns.public_zone_id}"
   public_zone_name   = "${data.terraform_remote_state.dns.public_zone_name}"
-  disco_zone_name    = "${var.disco_zone_name}"
 
   datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"
   datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
-  fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+  fargate_cluster_id  = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+  fargate_cluster_arn = "${data.terraform_remote_state.fargate.fargate_cluster_arn}"
 }

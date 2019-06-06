@@ -22,18 +22,18 @@ data "template_file" "cache" {
   template = "${file("${path.module}/ecs-cache.json.tpl")}"
 
   vars {
-    environment_name  = "${lower(replace(var.environment_name, " ", "-"))}"
-    datadog_api_key   = "${var.datadog_api_key}"
-    disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
-    logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry"
-    cache_image       = "${var.cache_image}"
-    region            = "${var.region}"
-    datadog_env       = "${var.datadog_env}"
-    tag_environment   = "${var.tag_environment}"
-    tag_product       = "${var.tag_product}"
-    tag_program       = "${var.tag_program}"
-    tag_contact       = "${var.tag_contact}"
+    environment_name = "${lower(replace(var.environment_name, " ", "-"))}"
+    datadog_api_key  = "${var.datadog_api_key}"
+    disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
+    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry"
+    cache_image      = "${var.cache_image}"
+    region           = "${var.region}"
+    datadog_env      = "${var.datadog_env}"
+    tag_environment  = "${var.tag_environment}"
+    tag_product      = "${var.tag_product}"
+    tag_program      = "${var.tag_program}"
+    tag_contact      = "${var.tag_contact}"
 
     public_zone_name = "${replace(var.public_zone_name, "/[.]$/", "")}"
     disco_zone_name  = "${replace(var.disco_zone_name, "/[.]$/", "")}"
@@ -48,8 +48,8 @@ data "template_file" "cache" {
 }
 
 resource "aws_iam_role" "ecs_events" {
-  name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-ecs-events"
-  description        = "Allows Cloudwatch to execute Fargate Tasks."
+  name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-ecs-events"
+  description = "Allows Cloudwatch to execute Fargate Tasks."
 
   assume_role_policy = <<DOC
 {
@@ -112,8 +112,8 @@ resource "aws_cloudwatch_event_target" "cache" {
   role_arn  = "${aws_iam_role.ecs_events.arn}"
 
   ecs_target {
-    task_count = "1"
-    launch_type = "FARGATE"
+    task_count          = "1"
+    launch_type         = "FARGATE"
     task_definition_arn = "${aws_ecs_task_definition.cache.arn}"
 
     network_configuration {
@@ -122,4 +122,3 @@ resource "aws_cloudwatch_event_target" "cache" {
     }
   }
 }
-

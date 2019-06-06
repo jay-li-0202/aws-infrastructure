@@ -199,4 +199,3 @@ variable "deregistration_delay" {
 variable "disco_zone_name" {
   type = "string"
 }
-

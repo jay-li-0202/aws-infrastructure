@@ -57,6 +57,6 @@ module "postal-registry" {
   datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
-  fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+  fargate_cluster_id  = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
   fargate_cluster_arn = "${data.terraform_remote_state.fargate.fargate_cluster_arn}"
 }
