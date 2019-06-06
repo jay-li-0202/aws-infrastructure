@@ -28,6 +28,11 @@ module "postal-registry" {
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:1.5.1"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:1.5.1"
 
+  cache_cpu    = 256
+  cache_memory = 512
+  cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
+  cache_server = "${data.terraform_remote_state.cache.cache_endpoint}"
+
   db_server   = "${data.terraform_remote_state.sqlserver.address}"
   sa_user     = "${var.sql_username}"
   sa_pass     = "${var.sql_password}"
@@ -53,4 +58,5 @@ module "postal-registry" {
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
   fargate_cluster_id = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
+  fargate_cluster_arn = "${data.terraform_remote_state.fargate.fargate_cluster_arn}"
 }

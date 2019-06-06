@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "cache" {
-  family                   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-cache"
+  family                   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = "${var.cache_cpu}"
@@ -10,7 +10,7 @@ resource "aws_ecs_task_definition" "cache" {
   container_definitions = "${data.template_file.cache.rendered}"
 
   tags {
-    Name        = "Municipality Registry Cache // ${var.environment_label} ${var.environment_name}"
+    Name        = "Postal Registry Cache // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
@@ -25,8 +25,8 @@ data "template_file" "cache" {
     environment_name  = "${lower(replace(var.environment_name, " ", "-"))}"
     datadog_api_key   = "${var.datadog_api_key}"
     disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-cache"
-    logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry"
+    app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
+    logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry"
     cache_image       = "${var.cache_image}"
     region            = "${var.region}"
     datadog_env       = "${var.datadog_env}"
@@ -48,7 +48,7 @@ data "template_file" "cache" {
 }
 
 resource "aws_iam_role" "ecs_events" {
-  name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-ecs-events"
+  name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-ecs-events"
   description        = "Allows Cloudwatch to execute Fargate Tasks."
 
   assume_role_policy = <<DOC
@@ -100,13 +100,13 @@ DOC
 }
 
 resource "aws_cloudwatch_event_rule" "cache" {
-  name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-cache"
-  description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-cache task at a scheduled time (${var.cache_schedule_expression})"
+  name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
+  description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache task at a scheduled time (${var.cache_schedule_expression})"
   schedule_expression = "${var.cache_schedule_expression}"
 }
 
 resource "aws_cloudwatch_event_target" "cache" {
-  target_id = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-cache"
+  target_id = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
   rule      = "${aws_cloudwatch_event_rule.cache.name}"
   arn       = "${var.fargate_cluster_arn}"
   role_arn  = "${aws_iam_role.ecs_events.arn}"

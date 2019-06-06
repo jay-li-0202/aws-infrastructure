@@ -70,6 +70,10 @@ variable "fargate_cluster_id" {
   type = "string"
 }
 
+variable "fargate_cluster_arn" {
+  type = "string"
+}
+
 variable "api_replicas" {
   type    = "string"
   default = 1
@@ -92,6 +96,14 @@ variable "import_api_image" {
 }
 
 variable "extract_api_image" {
+  type = "string"
+}
+
+variable "cache_server" {
+  type = "string"
+}
+
+variable "cache_image" {
   type = "string"
 }
 
@@ -118,6 +130,21 @@ variable "projections_cpu" {
 variable "projections_memory" {
   type    = "string"
   default = 512
+}
+
+variable "cache_cpu" {
+  type    = "string"
+  default = 256
+}
+
+variable "cache_memory" {
+  type    = "string"
+  default = 512
+}
+
+variable "cache_schedule_expression" {
+  type    = "string"
+  default = "cron(0/5 * * * ? *)"
 }
 
 variable "sa_user" {
