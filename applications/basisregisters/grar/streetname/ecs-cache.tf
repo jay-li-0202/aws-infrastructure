@@ -10,7 +10,7 @@ resource "aws_ecs_task_definition" "cache" {
   container_definitions = "${data.template_file.cache.rendered}"
 
   tags {
-    Name        = "Streetname Registry Cache // ${var.environment_label} ${var.environment_name}"
+    Name        = "StreetName Registry Cache // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"

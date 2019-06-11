@@ -1,5 +1,5 @@
 resource "aws_security_group_rule" "streetname" {
-  description       = "Streetname Registry"
+  description       = "StreetName Registry"
   type              = "ingress"
   from_port         = "${var.port_range}"
   to_port           = "${var.port_range + 6}"

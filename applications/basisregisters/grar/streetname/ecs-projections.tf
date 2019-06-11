@@ -62,7 +62,7 @@ resource "aws_ecs_task_definition" "projections" {
   container_definitions = "${data.template_file.projections.rendered}"
 
   tags {
-    Name        = "Streetname Registry Projections // ${var.environment_label} ${var.environment_name}"
+    Name        = "StreetName Registry Projections // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"

@@ -11,7 +11,7 @@ data "template_file" "sql2" {
 
   vars {
     database = "${var.db_name}"
-    registry = "StreetnameRegistry"
+    registry = "StreetNameRegistry"
   }
 }
 

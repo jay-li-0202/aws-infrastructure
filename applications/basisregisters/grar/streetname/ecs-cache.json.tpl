@@ -10,7 +10,7 @@
       { "name": "ConnectionStrings__LastChangedList", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
       { "name": "Redis__ConnectionString", "value": "${redis_server}" },
-      { "name": "Redis__ClientName", "value": "Redis - Streetname Populator" },
+      { "name": "Redis__ClientName", "value": "Redis - StreetName Populator" },
 
       { "name": "ApiBaseAddress", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002" },
 

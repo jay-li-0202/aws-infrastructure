@@ -16,14 +16,14 @@ module "streetname-registry" {
   port_range = 4000
 
   api_cpu           = 256
-  api_memory        = 512
+  api_memory        = 1024
   api_replicas      = 2
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:1.6.2"
   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-crab-import:1.6.2"
   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-extract:1.6.2"
 
   projections_cpu      = 256
-  projections_memory   = 512
+  projections_memory   = 1024
   projections_replicas = 1
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:1.6.2"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:1.6.2"

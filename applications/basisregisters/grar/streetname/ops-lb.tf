@@ -12,7 +12,7 @@ resource "aws_lb_target_group" "import" {
   }
 
   tags {
-    Name        = "Streetname Import // ${var.environment_label} ${var.environment_name}"
+    Name        = "StreetName Import // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"
