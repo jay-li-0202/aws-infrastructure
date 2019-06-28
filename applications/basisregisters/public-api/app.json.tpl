@@ -33,7 +33,7 @@
       { "name": "ApiConfiguration__PostalRegistry__Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/postinfo.atom?offset={0}&limit={1}" },
 
       { "name": "ApiConfiguration__StreetNameRegistry__ApiUrl", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002/v1" },
-      { "name": "ApiConfiguration__StreetNameRegistry__UseCache", "value": "false" },
+      { "name": "ApiConfiguration__StreetNameRegistry__UseCache", "value": "true" },
       { "name": "ApiConfiguration__StreetNameRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/straatnaam" },
       { "name": "ApiConfiguration__StreetNameRegistry__GemeenteNaamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
       { "name": "ApiConfiguration__StreetNameRegistry__DetailUrl", "value": "https://api.${public_zone_name}/v1/straatnamen/{0}" },
