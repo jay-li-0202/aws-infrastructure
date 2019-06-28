@@ -51,6 +51,7 @@
       { "name": "ApiConfiguration__AddressRegistry__GemeenteDetailUrl", "value": "https://api.${public_zone_name}/v1/gemeenten/{0}" },
       { "name": "ApiConfiguration__AddressRegistry__PostInfoDetailUrl", "value": "https://api.${public_zone_name}/v1/postinfo/{0}" },
       { "name": "ApiConfiguration__AddressRegistry__StraatnaamDetailUrl", "value": "https://api.${public_zone_name}/v1/straatnamen/{0}" },
+      { "name": "ApiConfiguration__AddressRegistry__GebouweenheidDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden/{0}" },
       { "name": "ApiConfiguration__AddressRegistry__VolgendeUrl", "value": "https://api.${public_zone_name}/v1/adressen?offset={0}&limit={1}" },
       { "name": "ApiConfiguration__AddressRegistry__Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/adressen.atom?offset={0}&limit={1}" },
 

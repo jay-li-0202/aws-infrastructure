@@ -18,15 +18,15 @@ module "streetname-registry" {
   api_cpu           = 512
   api_memory        = 1024
   api_replicas      = 2
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:1.8.2"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-crab-import:1.8.2"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-extract:1.8.2"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:1.8.3"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-crab-import:1.8.3"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-extract:1.8.3"
 
   projections_cpu      = 512
   projections_memory   = 1024
   projections_replicas = 1
-  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:1.8.2"
-  syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:1.8.2"
+  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:1.8.3"
+  syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:1.8.3"
 
   cache_cpu    = 512
   cache_memory = 1024
