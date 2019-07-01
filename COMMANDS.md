@@ -110,3 +110,11 @@ When you are certain, you can execute `./clear-redis-key.sh legacy/municipality`
 ```bash
 find -type d -name ".terraform" -exec rm -rf {} \;
 ```
+
+## Paket
+
+### List all outdated packages
+
+```bash
+rm -rf /tmp/repos-outdated.txt; forrepos "git pull; sleep 5; echo 'Pulled '(pwd); echo (pwd) >> /tmp/repos-outdated.txt; mono .paket/paket.exe outdated --ignore-constraints | awk '/Outdated packages found:/,/Performance:/' >> /tmp/repos-outdated.txt; sleep 5; echo >> /tmp/repos-outdated.txt; echo 'Outdated '(pwd);"; echo 'Outdated check done!!'
+```
