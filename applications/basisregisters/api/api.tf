@@ -10,6 +10,7 @@ ${md5("
   ${file("${path.module}/api.tf")}
   ${file("${path.module}/status.tf")}
   ${file("${path.module}/feeds/main.tf")}
+  ${file("${path.module}/adresmatch/main.tf")}
   ${file("${path.module}/adressen/main.tf")}
   ${file("${path.module}/crabhuisnummers/main.tf")}
   ${file("${path.module}/crabsubadressen/main.tf")}
@@ -68,6 +69,15 @@ module "postinfo" {
 
 module "straatnamen" {
   source = "./straatnamen"
+
+  rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
+  parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
+  request_validator_id = "${aws_api_gateway_request_validator.gw.id}"
+  authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
+}
+
+module "adresmatch" {
+  source = "./adresmatch"
 
   rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
   parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
