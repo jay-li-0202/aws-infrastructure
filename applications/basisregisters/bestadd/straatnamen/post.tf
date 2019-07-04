@@ -1,7 +1,7 @@
 resource "aws_api_gateway_method" "get-straatnamen1" {
   rest_api_id          = "${var.rest_api_id}"
   resource_id          = "${aws_api_gateway_resource.straatnamen_root1.id}"
-  http_method          = "GET"
+  http_method          = "POST"
   authorization        = "CUSTOM"
   request_validator_id = "${var.request_validator_id}"
   api_key_required     = true
@@ -17,7 +17,7 @@ resource "aws_api_gateway_method" "get-straatnamen1" {
 resource "aws_api_gateway_method" "get-straatnamen2" {
   rest_api_id          = "${var.rest_api_id}"
   resource_id          = "${aws_api_gateway_resource.straatnamen_root2.id}"
-  http_method          = "GET"
+  http_method          = "POST"
   authorization        = "CUSTOM"
   request_validator_id = "${var.request_validator_id}"
   api_key_required     = true
@@ -33,7 +33,7 @@ resource "aws_api_gateway_method" "get-straatnamen2" {
 resource "aws_api_gateway_method" "get-straatnamen3" {
   rest_api_id          = "${var.rest_api_id}"
   resource_id          = "${aws_api_gateway_resource.straatnamen_root3.id}"
-  http_method          = "GET"
+  http_method          = "POST"
   authorization        = "CUSTOM"
   request_validator_id = "${var.request_validator_id}"
   api_key_required     = true
@@ -52,7 +52,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration1" {
   http_method = "${aws_api_gateway_method.get-straatnamen1.http_method}"
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
   uri = "https://$${stageVariables.baseHost}/v1/bosa/straatnamen/"
@@ -71,7 +71,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration2" {
   http_method = "${aws_api_gateway_method.get-straatnamen2.http_method}"
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
   uri = "https://$${stageVariables.baseHost}/v1/bosa/straatnamen.json"
@@ -90,7 +90,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration3" {
   http_method = "${aws_api_gateway_method.get-straatnamen3.http_method}"
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
   uri = "https://$${stageVariables.baseHost}/v1/bosa/straatnamen.xml"

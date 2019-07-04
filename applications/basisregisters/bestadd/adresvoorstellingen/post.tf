@@ -1,7 +1,7 @@
 resource "aws_api_gateway_method" "get-adresvoorstellingen1" {
   rest_api_id          = "${var.rest_api_id}"
   resource_id          = "${aws_api_gateway_resource.adresvoorstellingen_root1.id}"
-  http_method          = "GET"
+  http_method          = "POST"
   authorization        = "CUSTOM"
   request_validator_id = "${var.request_validator_id}"
   api_key_required     = true
@@ -17,7 +17,7 @@ resource "aws_api_gateway_method" "get-adresvoorstellingen1" {
 resource "aws_api_gateway_method" "get-adresvoorstellingen2" {
   rest_api_id          = "${var.rest_api_id}"
   resource_id          = "${aws_api_gateway_resource.adresvoorstellingen_root2.id}"
-  http_method          = "GET"
+  http_method          = "POST"
   authorization        = "CUSTOM"
   request_validator_id = "${var.request_validator_id}"
   api_key_required     = true
@@ -33,7 +33,7 @@ resource "aws_api_gateway_method" "get-adresvoorstellingen2" {
 resource "aws_api_gateway_method" "get-adresvoorstellingen3" {
   rest_api_id          = "${var.rest_api_id}"
   resource_id          = "${aws_api_gateway_resource.adresvoorstellingen_root3.id}"
-  http_method          = "GET"
+  http_method          = "POST"
   authorization        = "CUSTOM"
   request_validator_id = "${var.request_validator_id}"
   api_key_required     = true
@@ -52,7 +52,7 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration1" {
   http_method = "${aws_api_gateway_method.get-adresvoorstellingen1.http_method}"
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
   uri = "https://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen/"
@@ -71,7 +71,7 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration2" {
   http_method = "${aws_api_gateway_method.get-adresvoorstellingen2.http_method}"
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
   uri = "https://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen.json"
@@ -90,7 +90,7 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration3" {
   http_method = "${aws_api_gateway_method.get-adresvoorstellingen3.http_method}"
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "GET"
+  integration_http_method = "POST"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
   uri = "https://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen.xml"
