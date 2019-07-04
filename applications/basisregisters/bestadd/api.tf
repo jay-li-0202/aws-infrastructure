@@ -9,7 +9,10 @@ resource "aws_api_gateway_deployment" "gw" {
 ${md5("
   ${file("${path.module}/api.tf")}
   ${file("${path.module}/status.tf")}
+  ${file("${path.module}/gemeenten/main.tf")}
+  ${file("${path.module}/straatnamen/main.tf")}
   ${file("${path.module}/adressen/main.tf")}
+  ${file("${path.module}/adresvoorstellingen/main.tf")}
 ")}
 EOF
 
@@ -41,8 +44,35 @@ resource "aws_api_gateway_base_path_mapping" "v1" {
   base_path   = "v1"
 }
 
+module "gemeenten" {
+  source = "./gemeenten"
+
+  rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
+  parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
+  request_validator_id = "${aws_api_gateway_request_validator.gw.id}"
+  authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
+}
+
+module "straatnamen" {
+  source = "./straatnamen"
+
+  rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
+  parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
+  request_validator_id = "${aws_api_gateway_request_validator.gw.id}"
+  authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
+}
+
 module "adressen" {
   source = "./adressen"
+
+  rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
+  parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
+  request_validator_id = "${aws_api_gateway_request_validator.gw.id}"
+  authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
+}
+
+module "adresvoorstellingen" {
+  source = "./adresvoorstellingen"
 
   rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
   parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"

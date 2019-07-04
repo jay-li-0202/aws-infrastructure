@@ -9,7 +9,7 @@ resource "aws_acm_certificate" "cert" {
   }
 
   tags {
-    Name        = "Basisregisters Api Certificate // ${var.environment_label} ${var.environment_name}"
+    Name        = "Basisregisters BestAdd Api Certificate // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
     Programma   = "${var.tag_program}"

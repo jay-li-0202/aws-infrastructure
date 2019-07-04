@@ -38,7 +38,7 @@ variable "public_zone_name" {
 
 variable "api_url" {
   type    = "string"
-  default = "api"
+  default = "bosa"
 }
 
 variable "cert_public_zone_name" {
