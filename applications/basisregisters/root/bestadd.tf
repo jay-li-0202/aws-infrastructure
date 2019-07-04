@@ -12,7 +12,6 @@ module "bestadd" {
 
   anon_key = "${var.anon_key}"
   demo_key = "${var.demo_key}"
-  ui_key   = "${var.ui_key}"
   test_key = "${var.test_key}"
 
   api_name       = "bestadd"
