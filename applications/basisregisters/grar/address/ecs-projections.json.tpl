@@ -63,7 +63,7 @@
       { "name": "SyndicationFeeds__Municipality", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1/gemeenten/sync" },
       { "name": "SyndicationFeeds__MunicipalityPollingInMilliseconds", "value": "5000" },
 
-      { "name": "SyndicationFeeds__PostalInfo", "value": "http://${disco_namespace}-postinfo-registry-api.${disco_zone_name}:3002/v1/postinfo/sync" },
+      { "name": "SyndicationFeeds__PostalInfo", "value": "http://${disco_namespace}-postal-registry-api.${disco_zone_name}:3002/v1/postinfo/sync" },
       { "name": "SyndicationFeeds__PostalInfoPollingInMilliseconds", "value": "5000" },
 
       { "name": "SyndicationFeeds__StreetName", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002/v1/straatnamen/sync" },
