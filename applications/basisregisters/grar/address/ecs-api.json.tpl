@@ -10,6 +10,7 @@
       { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__CrabImport", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__Sequences", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__LegacyProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "Idempotency__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
       { "name": "DataDog__Enabled", "value": "true" },
@@ -72,9 +73,16 @@
 
       { "name": "DetailUrl", "value": "https://api.${public_zone_name}/v1/adressen/{0}" },
       { "name": "VolgendeUrl", "value": "https://api.${public_zone_name}/v1/adressen?offset={0}&limit={1}" },
+      { "name": "CrabHuisnummersVolgendeUrl", "value": "https://api.${public_zone_name}/v1/crabhuisnummers?offset={0}&limit={1}" },
+      { "name": "CrabSubadressenVolgendeUrl", "value": "https://api.${public_zone_name}/v1/crabsubadressen?offset={0}&limit={1}" },
       { "name": "PostInfoDetailUrl", "value": "https://api.${public_zone_name}/v1/postinfo/{0}" },
       { "name": "GemeenteDetailUrl", "value": "https://api.${public_zone_name}/v1/gemeenten/{0}" },
       { "name": "StraatnaamDetailUrl", "value": "https://api.${public_zone_name}/v1/straatnamen/{0}" },
+      { "name": "GebouweenheidDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden/{0}" },
+      { "name": "PerceelDetailUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
+
+      { "name": "SimilarityThreshold", "value": "75.0" },
+      { "name": "MaxStreetNamesThreshold", "value": "100" },
 
       { "name": "Syndication__Category", "value": "https://data.vlaanderen.be/ns/adres" },
       { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/adressen.atom" },
@@ -116,6 +124,8 @@
       { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__ExtractProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__ExtractProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__SyndicationProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__SyndicationProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },

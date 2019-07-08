@@ -22,10 +22,13 @@ variable "sql_password" {}
 
 // Predefined API keys
 variable "anon_key" {}
-
 variable "demo_key" {}
 variable "ui_key" {}
 variable "test_key" {}
+
+variable "bosa_anon_key" {}
+variable "bosa_demo_key" {}
+variable "bosa_test_key" {}
 
 variable "admin_cidr_blocks" {
   type = "list"

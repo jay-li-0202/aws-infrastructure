@@ -10,9 +10,9 @@ module "bestadd" {
   tag_program     = "${var.tag_program}"
   tag_contact     = "${var.tag_contact}"
 
-  anon_key = "${var.anon_key}"
-  demo_key = "${var.demo_key}"
-  test_key = "${var.test_key}"
+  anon_key = "${var.bosa_anon_key}"
+  demo_key = "${var.bosa_demo_key}"
+  test_key = "${var.bosa_test_key}"
 
   api_name       = "bestadd"
   api_stage_name = "bestadd"
