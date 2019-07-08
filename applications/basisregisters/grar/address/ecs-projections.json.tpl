@@ -63,8 +63,17 @@
       { "name": "SyndicationFeeds__Municipality", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1/gemeenten/sync" },
       { "name": "SyndicationFeeds__MunicipalityPollingInMilliseconds", "value": "5000" },
 
+      { "name": "SyndicationFeeds__PostalInfo", "value": "http://${disco_namespace}-postinfo-registry-api.${disco_zone_name}:3002/v1/postinfo/sync" },
+      { "name": "SyndicationFeeds__PostalInfoPollingInMilliseconds", "value": "5000" },
+
       { "name": "SyndicationFeeds__StreetName", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002/v1/straatnamen/sync" },
-      { "name": "SyndicationFeeds__StreetNamePollingInMilliseconds", "value": "5000" }
+      { "name": "SyndicationFeeds__StreetNamePollingInMilliseconds", "value": "5000" },
+
+      { "name": "SyndicationFeeds__Building", "value": "http://${disco_namespace}-building-registry-api.${disco_zone_name}:6002/v1/gebouwen/sync" },
+      { "name": "SyndicationFeeds__BuildingPollingInMilliseconds", "value": "5000" },
+
+      { "name": "SyndicationFeeds__Parcel", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/v1/percelen/sync" },
+      { "name": "SyndicationFeeds__ParcelPollingInMilliseconds", "value": "5000" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
