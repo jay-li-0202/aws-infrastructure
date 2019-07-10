@@ -67,6 +67,8 @@
       { "name": "Naamruimte", "value": "https://data.vlaanderen.be/id/perceel" },
 
       { "name": "DetailUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
+      { "name": "AdresDetailUrl", "value": "https://api.${public_zone_name}/v1/adressen/{0}" },
+
       { "name": "VolgendeUrl", "value": "https://api.${public_zone_name}/v1/percelen?offset={0}&limit={1}" },
 
       { "name": "Syndication__Category", "value": "https://data.vlaanderen.be/ns/perceel" },
