@@ -15,6 +15,8 @@ ${md5("
   ${file("${path.module}/crabhuisnummers/main.tf")}
   ${file("${path.module}/crabsubadressen/main.tf")}
   ${file("${path.module}/dienstverleningen/main.tf")}
+  ${file("${path.module}/gebouwen/main.tf")}
+  ${file("${path.module}/gebouweneenheden/main.tf")}
   ${file("${path.module}/gemeenten/main.tf")}
   ${file("${path.module}/postinfo/main.tf")}
   ${file("${path.module}/straatnamen/main.tf")}
@@ -105,6 +107,24 @@ module "crabhuisnummers" {
 
 module "crabsubadressen" {
   source = "./crabsubadressen"
+
+  rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
+  parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
+  request_validator_id = "${aws_api_gateway_request_validator.gw.id}"
+  authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
+}
+
+module "gebouwen" {
+  source = "./gebouwen"
+
+  rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
+  parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
+  request_validator_id = "${aws_api_gateway_request_validator.gw.id}"
+  authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
+}
+
+module "gebouweenheden" {
+  source = "./gebouweenheden"
 
   rest_api_id          = "${aws_api_gateway_rest_api.gw.id}"
   parent_id            = "${aws_api_gateway_rest_api.gw.root_resource_id}"
