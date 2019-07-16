@@ -2,6 +2,14 @@ variable "aws_region" {}
 variable "aws_profile" {}
 variable "aws_account_id" {}
 
+variable "environment_label" {}
+variable "environment_name" {}
+
+variable "tag_environment" {}
+variable "tag_product" {}
+variable "tag_program" {}
+variable "tag_contact" {}
+
 provider "aws" {
   version             = "~> 2.4.0"
   region              = "${var.aws_region}"
@@ -18,6 +26,14 @@ terraform {
 module "municipality-registry" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "municipality-registry/api-legacy",
@@ -29,6 +45,14 @@ module "municipality-registry" {
 
 module "postal-registry" {
   source = "../../modules/docker_repo"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -43,6 +67,14 @@ module "postal-registry" {
 module "streetname-registry" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "streetname-registry/api-legacy",
@@ -55,6 +87,14 @@ module "streetname-registry" {
 
 module "address-registry" {
   source = "../../modules/docker_repo"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -69,6 +109,14 @@ module "address-registry" {
 module "building-registry" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "building-registry/api-legacy",
@@ -81,6 +129,14 @@ module "building-registry" {
 
 module "parcel-registry" {
   source = "../../modules/docker_repo"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -95,6 +151,14 @@ module "parcel-registry" {
 module "public-service-registry" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "public-service-registry/ui",
@@ -107,6 +171,14 @@ module "public-service-registry" {
 module "road-registry" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "road-registry/ui",
@@ -118,6 +190,14 @@ module "road-registry" {
 
 module "organisation-registry" {
   source = "../../modules/docker_repo"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -136,6 +216,14 @@ module "organisation-registry" {
 module "bank-account-number-registry" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "bank-account-number-registry/api",
@@ -145,6 +233,14 @@ module "bank-account-number-registry" {
 
 module "public-api" {
   source = "../../modules/docker_repo"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -156,6 +252,14 @@ module "public-api" {
 module "redis" {
   source = "../../modules/docker_repo"
 
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
+
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
     "redis/redis-populator",
@@ -164,6 +268,14 @@ module "redis" {
 
 module "general" {
   source = "../../modules/docker_repo"
+
+  environment_label = "${var.environment_label}"
+  environment_name  = "${var.environment_name}"
+
+  tag_environment = "${var.tag_environment}"
+  tag_product     = "${var.tag_product}"
+  tag_program     = "${var.tag_program}"
+  tag_contact     = "${var.tag_contact}"
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
