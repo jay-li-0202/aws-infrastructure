@@ -1,29 +1,29 @@
 resource "aws_api_gateway_resource" "straatnaam_detail1" {
-  rest_api_id = "${var.rest_api_id}"
-  parent_id   = "${aws_api_gateway_resource.feeds_root.id}"
+  rest_api_id = var.rest_api_id
+  parent_id   = aws_api_gateway_resource.feeds_root.id
   path_part   = "straatnamen"
 }
 
 resource "aws_api_gateway_resource" "straatnaam_detail2" {
-  rest_api_id = "${var.rest_api_id}"
-  parent_id   = "${aws_api_gateway_resource.feeds_root.id}"
+  rest_api_id = var.rest_api_id
+  parent_id   = aws_api_gateway_resource.feeds_root.id
   path_part   = "straatnamen.xml"
 }
 
 resource "aws_api_gateway_resource" "straatnaam_detail3" {
-  rest_api_id = "${var.rest_api_id}"
-  parent_id   = "${aws_api_gateway_resource.feeds_root.id}"
+  rest_api_id = var.rest_api_id
+  parent_id   = aws_api_gateway_resource.feeds_root.id
   path_part   = "straatnamen.atom"
 }
 
 resource "aws_api_gateway_method" "get-straatnamen1" {
-  rest_api_id          = "${var.rest_api_id}"
-  resource_id          = "${aws_api_gateway_resource.straatnaam_detail1.id}"
+  rest_api_id          = var.rest_api_id
+  resource_id          = aws_api_gateway_resource.straatnaam_detail1.id
   http_method          = "GET"
   authorization        = "CUSTOM"
-  request_validator_id = "${var.request_validator_id}"
+  request_validator_id = var.request_validator_id
   api_key_required     = true
-  authorizer_id        = "${var.authorizer_id}"
+  authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.header.Accept" = false
@@ -33,13 +33,13 @@ resource "aws_api_gateway_method" "get-straatnamen1" {
 }
 
 resource "aws_api_gateway_method" "get-straatnamen2" {
-  rest_api_id          = "${var.rest_api_id}"
-  resource_id          = "${aws_api_gateway_resource.straatnaam_detail2.id}"
+  rest_api_id          = var.rest_api_id
+  resource_id          = aws_api_gateway_resource.straatnaam_detail2.id
   http_method          = "GET"
   authorization        = "CUSTOM"
-  request_validator_id = "${var.request_validator_id}"
+  request_validator_id = var.request_validator_id
   api_key_required     = true
-  authorizer_id        = "${var.authorizer_id}"
+  authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.header.Accept" = false
@@ -49,13 +49,13 @@ resource "aws_api_gateway_method" "get-straatnamen2" {
 }
 
 resource "aws_api_gateway_method" "get-straatnamen3" {
-  rest_api_id          = "${var.rest_api_id}"
-  resource_id          = "${aws_api_gateway_resource.straatnaam_detail3.id}"
+  rest_api_id          = var.rest_api_id
+  resource_id          = aws_api_gateway_resource.straatnaam_detail3.id
   http_method          = "GET"
   authorization        = "CUSTOM"
-  request_validator_id = "${var.request_validator_id}"
+  request_validator_id = var.request_validator_id
   api_key_required     = true
-  authorizer_id        = "${var.authorizer_id}"
+  authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.header.Accept" = false
@@ -65,9 +65,9 @@ resource "aws_api_gateway_method" "get-straatnamen3" {
 }
 
 resource "aws_api_gateway_integration" "get-straatnamen-integration1" {
-  rest_api_id = "${var.rest_api_id}"
-  resource_id = "${aws_api_gateway_resource.straatnaam_detail1.id}"
-  http_method = "${aws_api_gateway_method.get-straatnamen1.http_method}"
+  rest_api_id = var.rest_api_id
+  resource_id = aws_api_gateway_resource.straatnaam_detail1.id
+  http_method = aws_api_gateway_method.get-straatnamen1.http_method
 
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
@@ -84,9 +84,9 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration1" {
 }
 
 resource "aws_api_gateway_integration" "get-straatnamen-integration2" {
-  rest_api_id = "${var.rest_api_id}"
-  resource_id = "${aws_api_gateway_resource.straatnaam_detail2.id}"
-  http_method = "${aws_api_gateway_method.get-straatnamen2.http_method}"
+  rest_api_id = var.rest_api_id
+  resource_id = aws_api_gateway_resource.straatnaam_detail2.id
+  http_method = aws_api_gateway_method.get-straatnamen2.http_method
 
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
@@ -102,9 +102,9 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration2" {
 }
 
 resource "aws_api_gateway_integration" "get-straatnamen-integration3" {
-  rest_api_id = "${var.rest_api_id}"
-  resource_id = "${aws_api_gateway_resource.straatnaam_detail3.id}"
-  http_method = "${aws_api_gateway_method.get-straatnamen3.http_method}"
+  rest_api_id = var.rest_api_id
+  resource_id = aws_api_gateway_resource.straatnaam_detail3.id
+  http_method = aws_api_gateway_method.get-straatnamen3.http_method
 
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
@@ -118,3 +118,4 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration3" {
     "integration.request.header.Accept-Encoding" = "'identity'"
   }
 }
+

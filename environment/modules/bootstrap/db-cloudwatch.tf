@@ -1,14 +1,14 @@
 resource "aws_iam_role" "rds" {
   name               = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-rds-logs"
   description        = "Allows RDS to log to CloudWatch."
-  assume_role_policy = "${data.aws_iam_policy_document.rds_assume_role.json}"
+  assume_role_policy = data.aws_iam_policy_document.rds_assume_role.json
 
   tags = {
     Name        = "RDS Logs // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
@@ -45,6 +45,7 @@ data "aws_iam_policy_document" "rds" {
 
 resource "aws_iam_role_policy" "rds_role_policy" {
   name   = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-rds"
-  role   = "${aws_iam_role.rds.id}"
-  policy = "${data.aws_iam_policy_document.rds.json}"
+  role   = aws_iam_role.rds.id
+  policy = data.aws_iam_policy_document.rds.json
 }
+

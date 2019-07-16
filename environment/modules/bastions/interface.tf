@@ -3,61 +3,62 @@ provider "archive" {
 }
 
 variable "environment_label" {
-  type = "string"
+  type = string
 }
 
 variable "environment_name" {
-  type = "string"
+  type = string
 }
 
 variable "tag_environment" {
-  type = "string"
+  type = string
 }
 
 variable "tag_product" {
-  type = "string"
+  type = string
 }
 
 variable "tag_program" {
-  type = "string"
+  type = string
 }
 
 variable "tag_contact" {
-  type = "string"
+  type = string
 }
 
 variable "bastion_cluster" {
-  type = "string"
+  type = string
 }
 
 variable "bastion_subnets" {
-  type = "list"
+  type = list(string)
 }
 
 variable "bastion_vpc" {
-  type = "string"
+  type = string
 }
 
 variable "cleanup_schedule" {
-  type = "string"
+  type = string
 }
 
 variable "datadog_logging_lambda" {
-  type = "string"
+  type = string
 }
 
 output "bastion_api_endpoint" {
-  value = "${aws_api_gateway_deployment.bastions.invoke_url}"
+  value = aws_api_gateway_deployment.bastions.invoke_url
 }
 
 output "bastion_api_key" {
-  value = "${aws_api_gateway_api_key.bastions.value}"
+  value = aws_api_gateway_api_key.bastions.value
 }
 
 output "bastion_security_group" {
-  value = "${aws_security_group.bastion.arn}"
+  value = aws_security_group.bastion.arn
 }
 
 output "bastion_security_group_id" {
-  value = "${aws_security_group.bastion.id}"
+  value = aws_security_group.bastion.id
 }
+

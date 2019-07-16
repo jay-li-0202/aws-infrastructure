@@ -1,34 +1,34 @@
 resource "aws_lambda_permission" "delete-all-bastions-api" {
   statement_id  = "AllowDeleteAllBastionsInvoke"
   action        = "lambda:InvokeFunction"
-  function_name = "${aws_lambda_function.delete-all-bastions.arn}"
+  function_name = aws_lambda_function.delete-all-bastions.arn
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_api_gateway_rest_api.bastions.execution_arn}/*/DELETE/bastions"
 }
 
 resource "aws_api_gateway_resource" "delete-all-bastions" {
-  rest_api_id = "${aws_api_gateway_rest_api.bastions.id}"
-  parent_id   = "${aws_api_gateway_rest_api.bastions.root_resource_id}"
+  rest_api_id = aws_api_gateway_rest_api.bastions.id
+  parent_id   = aws_api_gateway_rest_api.bastions.root_resource_id
   path_part   = "bastions"
 }
 
 resource "aws_api_gateway_method" "delete-all-bastions" {
-  rest_api_id          = "${aws_api_gateway_rest_api.bastions.id}"
-  resource_id          = "${aws_api_gateway_resource.delete-all-bastions.id}"
+  rest_api_id          = aws_api_gateway_rest_api.bastions.id
+  resource_id          = aws_api_gateway_resource.delete-all-bastions.id
   http_method          = "DELETE"
   authorization        = "NONE"
   api_key_required     = true
-  request_validator_id = "${aws_api_gateway_request_validator.bastions.id}"
+  request_validator_id = aws_api_gateway_request_validator.bastions.id
 }
 
 resource "aws_api_gateway_integration" "delete-all-bastions" {
-  rest_api_id = "${aws_api_gateway_rest_api.bastions.id}"
-  resource_id = "${aws_api_gateway_method.delete-all-bastions.resource_id}"
-  http_method = "${aws_api_gateway_method.delete-all-bastions.http_method}"
+  rest_api_id = aws_api_gateway_rest_api.bastions.id
+  resource_id = aws_api_gateway_method.delete-all-bastions.resource_id
+  http_method = aws_api_gateway_method.delete-all-bastions.http_method
 
   integration_http_method = "POST"
   type                    = "AWS_PROXY"
-  uri                     = "${aws_lambda_function.delete-all-bastions.invoke_arn}"
+  uri                     = aws_lambda_function.delete-all-bastions.invoke_arn
 }
 
 data "archive_file" "delete-all-bastions" {
@@ -41,14 +41,14 @@ resource "aws_iam_role" "delete-all-bastions-lambda" {
   name = "delete-all-bastions-lambda"
 
   description        = "Allows Lambda to delete all Bastions"
-  assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
+  assume_role_policy = data.aws_iam_policy_document.assume_role.json
 
   tags = {
     Name        = "Delete All Bastions Hosts // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
@@ -80,36 +80,37 @@ data "aws_iam_policy_document" "delete-all-bastions-lambda" {
 
 resource "aws_iam_role_policy" "delete-all-bastions-lambda" {
   name   = "delete-all-bastions-lambda"
-  role   = "${aws_iam_role.delete-all-bastions-lambda.id}"
-  policy = "${data.aws_iam_policy_document.delete-all-bastions-lambda.json}"
+  role   = aws_iam_role.delete-all-bastions-lambda.id
+  policy = data.aws_iam_policy_document.delete-all-bastions-lambda.json
 }
 
 resource "aws_lambda_function" "delete-all-bastions" {
-  depends_on = ["data.archive_file.delete-all-bastions"]
+  depends_on = [data.archive_file.delete-all-bastions]
 
   function_name = "delete-all-bastions"
   description   = "Deletes all bastion servers."
   runtime       = "python2.7"
   handler       = "index.lambda_handler"
 
-  role    = "${aws_iam_role.delete-all-bastions-lambda.arn}"
+  role    = aws_iam_role.delete-all-bastions-lambda.arn
   timeout = 900
 
-  filename         = "${data.archive_file.delete-all-bastions.output_path}"
-  source_code_hash = "${data.archive_file.delete-all-bastions.output_base64sha256}"
+  filename         = data.archive_file.delete-all-bastions.output_path
+  source_code_hash = data.archive_file.delete-all-bastions.output_base64sha256
 
   tags = {
     Name        = "Delete All Bastions // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 
   environment {
     variables = {
-      BASTION_CLUSTER = "${var.bastion_cluster}"
-      BASTION_VPC     = "${var.bastion_vpc}"
+      BASTION_CLUSTER = var.bastion_cluster
+      BASTION_VPC     = var.bastion_vpc
     }
   }
 }
+

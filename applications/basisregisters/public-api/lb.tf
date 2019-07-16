@@ -2,7 +2,7 @@ resource "aws_lb" "main" {
   name               = "${var.app}-public-api"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = ["${aws_security_group.main-lb.id}"]
+  security_groups    = [aws_security_group.main-lb.id]
   subnets            = var.public_subnets
 
   enable_deletion_protection = false
@@ -11,25 +11,25 @@ resource "aws_lb" "main" {
 
   access_logs {
     enabled = true
-    bucket  = "${aws_s3_bucket.lb_access_logs.bucket}"
+    bucket  = aws_s3_bucket.lb_access_logs.bucket
   }
 
   tags = {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
 resource "aws_lb_target_group" "main" {
   name                 = "${var.app}-public-api"
-  port                 = "${var.lb_port}"
-  protocol             = "${var.lb_protocol}"
-  vpc_id               = "${var.vpc_id}"
+  port                 = var.lb_port
+  protocol             = var.lb_protocol
+  vpc_id               = var.vpc_id
   target_type          = "ip"
-  deregistration_delay = "${var.deregistration_delay}"
+  deregistration_delay = var.deregistration_delay
 
   health_check {
     path = "/health"
@@ -37,14 +37,15 @@ resource "aws_lb_target_group" "main" {
 
   tags = {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
-data "aws_elb_service_account" "main" {}
+data "aws_elb_service_account" "main" {
+}
 
 resource "aws_s3_bucket" "lb_access_logs" {
   bucket        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-lb-access-logs"
@@ -53,10 +54,10 @@ resource "aws_s3_bucket" "lb_access_logs" {
 
   tags = {
     Name        = "Public Api Loadbalancer Logs // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 
   lifecycle_rule {
@@ -66,7 +67,7 @@ resource "aws_s3_bucket" "lb_access_logs" {
     prefix                                 = ""
 
     expiration {
-      days = "${var.lb_access_logs_expiration_days}"
+      days = var.lb_access_logs_expiration_days
     }
   }
 
@@ -80,7 +81,7 @@ resource "aws_s3_bucket" "lb_access_logs" {
 }
 
 resource "aws_s3_bucket_policy" "lb_access_logs" {
-  bucket = "${aws_s3_bucket.lb_access_logs.id}"
+  bucket = aws_s3_bucket.lb_access_logs.id
 
   policy = <<POLICY
 {
@@ -103,21 +104,23 @@ resource "aws_s3_bucket_policy" "lb_access_logs" {
   ]
 }
 POLICY
+
 }
 
 resource "aws_lambda_permission" "lb_access_logs" {
   statement_id = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-lb-access-logs"
   action = "lambda:InvokeFunction"
-  function_name = "${var.datadog_logging_lambda}"
+  function_name = var.datadog_logging_lambda
   principal = "s3.amazonaws.com"
-  source_arn = "${aws_s3_bucket.lb_access_logs.arn}"
+  source_arn = aws_s3_bucket.lb_access_logs.arn
 }
 
 resource "aws_s3_bucket_notification" "lb_access_logs" {
-  bucket = "${aws_s3_bucket.lb_access_logs.id}"
+  bucket = aws_s3_bucket.lb_access_logs.id
 
   lambda_function {
-    lambda_function_arn = "${var.datadog_logging_lambda}"
+    lambda_function_arn = var.datadog_logging_lambda
     events = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
   }
 }
+

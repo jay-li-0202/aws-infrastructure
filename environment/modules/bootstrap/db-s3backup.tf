@@ -1,14 +1,14 @@
 resource "aws_iam_role" "rds-backup" {
   name               = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-rds-backups"
   description        = "Allows RDS to backup to S3."
-  assume_role_policy = "${data.aws_iam_policy_document.rds_backup_assume_role.json}"
+  assume_role_policy = data.aws_iam_policy_document.rds_backup_assume_role.json
 
   tags = {
     Name        = "RDS Backups // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "rds_backup_assume_role" {
 data "aws_iam_policy_document" "rds-backup" {
   statement {
     effect    = "Allow"
-    resources = ["${aws_s3_bucket.rds-backup.arn}"]
+    resources = [aws_s3_bucket.rds-backup.arn]
 
     actions = [
       "s3:ListBucket",
@@ -52,6 +52,7 @@ data "aws_iam_policy_document" "rds-backup" {
 
 resource "aws_iam_role_policy" "rds_backup_role_policy" {
   name   = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-rds-backup"
-  role   = "${aws_iam_role.rds-backup.id}"
-  policy = "${data.aws_iam_policy_document.rds-backup.json}"
+  role   = aws_iam_role.rds-backup.id
+  policy = data.aws_iam_policy_document.rds-backup.json
 }
+

@@ -1,20 +1,35 @@
-variable "aws_region" {}
-variable "aws_profile" {}
-variable "aws_account_id" {}
+variable "aws_region" {
+}
 
-variable "environment_label" {}
-variable "environment_name" {}
+variable "aws_profile" {
+}
 
-variable "tag_environment" {}
-variable "tag_product" {}
-variable "tag_program" {}
-variable "tag_contact" {}
+variable "aws_account_id" {
+}
+
+variable "environment_label" {
+}
+
+variable "environment_name" {
+}
+
+variable "tag_environment" {
+}
+
+variable "tag_product" {
+}
+
+variable "tag_program" {
+}
+
+variable "tag_contact" {
+}
 
 provider "aws" {
   version             = "~> 2.19.0"
-  region              = "${var.aws_region}"
-  profile             = "${var.aws_profile}"
-  allowed_account_ids = ["${var.aws_account_id}"]
+  region              = var.aws_region
+  profile             = var.aws_profile
+  allowed_account_ids = [var.aws_account_id]
 }
 
 terraform {
@@ -26,13 +41,13 @@ terraform {
 module "municipality-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -46,13 +61,13 @@ module "municipality-registry" {
 module "postal-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -67,13 +82,13 @@ module "postal-registry" {
 module "streetname-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -88,13 +103,13 @@ module "streetname-registry" {
 module "address-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -109,13 +124,13 @@ module "address-registry" {
 module "building-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -130,13 +145,13 @@ module "building-registry" {
 module "parcel-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -151,13 +166,13 @@ module "parcel-registry" {
 module "public-service-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -171,13 +186,13 @@ module "public-service-registry" {
 module "road-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -191,13 +206,13 @@ module "road-registry" {
 module "organisation-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -216,13 +231,13 @@ module "organisation-registry" {
 module "bank-account-number-registry" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -234,13 +249,13 @@ module "bank-account-number-registry" {
 module "public-api" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -252,13 +267,13 @@ module "public-api" {
 module "redis" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -269,13 +284,13 @@ module "redis" {
 module "general" {
   source = "../../modules/docker_repo"
 
-  environment_label = "${var.environment_label}"
-  environment_name  = "${var.environment_name}"
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
 
-  tag_environment = "${var.tag_environment}"
-  tag_product     = "${var.tag_product}"
-  tag_program     = "${var.tag_program}"
-  tag_contact     = "${var.tag_contact}"
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
@@ -292,13 +307,14 @@ output "ecr_uri" {
 }
 
 output "docker_user_name" {
-  value = "${module.docker.docker_user_name}"
+  value = module.docker.docker_user_name
 }
 
 output "docker_user_key" {
-  value = "${module.docker.docker_user_key}"
+  value = module.docker.docker_user_key
 }
 
 output "docker_user_secret" {
-  value = "${module.docker.docker_user_secret}"
+  value = module.docker.docker_user_secret
 }
+

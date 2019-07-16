@@ -1,90 +1,91 @@
 variable "environment_label" {
-  type = "string"
+  type = string
 }
 
 variable "environment_name" {
-  type = "string"
+  type = string
 }
 
 variable "tag_environment" {
-  type = "string"
+  type = string
 }
 
 variable "tag_product" {
-  type = "string"
+  type = string
 }
 
 variable "tag_program" {
-  type = "string"
+  type = string
 }
 
 variable "tag_contact" {
-  type = "string"
+  type = string
 }
 
 variable "domain_name" {
-  type = "string"
+  type = string
 }
 
 variable "vpc_id" {
-  type = "string"
+  type = string
 }
 
 variable "log_group_retention_in_days" {
-  type = "string"
+  type = string
 }
 
 variable "elasticsearch_version" {
-  type = "string"
+  type = string
 }
 
 variable "data_instance_type" {
-  type    = "string"
+  type    = string
   default = "t2.medium.elasticsearch"
 }
 
 variable "data_instance_count" {
-  type    = "string"
+  type    = string
   default = "1"
 }
 
 variable "master_enabled" {
-  type    = "string"
+  type    = string
   default = "false"
 }
 
 variable "master_instance_type" {
-  type    = "string"
+  type    = string
   default = "t2.small.elasticsearch"
 }
 
 variable "master_instance_count" {
-  type    = "string"
+  type    = string
   default = "1"
 }
 
 variable "volume_type" {
-  type    = "string"
+  type    = string
   default = "gp2"
 }
 
 variable "volume_size" {
-  type    = "string"
+  type    = string
   default = "10"
 }
 
 variable "subnet_ids" {
-  type = "list"
+  type = list(string)
 }
 
 variable "private_zone_id" {
-  type = "string"
+  type = string
 }
 
 output "endpoint" {
-  value = "${aws_elasticsearch_domain.es.endpoint}"
+  value = aws_elasticsearch_domain.es.endpoint
 }
 
 output "kibana_endpoint" {
-  value = "${aws_elasticsearch_domain.es.kibana_endpoint}"
+  value = aws_elasticsearch_domain.es.kibana_endpoint
 }
+

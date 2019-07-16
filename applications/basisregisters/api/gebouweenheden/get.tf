@@ -1,17 +1,17 @@
 resource "aws_api_gateway_resource" "gebouweenheid_detail1" {
-  rest_api_id = "${var.rest_api_id}"
-  parent_id   = "${aws_api_gateway_resource.gebouweenheden_root1.id}"
+  rest_api_id = var.rest_api_id
+  parent_id   = aws_api_gateway_resource.gebouweenheden_root1.id
   path_part   = "{gebouweenheidId}"
 }
 
 resource "aws_api_gateway_method" "get-gebouweenheid1" {
-  rest_api_id          = "${var.rest_api_id}"
-  resource_id          = "${aws_api_gateway_resource.gebouweenheid_detail1.id}"
+  rest_api_id          = var.rest_api_id
+  resource_id          = aws_api_gateway_resource.gebouweenheid_detail1.id
   http_method          = "GET"
   authorization        = "CUSTOM"
-  request_validator_id = "${var.request_validator_id}"
+  request_validator_id = var.request_validator_id
   api_key_required     = true
-  authorizer_id        = "${var.authorizer_id}"
+  authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.path.gebouweenheidId"     = true
@@ -24,9 +24,9 @@ resource "aws_api_gateway_method" "get-gebouweenheid1" {
 }
 
 resource "aws_api_gateway_integration" "get-gebouweenheid-integration1" {
-  rest_api_id = "${var.rest_api_id}"
-  resource_id = "${aws_api_gateway_resource.gebouweenheid_detail1.id}"
-  http_method = "${aws_api_gateway_method.get-gebouweenheid1.http_method}"
+  rest_api_id = var.rest_api_id
+  resource_id = aws_api_gateway_resource.gebouweenheid_detail1.id
+  http_method = aws_api_gateway_method.get-gebouweenheid1.http_method
 
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
@@ -44,3 +44,4 @@ resource "aws_api_gateway_integration" "get-gebouweenheid-integration1" {
     "integration.request.header.Accept-Encoding"   = "'identity'"
   }
 }
+

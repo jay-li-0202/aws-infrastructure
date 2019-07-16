@@ -1,4 +1,5 @@
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {
+}
 
 resource "aws_iam_user" "tf" {
   name          = "terraform"
@@ -7,20 +8,20 @@ resource "aws_iam_user" "tf" {
 
   tags = {
     Name        = "Terraform // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
 resource "aws_iam_user_policy_attachment" "tfe_admin" {
-  user       = "${aws_iam_user.tf.name}"
+  user       = aws_iam_user.tf.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 resource "aws_iam_access_key" "tf" {
-  user = "${aws_iam_user.tf.name}"
+  user = aws_iam_user.tf.name
 }
 
 resource "aws_iam_account_password_policy" "strict" {
@@ -31,3 +32,4 @@ resource "aws_iam_account_password_policy" "strict" {
   require_symbols                = true
   allow_users_to_change_password = true
 }
+

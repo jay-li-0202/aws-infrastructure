@@ -1,7 +1,7 @@
 resource "aws_default_network_acl" "default" {
-  default_network_acl_id = "${aws_vpc.vpc.default_network_acl_id}"
+  default_network_acl_id = aws_vpc.vpc.default_network_acl_id
 
-  subnet_ids = ["${concat(aws_subnet.private.*.id, aws_subnet.public.*.id)}"]
+  subnet_ids = concat(aws_subnet.private.*.id, aws_subnet.public.*.id)
 
   ingress {
     protocol   = -1
@@ -23,9 +23,10 @@ resource "aws_default_network_acl" "default" {
 
   tags = {
     Name        = "Default ACL // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
+

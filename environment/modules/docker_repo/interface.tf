@@ -1,31 +1,32 @@
 variable "environment_label" {
-  type = "string"
+  type = string
 }
 
 variable "environment_name" {
-  type = "string"
+  type = string
 }
 
 variable "tag_environment" {
-  type = "string"
+  type = string
 }
 
 variable "tag_product" {
-  type = "string"
+  type = string
 }
 
 variable "tag_program" {
-  type = "string"
+  type = string
 }
 
 variable "tag_contact" {
-  type = "string"
+  type = string
 }
 
 variable "repository_names" {
-  type = "list"
+  type = list(string)
 }
 
 output "repository_url" {
-  value = ["${aws_ecr_repository.repo.*.repository_url}"]
+  value = [aws_ecr_repository.repo.*.repository_url]
 }
+

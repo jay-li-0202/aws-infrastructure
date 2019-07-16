@@ -1,4 +1,5 @@
-data "aws_caller_identity" "current" {}
+data "aws_caller_identity" "current" {
+}
 
 resource "aws_iam_user" "datadog" {
   name          = "datadog"
@@ -7,33 +8,33 @@ resource "aws_iam_user" "datadog" {
 
   tags = {
     Name        = "Datadog // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
 resource "aws_iam_user_policy_attachment" "datadog_reader" {
-  user       = "${aws_iam_user.datadog.name}"
+  user       = aws_iam_user.datadog.name
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
 
 resource "aws_iam_access_key" "datadog" {
-  user = "${aws_iam_user.datadog.name}"
+  user = aws_iam_user.datadog.name
 }
 
 resource "aws_iam_role" "datadog" {
   name               = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-datadog-trust"
   description        = "Allows Datadog to read resources."
-  assume_role_policy = "${data.aws_iam_policy_document.trust_relationship.json}"
+  assume_role_policy = data.aws_iam_policy_document.trust_relationship.json
 
   tags = {
     Name        = "Datadog // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
@@ -53,7 +54,7 @@ data "aws_iam_policy_document" "trust_relationship" {
 
     condition {
       test     = "StringEquals"
-      values   = ["${var.datadog_external_id}"]
+      values   = [var.datadog_external_id]
       variable = "sts:ExternalId"
     }
   }
@@ -137,6 +138,7 @@ data "aws_iam_policy_document" "datadog" {
 
 resource "aws_iam_role_policy" "datadog_role_policy" {
   name   = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-datadog"
-  role   = "${aws_iam_role.datadog.id}"
-  policy = "${data.aws_iam_policy_document.datadog.json}"
+  role   = aws_iam_role.datadog.id
+  policy = data.aws_iam_policy_document.datadog.json
 }
+

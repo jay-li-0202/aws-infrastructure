@@ -1,7 +1,7 @@
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = "${aws_lb.main.id}"
-  port              = "${var.lb_port}"
-  protocol          = "${var.lb_protocol}"
+  load_balancer_arn = aws_lb.main.id
+  port              = var.lb_port
+  protocol          = var.lb_protocol
 
   default_action {
     type = "redirect"
@@ -13,3 +13,4 @@ resource "aws_lb_listener" "http" {
     }
   }
 }
+

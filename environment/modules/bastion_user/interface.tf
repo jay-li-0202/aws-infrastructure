@@ -3,42 +3,43 @@ provider "template" {
 }
 
 variable "environment_label" {
-  type = "string"
+  type = string
 }
 
 variable "environment_name" {
-  type = "string"
+  type = string
 }
 
 variable "tag_environment" {
-  type = "string"
+  type = string
 }
 
 variable "tag_product" {
-  type = "string"
+  type = string
 }
 
 variable "tag_program" {
-  type = "string"
+  type = string
 }
 
 variable "tag_contact" {
-  type = "string"
+  type = string
 }
 
 variable "region" {
-  type = "string"
+  type = string
 }
 
 variable "bastion_user" {
-  type = "string"
+  type = string
 }
 
 variable "image" {
-  type    = "string"
+  type    = string
   default = "basisregisters/bastion:latest"
 }
 
 variable "task_execution_role_arn" {
-  type = "string"
+  type = string
 }
+

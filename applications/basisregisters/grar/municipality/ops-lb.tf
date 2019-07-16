@@ -1,10 +1,10 @@
 resource "aws_lb_target_group" "import" {
   name                 = "municipality-import"
-  port                 = "${var.port_range}"
+  port                 = var.port_range
   protocol             = "HTTP"
-  vpc_id               = "${var.vpc_id}"
+  vpc_id               = var.vpc_id
   target_type          = "ip"
-  deregistration_delay = "${var.deregistration_delay}"
+  deregistration_delay = var.deregistration_delay
 
   health_check {
     interval = 300
@@ -13,19 +13,19 @@ resource "aws_lb_target_group" "import" {
 
   tags = {
     Name        = "Municipality Import // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
 resource "aws_lb_listener_rule" "import" {
-  listener_arn = "${var.ops_lb_listener_arn}"
+  listener_arn = var.ops_lb_listener_arn
 
   action {
     type             = "forward"
-    target_group_arn = "${aws_lb_target_group.import.id}"
+    target_group_arn = aws_lb_target_group.import.id
   }
 
   condition {
@@ -33,3 +33,4 @@ resource "aws_lb_listener_rule" "import" {
     values = ["municipality-import.*"]
   }
 }
+

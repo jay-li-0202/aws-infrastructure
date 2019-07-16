@@ -8,66 +8,71 @@ provider "aws" {
 }
 
 variable "region" {
-  type = "string"
+  type = string
 }
 
 variable "environment_label" {
-  type = "string"
+  type = string
 }
 
 variable "environment_name" {
-  type = "string"
+  type = string
 }
 
 variable "tag_environment" {
-  type = "string"
+  type = string
 }
 
 variable "tag_product" {
-  type = "string"
+  type = string
 }
 
 variable "tag_program" {
-  type = "string"
+  type = string
 }
 
 variable "tag_contact" {
-  type = "string"
+  type = string
 }
 
 // Predefined API keys
-variable "anon_key" {}
+variable "anon_key" {
+}
 
-variable "demo_key" {}
-variable "test_key" {}
+variable "demo_key" {
+}
+
+variable "test_key" {
+}
 
 variable "public_zone_name" {
-  type = "string"
+  type = string
 }
 
 variable "api_url" {
-  type    = "string"
+  type    = string
   default = "bosa"
 }
 
 variable "cert_public_zone_name" {
-  type = "string"
+  type = string
 }
 
 variable "cert_public_zone_id" {
-  type = "string"
+  type = string
 }
 
 variable "base_host" {
-  type = "string"
+  type = string
 }
 
 variable "api_stage_name" {
-  type    = "string"
+  type    = string
   default = "bestadd"
 }
 
 variable "api_name" {
-  type    = "string"
+  type    = string
   default = "bestadd"
 }
+

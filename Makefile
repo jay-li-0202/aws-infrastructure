@@ -14,6 +14,14 @@ format:
 	@$(eval TF_DIRECTORIES := $(shell find . -type f -name "*.tf" -exec dirname {} \; | sort -u))
 	@$(foreach var, $(TF_DIRECTORIES), terraform fmt "$(var)" && echo "√ $(var)";)
 
+.PHONY: upgrade
+upgrade: ## Upgrade Terraform
+	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
+	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
+	@$(eval TF_DIRECTORIES := $(shell find . -type f -name "*.tf" -exec dirname {} \; | sort -u))
+	@$(eval TF_HOME := $(shell pwd))
+	@$(foreach var, $(TF_DIRECTORIES), cd $(TF_HOME) && cd $(var) && echo "√ $(var)" && terraform init -backend-config=../../../$(ENVIRONMENT)-backend.tfvars && terraform 0.12upgrade -yes .;)
+
 .PHONY: init
 init: ## Init Terraform configs
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)

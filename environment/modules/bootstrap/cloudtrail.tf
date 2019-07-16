@@ -1,18 +1,18 @@
 resource "aws_cloudtrail" "audit" {
   name                       = "Audit"
-  s3_bucket_name             = "${aws_s3_bucket.cloudtrail.bucket}"
+  s3_bucket_name             = aws_s3_bucket.cloudtrail.bucket
   is_multi_region_trail      = true
   enable_log_file_validation = true
 
   tags = {
     Name        = "CloudTrail // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 
-  depends_on = ["aws_s3_bucket_policy.cloudtrail"]
+  depends_on = [aws_s3_bucket_policy.cloudtrail]
 }
 
 resource "aws_s3_bucket" "cloudtrail" {
@@ -21,16 +21,16 @@ resource "aws_s3_bucket" "cloudtrail" {
 
   tags = {
     Name        = "CloudTrail // ${var.environment_label} ${var.environment_name}"
-    Environment = "${var.tag_environment}"
-    Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
 resource "aws_s3_bucket_policy" "cloudtrail" {
-  bucket = "${aws_s3_bucket.cloudtrail.bucket}"
-  policy = "${data.aws_iam_policy_document.cloudtrail_bucket.json}"
+  bucket = aws_s3_bucket.cloudtrail.bucket
+  policy = data.aws_iam_policy_document.cloudtrail_bucket.json
 }
 
 data "aws_iam_policy_document" "cloudtrail_bucket" {
@@ -48,7 +48,7 @@ data "aws_iam_policy_document" "cloudtrail_bucket" {
     ]
 
     resources = [
-      "${aws_s3_bucket.cloudtrail.arn}",
+      aws_s3_bucket.cloudtrail.arn,
     ]
   }
 
@@ -76,3 +76,4 @@ data "aws_iam_policy_document" "cloudtrail_bucket" {
     }
   }
 }
+
