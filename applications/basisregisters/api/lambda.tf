@@ -1,5 +1,5 @@
 provider "archive" {
-  version = "~> 1.0"
+  version = "~> 1.2.2"
 }
 
 data "archive_file" "api-auth" {
