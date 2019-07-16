@@ -35,7 +35,7 @@ variable "admin_cidr_blocks" {
 }
 
 provider "aws" {
-  version             = "~> 2.4.0"
+  version             = "~> 2.19.0"
   region              = "${var.aws_region}"
   profile             = "${var.aws_profile}"
   allowed_account_ids = ["${var.aws_account_id}"]
@@ -43,7 +43,7 @@ provider "aws" {
 
 provider "aws" {
   alias               = "cert"
-  version             = "~> 2.4.0"
+  version             = "~> 2.19.0"
   region              = "us-east-1"
   profile             = "${var.aws_profile}"
   allowed_account_ids = ["${var.aws_account_id}"]

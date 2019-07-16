@@ -13,7 +13,7 @@ variable "tag_contact" {}
 variable "state_bucket" {}
 
 provider "aws" {
-  version             = "~> 2.4.0"
+  version             = "~> 2.19.0"
   region              = "${var.aws_region}"
   profile             = "${var.aws_profile}"
   allowed_account_ids = ["${var.aws_account_id}"]

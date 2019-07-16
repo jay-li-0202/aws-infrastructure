@@ -20,7 +20,7 @@ variable "elasticsearch_data_instance_type" {}
 variable "elasticsearch_data_cluster_size" {}
 
 provider "aws" {
-  version             = "~> 2.4.0"
+  version             = "~> 2.19.0"
   region              = "${var.aws_region}"
   profile             = "${var.aws_profile}"
   allowed_account_ids = ["${var.aws_account_id}"]
