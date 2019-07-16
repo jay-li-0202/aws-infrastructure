@@ -143,7 +143,7 @@ variable "disco_namespace_id" {
 }
 
 provider "template" {
-  version = "~> 2.1.1"
+  version = "~> 2.1.2"
 }
 
 output "task_security_group_id" {
