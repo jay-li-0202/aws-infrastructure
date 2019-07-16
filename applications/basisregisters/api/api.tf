@@ -5,23 +5,25 @@ resource "aws_api_gateway_deployment" "gw" {
 
   stage_name = ""
 
-  stage_description = <<EOF
-${md5("
-  ${file("${path.module}/api.tf")}
-  ${file("${path.module}/status.tf")}
-  ${file("${path.module}/feeds/main.tf")}
-  ${file("${path.module}/adresmatch/main.tf")}
-  ${file("${path.module}/adressen/main.tf")}
-  ${file("${path.module}/crabhuisnummers/main.tf")}
-  ${file("${path.module}/crabsubadressen/main.tf")}
-  ${file("${path.module}/dienstverleningen/main.tf")}
-  ${file("${path.module}/gebouwen/main.tf")}
-  ${file("${path.module}/gebouweneenheden/main.tf")}
-  ${file("${path.module}/gemeenten/main.tf")}
-  ${file("${path.module}/postinfo/main.tf")}
-  ${file("${path.module}/straatnamen/main.tf")}
-")}
-EOF
+  stage_description = "${md5("${file("${path.module}/api.tf")}\n${file("${path.module}/status.tf")}\n${file("${path.module}/feeds/main.tf")}\n${file("${path.module}/adresmatch/main.tf")}\n${file("${path.module}/adressen/main.tf")}\n${file("${path.module}/crabhuisnummers/main.tf")}\n${file("${path.module}/crabsubadressen/main.tf")}\n${file("${path.module}/dienstverleningen/main.tf")}\n${file("${path.module}/gebouwen/main.tf")}\n${file("${path.module}/gebouweneenheden/main.tf")}\n${file("${path.module}/gemeenten/main.tf")}\n${file("${path.module}/postinfo/main.tf")}\n${file("${path.module}/straatnamen/main.tf")}")}"
+
+//   stage_description = <<EOF
+// ${md5("
+//   ${file("${path.module}/api.tf")}
+//   ${file("${path.module}/status.tf")}
+//   ${file("${path.module}/feeds/main.tf")}
+//   ${file("${path.module}/adresmatch/main.tf")}
+//   ${file("${path.module}/adressen/main.tf")}
+//   ${file("${path.module}/crabhuisnummers/main.tf")}
+//   ${file("${path.module}/crabsubadressen/main.tf")}
+//   ${file("${path.module}/dienstverleningen/main.tf")}
+//   ${file("${path.module}/gebouwen/main.tf")}
+//   ${file("${path.module}/gebouweneenheden/main.tf")}
+//   ${file("${path.module}/gemeenten/main.tf")}
+//   ${file("${path.module}/postinfo/main.tf")}
+//   ${file("${path.module}/straatnamen/main.tf")}
+// ")}
+// EOF
 
   lifecycle {
     create_before_destroy = true

@@ -27,13 +27,13 @@ ssh -i <your_private_key.pem> \
 ### SQL - Delete all tables and sequences
 
 ```sql
-SELECT ' DROP TABLE ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
+SELECT ' DROP TABLE ' + QUOTENAME(DB_NAME()) + '.' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
 FROM   sys.tables t
        JOIN sys.schemas s
          ON t.[schema_id] = s.[schema_id]
 WHERE  t.type = 'U'
 UNION
-SELECT ' DROP SEQUENCE ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
+SELECT ' DROP SEQUENCE ' + QUOTENAME(DB_NAME()) + '.' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
 FROM   sys.sequences t
        JOIN sys.schemas s
          ON t.[schema_id] = s.[schema_id]

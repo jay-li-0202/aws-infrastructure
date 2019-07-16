@@ -5,16 +5,18 @@ resource "aws_api_gateway_deployment" "gw" {
 
   stage_name = ""
 
-  stage_description = <<EOF
-${md5("
-  ${file("${path.module}/api.tf")}
-  ${file("${path.module}/status.tf")}
-  ${file("${path.module}/gemeenten/main.tf")}
-  ${file("${path.module}/straatnamen/main.tf")}
-  ${file("${path.module}/adressen/main.tf")}
-  ${file("${path.module}/adresvoorstellingen/main.tf")}
-")}
-EOF
+  stage_description = "${md5("${file("${path.module}/api.tf")}\n${file("${path.module}/status.tf")}\n${file("${path.module}/gemeenten/main.tf")}\n${file("${path.module}/straatnamen/main.tf")}\n${file("${path.module}/adressen/main.tf")}\n${file("${path.module}/adresvoorstellingen/main.tf")}")}"
+
+//   stage_description = <<EOF
+// ${md5("
+//   ${file("${path.module}/api.tf")}
+//   ${file("${path.module}/status.tf")}
+//   ${file("${path.module}/gemeenten/main.tf")}
+//   ${file("${path.module}/straatnamen/main.tf")}
+//   ${file("${path.module}/adressen/main.tf")}
+//   ${file("${path.module}/adresvoorstellingen/main.tf")}
+// ")}
+// EOF
 
   lifecycle {
     create_before_destroy = true
