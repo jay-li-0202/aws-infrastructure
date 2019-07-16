@@ -27,29 +27,29 @@ public_zone_name  = "basisregisters.vlaanderen"
 private_zone_name = "basisregisters.local"
 
 // Elasticsearch Information
-elasticsearch_version = "6.5"
-elasticsearch_volume_size = 30
+elasticsearch_version              = "6.5"
+elasticsearch_volume_size          = 30
 elasticsearch_master_instance_type = "t2.small.elasticsearch"
-elasticsearch_master_cluster_size = 3
-elasticsearch_data_instance_type = "t2.medium.elasticsearch"
-elasticsearch_data_cluster_size = 4
+elasticsearch_master_cluster_size  = 3
+elasticsearch_data_instance_type   = "t2.medium.elasticsearch"
+elasticsearch_data_cluster_size    = 4
 
 // ElastiCache Information
-cache_redis_version = "5.0.4"
+cache_redis_version   = "5.0.4"
 cache_parameter_group = "default.redis5.0.cluster.on"
-cache_instance_type = "cache.m5.large"
-cache_cluster_size = 3
+cache_instance_type   = "cache.m5.large"
+cache_cluster_size    = 3
 
 // SQL Server Information
-sql_version = "14.00.3049.1.v1"
+sql_version       = "14.00.3049.1.v1"
 sql_major_version = "14.00"
-sql_family = "sqlserver-se-14.0"
+sql_family        = "sqlserver-se-14.0"
 sql_instance_type = "db.r4.large"
-sql_username = "basisregisters"
+sql_username      = "basisregisters"
 // sql_password = "x"
-sql_storage = 800
+sql_storage                 = 800
 sql_backup_retention_period = 7
-sql_multi_az = false
+sql_multi_az                = false
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services

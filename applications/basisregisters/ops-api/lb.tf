@@ -103,11 +103,11 @@ POLICY
 }
 
 resource "aws_lambda_permission" "lb_access_logs" {
-  statement_id  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-ops-api-lb-access-logs"
-  action        = "lambda:InvokeFunction"
+  statement_id = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-ops-api-lb-access-logs"
+  action = "lambda:InvokeFunction"
   function_name = "${var.datadog_logging_lambda}"
-  principal     = "s3.amazonaws.com"
-  source_arn    = "${aws_s3_bucket.lb_access_logs.arn}"
+  principal = "s3.amazonaws.com"
+  source_arn = "${aws_s3_bucket.lb_access_logs.arn}"
 }
 
 resource "aws_s3_bucket_notification" "lb_access_logs" {
@@ -115,6 +115,6 @@ resource "aws_s3_bucket_notification" "lb_access_logs" {
 
   lambda_function {
     lambda_function_arn = "${var.datadog_logging_lambda}"
-    events              = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
+    events = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
   }
 }

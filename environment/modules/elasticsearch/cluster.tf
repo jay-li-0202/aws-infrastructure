@@ -17,7 +17,7 @@ resource "aws_elasticsearch_domain" "es" {
     subnet_ids         = ["${var.subnet_ids}"]
   }
 
-  advanced_options {
+  advanced_options = {
     "rest.action.multi.allow_explicit_index" = "true"
   }
 

@@ -1,3 +1,7 @@
+provider "null" {
+  version = "~> 2.1.2"
+}
+
 variable "region" {
   type = "string"
 }

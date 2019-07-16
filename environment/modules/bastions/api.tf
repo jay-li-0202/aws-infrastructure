@@ -16,17 +16,19 @@ resource "aws_api_gateway_deployment" "bastions" {
   description = "Bastions Api // ${var.environment_label} ${var.environment_name}"
   stage_name  = ""
 
-  stage_description = <<EOF
-${md5("
-  ${file("${path.module}/api.tf")}
-  ${file("${path.module}/create-bastion.tf")}
-  ${file("${path.module}/create-bastion/index.py")}
-  ${file("${path.module}/delete-bastion.tf")}
-  ${file("${path.module}/delete-bastion/index.py")}
-  ${file("${path.module}/delete-all-bastions.tf")}
-  ${file("${path.module}/delete-all-bastions/index.py")}
-")}
-EOF
+  stage_description = "${md5("${file("${path.module}/api.tf")}\n${file("${path.module}/create-bastion.tf")}\n${file("${path.module}/create-bastion/index.py")}\n${file("${path.module}/delete-bastion.tf")}\n${file("${path.module}/delete-bastion/index.py")}\n${file("${path.module}/delete-all-bastions.tf")}\n${file("${path.module}/delete-all-bastions/index.py")}\n")}"
+
+  //   stage_description = <<EOF
+  // ${md5("
+  //   ${file("${path.module}/api.tf")}
+  //   ${file("${path.module}/create-bastion.tf")}
+  //   ${file("${path.module}/create-bastion/index.py")}
+  //   ${file("${path.module}/delete-bastion.tf")}
+  //   ${file("${path.module}/delete-bastion/index.py")}
+  //   ${file("${path.module}/delete-all-bastions.tf")}
+  //   ${file("${path.module}/delete-all-bastions/index.py")}
+  // ")}
+  // EOF
 
   lifecycle {
     create_before_destroy = true

@@ -68,11 +68,11 @@ resource "aws_iam_role" "ecs_events" {
 DOC
 
   tags {
-    Name        = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
+    Name = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
-    Programma   = "${var.tag_program}"
-    Contact     = "${var.tag_contact}"
+    Programma = "${var.tag_program}"
+    Contact = "${var.tag_contact}"
   }
 }
 
