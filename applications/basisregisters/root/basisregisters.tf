@@ -22,6 +22,7 @@ variable "sql_password" {}
 
 // Predefined API keys
 variable "anon_key" {}
+
 variable "demo_key" {}
 variable "ui_key" {}
 variable "test_key" {}
