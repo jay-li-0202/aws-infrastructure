@@ -3,7 +3,7 @@ resource "aws_iam_role" "rds-backup" {
   description        = "Allows RDS to backup to S3."
   assume_role_policy = "${data.aws_iam_policy_document.rds_backup_assume_role.json}"
 
-  tags {
+  tags = {
     Name        = "RDS Backups // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

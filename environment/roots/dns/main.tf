@@ -40,13 +40,13 @@ module "dns" {
 
   public_zone_name  = "${var.public_zone_name}"
   private_zone_name = "${var.private_zone_name}"
-  vpc_id            = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id            = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
 }
 
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"

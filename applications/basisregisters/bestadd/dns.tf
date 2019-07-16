@@ -28,6 +28,6 @@ resource "aws_route53_record" "gw_record" {
 //   type    = "CNAME"
 //   name    = "api.${var.api_name}"
 //   ttl     = "300"
-//   records = ["${data.terraform_remote_state.hashi_servers.lb_fqdn}"]
+//   records = ["${data.terraform_remote_state.hashi_servers.outputs.lb_fqdn}"]
 // }
 

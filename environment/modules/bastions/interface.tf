@@ -1,3 +1,7 @@
+provider "archive" {
+  version = "~> 1.2.1"
+}
+
 variable "environment_label" {
   type = "string"
 }
@@ -40,10 +44,6 @@ variable "cleanup_schedule" {
 
 variable "datadog_logging_lambda" {
   type = "string"
-}
-
-provider "archive" {
-  version = "~> 1.2.1"
 }
 
 output "bastion_api_endpoint" {

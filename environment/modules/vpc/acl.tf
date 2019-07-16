@@ -21,7 +21,7 @@ resource "aws_default_network_acl" "default" {
     to_port    = 0
   }
 
-  tags {
+  tags = {
     Name        = "Default ACL // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

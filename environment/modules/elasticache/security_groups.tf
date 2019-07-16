@@ -3,7 +3,7 @@ resource "aws_security_group" "elasticache" {
   description = "Security group for Elasticache Server Instances"
   vpc_id      = "${var.vpc_id}"
 
-  tags {
+  tags = {
     Name        = "Elasticache Server // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

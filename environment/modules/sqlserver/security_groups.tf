@@ -3,7 +3,7 @@ resource "aws_security_group" "basisregisters-db" {
   description = "Security group for Basisregisters RDS"
   vpc_id      = "${var.vpc_id}"
 
-  tags {
+  tags = {
     Name        = "SQL Server RDS // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

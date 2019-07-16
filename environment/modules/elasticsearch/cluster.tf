@@ -41,7 +41,7 @@ resource "aws_elasticsearch_domain" "es" {
     volume_size = "${var.volume_size}" // https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/aes-limits.html
   }
 
-  tags {
+  tags = {
     Name             = "Elasticsearch // ${var.environment_label} ${var.environment_name}"
     Domain           = "${var.domain_name}"
     DomainNormalized = "${lower(substr(var.domain_name, 0, min(28, length(var.domain_name))))}"

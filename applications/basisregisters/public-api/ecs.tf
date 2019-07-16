@@ -26,7 +26,7 @@ resource "aws_ecs_service" "main" {
 
   network_configuration {
     security_groups = ["${var.ecs_sg_id}"]
-    subnets         = ["${var.private_subnets}"]
+    subnets         = var.private_subnets
   }
 
   load_balancer {
@@ -74,7 +74,7 @@ resource "aws_ecs_task_definition" "app" {
   // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = "${data.template_file.app.rendered}"
 
-  tags {
+  tags = {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -86,7 +86,7 @@ resource "aws_ecs_task_definition" "app" {
 data "template_file" "app" {
   template = "${file("${path.module}/app.json.tpl")}"
 
-  vars {
+  vars = {
     environment_name = "${lower(replace(var.environment_name, " ", "-"))}"
     datadog_api_key  = "${var.datadog_api_key}"
     app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"

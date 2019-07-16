@@ -31,9 +31,9 @@ module "postal-registry" {
   cache_cpu    = 512
   cache_memory = 1024
   cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
-  cache_server = "${data.terraform_remote_state.cache.cache_endpoint}"
+  cache_server = "${data.terraform_remote_state.cache.outputs.cache_endpoint}"
 
-  db_server   = "${data.terraform_remote_state.sqlserver.address}"
+  db_server   = "${data.terraform_remote_state.sqlserver.outputs.address}"
   sa_user     = "${var.sql_username}"
   sa_pass     = "${var.sql_password}"
   db_password = "${var.postal_password}"
@@ -45,18 +45,18 @@ module "postal-registry" {
   task_execution_role_arn = "${aws_iam_role.ecsTaskExecutionRole.arn}"
   task_security_group_id  = "${module.public-api.task_security_group_id}"
 
-  vpc_id          = "${data.terraform_remote_state.vpc.vpc_id}"
-  private_subnets = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
+  vpc_id          = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
+  private_subnets = ["${data.terraform_remote_state.vpc.outputs.private_subnet_ids}"]
 
   disco_namespace_id = "${aws_service_discovery_private_dns_namespace.basisregisters.id}"
   disco_zone_name    = "${var.disco_zone_name}"
-  public_zone_id     = "${data.terraform_remote_state.dns.public_zone_id}"
-  public_zone_name   = "${data.terraform_remote_state.dns.public_zone_name}"
+  public_zone_id     = "${data.terraform_remote_state.dns.outputs.public_zone_id}"
+  public_zone_name   = "${data.terraform_remote_state.dns.outputs.public_zone_name}"
 
-  datadog_api_key        = "${data.terraform_remote_state.datadog.datadog_api_key}"
-  datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
+  datadog_api_key        = "${data.terraform_remote_state.datadog.outputs.datadog_api_key}"
+  datadog_logging_lambda = "${data.terraform_remote_state.datadog.outputs.datadog_lambda_arn}"
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
-  fargate_cluster_id  = "${data.terraform_remote_state.fargate.fargate_cluster_id}"
-  fargate_cluster_arn = "${data.terraform_remote_state.fargate.fargate_cluster_arn}"
+  fargate_cluster_id  = "${data.terraform_remote_state.fargate.outputs.fargate_cluster_id}"
+  fargate_cluster_arn = "${data.terraform_remote_state.fargate.outputs.fargate_cluster_arn}"
 }

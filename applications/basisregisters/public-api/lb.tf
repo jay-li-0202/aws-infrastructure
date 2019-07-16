@@ -3,7 +3,7 @@ resource "aws_lb" "main" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = ["${aws_security_group.main-lb.id}"]
-  subnets            = ["${var.public_subnets}"]
+  subnets            = var.public_subnets
 
   enable_deletion_protection = false
   ip_address_type            = "ipv4"
@@ -14,7 +14,7 @@ resource "aws_lb" "main" {
     bucket  = "${aws_s3_bucket.lb_access_logs.bucket}"
   }
 
-  tags {
+  tags = {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -35,7 +35,7 @@ resource "aws_lb_target_group" "main" {
     path = "/health"
   }
 
-  tags {
+  tags = {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -51,7 +51,7 @@ resource "aws_s3_bucket" "lb_access_logs" {
   acl           = "private"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Public Api Loadbalancer Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

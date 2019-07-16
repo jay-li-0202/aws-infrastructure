@@ -3,7 +3,7 @@ resource "aws_db_subnet_group" "basisregisters" {
   description = "Basisregisters DB Subnet Group."
   subnet_ids  = ["${var.subnet_ids}"]
 
-  tags {
+  tags = {
     Name        = "DB Subnet Group // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -17,7 +17,7 @@ resource "aws_db_parameter_group" "basisregisters" {
   description = "Basisregisters DB Parameter Group."
   family      = "${var.sql_family}"
 
-  tags {
+  tags = {
     Name        = "DB Parameter Group // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -41,7 +41,7 @@ resource "aws_db_option_group" "basisregisters" {
     }
   }
 
-  tags {
+  tags = {
     Name        = "DB Option Group // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -90,7 +90,7 @@ resource "aws_db_instance" "basisregisters" {
   skip_final_snapshot       = false
   final_snapshot_identifier = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}-final"
 
-  tags {
+  tags = {
     Name        = "SQL Server // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

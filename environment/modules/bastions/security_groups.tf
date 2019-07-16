@@ -3,7 +3,7 @@ resource "aws_security_group" "bastion" {
   description = "Security group for Bastion"
   vpc_id      = "${var.bastion_vpc}"
 
-  tags {
+  tags = {
     Name        = "Bastion // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

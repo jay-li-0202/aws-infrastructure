@@ -2,7 +2,7 @@ resource "aws_cloudwatch_log_group" "es_index_log_group" {
   name              = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-elasticsearch-index-slow-logs"
   retention_in_days = "${var.log_group_retention_in_days}"
 
-  tags {
+  tags = {
     Name        = "Elasticsearch Index Slow Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -15,7 +15,7 @@ resource "aws_cloudwatch_log_group" "es_search_log_group" {
   name              = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-elasticsearch-search-slow-logs"
   retention_in_days = "${var.log_group_retention_in_days}"
 
-  tags {
+  tags = {
     Name        = "Elasticsearch Search Slow Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

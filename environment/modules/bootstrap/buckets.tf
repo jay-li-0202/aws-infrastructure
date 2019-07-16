@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "log" {
   acl           = "private"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "backup" {
   acl           = "private"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Backups // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -31,7 +31,7 @@ resource "aws_s3_bucket" "rds-backup" {
   acl           = "private"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "RDS Backups // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -45,7 +45,7 @@ resource "aws_s3_bucket" "portal" {
   acl           = "private"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Portal // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

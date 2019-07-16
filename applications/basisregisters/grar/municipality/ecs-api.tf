@@ -26,7 +26,7 @@ resource "aws_ecs_service" "api" {
 
   network_configuration {
     security_groups = ["${var.task_security_group_id}"]
-    subnets         = ["${var.private_subnets}"]
+    subnets         = var.private_subnets
   }
 
   load_balancer {
@@ -67,7 +67,7 @@ resource "aws_ecs_task_definition" "api" {
   // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = "${data.template_file.api.rendered}"
 
-  tags {
+  tags = {
     Name        = "Municipality Registry Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -79,7 +79,7 @@ resource "aws_ecs_task_definition" "api" {
 data "template_file" "api" {
   template = "${file("${path.module}/ecs-api.json.tpl")}"
 
-  vars {
+  vars = {
     environment_name  = "${lower(replace(var.environment_name, " ", "-"))}"
     datadog_api_key   = "${var.datadog_api_key}"
     disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"

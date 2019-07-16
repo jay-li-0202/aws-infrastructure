@@ -3,7 +3,7 @@ resource "aws_security_group" "main-lb" {
   description = "Security group for Public Api Balancer"
   vpc_id      = "${var.vpc_id}"
 
-  tags {
+  tags = {
     Name        = "Public Api Load Balancer // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

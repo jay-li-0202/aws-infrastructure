@@ -5,7 +5,7 @@ resource "aws_iam_user" "tf" {
   path          = "/"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Terraform // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

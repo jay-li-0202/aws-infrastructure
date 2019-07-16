@@ -53,14 +53,14 @@ module "elasticsearch" {
   data_instance_type    = "${var.elasticsearch_data_instance_type}"
   data_instance_count   = "${var.elasticsearch_data_cluster_size}"
 
-  vpc_id = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
 
   subnet_ids = [
-    "${element(data.terraform_remote_state.vpc.public_subnet_ids, 0)}",
-    "${element(data.terraform_remote_state.vpc.public_subnet_ids, 1)}",
+    "${element(data.terraform_remote_state.vpc.outputs.public_subnet_ids, 0)}",
+    "${element(data.terraform_remote_state.vpc.outputs.public_subnet_ids, 1)}",
   ]
 
-  private_zone_id = "${data.terraform_remote_state.dns.private_zone_id}"
+  private_zone_id = "${data.terraform_remote_state.dns.outputs.private_zone_id}"
 
   log_group_retention_in_days = 120
 }
@@ -68,7 +68,7 @@ module "elasticsearch" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"
@@ -79,7 +79,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "dns" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "dns/terraform.tfstate"

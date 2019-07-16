@@ -49,20 +49,20 @@ module "elasticache" {
   node_instance_count = "${var.cache_cluster_size}"
   node_instance_type  = "${var.cache_instance_type}"
 
-  vpc_id = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
 
-  private_zone_id = "${data.terraform_remote_state.dns.private_zone_id}"
+  private_zone_id = "${data.terraform_remote_state.dns.outputs.private_zone_id}"
 
-  bastion_sg_id = "${data.terraform_remote_state.bastions.bastion_security_group_id}"
-  ecs_sg_id     = "${data.terraform_remote_state.fargate.fargate_security_group_id}"
+  bastion_sg_id = "${data.terraform_remote_state.bastions.outputs.bastion_security_group_id}"
+  ecs_sg_id     = "${data.terraform_remote_state.fargate.outputs.fargate_security_group_id}"
 
-  subnet_ids = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
+  subnet_ids = ["${data.terraform_remote_state.vpc.outputs.private_subnet_ids}"]
 }
 
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"
@@ -73,7 +73,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "dns" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "dns/terraform.tfstate"
@@ -84,7 +84,7 @@ data "terraform_remote_state" "dns" {
 data "terraform_remote_state" "bastions" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "bastions/terraform.tfstate"
@@ -95,7 +95,7 @@ data "terraform_remote_state" "bastions" {
 data "terraform_remote_state" "fargate" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "fargate/terraform.tfstate"

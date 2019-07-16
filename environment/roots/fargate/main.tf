@@ -31,7 +31,7 @@ module "fargate" {
   environment_label = "${var.environment_label}"
   environment_name  = "${var.environment_name}"
 
-  vpc_id = "${data.terraform_remote_state.vpc.vpc_id}"
+  vpc_id = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
 
   tag_environment = "${var.tag_environment}"
   tag_product     = "${var.tag_product}"
@@ -42,7 +42,7 @@ module "fargate" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"

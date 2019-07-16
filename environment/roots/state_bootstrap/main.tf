@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "state" {
   acl           = "private"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Terraform Remote State"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

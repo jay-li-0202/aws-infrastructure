@@ -36,12 +36,12 @@ module "bastions" {
   tag_program     = "${var.tag_program}"
   tag_contact     = "${var.tag_contact}"
 
-  bastion_cluster  = "${data.terraform_remote_state.fargate.fargate_cluster_arn}"
-  bastion_subnets  = ["${data.terraform_remote_state.vpc.public_subnet_ids}"]
-  bastion_vpc      = "${data.terraform_remote_state.vpc.vpc_id}"
+  bastion_cluster  = "${data.terraform_remote_state.fargate.outputs.fargate_cluster_arn}"
+  bastion_subnets  = ["${data.terraform_remote_state.vpc.outputs.public_subnet_ids}"]
+  bastion_vpc      = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
   cleanup_schedule = ""
 
-  datadog_logging_lambda = "${data.terraform_remote_state.datadog.datadog_lambda_arn}"
+  datadog_logging_lambda = "${data.terraform_remote_state.datadog.outputs.datadog_lambda_arn}"
 }
 
 module "bastion-cumpsd" {
@@ -55,7 +55,7 @@ module "bastion-cumpsd" {
   tag_program     = "${var.tag_program}"
   tag_contact     = "${var.tag_contact}"
 
-  task_execution_role_arn = "${data.terraform_remote_state.fargate.fargate_execution_role_arn}"
+  task_execution_role_arn = "${data.terraform_remote_state.fargate.outputs.fargate_execution_role_arn}"
   region                  = "${var.aws_region}"
 
   bastion_user = "cumpsd"
@@ -64,7 +64,7 @@ module "bastion-cumpsd" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"
@@ -75,7 +75,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "fargate" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "fargate/terraform.tfstate"
@@ -86,7 +86,7 @@ data "terraform_remote_state" "fargate" {
 data "terraform_remote_state" "datadog" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "datadog_aws/terraform.tfstate"

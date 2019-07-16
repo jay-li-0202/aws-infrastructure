@@ -166,7 +166,7 @@ resource "aws_api_gateway_stage" "gw" {
     baseHost = "${replace(var.base_host, "/[.]$/", "")}"
   }
 
-  tags {
+  tags = {
     Name        = "Basisregisters Api Gateway Stage // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

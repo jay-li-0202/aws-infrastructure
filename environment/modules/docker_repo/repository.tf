@@ -3,7 +3,7 @@ resource "aws_ecr_repository" "repo" {
 
   name = "${element(var.repository_names, count.index)}"
 
-  tags {
+  tags = {
     Name        = "Docker Repository // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

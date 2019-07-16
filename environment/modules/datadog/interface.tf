@@ -1,3 +1,7 @@
+provider "archive" {
+  version = "~> 1.2.1"
+}
+
 variable "environment_label" {
   type = "string"
 }
@@ -27,10 +31,6 @@ variable "datadog_api_key" {}
 
 variable "datadog_aws_account_id" {
   default = "464622532012"
-}
-
-provider "archive" {
-  version = "~> 1.2.1"
 }
 
 output "datadog_user_name" {

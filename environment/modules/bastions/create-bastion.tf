@@ -47,7 +47,7 @@ resource "aws_iam_role" "create-bastions-lambda" {
   description        = "Allows Lambda to create Bastions"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
 
-  tags {
+  tags = {
     Name        = "Create Bastion Host // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -114,7 +114,7 @@ resource "aws_lambda_function" "create-bastion" {
   filename         = "${data.archive_file.create-bastion.output_path}"
   source_code_hash = "${data.archive_file.create-bastion.output_base64sha256}"
 
-  tags {
+  tags = {
     Name        = "Create Bastion // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

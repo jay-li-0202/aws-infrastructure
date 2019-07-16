@@ -4,7 +4,7 @@ resource "aws_cloudtrail" "audit" {
   is_multi_region_trail      = true
   enable_log_file_validation = true
 
-  tags {
+  tags = {
     Name        = "CloudTrail // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "cloudtrail" {
   bucket        = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-cloudtrail"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "CloudTrail // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

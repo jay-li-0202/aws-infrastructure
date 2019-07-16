@@ -1,3 +1,7 @@
+provider "template" {
+  version = "~> 2.1.2"
+}
+
 variable "region" {
   type = "string"
 }
@@ -127,10 +131,6 @@ variable "disco_zone_name" {
 
 variable "disco_namespace_id" {
   type = "string"
-}
-
-provider "template" {
-  version = "~> 2.1.2"
 }
 
 output "lb_arn" {

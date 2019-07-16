@@ -1,7 +1,7 @@
 data "template_file" "bastion" {
   template = "${file("${path.module}/bastion.json.tpl")}"
 
-  vars {
+  vars = {
     environment_name = "${var.environment_name}"
     app_name         = "${var.bastion_user}-${lower(replace(var.environment_name, " ", "-"))}-bastion"
     image            = "${var.image}"
@@ -24,7 +24,7 @@ resource "aws_ecs_task_definition" "bastion" {
   // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = "${data.template_file.bastion.rendered}"
 
-  tags {
+  tags = {
     Name        = "Bastion ${var.bastion_user} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -37,7 +37,7 @@ resource "aws_cloudwatch_log_group" "app_log_group" {
   name              = "/ecs/task/${var.bastion_user}-${lower(replace(var.environment_name, " ", "-"))}-bastion"
   retention_in_days = 30
 
-  tags {
+  tags = {
     Name        = "Bastion ${var.bastion_user} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

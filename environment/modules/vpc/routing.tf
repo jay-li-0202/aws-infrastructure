@@ -1,7 +1,7 @@
 resource "aws_internet_gateway" "vpc" {
   vpc_id = "${aws_vpc.vpc.id}"
 
-  tags {
+  tags = {
     Name        = "Gateway // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -14,7 +14,7 @@ resource "aws_route_table" "private" {
   count  = "${length(var.private_subnets)}"
   vpc_id = "${aws_vpc.vpc.id}"
 
-  tags {
+  tags = {
     Name        = "Gateway ${count.index + 1} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -38,7 +38,7 @@ resource "aws_route_table" "public" {
     gateway_id = "${aws_internet_gateway.vpc.id}"
   }
 
-  tags {
+  tags = {
     Name        = "Public // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

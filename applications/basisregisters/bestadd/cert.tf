@@ -8,7 +8,7 @@ resource "aws_acm_certificate" "cert" {
     create_before_destroy = true
   }
 
-  tags {
+  tags = {
     Name        = "Basisregisters BestAdd Api Certificate // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

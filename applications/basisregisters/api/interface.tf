@@ -1,3 +1,12 @@
+provider "aws" {
+  version = "~> 2.19.0"
+}
+
+provider "aws" {
+  version = "~> 2.19.0"
+  alias = "cert"
+}
+
 variable "region" {
   type = "string"
 }

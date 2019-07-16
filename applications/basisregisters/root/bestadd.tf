@@ -18,14 +18,14 @@ module "bestadd" {
   api_stage_name = "bestadd"
 
   api_url               = "bosa"
-  public_zone_name      = "${data.terraform_remote_state.dns.public_zone_name}"
-  cert_public_zone_name = "${data.terraform_remote_state.dns.public_zone_name}"
-  cert_public_zone_id   = "${data.terraform_remote_state.dns.public_zone_id}"
+  public_zone_name      = "${data.terraform_remote_state.dns.outputs.public_zone_name}"
+  cert_public_zone_name = "${data.terraform_remote_state.dns.outputs.public_zone_name}"
+  cert_public_zone_id   = "${data.terraform_remote_state.dns.outputs.public_zone_id}"
 
-  base_host = "public-api.${data.terraform_remote_state.dns.public_zone_name}"
+  base_host = "public-api.${data.terraform_remote_state.dns.outputs.public_zone_name}"
 
   providers = {
-    aws      = "aws"
-    aws.cert = "aws.cert"
+    "aws"      = "aws"
+    "aws.cert" = "aws.cert"
   }
 }

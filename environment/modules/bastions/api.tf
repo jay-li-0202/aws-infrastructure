@@ -73,7 +73,7 @@ resource "aws_api_gateway_stage" "bastions" {
     format          = "{ \"requestId\":\"$context.requestId\", \"ip\":\"$context.identity.sourceIp\", \"caller\":\"$context.identity.caller\", \"user\":\"$context.identity.user\", \"requestTime\":$context.requestTimeEpoch, \"httpMethod\":\"$context.httpMethod\", \"resourcePath\":\"$context.resourcePath\", \"status\":$context.status, \"protocol\":\"$context.protocol\", \"responseLength\":$context.responseLength }"
   }
 
-  tags {
+  tags = {
     Name        = "Bastions Api // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -102,7 +102,7 @@ resource "aws_cloudwatch_log_group" "bastions" {
   name              = "/apigateway/bastions-${lower(var.environment_name)}"
   retention_in_days = 30
 
-  tags {
+  tags = {
     Name        = "Bastions Api Gateway // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

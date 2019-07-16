@@ -1,7 +1,7 @@
 resource "aws_ecs_cluster" "basisregisters" {
   name = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}"
 
-  tags {
+  tags = {
     Name        = "ECS Cluster // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -15,7 +15,7 @@ resource "aws_iam_role" "ecs-task" {
   name               = "ecs-${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role_policy.json}"
 
-  tags {
+  tags = {
     Name        = "ECS Task Execution // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

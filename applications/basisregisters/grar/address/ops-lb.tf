@@ -11,7 +11,7 @@ resource "aws_lb_target_group" "import" {
     timeout  = 60
   }
 
-  tags {
+  tags = {
     Name        = "Address Import // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

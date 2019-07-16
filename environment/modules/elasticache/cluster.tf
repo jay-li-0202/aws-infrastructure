@@ -27,7 +27,7 @@ resource "aws_elasticache_replication_group" "elasticache" {
     num_node_groups         = "${var.node_instance_count}"
   }
 
-  tags {
+  tags = {
     Name             = "Redis Cluster // ${var.environment_label} ${var.environment_name}"
     Domain           = "${var.domain_name}"
     DomainNormalized = "${lower(substr(var.redis_cluster_id, 0, min(20, length(var.redis_cluster_id))))}"

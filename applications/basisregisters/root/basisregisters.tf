@@ -58,7 +58,7 @@ terraform {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"
@@ -69,7 +69,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "dns" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "dns/terraform.tfstate"
@@ -80,7 +80,7 @@ data "terraform_remote_state" "dns" {
 data "terraform_remote_state" "fargate" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "fargate/terraform.tfstate"
@@ -91,7 +91,7 @@ data "terraform_remote_state" "fargate" {
 data "terraform_remote_state" "sqlserver" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "sqlserver/terraform.tfstate"
@@ -102,7 +102,7 @@ data "terraform_remote_state" "sqlserver" {
 data "terraform_remote_state" "cache" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "elasticache/terraform.tfstate"
@@ -113,7 +113,7 @@ data "terraform_remote_state" "cache" {
 data "terraform_remote_state" "datadog" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "datadog_aws/terraform.tfstate"

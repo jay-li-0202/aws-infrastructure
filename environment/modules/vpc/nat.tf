@@ -10,7 +10,7 @@ resource "aws_eip" "nat_eip" {
   count = "${length(var.private_subnets)}"
   vpc   = true
 
-  tags {
+  tags = {
     Name        = "NAT ${count.index + 1} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -25,7 +25,7 @@ resource "aws_nat_gateway" "private" {
   allocation_id = "${element(aws_eip.nat_eip.*.id, count.index)}"
   subnet_id     = "${element(aws_subnet.public.*.id, count.index)}"
 
-  tags {
+  tags = {
     Name        = "NAT ${count.index + 1} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

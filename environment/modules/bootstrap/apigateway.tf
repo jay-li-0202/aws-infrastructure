@@ -7,7 +7,7 @@ resource "aws_iam_role" "api_gateway" {
   description        = "Allows Api Gateway to log to CloudWatch."
   assume_role_policy = "${data.aws_iam_policy_document.api_gateway_assume_role.json}"
 
-  tags {
+  tags = {
     Name        = "Api Gateway Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

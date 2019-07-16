@@ -1,3 +1,7 @@
+provider "template" {
+  version = "~> 2.1.2"
+}
+
 variable "environment_label" {
   type = "string"
 }
@@ -39,6 +43,3 @@ variable "task_execution_role_arn" {
   type = "string"
 }
 
-provider "template" {
-  version = "~> 2.1.2"
-}

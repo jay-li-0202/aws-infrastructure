@@ -43,7 +43,7 @@ resource "aws_iam_role" "delete-all-bastions-lambda" {
   description        = "Allows Lambda to delete all Bastions"
   assume_role_policy = "${data.aws_iam_policy_document.assume_role.json}"
 
-  tags {
+  tags = {
     Name        = "Delete All Bastions Hosts // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -98,7 +98,7 @@ resource "aws_lambda_function" "delete-all-bastions" {
   filename         = "${data.archive_file.delete-all-bastions.output_path}"
   source_code_hash = "${data.archive_file.delete-all-bastions.output_base64sha256}"
 
-  tags {
+  tags = {
     Name        = "Delete All Bastions // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

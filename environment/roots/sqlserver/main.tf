@@ -56,21 +56,21 @@ module "sqlserver" {
   sql_backup_retention_period = "${var.sql_backup_retention_period}"
   sql_multi_az                = "${var.sql_multi_az}"
 
-  vpc_id            = "${data.terraform_remote_state.vpc.vpc_id}"
-  monitoring_role   = "${data.terraform_remote_state.bootstrap.rds_cloudwatch_role}"
-  rds_s3backup_role = "${data.terraform_remote_state.bootstrap.rds_s3backup_role}"
+  vpc_id            = "${data.terraform_remote_state.vpc.outputs.vpc_id}"
+  monitoring_role   = "${data.terraform_remote_state.bootstrap.outputs.rds_cloudwatch_role}"
+  rds_s3backup_role = "${data.terraform_remote_state.bootstrap.outputs.rds_s3backup_role}"
 
-  bastion_sg_id = "${data.terraform_remote_state.bastions.bastion_security_group_id}"
-  ecs_sg_id     = "${data.terraform_remote_state.fargate.fargate_security_group_id}"
+  bastion_sg_id = "${data.terraform_remote_state.bastions.outputs.bastion_security_group_id}"
+  ecs_sg_id     = "${data.terraform_remote_state.fargate.outputs.fargate_security_group_id}"
 
-  private_zone_id = "${data.terraform_remote_state.dns.private_zone_id}"
-  subnet_ids      = ["${data.terraform_remote_state.vpc.private_subnet_ids}"]
+  private_zone_id = "${data.terraform_remote_state.dns.outputs.private_zone_id}"
+  subnet_ids      = ["${data.terraform_remote_state.vpc.outputs.private_subnet_ids}"]
 }
 
 data "terraform_remote_state" "bootstrap" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "bootstrap/terraform.tfstate"
@@ -81,7 +81,7 @@ data "terraform_remote_state" "bootstrap" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "vpc/terraform.tfstate"
@@ -92,7 +92,7 @@ data "terraform_remote_state" "vpc" {
 data "terraform_remote_state" "dns" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "dns/terraform.tfstate"
@@ -103,7 +103,7 @@ data "terraform_remote_state" "dns" {
 data "terraform_remote_state" "bastions" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "bastions/terraform.tfstate"
@@ -114,7 +114,7 @@ data "terraform_remote_state" "bastions" {
 data "terraform_remote_state" "fargate" {
   backend = "s3"
 
-  config {
+  config = {
     bucket  = "${var.state_bucket}"
     region  = "${var.aws_region}"
     key     = "fargate/terraform.tfstate"

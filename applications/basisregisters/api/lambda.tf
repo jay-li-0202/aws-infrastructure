@@ -24,7 +24,7 @@ resource "aws_lambda_function" "api-auth" {
   source_code_hash = "${data.archive_file.api-auth.output_base64sha256}"
 
   environment {
-    variables {
+    variables = {
       APIKEY = "${var.anon_key}"
     }
   }

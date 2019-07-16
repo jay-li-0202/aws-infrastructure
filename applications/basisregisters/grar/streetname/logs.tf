@@ -2,7 +2,7 @@ resource "aws_cloudwatch_log_group" "app_log_group" {
   name              = "/ecs/task/${var.app}-${lower(replace(var.environment_name, " ", "-"))}-streetname-registry"
   retention_in_days = 30
 
-  tags {
+  tags = {
     Name        = "StreetName Registry // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -20,7 +20,7 @@ resource "aws_cloudwatch_log_group" "monitoring_log_group" {
   name              = "/ecs/task/${var.app}-${lower(replace(var.environment_name, " ", "-"))}-streetname-registry-datadog"
   retention_in_days = 30
 
-  tags {
+  tags = {
     Name        = "StreetName Registry Datadog // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

@@ -5,7 +5,7 @@ resource "aws_iam_user" "datadog" {
   path          = "/"
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Datadog // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -28,7 +28,7 @@ resource "aws_iam_role" "datadog" {
   description        = "Allows Datadog to read resources."
   assume_role_policy = "${data.aws_iam_policy_document.trust_relationship.json}"
 
-  tags {
+  tags = {
     Name        = "Datadog // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

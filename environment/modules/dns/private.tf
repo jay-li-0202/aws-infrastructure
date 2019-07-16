@@ -3,7 +3,7 @@ resource "aws_route53_zone" "private" {
   comment       = "Private zone for ${var.environment_label} ${var.environment_name}."
   force_destroy = true
 
-  tags {
+  tags = {
     Name        = "Private Zone // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -20,7 +20,7 @@ resource "aws_vpc_dhcp_options" "vpc" {
   domain_name         = "${var.private_zone_name}"
   domain_name_servers = ["AmazonProvidedDNS"]
 
-  tags {
+  tags = {
     Name        = "DHCP Options // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

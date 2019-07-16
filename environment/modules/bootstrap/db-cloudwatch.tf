@@ -3,7 +3,7 @@ resource "aws_iam_role" "rds" {
   description        = "Allows RDS to log to CloudWatch."
   assume_role_policy = "${data.aws_iam_policy_document.rds_assume_role.json}"
 
-  tags {
+  tags = {
     Name        = "RDS Logs // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"

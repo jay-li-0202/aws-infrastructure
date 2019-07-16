@@ -9,7 +9,7 @@ resource "aws_ecs_task_definition" "cache" {
   // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = "${data.template_file.cache.rendered}"
 
-  tags {
+  tags = {
     Name        = "Building Registry Cache // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -21,7 +21,7 @@ resource "aws_ecs_task_definition" "cache" {
 data "template_file" "cache" {
   template = "${file("${path.module}/ecs-cache.json.tpl")}"
 
-  vars {
+  vars = {
     environment_name = "${lower(replace(var.environment_name, " ", "-"))}"
     datadog_api_key  = "${var.datadog_api_key}"
     disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
@@ -67,7 +67,7 @@ resource "aws_iam_role" "ecs_events" {
 }
 DOC
 
-  tags {
+  tags = {
     Name = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -118,7 +118,7 @@ resource "aws_cloudwatch_event_target" "cache" {
 
     network_configuration {
       security_groups = ["${var.task_security_group_id}"]
-      subnets         = ["${var.private_subnets}"]
+      subnets         = var.private_subnets
     }
   }
 }

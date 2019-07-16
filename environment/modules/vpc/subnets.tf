@@ -4,7 +4,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_hostnames = true
   enable_dns_support   = true
 
-  tags {
+  tags = {
     Name        = "VPC // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -21,7 +21,7 @@ resource "aws_subnet" "private" {
   availability_zone       = "${element(var.availability_zones, count.index)}"
   map_public_ip_on_launch = false
 
-  tags {
+  tags = {
     Name        = "Private Subnet ${count.index + 1} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
@@ -38,7 +38,7 @@ resource "aws_subnet" "public" {
   availability_zone       = "${element(var.availability_zones, count.index)}"
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     Name        = "Public Subnet ${count.index + 1} // ${var.environment_label} ${var.environment_name}"
     Environment = "${var.tag_environment}"
     Productcode = "${var.tag_product}"
