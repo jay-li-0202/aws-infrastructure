@@ -7,7 +7,7 @@ resource "aws_api_gateway_method" "get-crabhuisnummers1" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -23,7 +23,7 @@ resource "aws_api_gateway_method" "get-crabhuisnummers2" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -39,7 +39,7 @@ resource "aws_api_gateway_method" "get-crabhuisnummers3" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration1" {
 
   uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers/"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"
@@ -76,7 +76,7 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration2" {
 
   uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers.json"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"
@@ -95,7 +95,7 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration3" {
 
   uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers.xml"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"

@@ -13,7 +13,7 @@ resource "aws_api_gateway_method" "get-gebouw1" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.path.gebouwId"             = true
     "method.request.header.Accept"            = false
     "method.request.header.Cookie"            = false
@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-gebouw-integration1" {
 
   uri = "https://$${stageVariables.baseHost}/v1/gebouwen/{gebouwId}"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.path.gebouwId"             = "method.request.path.gebouwId"
     "integration.request.header.Accept"            = "method.request.header.Accept"
     "integration.request.header.Cookie"            = "method.request.header.Cookie"

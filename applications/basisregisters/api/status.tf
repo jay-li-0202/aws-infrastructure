@@ -13,7 +13,7 @@ resource "aws_api_gateway_method" "get-status" {
   api_key_required     = true
   authorizer_id        = "${aws_api_gateway_authorizer.gw.id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -31,7 +31,7 @@ resource "aws_api_gateway_integration" "get-status-integration" {
 
   uri = "https://$${stageVariables.baseHost}/v1/status/"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"

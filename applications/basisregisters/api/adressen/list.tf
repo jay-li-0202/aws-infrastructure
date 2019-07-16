@@ -7,7 +7,7 @@ resource "aws_api_gateway_method" "get-adressen1" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -23,7 +23,7 @@ resource "aws_api_gateway_method" "get-adressen2" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -39,7 +39,7 @@ resource "aws_api_gateway_method" "get-adressen3" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.header.Accept" = false
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-adressen-integration1" {
 
   uri = "https://$${stageVariables.baseHost}/v1/adressen/"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"
@@ -76,7 +76,7 @@ resource "aws_api_gateway_integration" "get-adressen-integration2" {
 
   uri = "https://$${stageVariables.baseHost}/v1/adressen.json"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"
@@ -95,7 +95,7 @@ resource "aws_api_gateway_integration" "get-adressen-integration3" {
 
   uri = "https://$${stageVariables.baseHost}/v1/adressen.xml"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
     "integration.request.header.Host"            = "stageVariables.baseHost"

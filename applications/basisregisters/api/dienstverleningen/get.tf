@@ -13,7 +13,7 @@ resource "aws_api_gateway_method" "get-dienstverlening1" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.path.dienstverleningId"   = true
     "method.request.header.Accept"            = false
     "method.request.header.Cookie"            = false
@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-dienstverlening-integration1" {
 
   uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen/{dienstverleningId}"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.path.dienstverleningId"   = "method.request.path.dienstverleningId"
     "integration.request.header.Accept"            = "method.request.header.Accept"
     "integration.request.header.Cookie"            = "method.request.header.Cookie"

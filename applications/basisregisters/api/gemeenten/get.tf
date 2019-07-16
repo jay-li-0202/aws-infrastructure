@@ -13,7 +13,7 @@ resource "aws_api_gateway_method" "get-gemeente1" {
   api_key_required     = true
   authorizer_id        = "${var.authorizer_id}"
 
-  request_parameters {
+  request_parameters = {
     "method.request.path.gemeenteId"          = true
     "method.request.header.Accept"            = false
     "method.request.header.Cookie"            = false
@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-gemeente-integration1" {
 
   uri = "https://$${stageVariables.baseHost}/v1/gemeenten/{gemeenteId}"
 
-  request_parameters {
+  request_parameters = {
     "integration.request.path.gemeenteId"          = "method.request.path.gemeenteId"
     "integration.request.header.Accept"            = "method.request.header.Accept"
     "integration.request.header.Cookie"            = "method.request.header.Cookie"
