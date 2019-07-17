@@ -24,9 +24,9 @@ module "ops-api" {
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
 
   vpc_id            = data.terraform_remote_state.vpc.outputs.vpc_id
-  public_subnets    = [data.terraform_remote_state.vpc.outputs.public_subnet_ids]
-  private_subnets   = [data.terraform_remote_state.vpc.outputs.private_subnet_ids]
-  admin_cidr_blocks = [var.admin_cidr_blocks]
+  public_subnets    = data.terraform_remote_state.vpc.outputs.public_subnet_ids
+  private_subnets   = data.terraform_remote_state.vpc.outputs.private_subnet_ids
+  admin_cidr_blocks = var.admin_cidr_blocks
 
   disco_namespace_id    = aws_service_discovery_private_dns_namespace.basisregisters.id
   public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id

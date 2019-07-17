@@ -97,7 +97,7 @@ module "sqlserver" {
   ecs_sg_id     = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
 
   private_zone_id = data.terraform_remote_state.dns.outputs.private_zone_id
-  subnet_ids      = [data.terraform_remote_state.vpc.outputs.private_subnet_ids]
+  subnet_ids      = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 }
 
 data "terraform_remote_state" "bootstrap" {

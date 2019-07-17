@@ -79,7 +79,7 @@ module "elasticache" {
   bastion_sg_id = data.terraform_remote_state.bastions.outputs.bastion_security_group_id
   ecs_sg_id     = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
 
-  subnet_ids = [data.terraform_remote_state.vpc.outputs.private_subnet_ids]
+  subnet_ids = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 }
 
 data "terraform_remote_state" "vpc" {

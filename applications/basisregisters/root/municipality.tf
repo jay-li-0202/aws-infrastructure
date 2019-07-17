@@ -46,7 +46,7 @@ module "municipality-registry" {
   task_security_group_id  = module.public-api.task_security_group_id
 
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
-  private_subnets = [data.terraform_remote_state.vpc.outputs.private_subnet_ids]
+  private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 
   disco_namespace_id = aws_service_discovery_private_dns_namespace.basisregisters.id
   disco_zone_name    = var.disco_zone_name

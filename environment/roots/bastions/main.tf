@@ -53,7 +53,7 @@ module "bastions" {
   tag_contact     = var.tag_contact
 
   bastion_cluster  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
-  bastion_subnets  = [data.terraform_remote_state.vpc.outputs.public_subnet_ids]
+  bastion_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   bastion_vpc      = data.terraform_remote_state.vpc.outputs.vpc_id
   cleanup_schedule = ""
 
