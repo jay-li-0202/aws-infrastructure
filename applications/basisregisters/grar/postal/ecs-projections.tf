@@ -29,6 +29,12 @@ resource "aws_ecs_service" "projections" {
     subnets         = var.private_subnets
   }
 
+  load_balancer {
+    target_group_arn = aws_lb_target_group.projections.id
+    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-projections"
+    container_port   = var.port_range + 6
+  }
+
   service_registries {
     registry_arn = aws_service_discovery_service.projections.arn
   }
