@@ -8,8 +8,8 @@
       { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
 
       { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
-      { "name": "ConnectionStrings__LegacyProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
-      { "name": "ConnectionStrings__LegacyProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__BackofficeProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__BackofficeProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__LastChangedList", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__LastChangedListAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 

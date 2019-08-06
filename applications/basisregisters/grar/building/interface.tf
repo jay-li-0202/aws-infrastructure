@@ -146,7 +146,7 @@ variable "cache_memory" {
   default = 512
 }
 
-variable "cache_schedule_expression" {
+variable "cache_schedule" {
   type    = string
   default = "cron(0/5 * * * ? *)"
 }

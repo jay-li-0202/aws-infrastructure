@@ -100,8 +100,8 @@ DOC
 
 resource "aws_cloudwatch_event_rule" "cache" {
 name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-streetname-registry-cache"
-description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-streetname-registry-cache task at a scheduled time (${var.cache_schedule_expression})"
-schedule_expression = var.cache_schedule_expression
+description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-streetname-registry-cache task at a scheduled time (${var.cache_schedule})"
+schedule_expression = var.cache_schedule
 }
 
 resource "aws_cloudwatch_event_target" "cache" {

@@ -30,14 +30,15 @@ resource "aws_ecs_service" "api" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.import.id
-    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-api-import"
-    container_port   = var.port_range
+    target_group_arn = aws_lb_target_group.api.id
+    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-api"
+    container_port   = var.port_range + 2
   }
 
   service_registries {
     registry_arn = aws_service_discovery_service.api.arn
   }
+
   // ordered_placement_strategy {
   //   type   = "spread"
   //   field  = "attribute:ecs.availability-zone"
@@ -84,12 +85,8 @@ data "template_file" "api" {
     disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
     app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-api"
     logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry"
-    import_api_image  = var.import_api_image
-    legacy_api_image  = var.legacy_api_image
-    extract_api_image = var.extract_api_image
-    import_port       = var.port_range
-    legacy_port       = var.port_range + 2
-    extract_port      = var.port_range + 4
+    api_image         = var.api_image
+    api_port          = var.port_range + 2
     region            = var.region
     datadog_env       = var.datadog_env
     tag_environment   = var.tag_environment

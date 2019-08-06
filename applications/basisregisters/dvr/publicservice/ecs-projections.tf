@@ -38,6 +38,7 @@ resource "aws_ecs_service" "projections" {
   service_registries {
     registry_arn = aws_service_discovery_service.projections.arn
   }
+
   // ordered_placement_strategy {
   //   type   = "spread"
   //   field  = "attribute:ecs.availability-zone"

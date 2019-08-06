@@ -83,27 +83,7 @@ variable "api_replicas" {
   default = 1
 }
 
-variable "projections_image" {
-  type = string
-}
-
-variable "legacy_api_image" {
-  type = string
-}
-
-variable "import_api_image" {
-  type = string
-}
-
-variable "extract_api_image" {
-  type = string
-}
-
-variable "cache_server" {
-  type = string
-}
-
-variable "cache_image" {
+variable "api_image" {
   type = string
 }
 
@@ -115,6 +95,34 @@ variable "api_cpu" {
 variable "api_memory" {
   type    = string
   default = 512
+}
+
+variable "orafin_replicas" {
+  type    = string
+  default = 1
+}
+
+variable "orafin_image" {
+  type = string
+}
+
+variable "orafin_cpu" {
+  type    = string
+  default = 256
+}
+
+variable "orafin_memory" {
+  type    = string
+  default = 512
+}
+
+variable "orafin_schedule" {
+  type    = string
+  default = "cron(0/5 * * * ? *)"
+}
+
+variable "projections_image" {
+  type = string
 }
 
 variable "projections_replicas" {
@@ -142,9 +150,36 @@ variable "cache_memory" {
   default = 512
 }
 
-variable "cache_schedule_expression" {
+variable "cache_schedule" {
   type    = string
   default = "cron(0/5 * * * ? *)"
+}
+
+variable "cache_server" {
+  type = string
+}
+
+variable "cache_image" {
+  type = string
+}
+
+variable "ui_image" {
+  type = string
+}
+
+variable "ui_replicas" {
+  type    = string
+  default = 1
+}
+
+variable "ui_cpu" {
+  type    = string
+  default = 256
+}
+
+variable "ui_memory" {
+  type    = string
+  default = 512
 }
 
 variable "sa_user" {
