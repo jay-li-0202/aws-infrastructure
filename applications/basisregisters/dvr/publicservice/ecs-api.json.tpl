@@ -16,8 +16,7 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
-      { "name": "Cors__0", "value": "http://localhost:3000" },
-      { "name": "Cors__1", "value": "http://localhost:5000" }
+      { "name": "Cors__0", "value": "https://dienstverlening.${public_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
