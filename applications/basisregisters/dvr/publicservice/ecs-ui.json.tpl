@@ -6,7 +6,7 @@
     "networkMode": "awsvpc",
     "environment" : [
       { "name": "API_VERSION", "value": "${api_version}" },
-      { "name": "API_ENDPOINT", "value": "https://publicservice-api.${public_zone_name}/" }
+      { "name": "API_ENDPOINT", "value": "https://dienstverlening-api.${public_zone_name}/" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

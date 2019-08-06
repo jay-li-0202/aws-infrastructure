@@ -81,7 +81,7 @@ data "template_file" "ui" {
 
   vars = {
     environment_name  = lower(replace(var.environment_name, " ", "-"))
-    datadog_ui_key    = var.datadog_ui_key
+    datadog_api_key   = var.datadog_api_key
     disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
     app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-ui"
     logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry"

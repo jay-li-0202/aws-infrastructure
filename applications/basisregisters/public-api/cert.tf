@@ -4,9 +4,9 @@ resource "aws_acm_certificate" "main" {
 
   subject_alternative_names = [
     "legacy-api.${var.cert_public_zone_name}",
-    "publicservice-api.${var.cert_public_zone_name}",
-    "docs.${var.cert_public_zone_name}",
     "dienstverlening.${var.cert_public_zone_name}",
+    "dienstverlening-api.${var.cert_public_zone_name}",
+    "docs.${var.cert_public_zone_name}",
   ]
 
   lifecycle {

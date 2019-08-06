@@ -16,22 +16,22 @@ module "publicservice-registry" {
   app        = "basisregisters"
   port_range = 8000
 
-  api_version = "1.7.3"
+  api_version = "1.8.0"
   api_cpu      = 512
   api_memory   = 1024
   api_replicas = 2
-  api_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.7.3"
+  api_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.8.0"
 
   orafin_cpu      = 512
   orafin_memory   = 1024
   orafin_replicas = 1
   orafin_schedule = "cron(0/5 * * * ? *)"
-  orafin_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.7.3"
+  orafin_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.8.0"
 
   projections_cpu      = 512
   projections_memory   = 1024
   projections_replicas = 1
-  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:1.7.3"
+  projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:1.8.0"
 
   cache_cpu    = 512
   cache_memory = 1024
@@ -42,7 +42,7 @@ module "publicservice-registry" {
   ui_cpu      = 256
   ui_memory   = 512
   ui_replicas = 2
-  ui_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:1.7.3"
+  ui_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:1.8.0"
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
   sa_user     = var.sql_username
