@@ -152,6 +152,6 @@ data "terraform_remote_state" "datadog" {
   }
 }
 
-// output "vpc_id" {
-//   value = "${module.vpc.vpc_id}"
+// module "building-registry" {
+//   source = "../grar/building2"
 // }

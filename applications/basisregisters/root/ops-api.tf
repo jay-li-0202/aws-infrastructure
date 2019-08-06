@@ -13,13 +13,13 @@ module "ops-api" {
   app = "basisregisters"
 
   container_ports = [
-    "2000-2006",
-    "3000-3006",
-    "4000-4006",
-    "5000-5006",
-    "6000-6006",
-    "7000-7006",
-    "8000-8006",
+    "2000-2007",
+    "3000-3007",
+    "4000-4007",
+    "5000-5007",
+    "6000-6007",
+    "7000-7007",
+    "8000-8007",
   ]
 
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id

@@ -13,3 +13,11 @@ resource "aws_route53_record" "publicservice-api" {
   ttl     = "60"
   records = ["public-api.${var.public_zone_name}"]
 }
+
+resource "aws_route53_record" "publicservice-ui" {
+  zone_id = var.public_zone_id
+  name    = "dienstverlening"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["public-api.${var.public_zone_name}"]
+}

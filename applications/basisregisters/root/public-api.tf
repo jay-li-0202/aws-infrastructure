@@ -20,6 +20,11 @@ module "public-api" {
   task_execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
   ecs_sg_id               = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
 
+  ecs_sg_ports = [
+    "2080-2080",
+    "8000-8007",
+  ]
+
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
   public_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids

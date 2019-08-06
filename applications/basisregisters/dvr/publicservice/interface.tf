@@ -82,6 +82,10 @@ variable "fargate_cluster_arn" {
   type = string
 }
 
+variable "api_version" {
+  type = string
+}
+
 variable "api_replicas" {
   type    = string
   default = 1

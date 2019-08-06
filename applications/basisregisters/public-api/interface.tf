@@ -126,6 +126,10 @@ variable "container_port" {
   type = string
 }
 
+variable "ecs_sg_ports" {
+  type = list(string)
+}
+
 variable "public_zone_name" {
   type = string
 }
