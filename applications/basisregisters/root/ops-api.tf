@@ -19,6 +19,7 @@ module "ops-api" {
     "5000-5006",
     "6000-6006",
     "7000-7006",
+    "8000-8006",
   ]
 
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id

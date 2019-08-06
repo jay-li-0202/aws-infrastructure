@@ -30,6 +30,10 @@ variable "tag_contact" {
   type = string
 }
 
+variable "public_lb_listener_arn" {
+  type = string
+}
+
 variable "ops_lb_arn" {
   type = string
 }

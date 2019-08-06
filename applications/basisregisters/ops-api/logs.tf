@@ -47,5 +47,6 @@ resource "aws_cloudwatch_log_subscription_filter" "app_logfilter" {
   log_group_name  = aws_cloudwatch_log_group.app_log_group.name
   destination_arn = var.datadog_logging_lambda
   filter_pattern  = ""
+  distribution    = "ByLogStream"
 }
 

@@ -8,6 +8,8 @@
       { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
 
       { "name": "ConnectionStrings__Events", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__BackofficeProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__BackofficeProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },

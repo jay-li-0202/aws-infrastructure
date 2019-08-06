@@ -48,6 +48,8 @@ module "publicservice-registry" {
   sa_pass     = var.sql_password
   db_password = var.publicservice_password
 
+  public_lb_listener_arn = module.public-api.lb_listener_arn
+
   ops_lb_arn          = module.ops-api.lb_arn
   ops_lb_listener_arn = module.ops-api.lb_listener_arn
   ops_cert_arn        = module.ops-api.cert_arn

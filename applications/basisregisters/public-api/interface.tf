@@ -146,7 +146,14 @@ variable "disco_namespace_id" {
   type = string
 }
 
+output "lb_arn" {
+  value = aws_lb.main.arn
+}
+
+output "lb_listener_arn" {
+  value = aws_lb_listener.https.arn
+}
+
 output "task_security_group_id" {
   value = var.ecs_sg_id
 }
-

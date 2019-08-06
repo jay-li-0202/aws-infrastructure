@@ -22,7 +22,7 @@ resource "aws_lb_target_group" "api" {
 }
 
 resource "aws_lb_listener_rule" "api" {
-  listener_arn = var.ops_lb_listener_arn
+  listener_arn = var.public_lb_listener_arn
 
   action {
     type             = "forward"
