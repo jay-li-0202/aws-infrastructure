@@ -1,11 +1,11 @@
 resource "aws_lb_listener" "https" {
-  load_balancer_arn = aws_lb.main.id
+  load_balancer_arn = aws_lb.api.id
   port              = var.lb_https_port
   protocol          = "HTTPS"
-  certificate_arn   = aws_acm_certificate.main.arn
+  certificate_arn   = aws_acm_certificate.api.arn
 
   default_action {
-    target_group_arn = aws_lb_target_group.main.id
+    target_group_arn = aws_lb_target_group.api.id
     type             = "forward"
   }
 }
@@ -57,6 +57,6 @@ resource "aws_security_group_rule" "ingress_https" {
   cidr_blocks = ["0.0.0.0/0"]
   description = "Public Api Load Balancer (HTTPS)"
 
-  security_group_id = aws_security_group.main-lb.id
+  security_group_id = aws_security_group.api-lb.id
 }
 

@@ -1,4 +1,4 @@
-resource "aws_security_group" "main-lb" {
+resource "aws_security_group" "api-lb" {
   name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-lb"
   description = "Security group for Public Api Balancer"
   vpc_id      = var.vpc_id
@@ -22,7 +22,7 @@ resource "aws_security_group_rule" "lb_egress_rule" {
   to_port                  = element(split("-", element(var.ecs_sg_ports, count.index)), 1)
   protocol                 = "tcp"
   source_security_group_id = var.ecs_sg_id
-  security_group_id        = aws_security_group.main-lb.id
+  security_group_id        = aws_security_group.api-lb.id
 }
 
 resource "aws_security_group_rule" "task_ingress_rule" {
@@ -33,7 +33,7 @@ resource "aws_security_group_rule" "task_ingress_rule" {
   from_port                = element(split("-", element(var.ecs_sg_ports, count.index)), 0)
   to_port                  = element(split("-", element(var.ecs_sg_ports, count.index)), 1)
   protocol                 = "tcp"
-  source_security_group_id = aws_security_group.main-lb.id
+  source_security_group_id = aws_security_group.api-lb.id
   security_group_id        = var.ecs_sg_id
 }
 

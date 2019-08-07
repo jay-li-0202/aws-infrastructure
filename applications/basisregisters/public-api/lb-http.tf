@@ -1,5 +1,5 @@
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.main.id
+  load_balancer_arn = aws_lb.api.id
   port              = var.lb_port
   protocol          = var.lb_protocol
 
@@ -24,6 +24,6 @@ resource "aws_security_group_rule" "ingress_http" {
   cidr_blocks = ["0.0.0.0/0"]
   description = "Public Api Load Balancer (${var.lb_protocol})"
 
-  security_group_id = aws_security_group.main-lb.id
+  security_group_id = aws_security_group.api-lb.id
 }
 

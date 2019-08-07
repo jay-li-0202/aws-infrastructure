@@ -50,17 +50,7 @@ variable "app" {
   type = string
 }
 
-variable "cpu" {
-  type    = string
-  default = 256
-}
-
-variable "memory" {
-  type    = string
-  default = 512
-}
-
-variable "image" {
+variable "vpc_id" {
   type = string
 }
 
@@ -70,10 +60,6 @@ variable "public_subnets" {
 
 variable "private_subnets" {
   type = list(string)
-}
-
-variable "vpc_id" {
-  type = string
 }
 
 variable "lb_port" {
@@ -91,18 +77,9 @@ variable "lb_protocol" {
   default = "HTTP"
 }
 
-variable "deregistration_delay" {
-  type    = string
-  default = "30"
-}
-
 variable "lb_access_logs_expiration_days" {
   type    = string
   default = "3"
-}
-
-variable "public_zone_id" {
-  type = string
 }
 
 variable "cert_public_zone_name" {
@@ -113,21 +90,8 @@ variable "cert_public_zone_id" {
   type = string
 }
 
-variable "fargate_cluster_id" {
+variable "public_zone_id" {
   type = string
-}
-
-variable "replicas" {
-  type    = string
-  default = 1
-}
-
-variable "container_port" {
-  type = string
-}
-
-variable "ecs_sg_ports" {
-  type = list(string)
 }
 
 variable "public_zone_name" {
@@ -138,11 +102,8 @@ variable "private_zone_name" {
   type = string
 }
 
-variable "disco_zone_name" {
-  type = string
-}
 
-variable "ecs_sg_id" {
+variable "disco_zone_name" {
   type = string
 }
 
@@ -150,8 +111,73 @@ variable "disco_namespace_id" {
   type = string
 }
 
+variable "deregistration_delay" {
+  type    = string
+  default = "30"
+}
+
+# If the average CPU utilization over a minute drops to this threshold,
+# the number of containers will be reduced (but not below min_instances).
+variable "ecs_as_cpu_low_threshold_per" {
+  default = "30"
+}
+
+# If the average CPU utilization over a minute rises to this threshold,
+# the number of containers will be increased (but not above max_instances).
+variable "ecs_as_cpu_high_threshold_per" {
+  default = "80"
+}
+
+variable "fargate_cluster_name" {
+  type = string
+}
+
+variable "fargate_cluster_id" {
+  type = string
+}
+
+variable "fargate_cluster_arn" {
+  type = string
+}
+
+variable "image" {
+  type = string
+}
+
+variable "cpu" {
+  type    = string
+  default = 256
+}
+
+variable "memory" {
+  type    = string
+  default = 512
+}
+
+variable "min_instances" {
+  type    = string
+  default = 1
+}
+
+variable "max_instances" {
+  type    = string
+  default = 2
+}
+
+variable "container_port" {
+  type = string
+}
+
+variable "ecs_sg_id" {
+  type = string
+}
+
+variable "ecs_sg_ports" {
+  type = list(string)
+}
+
 output "lb_arn" {
-  value = aws_lb.main.arn
+  value = aws_lb.api.arn
 }
 
 output "lb_listener_arn" {

@@ -13,7 +13,8 @@ module "public-api" {
   app            = "basisregisters"
   cpu            = 256
   memory         = 512
-  replicas       = 2
+  min_instances      = 2
+  max_instances = 3
   image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.27.1"
   container_port = 2080
 
@@ -41,6 +42,8 @@ module "public-api" {
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
-  fargate_cluster_id = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
+  fargate_cluster_name = data.terraform_remote_state.fargate.outputs.fargate_cluster_name
+  fargate_cluster_id   = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
+  fargate_cluster_arn  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
 }
 

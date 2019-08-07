@@ -1,8 +1,8 @@
-resource "aws_lb" "main" {
+resource "aws_lb" "api" {
   name               = "${var.app}-public-api"
   internal           = false
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.main-lb.id]
+  security_groups    = [aws_security_group.api-lb.id]
   subnets            = var.public_subnets
 
   enable_deletion_protection = false
@@ -23,7 +23,7 @@ resource "aws_lb" "main" {
   }
 }
 
-resource "aws_lb_target_group" "main" {
+resource "aws_lb_target_group" "api" {
   name                 = "${var.app}-public-api"
   port                 = var.lb_port
   protocol             = var.lb_protocol
@@ -44,7 +44,7 @@ resource "aws_lb_target_group" "main" {
   }
 }
 
-data "aws_elb_service_account" "main" {
+data "aws_elb_service_account" "api" {
 }
 
 resource "aws_s3_bucket" "lb_access_logs" {
@@ -98,7 +98,7 @@ resource "aws_s3_bucket_policy" "lb_access_logs" {
         "${aws_s3_bucket.lb_access_logs.arn}/*"
       ],
       "Principal": {
-        "AWS": [ "${data.aws_elb_service_account.main.arn}" ]
+        "AWS": [ "${data.aws_elb_service_account.api.arn}" ]
       }
     }
   ]

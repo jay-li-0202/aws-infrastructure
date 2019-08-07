@@ -1,4 +1,4 @@
-resource "aws_service_discovery_service" "main" {
+resource "aws_service_discovery_service" "api" {
   name = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
 
   health_check_custom_config {
@@ -17,12 +17,12 @@ resource "aws_service_discovery_service" "main" {
   }
 }
 
-resource "aws_ecs_service" "main" {
+resource "aws_ecs_service" "api" {
   name            = "${var.app}-public-api"
   cluster         = var.fargate_cluster_id
   launch_type     = "FARGATE"
-  task_definition = aws_ecs_task_definition.app.arn
-  desired_count   = var.replicas
+  task_definition = aws_ecs_task_definition.api.arn
+  desired_count   = var.min_instances
 
   network_configuration {
     security_groups = [var.ecs_sg_id]
@@ -30,13 +30,13 @@ resource "aws_ecs_service" "main" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.main.id
+    target_group_arn = aws_lb_target_group.api.id
     container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
     container_port   = var.container_port
   }
 
   service_registries {
-    registry_arn = aws_service_discovery_service.main.arn
+    registry_arn = aws_service_discovery_service.api.arn
   }
 
   // ordered_placement_strategy {
@@ -61,7 +61,7 @@ resource "aws_ecs_service" "main" {
   // }
 }
 
-resource "aws_ecs_task_definition" "app" {
+resource "aws_ecs_task_definition" "api" {
   family                   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
@@ -70,7 +70,7 @@ resource "aws_ecs_task_definition" "app" {
   execution_role_arn       = var.task_execution_role_arn
 
   // task_role_arn         = "${aws_iam_role.app_role.arn}"
-  container_definitions = data.template_file.app.rendered
+  container_definitions = data.template_file.api.rendered
 
   tags = {
     Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
@@ -81,8 +81,8 @@ resource "aws_ecs_task_definition" "app" {
   }
 }
 
-data "template_file" "app" {
-  template = file("${path.module}/app.json.tpl")
+data "template_file" "api" {
+  template = file("${path.module}/api.json.tpl")
 
   vars = {
     environment_name  = lower(replace(var.environment_name, " ", "-"))
@@ -103,3 +103,83 @@ data "template_file" "app" {
   }
 }
 
+
+resource "aws_appautoscaling_target" "api" {
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.fargate_cluster_name}/${aws_ecs_service.api.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  max_capacity       = var.max_instances
+  min_capacity       = var.min_instances
+}
+
+resource "aws_cloudwatch_metric_alarm" "api_cpu_high" {
+  alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-High-${var.ecs_as_cpu_high_threshold_per}-public-api-registry-api"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = var.ecs_as_cpu_high_threshold_per
+
+  dimensions = {
+    ClusterName = var.fargate_cluster_name
+    ServiceName = aws_ecs_service.api.name
+  }
+
+  alarm_actions = [aws_appautoscaling_policy.api_up.arn]
+}
+
+resource "aws_cloudwatch_metric_alarm" "api_cpu_low" {
+  alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-Low-${var.ecs_as_cpu_low_threshold_per}-public-api-registry-api"
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = var.ecs_as_cpu_low_threshold_per
+
+  dimensions = {
+    ClusterName = var.fargate_cluster_name
+    ServiceName = aws_ecs_service.api.name
+  }
+
+  alarm_actions = [aws_appautoscaling_policy.api_down.arn]
+}
+
+resource "aws_appautoscaling_policy" "api_up" {
+  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-registry-api-scale-up"
+  service_namespace  = aws_appautoscaling_target.api.service_namespace
+  resource_id        = aws_appautoscaling_target.api.resource_id
+  scalable_dimension = aws_appautoscaling_target.api.scalable_dimension
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 60
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_appautoscaling_policy" "api_down" {
+  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api-registry-api-scale-down"
+  service_namespace  = aws_appautoscaling_target.api.service_namespace
+  resource_id        = aws_appautoscaling_target.api.resource_id
+  scalable_dimension = aws_appautoscaling_target.api.scalable_dimension
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
+}
