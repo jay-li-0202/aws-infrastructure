@@ -3,10 +3,10 @@ resource "aws_acm_certificate" "api" {
   domain_name       = "public-api.${var.cert_public_zone_name}"
 
   subject_alternative_names = [
+    "docs.${var.cert_public_zone_name}",
     "legacy-api.${var.cert_public_zone_name}",
     "dienstverlening.${var.cert_public_zone_name}",
     "dienstverlening-api.${var.cert_public_zone_name}",
-    "docs.${var.cert_public_zone_name}",
   ]
 
   lifecycle {

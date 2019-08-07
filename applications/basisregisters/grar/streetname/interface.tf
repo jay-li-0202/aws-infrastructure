@@ -121,7 +121,7 @@ variable "cache_image" {
 }
 
 variable "cache_enabled" {
-  type = string
+  type    = string
   default = true
 }
 

@@ -38,22 +38,6 @@ resource "aws_ecs_service" "ui" {
   service_registries {
     registry_arn = aws_service_discovery_service.ui.arn
   }
-
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "attribute:ecs.availability-zone"
-  // }
-
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "instanceId"
-  // }
-
-  # [after initial apply] don't override changes made to task_definition
-  # from outside of terraform (i.e.; fargate cli)
-  // lifecycle {
-  //   ignore_changes = ["task_definition"]
-  // }
 }
 
 resource "aws_ecs_task_definition" "ui" {
@@ -64,7 +48,6 @@ resource "aws_ecs_task_definition" "ui" {
   memory                   = var.ui_memory
   execution_role_arn       = var.task_execution_role_arn
 
-  // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = data.template_file.ui.rendered
 
   tags = {
@@ -80,25 +63,25 @@ data "template_file" "ui" {
   template = file("${path.module}/ecs-ui.json.tpl")
 
   vars = {
-    environment_name  = lower(replace(var.environment_name, " ", "-"))
-    datadog_api_key   = var.datadog_api_key
-    disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-ui"
-    logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry"
-    api_version       = var.api_version
-    ui_image          = var.ui_image
-    ui_port           = var.port_range + 7
-    region            = var.region
-    datadog_env       = var.datadog_env
-    tag_environment   = var.tag_environment
-    tag_product       = var.tag_product
-    tag_program       = var.tag_program
-    tag_contact       = var.tag_contact
-    public_zone_name  = replace(var.public_zone_name, "/[.]$/", "")
-    db_server         = var.db_server
-    db_name           = var.db_name
-    db_user           = var.db_user
-    db_pass           = var.db_password
+    environment_name = lower(replace(var.environment_name, " ", "-"))
+    datadog_api_key  = var.datadog_api_key
+    disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-ui"
+    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry"
+    api_version      = var.api_version
+    ui_image         = var.ui_image
+    ui_port          = var.port_range + 7
+    region           = var.region
+    datadog_env      = var.datadog_env
+    tag_environment  = var.tag_environment
+    tag_product      = var.tag_product
+    tag_program      = var.tag_program
+    tag_contact      = var.tag_contact
+    public_zone_name = replace(var.public_zone_name, "/[.]$/", "")
+    db_server        = var.db_server
+    db_name          = var.db_name
+    db_user          = var.db_user
+    db_pass          = var.db_password
   }
 }
 

@@ -39,26 +39,11 @@ resource "aws_ecs_service" "api" {
     registry_arn = aws_service_discovery_service.api.arn
   }
 
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "attribute:ecs.availability-zone"
-  // }
-
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "instanceId"
-  // }
-
   # workaround for https://github.com/hashicorp/terraform/issues/12634
   depends_on = [
     aws_lb_listener.http,
     aws_lb_listener.https,
   ]
-  # [after initial apply] don't override changes made to task_definition
-  # from outside of terraform (i.e.; fargate cli)
-  // lifecycle {
-  //   ignore_changes = ["task_definition"]
-  // }
 }
 
 resource "aws_ecs_task_definition" "api" {
@@ -69,7 +54,6 @@ resource "aws_ecs_task_definition" "api" {
   memory                   = var.memory
   execution_role_arn       = var.task_execution_role_arn
 
-  // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = data.template_file.api.rendered
 
   tags = {

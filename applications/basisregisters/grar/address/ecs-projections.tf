@@ -38,21 +38,6 @@ resource "aws_ecs_service" "projections" {
   service_registries {
     registry_arn = aws_service_discovery_service.projections.arn
   }
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "attribute:ecs.availability-zone"
-  // }
-
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "instanceId"
-  // }
-
-  # [after initial apply] don't override changes made to task_definition
-  # from outside of terraform (i.e.; fargate cli)
-  // lifecycle {
-  //   ignore_changes = ["task_definition"]
-  // }
 }
 
 resource "aws_ecs_task_definition" "projections" {
@@ -63,7 +48,6 @@ resource "aws_ecs_task_definition" "projections" {
   memory                   = var.projections_memory
   execution_role_arn       = var.task_execution_role_arn
 
-  // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = data.template_file.projections.rendered
 
   tags = {

@@ -6,7 +6,6 @@ resource "aws_ecs_task_definition" "cache" {
   memory                   = var.cache_memory
   execution_role_arn       = var.task_execution_role_arn
 
-  // task_role_arn         = "${aws_iam_role.app_role.arn}"
   container_definitions = data.template_file.cache.rendered
 
   tags = {
@@ -102,7 +101,7 @@ resource "aws_cloudwatch_event_rule" "cache" {
 name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-address-registry-cache"
 description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-address-registry-cache task at a scheduled time (${var.cache_schedule})"
 schedule_expression = var.cache_schedule
-is_enabled = var.cache_enabled
+is_enabled          = var.cache_enabled
 }
 
 resource "aws_cloudwatch_event_target" "cache" {
