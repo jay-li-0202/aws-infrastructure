@@ -34,6 +34,10 @@ output "cluster_arn" {
   value = aws_ecs_cluster.basisregisters.arn
 }
 
+output "cluster_name" {
+  value = "basisregisters-${lower(replace(var.environment_name, " ", "-"))}"
+}
+
 output "execution_role_arn" {
   value = aws_iam_role.ecs-task.arn
 }
