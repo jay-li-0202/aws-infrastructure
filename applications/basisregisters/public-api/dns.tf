@@ -17,12 +17,3 @@ resource "aws_route53_record" "legacy-api" {
   ttl     = "60"
   records = ["public-api.${var.public_zone_name}"]
 }
-
-resource "aws_route53_record" "docs" {
-  zone_id = var.public_zone_id
-  name    = "docs"
-  type    = "CNAME"
-  ttl     = "60"
-  records = ["public-api.${var.public_zone_name}"]
-}
-

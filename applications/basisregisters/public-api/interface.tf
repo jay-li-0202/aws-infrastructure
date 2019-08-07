@@ -102,7 +102,6 @@ variable "private_zone_name" {
   type = string
 }
 
-
 variable "disco_zone_name" {
   type = string
 }
@@ -184,6 +183,14 @@ output "lb_listener_arn" {
   value = aws_lb_listener.https.arn
 }
 
+variable "docs_target_group_arn" {
+  type = string
+}
+
 output "task_security_group_id" {
   value = var.ecs_sg_id
+}
+
+output "target_group_id" {
+  value = aws_lb_target_group.api.id
 }

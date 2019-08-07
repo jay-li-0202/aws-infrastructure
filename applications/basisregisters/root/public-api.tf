@@ -45,5 +45,7 @@ module "public-api" {
   fargate_cluster_name = data.terraform_remote_state.fargate.outputs.fargate_cluster_name
   fargate_cluster_id   = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
   fargate_cluster_arn  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
+
+  docs_target_group_arn = module.docs.target_group_id
 }
 

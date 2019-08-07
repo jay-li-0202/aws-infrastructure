@@ -35,6 +35,12 @@ resource "aws_ecs_service" "api" {
     container_port   = var.container_port
   }
 
+  load_balancer {
+    target_group_arn = var.docs_target_group_arn
+    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+    container_port   = var.container_port
+  }
+
   service_registries {
     registry_arn = aws_service_discovery_service.api.arn
   }
