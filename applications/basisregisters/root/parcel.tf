@@ -16,21 +16,21 @@ module "parcel-registry" {
   app        = "basisregisters"
   port_range = 7000
 
-  api_cpu           = 512
-  api_memory        = 1024
+  api_cpu           = 256
+  api_memory        = 2048
   api_replicas      = 2
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-legacy:1.9.5"
   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-crab-import:1.9.5"
   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-extract:1.9.5"
 
-  projections_cpu      = 512
+  projections_cpu      = 256
   projections_memory   = 1024
   projections_replicas = 1
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projector:1.9.5"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projections-syndication:1.9.5"
 
-  cache_cpu    = 512
-  cache_memory = 1024
+  cache_cpu    = 256
+  cache_memory = 512
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
   cache_server = data.terraform_remote_state.cache.outputs.cache_endpoint
