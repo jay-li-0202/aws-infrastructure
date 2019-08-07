@@ -65,11 +65,11 @@ DOC
 
 
   tags = {
-    Name = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
+    Name        = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
-    Programma = var.tag_program
-    Contact = var.tag_contact
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 
@@ -98,27 +98,27 @@ DOC
 }
 
 resource "aws_cloudwatch_event_rule" "cache" {
-name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
-description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache task at a scheduled time (${var.cache_schedule})"
-schedule_expression = var.cache_schedule
-is_enabled          = var.cache_enabled
+  name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
+  description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache task at a scheduled time (${var.cache_schedule})"
+  schedule_expression = var.cache_schedule
+  is_enabled          = var.cache_enabled
 }
 
 resource "aws_cloudwatch_event_target" "cache" {
-target_id = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
-rule      = aws_cloudwatch_event_rule.cache.name
-arn       = var.fargate_cluster_arn
-role_arn  = aws_iam_role.ecs_events.arn
+  target_id = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-cache"
+  rule      = aws_cloudwatch_event_rule.cache.name
+  arn       = var.fargate_cluster_arn
+  role_arn  = aws_iam_role.ecs_events.arn
 
-ecs_target {
-task_count          = "1"
-launch_type         = "FARGATE"
-task_definition_arn = aws_ecs_task_definition.cache.arn
+  ecs_target {
+    task_count          = "1"
+    launch_type         = "FARGATE"
+    task_definition_arn = aws_ecs_task_definition.cache.arn
 
-network_configuration {
-security_groups = [var.task_security_group_id]
-subnets         = var.private_subnets
-}
-}
+    network_configuration {
+      security_groups = [var.task_security_group_id]
+      subnets         = var.private_subnets
+    }
+  }
 }
 

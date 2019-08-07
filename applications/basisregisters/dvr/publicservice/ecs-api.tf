@@ -18,9 +18,9 @@ resource "aws_service_discovery_service" "api" {
 }
 
 resource "aws_ecs_service" "api" {
-  name            = "${var.app}-publicservice-registry-api"
-  cluster         = var.fargate_cluster_id
-  launch_type     = "FARGATE"
+  name        = "${var.app}-publicservice-registry-api"
+  cluster     = var.fargate_cluster_id
+  launch_type = "FARGATE"
   // enable_ecs_managed_tags = true
   // propagate_tags = "TASK_DEFINITION"
 
