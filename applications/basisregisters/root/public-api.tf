@@ -14,7 +14,7 @@ module "public-api" {
   cpu            = 256
   memory         = 512
   min_instances      = 2
-  max_instances = 3
+  max_instances = 4
   image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.27.1"
   container_port = 2080
 

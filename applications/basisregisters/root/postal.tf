@@ -19,7 +19,7 @@ module "postal-registry" {
   api_cpu           = 256
   api_memory        = 512
   api_min_instances      = 2
-  api_max_instances = 3
+  api_max_instances = 4
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:1.8.2"
   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:1.8.2"
   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:1.8.2"

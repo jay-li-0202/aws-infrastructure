@@ -20,7 +20,7 @@ module "publicservice-registry" {
   api_cpu      = 256
   api_memory   = 512
   api_min_instances = 2
-  api_max_instances = 3
+  api_max_instances = 4
   api_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.8.0"
 
   orafin_cpu      = 256
