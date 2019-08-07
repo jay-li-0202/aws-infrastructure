@@ -17,7 +17,7 @@ resource "aws_lb_listener_rule" "redirect_docs" {
     type = "redirect"
 
     redirect {
-      host        = "public-api.${replace(var.public_zone_name, "/[.]$/", "")}"
+      host        = "#{host}"
       path        = "/docs/api-documentation.html"
       status_code = "HTTP_301"
     }
@@ -26,6 +26,11 @@ resource "aws_lb_listener_rule" "redirect_docs" {
   condition {
     field  = "host-header"
     values = ["docs.*"]
+  }
+
+  condition {
+    field  = "path-pattern"
+    values = ["/"]
   }
 }
 
