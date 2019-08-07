@@ -33,3 +33,6 @@ resource "aws_iam_account_password_policy" "strict" {
   allow_users_to_change_password = true
 }
 
+resource "aws_iam_account_alias" "alias" {
+  account_alias = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}"
+}
