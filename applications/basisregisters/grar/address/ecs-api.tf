@@ -106,3 +106,82 @@ data "template_file" "api" {
   // disco_zone_name   = "${replace(var.disco_zone_name, "/[.]$/", "")}"
 }
 
+resource "aws_appautoscaling_target" "api" {
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.fargate_cluster_name}/${aws_ecs_service.api.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  max_capacity       = var.api_max_instances
+  min_capacity       = var.api_min_instances
+}
+
+resource "aws_cloudwatch_metric_alarm" "api_cpu_high" {
+  alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-High-${var.ecs_as_cpu_high_threshold_per}-address-registry-api"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = var.ecs_as_cpu_high_threshold_per
+
+  dimensions = {
+    ClusterName = var.fargate_cluster_name
+    ServiceName = aws_ecs_service.api.name
+  }
+
+  alarm_actions = [aws_appautoscaling_policy.api_up.arn]
+}
+
+resource "aws_cloudwatch_metric_alarm" "api_cpu_low" {
+  alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-Low-${var.ecs_as_cpu_low_threshold_per}-address-registry-api"
+  comparison_operator = "LessThanThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = var.ecs_as_cpu_low_threshold_per
+
+  dimensions = {
+    ClusterName = var.fargate_cluster_name
+    ServiceName = aws_ecs_service.api.name
+  }
+
+  alarm_actions = [aws_appautoscaling_policy.api_down.arn]
+}
+
+resource "aws_appautoscaling_policy" "api_up" {
+  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-address-registry-api-scale-up"
+  service_namespace  = aws_appautoscaling_target.api.service_namespace
+  resource_id        = aws_appautoscaling_target.api.resource_id
+  scalable_dimension = aws_appautoscaling_target.api.scalable_dimension
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 60
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_lower_bound = 0
+      scaling_adjustment          = 1
+    }
+  }
+}
+
+resource "aws_appautoscaling_policy" "api_down" {
+  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-address-registry-api-scale-down"
+  service_namespace  = aws_appautoscaling_target.api.service_namespace
+  resource_id        = aws_appautoscaling_target.api.resource_id
+  scalable_dimension = aws_appautoscaling_target.api.scalable_dimension
+
+  step_scaling_policy_configuration {
+    adjustment_type         = "ChangeInCapacity"
+    cooldown                = 300
+    metric_aggregation_type = "Average"
+
+    step_adjustment {
+      metric_interval_upper_bound = 0
+      scaling_adjustment          = -1
+    }
+  }
+}

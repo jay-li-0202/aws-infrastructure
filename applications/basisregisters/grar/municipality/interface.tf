@@ -58,8 +58,15 @@ variable "task_execution_role_arn" {
   type = string
 }
 
+variable "task_security_group_id" {
+  type = string
+}
+
 variable "app" {
   type = string
+}
+
+variable "port_range" {
 }
 
 variable "private_subnets" {
@@ -67,6 +74,65 @@ variable "private_subnets" {
 }
 
 variable "vpc_id" {
+  type = string
+}
+
+variable "public_zone_name" {
+  type = string
+}
+
+variable "public_zone_id" {
+  type = string
+}
+
+variable "disco_namespace_id" {
+  type = string
+}
+
+variable "deregistration_delay" {
+  type    = string
+  default = "30"
+}
+
+variable "disco_zone_name" {
+  type = string
+}
+
+# If the average CPU utilization over a minute drops to this threshold,
+# the number of containers will be reduced (but not below api_min_instances).
+variable "ecs_as_cpu_low_threshold_per" {
+  default = "30"
+}
+
+# If the average CPU utilization over a minute rises to this threshold,
+# the number of containers will be increased (but not above api_max_instances).
+variable "ecs_as_cpu_high_threshold_per" {
+  default = "80"
+}
+
+variable "db_server" {
+  type = string
+}
+
+variable "db_name" {
+  type    = string
+  default = "municipality-registry"
+}
+
+variable "db_user" {
+  type    = string
+  default = "municipality"
+}
+
+variable "db_password" {
+  type = string
+}
+
+variable "sa_user" {
+  type = string
+}
+
+variable "sa_pass" {
   type = string
 }
 
@@ -159,70 +225,4 @@ variable "cache_memory" {
 variable "cache_schedule" {
   type    = string
   default = "cron(0/5 * * * ? *)"
-}
-
-variable "sa_user" {
-  type = string
-}
-
-variable "sa_pass" {
-  type = string
-}
-
-variable "db_server" {
-  type = string
-}
-
-variable "db_name" {
-  type    = string
-  default = "municipality-registry"
-}
-
-variable "db_user" {
-  type    = string
-  default = "municipality"
-}
-
-variable "db_password" {
-  type = string
-}
-
-variable "task_security_group_id" {
-  type = string
-}
-
-variable "port_range" {
-}
-
-variable "public_zone_name" {
-  type = string
-}
-
-variable "public_zone_id" {
-  type = string
-}
-
-variable "disco_namespace_id" {
-  type = string
-}
-
-variable "deregistration_delay" {
-  type    = string
-  default = "30"
-}
-
-variable "disco_zone_name" {
-  type = string
-}
-
-# If the average CPU utilization over a minute drops to this threshold,
-# the number of containers will be reduced (but not below api_min_instances).
-variable "ecs_as_cpu_low_threshold_per" {
-  default = "30"
-}
-
-# If the average CPU utilization over a minute rises to this threshold,
-# the number of containers will be increased (but not above api_max_instances).
-variable "ecs_as_cpu_high_threshold_per" {
-  default = "80"
 }

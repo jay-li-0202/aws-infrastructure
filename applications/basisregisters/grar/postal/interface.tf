@@ -70,6 +70,10 @@ variable "vpc_id" {
   type = string
 }
 
+variable "fargate_cluster_name" {
+  type = string
+}
+
 variable "fargate_cluster_id" {
   type = string
 }
@@ -81,6 +85,11 @@ variable "fargate_cluster_arn" {
 variable "api_min_instances" {
   type    = string
   default = 1
+}
+
+variable "api_max_instances" {
+  type    = string
+  default = 2
 }
 
 variable "projections_image" {
@@ -206,11 +215,18 @@ variable "deregistration_delay" {
   default = "30"
 }
 
-// variable "private_zone_name" {
-//   type = "string"
-// }
-
 variable "disco_zone_name" {
   type = string
 }
 
+# If the average CPU utilization over a minute drops to this threshold,
+# the number of containers will be reduced (but not below api_min_instances).
+variable "ecs_as_cpu_low_threshold_per" {
+  default = "30"
+}
+
+# If the average CPU utilization over a minute rises to this threshold,
+# the number of containers will be increased (but not above api_max_instances).
+variable "ecs_as_cpu_high_threshold_per" {
+  default = "80"
+}

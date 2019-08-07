@@ -17,14 +17,6 @@ resource "aws_service_discovery_service" "api" {
   }
 }
 
-resource "aws_appautoscaling_target" "api" {
-  service_namespace  = "ecs"
-  resource_id        = "service/${var.fargate_cluster_name}/${aws_ecs_service.api.name}"
-  scalable_dimension = "ecs:service:DesiredCount"
-  max_capacity       = var.api_max_instances
-  min_capacity       = var.api_min_instances
-}
-
 resource "aws_ecs_service" "api" {
   name            = "${var.app}-municipality-registry-api"
   cluster         = var.fargate_cluster_id
@@ -111,6 +103,14 @@ data "template_file" "api" {
   }
 }
 
+resource "aws_appautoscaling_target" "api" {
+  service_namespace  = "ecs"
+  resource_id        = "service/${var.fargate_cluster_name}/${aws_ecs_service.api.name}"
+  scalable_dimension = "ecs:service:DesiredCount"
+  max_capacity       = var.api_max_instances
+  min_capacity       = var.api_min_instances
+}
+
 resource "aws_cloudwatch_metric_alarm" "api_cpu_high" {
   alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-High-${var.ecs_as_cpu_high_threshold_per}-municipality-registry-api"
   comparison_operator = "GreaterThanOrEqualToThreshold"
@@ -148,7 +148,7 @@ resource "aws_cloudwatch_metric_alarm" "api_cpu_low" {
 }
 
 resource "aws_appautoscaling_policy" "api_up" {
-  name               = "app-scale-up"
+  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-api-scale-up"
   service_namespace  = aws_appautoscaling_target.api.service_namespace
   resource_id        = aws_appautoscaling_target.api.resource_id
   scalable_dimension = aws_appautoscaling_target.api.scalable_dimension
@@ -166,7 +166,7 @@ resource "aws_appautoscaling_policy" "api_up" {
 }
 
 resource "aws_appautoscaling_policy" "api_down" {
-  name               = "app-scale-down"
+  name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-api-scale-down"
   service_namespace  = aws_appautoscaling_target.api.service_namespace
   resource_id        = aws_appautoscaling_target.api.resource_id
   scalable_dimension = aws_appautoscaling_target.api.scalable_dimension
