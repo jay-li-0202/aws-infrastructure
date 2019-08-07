@@ -70,20 +70,15 @@ variable "vpc_id" {
   type = string
 }
 
+variable "fargate_cluster_name" {
+  type = string
+}
+
 variable "fargate_cluster_id" {
   type = string
 }
 
 variable "fargate_cluster_arn" {
-  type = string
-}
-
-variable "api_replicas" {
-  type    = string
-  default = 1
-}
-
-variable "projections_image" {
   type = string
 }
 
@@ -99,12 +94,14 @@ variable "extract_api_image" {
   type = string
 }
 
-variable "cache_server" {
-  type = string
+variable "api_min_instances" {
+  type    = string
+  default = 1
 }
 
-variable "cache_image" {
-  type = string
+variable "api_max_instances" {
+  type    = string
+  default = 2
 }
 
 variable "api_cpu" {
@@ -117,7 +114,11 @@ variable "api_memory" {
   default = 512
 }
 
-variable "projections_replicas" {
+variable "projections_image" {
+  type = string
+}
+
+variable "projections_min_instances" {
   type    = string
   default = 1
 }
@@ -130,6 +131,19 @@ variable "projections_cpu" {
 variable "projections_memory" {
   type    = string
   default = 512
+}
+
+variable "cache_server" {
+  type = string
+}
+
+variable "cache_image" {
+  type = string
+}
+
+variable "cache_enabled" {
+  type = string
+  default = true
 }
 
 variable "cache_cpu" {
@@ -197,11 +211,18 @@ variable "deregistration_delay" {
   default = "30"
 }
 
-// variable "private_zone_name" {
-//   type = "string"
-// }
-
 variable "disco_zone_name" {
   type = string
 }
 
+# If the average CPU utilization over a minute drops to this threshold,
+# the number of containers will be reduced (but not below api_min_instances).
+variable "ecs_as_cpu_low_threshold_per" {
+  default = "30"
+}
+
+# If the average CPU utilization over a minute rises to this threshold,
+# the number of containers will be increased (but not above api_max_instances).
+variable "ecs_as_cpu_high_threshold_per" {
+  default = "80"
+}

@@ -18,20 +18,21 @@ module "streetname-registry" {
 
   api_cpu           = 256
   api_memory        = 2048
-  api_replicas      = 2
+  api_min_instances      = 2
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:1.10.6"
   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-crab-import:1.10.6"
   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-extract:1.10.6"
 
   projections_cpu      = 256
   projections_memory   = 1024
-  projections_replicas = 1
+  projections_min_instances = 1
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:1.10.6"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:1.10.6"
 
   cache_cpu    = 256
   cache_memory = 512
   cache_schedule = "cron(0/5 * * * ? *)"
+  cache_enabled = true
   cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
   cache_server = data.terraform_remote_state.cache.outputs.cache_endpoint
 

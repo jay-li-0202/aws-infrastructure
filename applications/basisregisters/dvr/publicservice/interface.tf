@@ -86,7 +86,7 @@ variable "api_version" {
   type = string
 }
 
-variable "api_replicas" {
+variable "api_min_instances" {
   type    = string
   default = 1
 }
@@ -105,7 +105,7 @@ variable "api_memory" {
   default = 512
 }
 
-variable "orafin_replicas" {
+variable "orafin_min_instances" {
   type    = string
   default = 1
 }
@@ -133,7 +133,7 @@ variable "projections_image" {
   type = string
 }
 
-variable "projections_replicas" {
+variable "projections_min_instances" {
   type    = string
   default = 1
 }
@@ -171,11 +171,16 @@ variable "cache_image" {
   type = string
 }
 
+variable "cache_enabled" {
+  type = string
+  default = true
+}
+
 variable "ui_image" {
   type = string
 }
 
-variable "ui_replicas" {
+variable "ui_min_instances" {
   type    = string
   default = 1
 }

@@ -18,18 +18,20 @@ module "municipality-registry" {
 
   api_cpu           = 256
   api_memory        = 512
-  api_replicas      = 2
+  api_min_instances = 2
+  api_max_instances = 3
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.7.0"
   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.7.0"
   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.7.0"
 
   projections_cpu      = 256
   projections_memory   = 512
-  projections_replicas = 1
+  projections_min_instances = 1
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.7.0"
 
   cache_cpu    = 256
   cache_memory = 512
+  cache_enabled = true
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
   cache_server = data.terraform_remote_state.cache.outputs.cache_endpoint
@@ -58,7 +60,8 @@ module "municipality-registry" {
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
   datadog_env            = "vbr-${lower(var.environment_name)}"
 
-  fargate_cluster_id  = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
-  fargate_cluster_arn = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
+  fargate_cluster_name = data.terraform_remote_state.fargate.outputs.fargate_cluster_name
+  fargate_cluster_id   = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
+  fargate_cluster_arn  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
 }
 

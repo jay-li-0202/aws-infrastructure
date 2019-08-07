@@ -18,20 +18,21 @@ module "building-registry" {
 
   api_cpu           = 256
   api_memory        = 2048
-  api_replicas      = 2
+  api_min_instances      = 2
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-legacy:1.4.4"
   import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-crab-import:1.4.4"
   extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-extract:1.4.4"
 
   projections_cpu      = 256
   projections_memory   = 1024
-  projections_replicas = 1
+  projections_min_instances = 1
   projections_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/projector:1.4.4"
   syndication_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/projections-syndication:1.4.4"
 
   cache_cpu    = 256
   cache_memory = 512
   cache_schedule = "cron(0/5 * * * ? *)"
+  cache_enabled = false
   cache_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
   cache_server = data.terraform_remote_state.cache.outputs.cache_endpoint
 

@@ -22,7 +22,7 @@ resource "aws_ecs_service" "ui" {
   cluster         = var.fargate_cluster_id
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.ui.arn
-  desired_count   = var.ui_replicas
+  desired_count   = var.ui_min_instances
 
   network_configuration {
     security_groups = [var.task_security_group_id]

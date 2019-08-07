@@ -78,7 +78,7 @@ variable "fargate_cluster_arn" {
   type = string
 }
 
-variable "api_replicas" {
+variable "api_min_instances" {
   type    = string
   default = 1
 }
@@ -111,6 +111,11 @@ variable "cache_image" {
   type = string
 }
 
+variable "cache_enabled" {
+  type = string
+  default = true
+}
+
 variable "api_cpu" {
   type    = string
   default = 256
@@ -121,7 +126,7 @@ variable "api_memory" {
   default = 512
 }
 
-variable "projections_replicas" {
+variable "projections_min_instances" {
   type    = string
   default = 1
 }

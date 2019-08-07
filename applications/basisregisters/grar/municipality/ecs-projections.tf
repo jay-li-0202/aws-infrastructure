@@ -22,7 +22,7 @@ resource "aws_ecs_service" "projections" {
   cluster         = var.fargate_cluster_id
   launch_type     = "FARGATE"
   task_definition = aws_ecs_task_definition.projections.arn
-  desired_count   = var.projections_replicas
+  desired_count   = var.projections_min_instances
 
   network_configuration {
     security_groups = [var.task_security_group_id]
