@@ -1,6 +1,15 @@
 variable "publicservice_password" {
 }
 
+variable "publicservice_orafin_ftp_host" {
+}
+
+variable "publicservice_orafin_ftp_user" {
+}
+
+variable "publicservice_orafin_ftp_password" {
+}
+
 module "publicservice-registry" {
   source = "../dvr/publicservice"
 
