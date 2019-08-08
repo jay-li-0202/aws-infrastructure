@@ -51,7 +51,7 @@ module "publicservice-registry" {
   cache_memory   = 512
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_enabled  = true
-  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.3.0"
+  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.4.0"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 
   ui_cpu           = 256
