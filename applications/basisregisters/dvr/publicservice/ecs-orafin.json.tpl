@@ -1,7 +1,7 @@
 [
   {
     "name": "${app_name}",
-    "image": "${cache_image}",
+    "image": "${orafin_image}",
     "essential": true,
     "networkMode": "awsvpc",
     "environment" : [
