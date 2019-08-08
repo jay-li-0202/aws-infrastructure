@@ -43,60 +43,6 @@ data "template_file" "cache" {
   }
 }
 
-resource "aws_iam_role" "ecs_events" {
-  name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-ecs-events"
-  description = "Allows Cloudwatch to execute Fargate Tasks."
-
-  assume_role_policy = <<DOC
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "",
-      "Effect": "Allow",
-      "Principal": {
-        "Service": "events.amazonaws.com"
-      },
-      "Action": "sts:AssumeRole"
-    }
-  ]
-}
-DOC
-
-
-  tags = {
-    Name        = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
-    Environment = var.tag_environment
-    Productcode = var.tag_product
-    Programma   = var.tag_program
-    Contact     = var.tag_contact
-  }
-}
-
-resource "aws_iam_role_policy" "ecs_events_run_task_with_any_role" {
-  name = "ecs_events_run_task_with_any_role"
-  role = aws_iam_role.ecs_events.id
-
-  policy = <<DOC
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": "iam:PassRole",
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "ecs:RunTask",
-            "Resource": "${replace(aws_ecs_task_definition.cache.arn, "/:\\d+$/", ":*")}"
-        }
-    ]
-}
-DOC
-
-}
-
 resource "aws_cloudwatch_event_rule" "cache" {
   name                = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-cache"
   description         = "Run ${var.app}-${lower(replace(var.environment_name, " ", "-"))}-publicservice-registry-cache task at a scheduled time (${var.cache_schedule})"

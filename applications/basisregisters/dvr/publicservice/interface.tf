@@ -114,9 +114,9 @@ variable "api_memory" {
   default = 512
 }
 
-variable "orafin_min_instances" {
+variable "orafin_enabled" {
   type    = string
-  default = 1
+  default = true
 }
 
 variable "orafin_image" {
@@ -136,6 +136,22 @@ variable "orafin_memory" {
 variable "orafin_schedule" {
   type    = string
   default = "cron(0/5 * * * ? *)"
+}
+
+variable "orafin_ftp_host" {
+  type = string
+}
+
+variable "orafin_ftp_user" {
+  type = string
+}
+
+variable "orafin_ftp_password" {
+  type = string
+}
+
+variable "orafin_ftp_path" {
+  type = string
 }
 
 variable "projections_image" {

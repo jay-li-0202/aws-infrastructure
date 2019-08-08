@@ -25,9 +25,13 @@ module "publicservice-registry" {
 
   orafin_cpu           = 256
   orafin_memory        = 512
-  orafin_min_instances = 1
   orafin_schedule      = "cron(0/5 * * * ? *)"
+  orafin_enabled       = false
   orafin_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.8.0"
+  orafin_ftp_host = var.publicservice_orafin_ftp_host
+  orafin_ftp_user = var.publicservice_orafin_ftp_user
+  orafin_ftp_password = var.publicservice_orafin_ftp_password
+  orafin_ftp_path = "IN"
 
   projections_cpu           = 256
   projections_memory        = 512
