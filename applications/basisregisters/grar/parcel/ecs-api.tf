@@ -114,6 +114,14 @@ resource "aws_cloudwatch_metric_alarm" "api_cpu_high" {
   }
 
   alarm_actions = [aws_appautoscaling_policy.api_up.arn]
+
+  tags = {
+    Name        = "Parcel Registry Api // ${var.environment_label} ${var.environment_name}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "api_cpu_low" {
@@ -132,6 +140,14 @@ resource "aws_cloudwatch_metric_alarm" "api_cpu_low" {
   }
 
   alarm_actions = [aws_appautoscaling_policy.api_down.arn]
+
+  tags = {
+    Name        = "Parcel Registry Api // ${var.environment_label} ${var.environment_name}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
+  }
 }
 
 resource "aws_appautoscaling_policy" "api_up" {

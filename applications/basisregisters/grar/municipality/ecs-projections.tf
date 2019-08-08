@@ -84,3 +84,28 @@ data "template_file" "projections" {
   }
 }
 
+resource "aws_cloudwatch_metric_alarm" "projections_cpu_high" {
+  alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-High-${var.ecs_as_cpu_high_threshold_per}-municipality-registry-projections"
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = "1"
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/ECS"
+  period              = "60"
+  statistic           = "Average"
+  threshold           = var.ecs_as_cpu_high_threshold_per
+
+  dimensions = {
+    ClusterName = var.fargate_cluster_name
+    ServiceName = aws_ecs_service.projections.name
+  }
+
+  // alarm_actions = [aws_appautoscaling_policy.api_up.arn]
+
+  tags = {
+    Name        = "Municipality Registry Projections // ${var.environment_label} ${var.environment_name}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
+  }
+}
