@@ -55,6 +55,9 @@ variable "sql_backup_retention_period" {
 variable "sql_multi_az" {
 }
 
+variable "sql_performance_insights_retention_period" {
+}
+
 provider "aws" {
   version             = "~> 2.23.0"
   region              = var.aws_region
@@ -88,6 +91,7 @@ module "sqlserver" {
   sql_storage                 = var.sql_storage
   sql_backup_retention_period = var.sql_backup_retention_period
   sql_multi_az                = var.sql_multi_az
+  sql_performance_insights_retention_period = var.sql_performance_insights_retention_period
 
   vpc_id            = data.terraform_remote_state.vpc.outputs.vpc_id
   monitoring_role   = data.terraform_remote_state.bootstrap.outputs.rds_cloudwatch_role

@@ -74,6 +74,8 @@ resource "aws_db_instance" "basisregisters" {
 
   monitoring_interval = 30
   monitoring_role_arn = var.monitoring_role
+  performance_insights_enabled = true
+  performance_insights_retention_period = var.sql_performance_insights_retention_period
 
   allow_major_version_upgrade = true
   auto_minor_version_upgrade  = true

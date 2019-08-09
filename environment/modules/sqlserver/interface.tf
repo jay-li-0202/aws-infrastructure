@@ -80,6 +80,11 @@ variable "monitoring_role" {
   type = string
 }
 
+variable "sql_performance_insights_retention_period" {
+  type = string
+  default = 7
+}
+
 variable "rds_s3backup_role" {
   type = string
 }
