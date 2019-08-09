@@ -15,7 +15,7 @@ module "public-api" {
   memory         = 512
   min_instances  = 2
   max_instances  = 4
-  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.28.0"
+  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.28.1"
   container_port = 2080
 
   task_execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn

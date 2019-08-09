@@ -72,7 +72,7 @@ resource "aws_ecs_task_definition" "api" {
 }
 
 data "template_file" "api" {
-  template = file("${path.module}/api.json.tpl")
+  template = file("${path.module}/ecs-api.json.tpl")
 
   vars = {
     environment_name  = lower(replace(var.environment_name, " ", "-"))
