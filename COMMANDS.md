@@ -118,3 +118,55 @@ find -type d -name ".terraform" -exec rm -rf {} \;
 ```bash
 rm -rf /tmp/repos-outdated.txt; forrepos "git pull; sleep 5; echo 'Pulled '(pwd); echo (pwd) >> /tmp/repos-outdated.txt; mono .paket/paket.exe outdated --ignore-constraints | awk '/Outdated packages found:/,/Performance:/' >> /tmp/repos-outdated.txt; sleep 5; echo >> /tmp/repos-outdated.txt; echo 'Outdated '(pwd);"; echo 'Outdated check done!!'
 ```
+
+### ECS - Metadata
+
+```json
+{
+  "Cluster":"arn:aws:ecs:eu-west-1:xxxxxxxxxxx:cluster/project-production",
+  "TaskARN":"arn:aws:ecs:eu-west-1:xxxxxxxxxxx:task/beefb00b-6de6-4c11-ab89-c80839b70ea8",
+  "Family":"david-production-bastion",
+  "Revision":"5",
+  "DesiredStatus":"RUNNING",
+  "KnownStatus":"RUNNING",
+  "Containers":[
+    {
+      "DockerId":"d72a67da4986d6c199261dfa78c821fbc5d37a644b13828e046026afa0e82273",
+      "Name":"david-production-bastion",
+      "DockerName":"ecs-david-production-bastion-5-david-production-bastion-dec291e7d6ec9bf09001",
+      "Image":"basisregisters/bastion:latest",
+      "ImageID":"sha256:4678e1d08c2a1234d52bfb8c12345d40f7bfd06384ddf3d9921fe02db5518661",
+      "Labels":{
+        "com.amazonaws.ecs.cluster":"arn:aws:ecs:eu-west-1:xxxxxxxxxxx:cluster/project-production",
+        "com.amazonaws.ecs.container-name":"david-production-bastion",
+        "com.amazonaws.ecs.task-arn":"arn:aws:ecs:eu-west-1:xxxxxxxxxxx:task/beefb00b-6de6-4c11-ab89-c80839b70ea8",
+        "com.amazonaws.ecs.task-definition-family":"david-production-bastion",
+        "com.amazonaws.ecs.task-definition-version":"5"
+      },
+      "DesiredStatus":"RUNNING",
+      "KnownStatus":"RUNNING",
+      "Limits":{
+        "CPU":256,
+        "Memory":512
+      },
+      "CreatedAt":"2019-04-17T16:03:32.477798353Z",
+      "StartedAt":"2019-04-17T16:03:33.11989194Z",
+      "Type":"NORMAL",
+      "Networks":[
+        {
+          "NetworkMode":"awsvpc",
+          "IPv4Addresses":[
+            "x.x.x.x"
+          ]
+        }
+      ]
+    }
+  ],
+  "Limits":{
+    "CPU":0.25,
+    "Memory":512
+  },
+  "PullStartedAt":"2019-04-17T16:03:27.212830141Z",
+  "PullStoppedAt":"2019-04-17T16:03:32.47066787Z"
+}
+```
