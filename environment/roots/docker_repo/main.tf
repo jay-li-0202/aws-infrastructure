@@ -317,4 +317,3 @@ output "docker_user_key" {
 output "docker_user_secret" {
   value = module.docker.docker_user_secret
 }
-

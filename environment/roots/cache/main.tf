@@ -129,4 +129,3 @@ data "terraform_remote_state" "fargate" {
 output "cache_endpoint" {
   value = module.elasticache.endpoint
 }
-

@@ -7,4 +7,3 @@ resource "aws_security_group_rule" "address" {
   security_group_id = var.task_security_group_id
   self              = true
 }
-

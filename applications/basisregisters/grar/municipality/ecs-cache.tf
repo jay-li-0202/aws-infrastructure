@@ -63,7 +63,6 @@ resource "aws_iam_role" "ecs_events" {
 }
 DOC
 
-
   tags = {
     Name        = "Cloudwatch Fargate Executor // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
@@ -121,4 +120,3 @@ resource "aws_cloudwatch_event_target" "cache" {
     }
   }
 }
-

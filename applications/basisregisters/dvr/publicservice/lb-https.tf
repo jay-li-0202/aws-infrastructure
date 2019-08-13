@@ -36,4 +36,3 @@ resource "aws_security_group_rule" "ingress_https" {
 
   security_group_id = aws_security_group.api-lb.id
 }
-

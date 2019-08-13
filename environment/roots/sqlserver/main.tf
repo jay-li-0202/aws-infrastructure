@@ -166,4 +166,3 @@ output "address" {
 output "endpoint" {
   value = module.sqlserver.endpoint
 }
-

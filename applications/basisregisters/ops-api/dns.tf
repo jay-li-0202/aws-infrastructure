@@ -17,4 +17,3 @@ resource "aws_route53_record" "dev-api" {
   ttl     = "60"
   records = ["ops-api.${var.public_zone_name}"]
 }
-

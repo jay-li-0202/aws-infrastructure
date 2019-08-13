@@ -120,4 +120,3 @@ resource "aws_cloudwatch_event_target" "cache" {
     }
   }
 }
-

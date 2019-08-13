@@ -40,4 +40,3 @@ resource "aws_api_gateway_integration" "get-status-integration" {
     "integration.request.header.Accept-Encoding" = "'identity'"
   }
 }
-

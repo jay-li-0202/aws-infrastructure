@@ -49,4 +49,3 @@ resource "aws_cloudwatch_log_subscription_filter" "app_logfilter" {
   filter_pattern  = ""
   distribution    = "ByLogStream"
 }
-

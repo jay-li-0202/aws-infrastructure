@@ -84,7 +84,6 @@ data "template_file" "projections" {
   }
 }
 
-
 resource "aws_cloudwatch_metric_alarm" "projections_cpu_high" {
   alarm_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-CPU-High-${var.ecs_as_cpu_high_threshold_per}-publicservice-registry-projections"
   comparison_operator = "GreaterThanOrEqualToThreshold"

@@ -32,4 +32,3 @@ resource "aws_security_group_rule" "ingress_ecs" {
   source_security_group_id = var.ecs_sg_id
   security_group_id        = aws_security_group.basisregisters-db.id
 }
-

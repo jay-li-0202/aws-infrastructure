@@ -65,4 +65,3 @@ output "rds_s3backup_role" {
 output "rds_s3bucket" {
   value = aws_s3_bucket.rds-backup.arn
 }
-

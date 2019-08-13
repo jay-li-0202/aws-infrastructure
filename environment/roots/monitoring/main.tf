@@ -82,4 +82,3 @@ output "datadog_api_key" {
 output "datadog_lambda_arn" {
   value = module.datadog.datadog_lambda_arn
 }
-

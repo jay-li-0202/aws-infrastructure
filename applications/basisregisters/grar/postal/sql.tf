@@ -42,4 +42,3 @@ resource "null_resource" "db_setup" {
     command = "sqlcmd -S tcp:127.0.0.1,9001 -U ${var.sa_user} -P ${var.sa_pass} -q \"${data.template_file.sql3.rendered}\""
   }
 }
-

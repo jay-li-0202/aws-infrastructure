@@ -27,4 +27,3 @@ module "docs" {
 
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
 }
-

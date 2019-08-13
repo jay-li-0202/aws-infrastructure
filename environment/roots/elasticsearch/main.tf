@@ -121,4 +121,3 @@ output "es_endpoint" {
 output "kibana_endpoint" {
   value = module.elasticsearch.kibana_endpoint
 }
-

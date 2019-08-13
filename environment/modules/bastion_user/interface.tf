@@ -42,4 +42,3 @@ variable "image" {
 variable "task_execution_role_arn" {
   type = string
 }
-

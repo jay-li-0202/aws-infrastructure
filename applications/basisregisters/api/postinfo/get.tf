@@ -46,4 +46,3 @@ resource "aws_api_gateway_integration" "get-postinfo-integration1" {
     "integration.request.header.Accept-Encoding"   = "'identity'"
   }
 }
-

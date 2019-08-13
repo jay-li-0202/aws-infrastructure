@@ -46,4 +46,3 @@ resource "aws_subnet" "public" {
     Contact     = var.tag_contact
   }
 }
-

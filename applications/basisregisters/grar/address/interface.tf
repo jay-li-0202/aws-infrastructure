@@ -180,7 +180,6 @@ variable "api_memory" {
   default = 512
 }
 
-
 variable "projections_image" {
   type = string
 }

@@ -100,4 +100,3 @@ resource "aws_db_instance" "basisregisters" {
     Contact     = var.tag_contact
   }
 }
-

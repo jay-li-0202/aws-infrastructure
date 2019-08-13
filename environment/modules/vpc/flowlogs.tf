@@ -53,4 +53,3 @@ resource "aws_flow_log" "vpc_flow_log" {
   vpc_id          = aws_vpc.vpc.id
   traffic_type    = "ALL"
 }
-

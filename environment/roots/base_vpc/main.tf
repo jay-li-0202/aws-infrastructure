@@ -102,4 +102,3 @@ output "s3_vpce_id" {
 output "cidr_block" {
   value = module.vpc.cidr_block
 }
-

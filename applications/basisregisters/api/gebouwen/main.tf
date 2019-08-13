@@ -30,4 +30,3 @@ resource "aws_api_gateway_resource" "gebouwen_root3" {
   parent_id   = var.parent_id
   path_part   = "gebouwen.xml"
 }
-
