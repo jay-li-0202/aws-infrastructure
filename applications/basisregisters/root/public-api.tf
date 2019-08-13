@@ -29,6 +29,7 @@ module "public-api" {
   task_execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
 
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
+  vpc_cidr_block  = data.terraform_remote_state.vpc.outputs.cidr_block
   public_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 
