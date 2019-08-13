@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-dienstverlening-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen/{dienstverleningId}"
+  uri = "http://$${stageVariables.baseHost}/v1/dienstverleningen/{dienstverleningId}"
 
   request_parameters = {
     "integration.request.path.dienstverleningId"   = "method.request.path.dienstverleningId"

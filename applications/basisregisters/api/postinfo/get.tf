@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-postinfo-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/postinfo/{postinfoId}"
+  uri = "http://$${stageVariables.baseHost}/v1/postinfo/{postinfoId}"
 
   request_parameters = {
     "integration.request.path.postinfoId"          = "method.request.path.postinfoId"

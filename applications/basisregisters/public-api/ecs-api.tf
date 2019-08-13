@@ -47,8 +47,7 @@ resource "aws_ecs_service" "api" {
 
   # workaround for https://github.com/hashicorp/terraform/issues/12634
   depends_on = [
-    aws_lb_listener.http,
-    aws_lb_listener.https,
+    aws_lb_listener.tcp,
   ]
 }
 

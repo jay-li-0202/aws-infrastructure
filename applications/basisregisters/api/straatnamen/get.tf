@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-straatnaam-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/straatnamen/{straatnaamId}"
+  uri = "http://$${stageVariables.baseHost}/v1/straatnamen/{straatnaamId}"
 
   request_parameters = {
     "integration.request.path.straatnaamId"        = "method.request.path.straatnaamId"

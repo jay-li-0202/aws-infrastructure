@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-adres-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adressen/{adresId}"
+  uri = "http://$${stageVariables.baseHost}/v1/adressen/{adresId}"
 
   request_parameters = {
     "integration.request.path.adresId"             = "method.request.path.adresId"

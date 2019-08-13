@@ -32,6 +32,8 @@ resource "aws_lb_target_group" "docs" {
   deregistration_delay = var.deregistration_delay
 
   health_check {
+    protocol = "HTTP"
+    port = var.container_port
     path = "/health"
   }
 
@@ -53,7 +55,7 @@ resource "aws_s3_bucket" "lb_access_logs" {
   force_destroy = true
 
   tags = {
-    Name        = "Docs Loadbalancer Logs // ${var.environment_label} ${var.environment_name}"
+    Name        = "Docs Load Balancer Logs // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program

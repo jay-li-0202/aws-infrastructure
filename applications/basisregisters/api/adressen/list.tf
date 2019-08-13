@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-adressen-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adressen/"
+  uri = "http://$${stageVariables.baseHost}/v1/adressen/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-adressen-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adressen.json"
+  uri = "http://$${stageVariables.baseHost}/v1/adressen.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-adressen-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adressen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/adressen.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

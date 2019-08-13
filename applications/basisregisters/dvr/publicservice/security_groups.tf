@@ -13,20 +13,20 @@ resource "aws_security_group" "api-lb" {
 }
 
 resource "aws_security_group_rule" "lb_egress_rule" {
-  description              = "PublicService Load Balancer To Task on port ${var.port_range}-${var.port_range + 6}"
+  description              = "PublicService Load Balancer To Task on port ${var.port_range}-${var.port_range + 7}"
   type                     = "egress"
   from_port                = var.port_range
-  to_port                  = var.port_range + 6
+  to_port                  = var.port_range + 7
   protocol                 = "tcp"
   source_security_group_id = var.ecs_sg_id
   security_group_id        = aws_security_group.api-lb.id
 }
 
 resource "aws_security_group_rule" "task_ingress_rule" {
-  description              = "PublicService Load Balancer To Task on port ${var.port_range}-${var.port_range + 6}"
+  description              = "PublicService Load Balancer To Task on port ${var.port_range}-${var.port_range + 7}"
   type                     = "ingress"
   from_port                = var.port_range
-  to_port                  = var.port_range + 6
+  to_port                  = var.port_range + 7
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.api-lb.id
   security_group_id        = var.ecs_sg_id

@@ -75,7 +75,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/straatnamen"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/straatnamen"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -96,7 +96,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/straatnamen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/straatnamen.xml"
 
   request_parameters = {
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
@@ -116,7 +116,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/straatnamen.atom"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/straatnamen.atom"
 
   request_parameters = {
     "integration.request.header.Cookie"          = "method.request.header.Cookie"

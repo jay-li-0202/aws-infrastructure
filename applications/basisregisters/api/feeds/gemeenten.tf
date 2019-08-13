@@ -75,7 +75,7 @@ resource "aws_api_gateway_integration" "get-gemeenten-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/gemeenten"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/gemeenten"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -96,7 +96,7 @@ resource "aws_api_gateway_integration" "get-gemeenten-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/gemeenten.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/gemeenten.xml"
 
   request_parameters = {
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
@@ -116,7 +116,7 @@ resource "aws_api_gateway_integration" "get-gemeenten-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/gemeenten.atom"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/gemeenten.atom"
 
   request_parameters = {
     "integration.request.header.Cookie"          = "method.request.header.Cookie"

@@ -83,6 +83,10 @@ variable "deregistration_delay" {
   default = "30"
 }
 
+variable "container_port" {
+  type = string
+}
+
 variable "ecs_sg_id" {
   type = string
 }

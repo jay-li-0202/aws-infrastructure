@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-gebouw-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/gebouwen/{gebouwId}"
+  uri = "http://$${stageVariables.baseHost}/v1/gebouwen/{gebouwId}"
 
   request_parameters = {
     "integration.request.path.gebouwId"            = "method.request.path.gebouwId"

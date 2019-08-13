@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-postinfo-list-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/postinfo/"
+  uri = "http://$${stageVariables.baseHost}/v1/postinfo/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-postinfo-list-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/postinfo.json"
+  uri = "http://$${stageVariables.baseHost}/v1/postinfo.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-postinfo-list-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/postinfo.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/postinfo.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

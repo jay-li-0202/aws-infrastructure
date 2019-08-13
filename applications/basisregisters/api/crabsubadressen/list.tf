@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-crabsubadressen-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/crabsubadressen/"
+  uri = "http://$${stageVariables.baseHost}/v1/crabsubadressen/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-crabsubadressen-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/crabsubadressen.json"
+  uri = "http://$${stageVariables.baseHost}/v1/crabsubadressen.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-crabsubadressen-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/crabsubadressen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/crabsubadressen.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

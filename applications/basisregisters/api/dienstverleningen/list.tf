@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen/"
+  uri = "http://$${stageVariables.baseHost}/v1/dienstverleningen/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen.json"
+  uri = "http://$${stageVariables.baseHost}/v1/dienstverleningen.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/dienstverleningen.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

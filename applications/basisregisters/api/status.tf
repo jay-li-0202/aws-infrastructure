@@ -31,7 +31,7 @@ resource "aws_api_gateway_integration" "get-status-integration" {
   connection_type         = "VPC_LINK"
   connection_id           = aws_api_gateway_vpc_link.api.id
 
-  uri = "https://$${stageVariables.baseHost}/v1/status/"
+  uri = "http://$${stageVariables.baseHost}/v1/status/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

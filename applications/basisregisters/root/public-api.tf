@@ -18,6 +18,9 @@ module "public-api" {
   image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.29.0"
   container_port = 2080
 
+  lb_port     = 80
+  lb_protocol = "TCP"
+
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
   ecs_sg_ports = [
     "2080-2080",
@@ -29,13 +32,15 @@ module "public-api" {
   public_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 
+  api_lb_arn      = module.api.lb_arn
+  api_lb_dns_name = module.api.lb_dns_name
+  api_lb_zone_id  = module.api.lb_zone_id
+
   disco_namespace_id    = aws_service_discovery_private_dns_namespace.basisregisters.id
   disco_zone_name       = var.disco_zone_name
   public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id
   public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
   private_zone_name     = data.terraform_remote_state.dns.outputs.private_zone_name
-  cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name
-  cert_public_zone_id   = data.terraform_remote_state.dns.outputs.public_zone_id
 
   datadog_api_key        = data.terraform_remote_state.datadog.outputs.datadog_api_key
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn

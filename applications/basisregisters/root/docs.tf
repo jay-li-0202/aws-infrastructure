@@ -11,6 +11,7 @@ module "docs" {
   tag_contact     = var.tag_contact
 
   app = "basisregisters"
+  container_port = 2080
 
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
   ecs_sg_ports = [

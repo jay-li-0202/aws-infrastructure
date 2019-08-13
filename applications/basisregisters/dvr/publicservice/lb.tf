@@ -15,7 +15,7 @@ resource "aws_lb" "api" {
   }
 
   tags = {
-    Name        = "PublicService Loadbalancer // ${var.environment_label} ${var.environment_name}"
+    Name        = "PublicService Load Balancer // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program
@@ -78,7 +78,7 @@ resource "aws_s3_bucket" "lb_access_logs" {
   force_destroy = true
 
   tags = {
-    Name        = "PublicService Loadbalancer Logs // ${var.environment_label} ${var.environment_name}"
+    Name        = "PublicService Load Balancer Logs // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program

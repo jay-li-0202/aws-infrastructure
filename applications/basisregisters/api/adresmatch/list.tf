@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-adresmatch-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adresmatch/"
+  uri = "http://$${stageVariables.baseHost}/v1/adresmatch/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-adresmatch-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adresmatch.json"
+  uri = "http://$${stageVariables.baseHost}/v1/adresmatch.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-adresmatch-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/adresmatch.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/adresmatch.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

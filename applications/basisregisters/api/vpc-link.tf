@@ -4,11 +4,10 @@ resource "aws_lb" "api" {
   load_balancer_type = "network"
   subnets            = var.private_subnets
 
-  enable_deletion_protection       = true
   enable_cross_zone_load_balancing = true
 
   tags = {
-    Name        = "Api // ${var.environment_label} ${var.environment_name}"
+    Name        = "Api Load Balancer // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program

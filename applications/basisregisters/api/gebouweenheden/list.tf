@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-gebouweenheden-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/gebouweenheden/"
+  uri = "http://$${stageVariables.baseHost}/v1/gebouweenheden/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-gebouweenheden-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/gebouweenheden.json"
+  uri = "http://$${stageVariables.baseHost}/v1/gebouweenheden.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-gebouweenheden-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/gebouweenheden.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/gebouweenheden.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

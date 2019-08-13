@@ -34,7 +34,7 @@ resource "aws_api_gateway_integration" "get-gemeente-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/gemeenten/{gemeenteId}"
+  uri = "http://$${stageVariables.baseHost}/v1/gemeenten/{gemeenteId}"
 
   request_parameters = {
     "integration.request.path.gemeenteId"          = "method.request.path.gemeenteId"

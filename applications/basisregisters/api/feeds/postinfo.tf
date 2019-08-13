@@ -75,7 +75,7 @@ resource "aws_api_gateway_integration" "get-postinfo-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/postinfo"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/postinfo"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -96,7 +96,7 @@ resource "aws_api_gateway_integration" "get-postinfo-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/postinfo.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/postinfo.xml"
 
   request_parameters = {
     "integration.request.header.Cookie"          = "method.request.header.Cookie"
@@ -116,7 +116,7 @@ resource "aws_api_gateway_integration" "get-postinfo-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/feeds/postinfo.atom"
+  uri = "http://$${stageVariables.baseHost}/v1/feeds/postinfo.atom"
 
   request_parameters = {
     "integration.request.header.Cookie"          = "method.request.header.Cookie"

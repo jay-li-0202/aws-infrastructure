@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers/"
+  uri = "http://$${stageVariables.baseHost}/v1/crabhuisnummers/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers.json"
+  uri = "http://$${stageVariables.baseHost}/v1/crabhuisnummers.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/crabhuisnummers.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
