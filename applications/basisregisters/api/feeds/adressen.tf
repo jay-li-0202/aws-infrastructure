@@ -72,6 +72,8 @@ resource "aws_api_gateway_integration" "get-adressen-integration1" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/feeds/adressen"
 
@@ -91,6 +93,8 @@ resource "aws_api_gateway_integration" "get-adressen-integration2" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/feeds/adressen.xml"
 
@@ -109,6 +113,8 @@ resource "aws_api_gateway_integration" "get-adressen-integration3" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/feeds/adressen.atom"
 
@@ -118,4 +124,3 @@ resource "aws_api_gateway_integration" "get-adressen-integration3" {
     "integration.request.header.Accept-Encoding" = "'identity'"
   }
 }
-

@@ -54,6 +54,8 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration1" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers/"
 
@@ -73,6 +75,8 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration2" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers.json"
 
@@ -92,6 +96,8 @@ resource "aws_api_gateway_integration" "get-crabhuisnummers-integration3" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/crabhuisnummers.xml"
 

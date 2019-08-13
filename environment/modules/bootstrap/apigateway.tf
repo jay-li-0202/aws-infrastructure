@@ -52,4 +52,3 @@ resource "aws_iam_role_policy" "api_gateway_role_policy" {
   role   = aws_iam_role.api_gateway.id
   policy = data.aws_iam_policy_document.api_gateway.json
 }
-

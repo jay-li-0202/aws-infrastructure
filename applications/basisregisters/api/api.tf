@@ -62,6 +62,7 @@ module "gemeenten" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "postinfo" {
@@ -71,6 +72,7 @@ module "postinfo" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "straatnamen" {
@@ -80,6 +82,7 @@ module "straatnamen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "adresmatch" {
@@ -89,6 +92,7 @@ module "adresmatch" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "adressen" {
@@ -98,6 +102,7 @@ module "adressen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "crabhuisnummers" {
@@ -107,6 +112,7 @@ module "crabhuisnummers" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "crabsubadressen" {
@@ -116,6 +122,7 @@ module "crabsubadressen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "gebouwen" {
@@ -125,6 +132,7 @@ module "gebouwen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "gebouweenheden" {
@@ -134,6 +142,7 @@ module "gebouweenheden" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "feeds" {
@@ -143,6 +152,7 @@ module "feeds" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 module "dienstverleningen" {
@@ -152,6 +162,7 @@ module "dienstverleningen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
 }
 
 output "api_url" {

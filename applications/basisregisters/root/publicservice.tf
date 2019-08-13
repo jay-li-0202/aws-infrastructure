@@ -25,6 +25,11 @@ module "publicservice-registry" {
   app        = "basisregisters"
   port_range = 8000
 
+  ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
+  ecs_sg_ports = [
+    "8000-8007",
+  ]
+
   api_version       = "1.8.1"
   api_cpu           = 256
   api_memory        = 512
@@ -32,15 +37,15 @@ module "publicservice-registry" {
   api_max_instances = 4
   api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.8.2"
 
-  orafin_cpu           = 256
-  orafin_memory        = 512
-  orafin_schedule      = "cron(0/5 * * * ? *)"
-  orafin_enabled       = false
-  orafin_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.8.2"
-  orafin_ftp_host = var.publicservice_orafin_ftp_host
-  orafin_ftp_user = var.publicservice_orafin_ftp_user
+  orafin_cpu          = 256
+  orafin_memory       = 512
+  orafin_schedule     = "cron(0/5 * * * ? *)"
+  orafin_enabled      = false
+  orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.8.2"
+  orafin_ftp_host     = var.publicservice_orafin_ftp_host
+  orafin_ftp_user     = var.publicservice_orafin_ftp_user
   orafin_ftp_password = var.publicservice_orafin_ftp_password
-  orafin_ftp_path = "IN"
+  orafin_ftp_path     = "IN"
 
   projections_cpu           = 256
   projections_memory        = 512
@@ -64,8 +69,6 @@ module "publicservice-registry" {
   sa_pass     = var.sql_password
   db_password = var.publicservice_password
 
-  public_lb_listener_arn = module.public-api.lb_listener_arn
-
   ops_lb_arn          = module.ops-api.lb_arn
   ops_lb_listener_arn = module.ops-api.lb_listener_arn
   ops_cert_arn        = module.ops-api.cert_arn
@@ -74,12 +77,16 @@ module "publicservice-registry" {
   task_security_group_id  = module.public-api.task_security_group_id
 
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
+  public_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 
-  disco_namespace_id = aws_service_discovery_private_dns_namespace.basisregisters.id
-  disco_zone_name    = var.disco_zone_name
-  public_zone_id     = data.terraform_remote_state.dns.outputs.public_zone_id
-  public_zone_name   = data.terraform_remote_state.dns.outputs.public_zone_name
+  disco_namespace_id    = aws_service_discovery_private_dns_namespace.basisregisters.id
+  disco_zone_name       = var.disco_zone_name
+  public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id
+  public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
+  private_zone_name     = data.terraform_remote_state.dns.outputs.private_zone_name
+  cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name
+  cert_public_zone_id   = data.terraform_remote_state.dns.outputs.public_zone_id
 
   datadog_api_key        = data.terraform_remote_state.datadog.outputs.datadog_api_key
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
@@ -89,4 +96,3 @@ module "publicservice-registry" {
   fargate_cluster_id   = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
   fargate_cluster_arn  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
 }
-

@@ -10,6 +10,10 @@ module "api" {
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
 
+  app = "basisregisters"
+
+  private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
+
   anon_key = var.anon_key
   demo_key = var.demo_key
   ui_key   = var.ui_key
@@ -30,4 +34,3 @@ module "api" {
     aws.cert = aws.cert
   }
 }
-

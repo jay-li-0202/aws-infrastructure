@@ -55,4 +55,3 @@ resource "aws_iam_role_policy" "rds_backup_role_policy" {
   role   = aws_iam_role.rds-backup.id
   policy = data.aws_iam_policy_document.rds-backup.json
 }
-

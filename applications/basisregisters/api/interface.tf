@@ -35,6 +35,14 @@ variable "tag_contact" {
   type = string
 }
 
+variable "app" {
+  type = string
+}
+
+variable "private_subnets" {
+  type = list(string)
+}
+
 // Predefined API keys
 variable "anon_key" {
 }

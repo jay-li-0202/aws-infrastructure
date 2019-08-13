@@ -71,7 +71,6 @@ DD_FORWARDER_VERSION = "1.2.3"
 # Pass custom tags as environment variable, ensure comma separated, no trailing comma in envvar!
 DD_TAGS = os.environ.get("DD_TAGS", "")
 
-
 class DatadogConnection(object):
     def __init__(self, host, port, ddApiKey):
         self.host = host
@@ -149,7 +148,6 @@ class DatadogConnection(object):
         if ex_type is not None:
             print("DatadogConnection exit: ", ex_type, ex_value, traceback)
 
-
 def lambda_handler(event, context):
     # Check prerequisites
     if DD_API_KEY == "<your_api_key>" or DD_API_KEY == "":
@@ -200,7 +198,6 @@ def lambda_handler(event, context):
         except Exception as e:
             print("Unexpected exception: {} for event {}".format(str(e), event))
 
-
 def generate_logs(event, context, metadata):
     try:
         # Route to the corresponding parser
@@ -221,10 +218,7 @@ def generate_logs(event, context, metadata):
         logs = [err_message]
     return logs
 
-
 # Utility functions
-
-
 def parse_event_type(event):
     if "Records" in event and len(event["Records"]) > 0:
         if "s3" in event["Records"][0]:
@@ -238,7 +232,6 @@ def parse_event_type(event):
     elif "detail" in event:
         return "events"
     raise Exception("Event type not supported (see #Event supported section)")
-
 
 # Handle S3 events
 def s3_handler(event, context, metadata):
@@ -292,7 +285,6 @@ def s3_handler(event, context, metadata):
                 "message": line,
             }
             yield structured_line
-
 
 # Handle CloudWatch logs
 def awslogs_handler(event, context, metadata):
@@ -348,7 +340,6 @@ def awslogs_handler(event, context, metadata):
     for log in logs["logEvents"]:
         yield merge_dicts(log, aws_attributes)
 
-
 # Handle Cloudwatch Events
 def cwevent_handler(event, metadata):
 
@@ -366,7 +357,6 @@ def cwevent_handler(event, metadata):
 
     yield data
 
-
 # Handle Sns events
 def sns_handler(event, metadata):
 
@@ -378,7 +368,6 @@ def sns_handler(event, metadata):
         # Create structured object and send it
         structured_line = ev
         yield structured_line
-
 
 def merge_dicts(a, b, path=None):
     if path is None:
@@ -398,11 +387,9 @@ def merge_dicts(a, b, path=None):
             a[key] = b[key]
     return a
 
-
 def is_cloudtrail(key):
     match = cloudtrail_regex.search(key)
     return bool(match)
-
 
 def parse_event_source(event, key):
     if "elasticloadbalancing" in key:

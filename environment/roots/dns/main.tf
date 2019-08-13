@@ -96,4 +96,3 @@ output "private_zone_name" {
 output "private_zone_name_servers" {
   value = module.dns.private_zone_name_servers
 }
-

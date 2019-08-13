@@ -21,9 +21,9 @@ module "docs" {
   public_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 
-  public_zone_id             = data.terraform_remote_state.dns.outputs.public_zone_id
-  cert_public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
-  cert_public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id
+  public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id
+  cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name
+  cert_public_zone_id   = data.terraform_remote_state.dns.outputs.public_zone_id
 
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
 }

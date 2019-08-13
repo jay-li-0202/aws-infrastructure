@@ -22,4 +22,3 @@ resource "aws_security_group_rule" "task_egress_rule" {
 
   security_group_id = aws_security_group.task.id
 }
-

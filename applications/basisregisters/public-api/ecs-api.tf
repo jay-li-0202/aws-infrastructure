@@ -93,7 +93,6 @@ data "template_file" "api" {
   }
 }
 
-
 resource "aws_appautoscaling_target" "api" {
   service_namespace  = "ecs"
   resource_id        = "service/${var.fargate_cluster_name}/${aws_ecs_service.api.name}"

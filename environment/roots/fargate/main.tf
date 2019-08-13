@@ -89,4 +89,3 @@ output "fargate_security_group" {
 output "fargate_security_group_id" {
   value = module.fargate.ecs_security_group_id
 }
-

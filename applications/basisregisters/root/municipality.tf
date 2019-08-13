@@ -20,14 +20,14 @@ module "municipality-registry" {
   api_memory        = 512
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.7.2"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.7.2"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.7.2"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.8.1"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.8.1"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.8.1"
 
   projections_cpu           = 256
   projections_memory        = 512
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.7.2"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.8.1"
 
   cache_cpu      = 256
   cache_memory   = 512
@@ -64,4 +64,3 @@ module "municipality-registry" {
   fargate_cluster_id   = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
   fargate_cluster_arn  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
 }
-

@@ -106,4 +106,3 @@ resource "aws_api_gateway_stage" "gw" {
     Contact     = var.tag_contact
   }
 }
-

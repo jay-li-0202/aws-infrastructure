@@ -1,6 +1,6 @@
 resource "aws_security_group" "docs-lb" {
   name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-docs-lb"
-  description = "Security group for Docs Balancer"
+  description = "Security group for Docs Load Balancer"
   vpc_id      = var.vpc_id
 
   tags = {
@@ -36,4 +36,3 @@ resource "aws_security_group_rule" "task_ingress_rule" {
   source_security_group_id = aws_security_group.docs-lb.id
   security_group_id        = var.ecs_sg_id
 }
-

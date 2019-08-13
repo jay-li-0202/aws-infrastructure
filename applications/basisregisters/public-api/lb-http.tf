@@ -26,4 +26,3 @@ resource "aws_security_group_rule" "ingress_http" {
 
   security_group_id = aws_security_group.api-lb.id
 }
-

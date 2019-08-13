@@ -33,4 +33,3 @@ resource "aws_nat_gateway" "private" {
     Contact     = var.tag_contact
   }
 }
-

@@ -141,4 +141,3 @@ resource "aws_iam_role_policy" "datadog_role_policy" {
   role   = aws_iam_role.datadog.id
   policy = data.aws_iam_policy_document.datadog.json
 }
-

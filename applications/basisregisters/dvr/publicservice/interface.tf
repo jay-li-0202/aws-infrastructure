@@ -30,10 +30,6 @@ variable "tag_contact" {
   type = string
 }
 
-variable "public_lb_listener_arn" {
-  type = string
-}
-
 variable "ops_lb_arn" {
   type = string
 }
@@ -66,12 +62,77 @@ variable "app" {
   type = string
 }
 
+variable "vpc_id" {
+  type = string
+}
+
+variable "ecs_sg_id" {
+  type = string
+}
+
+variable "ecs_sg_ports" {
+  type = list(string)
+}
+
+variable "public_subnets" {
+  type = list(string)
+}
+
 variable "private_subnets" {
   type = list(string)
 }
 
-variable "vpc_id" {
+variable "lb_port" {
+  type    = string
+  default = "80"
+}
+
+variable "lb_https_port" {
+  type    = string
+  default = "443"
+}
+
+variable "lb_protocol" {
+  type    = string
+  default = "HTTP"
+}
+
+variable "lb_access_logs_expiration_days" {
+  type    = string
+  default = "3"
+}
+
+variable "cert_public_zone_name" {
   type = string
+}
+
+variable "cert_public_zone_id" {
+  type = string
+}
+
+variable "public_zone_id" {
+  type = string
+}
+
+variable "public_zone_name" {
+  type = string
+}
+
+variable "private_zone_name" {
+  type = string
+}
+
+variable "disco_zone_name" {
+  type = string
+}
+
+variable "disco_namespace_id" {
+  type = string
+}
+
+variable "deregistration_delay" {
+  type    = string
+  default = "30"
 }
 
 variable "fargate_cluster_name" {
@@ -253,27 +314,6 @@ variable "task_security_group_id" {
 variable "port_range" {
 }
 
-variable "public_zone_name" {
-  type = string
-}
-
-variable "public_zone_id" {
-  type = string
-}
-
-variable "disco_namespace_id" {
-  type = string
-}
-
-variable "deregistration_delay" {
-  type    = string
-  default = "30"
-}
-
-variable "disco_zone_name" {
-  type = string
-}
-
 # If the average CPU utilization over a minute drops to this threshold,
 # the number of containers will be reduced (but not below api_min_instances).
 variable "ecs_as_cpu_low_threshold_per" {
@@ -284,4 +324,12 @@ variable "ecs_as_cpu_low_threshold_per" {
 # the number of containers will be increased (but not above api_max_instances).
 variable "ecs_as_cpu_high_threshold_per" {
   default = "80"
+}
+
+output "lb_arn" {
+  value = aws_lb.api.arn
+}
+
+output "lb_listener_arn" {
+  value = aws_lb_listener.https.arn
 }

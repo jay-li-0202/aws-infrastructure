@@ -68,10 +68,6 @@ variable "private_subnets" {
   type = list(string)
 }
 
-variable "container_ports" {
-  type = list(string)
-}
-
 variable "vpc_id" {
   type = string
 }
@@ -93,6 +89,10 @@ variable "lb_protocol" {
 
 variable "ecs_sg_id" {
   type = string
+}
+
+variable "ecs_sg_ports" {
+  type = list(string)
 }
 
 variable "deregistration_delay" {
@@ -144,4 +144,3 @@ output "lb_listener_arn" {
 output "cert_arn" {
   value = aws_acm_certificate.main.arn
 }
-

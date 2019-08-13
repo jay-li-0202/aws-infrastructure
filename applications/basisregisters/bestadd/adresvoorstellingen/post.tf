@@ -102,4 +102,3 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration3" {
     "integration.request.header.Accept-Encoding" = "'identity'"
   }
 }
-

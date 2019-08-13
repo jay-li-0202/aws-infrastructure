@@ -53,4 +53,3 @@ resource "aws_s3_bucket" "portal" {
     Contact     = var.tag_contact
   }
 }
-

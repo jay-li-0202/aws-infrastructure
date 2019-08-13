@@ -1,9 +1,9 @@
 resource "aws_acm_certificate" "api" {
   validation_method = "DNS"
-  domain_name       = "public-api.${var.cert_public_zone_name}"
+  domain_name       = "dienstverlening-api.${var.cert_public_zone_name}"
 
   subject_alternative_names = [
-    "legacy-api.${var.cert_public_zone_name}"
+    "dienstverlening.${var.cert_public_zone_name}",
   ]
 
   lifecycle {
@@ -11,7 +11,7 @@ resource "aws_acm_certificate" "api" {
   }
 
   tags = {
-    Name        = "Public Api Certificate // ${var.environment_label} ${var.environment_name}"
+    Name        = "PublicService Api Certificate // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program

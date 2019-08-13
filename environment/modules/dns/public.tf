@@ -11,4 +11,3 @@ resource "aws_route53_zone" "public" {
     Contact     = var.tag_contact
   }
 }
-

@@ -178,7 +178,7 @@ env ENVIRONMENT=... make elasticsearch
 env ENVIRONMENT=... ACTION=apply make elasticsearch
 ```
 
-## Build an Elasticache cluster
+## Build an ElastiCache cluster
 
 For caching we use ElastiCache with Redis. To setup, run the following commands:
 

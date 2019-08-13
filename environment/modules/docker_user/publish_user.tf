@@ -15,4 +15,3 @@ resource "aws_iam_user_policy_attachment" "docker" {
 resource "aws_iam_access_key" "docker" {
   user = aws_iam_user.docker.name
 }
-

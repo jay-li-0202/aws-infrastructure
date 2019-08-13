@@ -84,4 +84,3 @@ data "template_file" "ui" {
     db_pass          = var.db_password
   }
 }
-

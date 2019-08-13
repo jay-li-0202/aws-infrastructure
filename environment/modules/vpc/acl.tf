@@ -29,4 +29,3 @@ resource "aws_default_network_acl" "default" {
     Contact     = var.tag_contact
   }
 }
-

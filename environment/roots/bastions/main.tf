@@ -125,4 +125,3 @@ output "bastion_security_group" {
 output "bastion_security_group_id" {
   value = module.bastions.bastion_security_group_id
 }
-

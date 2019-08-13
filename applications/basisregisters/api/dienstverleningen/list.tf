@@ -54,6 +54,8 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration1" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen/"
 
@@ -73,6 +75,8 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration2" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen.json"
 
@@ -92,6 +96,8 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration3" {
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
+  connection_type         = "VPC_LINK"
+  connection_id           = var.vpc_link_id
 
   uri = "https://$${stageVariables.baseHost}/v1/dienstverleningen.xml"
 
@@ -102,4 +108,3 @@ resource "aws_api_gateway_integration" "get-dienstverleningen-integration3" {
     "integration.request.header.Accept-Encoding" = "'identity'"
   }
 }
-

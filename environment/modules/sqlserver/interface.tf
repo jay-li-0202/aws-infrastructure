@@ -81,7 +81,7 @@ variable "monitoring_role" {
 }
 
 variable "sql_performance_insights_retention_period" {
-  type = string
+  type    = string
   default = 7
 }
 
@@ -108,4 +108,3 @@ output "address" {
 output "endpoint" {
   value = aws_db_instance.basisregisters.endpoint
 }
-

@@ -123,4 +123,3 @@ resource "aws_s3_bucket_notification" "lb_access_logs" {
     events              = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
   }
 }
-

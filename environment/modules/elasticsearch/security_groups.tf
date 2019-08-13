@@ -11,4 +11,3 @@ resource "aws_security_group" "elasticsearch" {
     Contact     = var.tag_contact
   }
 }
-

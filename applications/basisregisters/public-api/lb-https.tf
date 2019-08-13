@@ -10,7 +10,7 @@ resource "aws_lb_listener" "https" {
   }
 }
 
-resource "aws_lb_listener_rule" "redirect_docs1" {
+resource "aws_lb_listener_rule" "redirect_docs" {
   listener_arn = aws_lb_listener.https.arn
 
   action {
@@ -59,4 +59,3 @@ resource "aws_security_group_rule" "ingress_https" {
 
   security_group_id = aws_security_group.api-lb.id
 }
-

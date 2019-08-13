@@ -12,7 +12,8 @@ module "ops-api" {
 
   app = "basisregisters"
 
-  container_ports = [
+  ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
+  ecs_sg_ports = [
     "2000-2007",
     "3000-3007",
     "4000-4007",
@@ -21,8 +22,6 @@ module "ops-api" {
     "7000-7007",
     "8000-8007",
   ]
-
-  ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
 
   vpc_id            = data.terraform_remote_state.vpc.outputs.vpc_id
   public_subnets    = data.terraform_remote_state.vpc.outputs.public_subnet_ids
@@ -41,4 +40,3 @@ module "ops-api" {
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
   datadog_env            = "vbr-${lower(var.environment_name)}"
 }
-

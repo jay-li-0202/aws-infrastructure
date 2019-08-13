@@ -90,4 +90,3 @@ variable "private_zone_id" {
 output "endpoint" {
   value = aws_elasticache_replication_group.elasticache.configuration_endpoint_address
 }
-

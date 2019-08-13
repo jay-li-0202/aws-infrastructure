@@ -5,4 +5,3 @@ resource "aws_route53_record" "es_private" {
   ttl     = "300"
   records = [aws_elasticsearch_domain.es.endpoint]
 }
-

@@ -27,4 +27,3 @@ resource "aws_lb_listener_rule" "redirect_alternate_host_headers" {
     values = ["dev-api.*"]
   }
 }
-

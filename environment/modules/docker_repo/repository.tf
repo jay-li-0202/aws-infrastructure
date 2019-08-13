@@ -11,4 +11,3 @@ resource "aws_ecr_repository" "repo" {
     Contact     = var.tag_contact
   }
 }
-

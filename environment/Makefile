@@ -108,7 +108,7 @@ roots/cache/.terraform/terraform.tfstate:
 			-backend-config=../../../$(ENVIRONMENT)-backend.tfvars
 
 .PHONY: cache
-cache: roots/cache/.terraform/terraform.tfstate ## Run Terraform to create an Elasticache Redis cluster
+cache: roots/cache/.terraform/terraform.tfstate ## Run Terraform to create an ElastiCache Redis cluster
 	$(call check_undefined, AWS_PROFILE, AWS Profile should not be defined)
 	$(call check_defined, ACTION, terraform action to perform)
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')

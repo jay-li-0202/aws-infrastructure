@@ -65,4 +65,3 @@ module "address-registry" {
   fargate_cluster_id   = data.terraform_remote_state.fargate.outputs.fargate_cluster_id
   fargate_cluster_arn  = data.terraform_remote_state.fargate.outputs.fargate_cluster_arn
 }
-

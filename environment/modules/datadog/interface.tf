@@ -55,4 +55,3 @@ output "datadog_role" {
 output "datadog_lambda_arn" {
   value = aws_lambda_function.logging.arn
 }
-

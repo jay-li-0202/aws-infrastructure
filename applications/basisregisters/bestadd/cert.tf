@@ -35,4 +35,3 @@ resource "aws_acm_certificate_validation" "cert" {
     aws_route53_record.public_cert_validation0.fqdn,
   ]
 }
-

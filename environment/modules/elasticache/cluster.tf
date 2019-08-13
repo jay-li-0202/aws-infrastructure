@@ -55,4 +55,3 @@ resource "aws_elasticache_subnet_group" "elasticache" {
   description = "Redis Cluster Subnets // ${var.environment_label} ${var.environment_name}"
   subnet_ids  = var.subnet_ids
 }
-

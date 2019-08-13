@@ -50,7 +50,7 @@ sql_username      = "basisregisters"
 sql_storage                 = 1200
 sql_backup_retention_period = 5
 sql_multi_az                = false
-sql_performance_insights_retention_period = 30
+sql_performance_insights_retention_period = 731
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services

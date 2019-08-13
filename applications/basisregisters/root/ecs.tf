@@ -25,4 +25,3 @@ resource "aws_service_discovery_private_dns_namespace" "basisregisters" {
   description = "Basisregisters Vlaanderen Service Discovery"
   vpc         = data.terraform_remote_state.vpc.outputs.vpc_id
 }
-

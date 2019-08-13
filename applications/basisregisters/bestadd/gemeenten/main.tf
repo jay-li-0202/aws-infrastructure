@@ -27,4 +27,3 @@ resource "aws_api_gateway_resource" "gemeenten_root3" {
   parent_id   = var.parent_id
   path_part   = "gemeenten.xml"
 }
-

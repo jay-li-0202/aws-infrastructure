@@ -11,4 +11,3 @@ resource "aws_security_group" "bastion" {
     Contact     = var.tag_contact
   }
 }
-

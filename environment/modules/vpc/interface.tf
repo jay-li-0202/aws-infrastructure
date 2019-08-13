@@ -86,4 +86,3 @@ output "aws_default_security_group_id" {
 output "aws_default_network_acl_id" {
   value = aws_default_network_acl.default.id
 }
-

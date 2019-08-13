@@ -47,4 +47,3 @@ resource "aws_cloudwatch_log_resource_policy" "es-logging-policy" {
   policy_document = data.aws_iam_policy_document.es-logging-policy.json
   policy_name     = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-es-logging-policy"
 }
-

@@ -81,4 +81,3 @@ resource "aws_lambda_function" "delete-bastion" {
     }
   }
 }
-

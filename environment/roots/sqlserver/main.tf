@@ -82,15 +82,15 @@ module "sqlserver" {
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
 
-  sql_version                 = var.sql_version
-  sql_major_version           = var.sql_major_version
-  sql_family                  = var.sql_family
-  sql_instance_type           = var.sql_instance_type
-  sql_username                = var.sql_username
-  sql_password                = var.sql_password
-  sql_storage                 = var.sql_storage
-  sql_backup_retention_period = var.sql_backup_retention_period
-  sql_multi_az                = var.sql_multi_az
+  sql_version                               = var.sql_version
+  sql_major_version                         = var.sql_major_version
+  sql_family                                = var.sql_family
+  sql_instance_type                         = var.sql_instance_type
+  sql_username                              = var.sql_username
+  sql_password                              = var.sql_password
+  sql_storage                               = var.sql_storage
+  sql_backup_retention_period               = var.sql_backup_retention_period
+  sql_multi_az                              = var.sql_multi_az
   sql_performance_insights_retention_period = var.sql_performance_insights_retention_period
 
   vpc_id            = data.terraform_remote_state.vpc.outputs.vpc_id

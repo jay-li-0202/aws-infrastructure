@@ -15,26 +15,25 @@ module "public-api" {
   memory         = 512
   min_instances  = 2
   max_instances  = 4
-  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.28.1"
+  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.29.0"
   container_port = 2080
 
-  task_execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
-  ecs_sg_id               = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
-
+  ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
   ecs_sg_ports = [
     "2080-2080",
-    "8000-8007",
   ]
+
+  task_execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
 
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id
   public_subnets  = data.terraform_remote_state.vpc.outputs.public_subnet_ids
   private_subnets = data.terraform_remote_state.vpc.outputs.private_subnet_ids
 
   disco_namespace_id    = aws_service_discovery_private_dns_namespace.basisregisters.id
+  disco_zone_name       = var.disco_zone_name
   public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id
   public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
   private_zone_name     = data.terraform_remote_state.dns.outputs.private_zone_name
-  disco_zone_name       = var.disco_zone_name
   cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name
   cert_public_zone_id   = data.terraform_remote_state.dns.outputs.public_zone_id
 
@@ -48,4 +47,3 @@ module "public-api" {
 
   docs_target_group_arn = module.docs.target_group_id
 }
-

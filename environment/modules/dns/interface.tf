@@ -59,4 +59,3 @@ output "private_zone_name" {
 output "private_zone_name_servers" {
   value = aws_route53_zone.private.name_servers
 }
-

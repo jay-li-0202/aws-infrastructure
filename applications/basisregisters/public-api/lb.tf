@@ -15,7 +15,7 @@ resource "aws_lb" "api" {
   }
 
   tags = {
-    Name        = "Public Api // ${var.environment_label} ${var.environment_name}"
+    Name        = "Public Api Loadbalancer // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program
@@ -123,4 +123,3 @@ resource "aws_s3_bucket_notification" "lb_access_logs" {
     events              = ["s3:ObjectCreated:*", "s3:ObjectRemoved:*"]
   }
 }
-

@@ -48,4 +48,3 @@ resource "aws_iam_role_policy" "rds_role_policy" {
   role   = aws_iam_role.rds.id
   policy = data.aws_iam_policy_document.rds.json
 }
-

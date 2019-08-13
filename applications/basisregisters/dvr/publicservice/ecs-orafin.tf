@@ -40,10 +40,10 @@ data "template_file" "orafin" {
     db_user          = var.db_user
     db_pass          = var.db_password
 
-    orafin_ftp_host = var.orafin_ftp_host
-    orafin_ftp_user = var.orafin_ftp_user
+    orafin_ftp_host     = var.orafin_ftp_host
+    orafin_ftp_user     = var.orafin_ftp_user
     orafin_ftp_password = var.orafin_ftp_password
-    orafin_ftp_path = var.orafin_ftp_path
+    orafin_ftp_path     = var.orafin_ftp_path
   }
 }
 

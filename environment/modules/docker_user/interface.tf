@@ -9,4 +9,3 @@ output "docker_user_key" {
 output "docker_user_secret" {
   value = aws_iam_access_key.docker.secret
 }
-

@@ -132,4 +132,3 @@ resource "aws_cloudwatch_log_subscription_filter" "app_logfilter" {
   destination_arn = var.datadog_logging_lambda
   filter_pattern  = ""
 }
-

@@ -5,4 +5,3 @@ resource "aws_route53_record" "elasticache_private" {
   ttl     = "300"
   records = [aws_elasticache_replication_group.elasticache.configuration_endpoint_address]
 }
-

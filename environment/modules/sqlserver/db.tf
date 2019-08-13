@@ -72,9 +72,9 @@ resource "aws_db_instance" "basisregisters" {
   username = var.sql_username
   password = var.sql_password
 
-  monitoring_interval = 30
-  monitoring_role_arn = var.monitoring_role
-  performance_insights_enabled = true
+  monitoring_interval                   = 30
+  monitoring_role_arn                   = var.monitoring_role
+  performance_insights_enabled          = true
   performance_insights_retention_period = var.sql_performance_insights_retention_period
 
   allow_major_version_upgrade = true
