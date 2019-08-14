@@ -1,0 +1,418 @@
+@startuml
+
+hide stereotype
+skinparam linetype ortho
+
+skinparam {
+  note {
+    borderColor black
+    backgroundColor #FAF0E6
+  }
+
+  usecase {
+    arrowColor black
+  }
+
+  actor {
+    BorderColor black
+
+    BackgroundColor #FFF
+    Shadowing false
+  }
+
+  component {
+    borderColor black
+    backgroundColor #9dd7fb
+    fontColor #444
+  }
+}
+
+skinparam component<<target>> {
+  backgroundColor #AFB2EE
+  fontColor black
+}
+
+skinparam component<<docker>> {
+  backgroundColor #EEBFBF
+  fontColor black
+}
+
+skinparam component<<loadbalancer>> {
+  backgroundColor #FFFF99
+  fontColor black
+}
+
+
+:AIV: as AivGebruiker
+:Wereld: as AnonymousGebruiker
+
+component ApiGW [
+  <b>Api Gateway</b>
+
+]
+package "Load Balancers" {
+
+  component LBDocs<<loadbalancer>> [
+    <b>LB Docs</b>
+
+  ]
+  component LBOps<<loadbalancer>> [
+    <b>LB Ops</b>
+
+  ]
+  component LBDVR<<loadbalancer>> [
+    <b>LB DVR</b>
+
+  ]
+  component LBPublic<<loadbalancer>> [
+    <b>LB Public Api</b>
+
+  ]
+}
+
+
+package "Public Groups" as TargetGroups {
+
+  component TGDocs<<target>> [
+    <b>TG Docs</b>
+
+  ]
+  component TGPublic<<target>> [
+    <b>TG Public Api</b>
+
+  ]
+
+}
+
+package "Public Api" as PackagePublicApi {
+
+  component DockerPublicApi<<docker>> [
+    <b>Public Api Docker</b>
+
+  ]
+}
+
+package "DVR"  as PackageDvr {
+  component TGDVRProjections<<target>> [
+    <b>TG DVR Projections</b>
+
+  ]
+  component TGDVRUI<<target>> [
+    <b>TG DVR UI</b>
+
+  ]
+  component TGDVRApi<<target>> [
+    <b>TG DVR Api</b>
+
+  ]
+  component DockerDvrApi<<docker>> [
+    <b>Dvr Api Docker</b>
+
+  ]
+  component DockerDvrUI<<docker>> [
+    <b>Dvr UI Docker</b>
+
+  ]
+  component DockerDvrProjections<<docker>> [
+    <b>Dvr Projections Docker</b>
+
+  ]
+}
+
+package "Municipality" as PackageMunicipality {
+
+  component TGMunicipalityProjections<<target>> [
+    <b>TG Municipality Projections</b>
+
+  ]
+  component TGMunicipalityImport<<target>> [
+    <b>TG Municipality Import</b>
+
+  ]
+  component DockerMunicipalityLegacyApi<<docker>> [
+    <b>Municipality Legacy Api Docker</b>
+
+  ]
+  component DockerMunicipalityExtractApi<<docker>> [
+    <b>Municipality Extract Api Docker</b>
+
+  ]
+  component DockerMunicipalityImportApi<<docker>> [
+    <b>Municipality Import Api Docker</b>
+
+  ]
+  component DockerMunicipalityProjections<<docker>> [
+    <b>Municipality Projections Docker</b>
+
+  ]
+}
+
+package "Postal" as PakcagePostal{
+
+  component TGPostalProjections<<target>> [
+    <b>TG Postal Projections</b>
+
+  ]
+  component TGPostalImport<<target>> [
+    <b>TG Postal Import</b>
+
+  ]
+  component DockerPostalLegacyApi<<docker>> [
+    <b>Postal Legacy Api Docker</b>
+
+  ]
+  component DockerPostalExtractApi<<docker>> [
+    <b>Postal Extract Api Docker</b>
+
+  ]
+  component DockerPostalImportApi<<docker>> [
+    <b>Postal Import Api Docker</b>
+
+  ]
+  component DockerPostalProjections<<docker>> [
+    <b>Postal Projections Docker</b>
+
+  ]
+}
+
+package "StreetName" as PackageStreetName{
+
+  component TGStreetNameProjections<<target>> [
+    <b>TG StreetName Projections</b>
+
+  ]
+  component TGStreetNameImport<<target>> [
+    <b>TG StreetName Import</b>
+
+  ]
+  component DockerStreetNameLegacyApi<<docker>> [
+    <b>StreetName Legacy Api Docker</b>
+
+  ]
+  component DockerStreetNameExtractApi<<docker>> [
+    <b>StreetName Extract Api Docker</b>
+
+  ]
+  component DockerStreetNameImportApi<<docker>> [
+    <b>StreetName Import Api Docker</b>
+
+  ]
+  component DockerStreetNameProjections<<docker>> [
+    <b>StreetName Projections Docker</b>
+
+  ]
+}
+
+package "Address" as PackageAddress{
+
+
+  component TGAddressProjections<<target>> [
+    <b>TG Address Projections</b>
+
+  ]
+  component TGAddressImport<<target>> [
+    <b>TG Address Import</b>
+
+  ]
+  component DockerAddressLegacyApi<<docker>> [
+    <b>Address Legacy Api Docker</b>
+
+  ]
+  component DockerAddressExtractApi<<docker>> [
+    <b>Address Extract Api Docker</b>
+
+  ]
+  component DockerAddressImportApi<<docker>> [
+    <b>Address Import Api Docker</b>
+
+  ]
+  component DockerAddressProjections<<docker>> [
+    <b>Address Projections Docker</b>
+
+  ]
+}
+
+package "Building" as PackageBuilding{
+
+  component TGBuildingProjections<<target>> [
+    <b>TG Building Projections</b>
+
+  ]
+  component TGBuildingImport<<target>> [
+    <b>TG Building Import</b>
+
+  ]
+  component DockerBuildingLegacyApi<<docker>> [
+    <b>Building Legacy Api Docker</b>
+
+  ]
+  component DockerBuildingExtractApi<<docker>> [
+    <b>Building Extract Api Docker</b>
+
+  ]
+  component DockerBuildingImportApi<<docker>> [
+    <b>Building Import Api Docker</b>
+
+  ]
+  component DockerBuildingProjections<<docker>> [
+    <b>Building Projections Docker</b>
+
+  ]
+}
+
+package "Parcel" as PackageParcel {
+
+  component TGParcelProjections<<target>> [
+    <b>TG Parcel Projections</b>
+
+  ]
+  component TGParcelImport<<target>> [
+    <b>TG Parcel Import</b>
+
+  ]
+  component DockerParcelLegacyApi<<docker>> [
+    <b>Parcel Legacy Api Docker</b>
+
+  ]
+  component DockerParcelExtractApi<<docker>> [
+    <b>Parcel Extract Api Docker</b>
+
+  ]
+  component DockerParcelImportApi<<docker>> [
+    <b>Parcel Import Api Docker</b>
+
+  ]
+  component DockerParcelProjections<<docker>> [
+    <b>Parcel Projections Docker</b>
+
+  ]
+}
+
+TGPostalImport -[hidden]-> DockerPostalProjections
+TGPostalImport -[hidden]-> DockerPostalLegacyApi
+TGPostalImport -[hidden]-> DockerPostalExtractApi
+TGPostalImport -[hidden]-> DockerPostalImportApi
+TGPostalProjections -[hidden]-> DockerPostalProjections
+TGPostalProjections -[hidden]-> DockerPostalLegacyApi
+TGPostalProjections -[hidden]-> DockerPostalExtractApi
+TGPostalProjections -[hidden]-> DockerPostalImportApi
+
+TGMunicipalityImport -[hidden]-> DockerMunicipalityProjections
+TGMunicipalityImport -[hidden]-> DockerMunicipalityLegacyApi
+TGMunicipalityImport -[hidden]-> DockerMunicipalityExtractApi
+TGMunicipalityImport -[hidden]-> DockerMunicipalityImportApi
+TGMunicipalityProjections -[hidden]-> DockerMunicipalityProjections
+TGMunicipalityProjections -[hidden]-> DockerMunicipalityLegacyApi
+TGMunicipalityProjections -[hidden]-> DockerMunicipalityExtractApi
+TGMunicipalityProjections -[hidden]-> DockerMunicipalityImportApi
+
+TGStreetNameImport -[hidden]-> DockerStreetNameProjections
+TGStreetNameImport -[hidden]-> DockerStreetNameLegacyApi
+TGStreetNameImport -[hidden]-> DockerStreetNameExtractApi
+TGStreetNameImport -[hidden]-> DockerStreetNameImportApi
+TGStreetNameProjections -[hidden]-> DockerStreetNameProjections
+TGStreetNameProjections -[hidden]-> DockerStreetNameLegacyApi
+TGStreetNameProjections -[hidden]-> DockerStreetNameExtractApi
+TGStreetNameProjections -[hidden]-> DockerStreetNameImportApi
+
+TGAddressImport -[hidden]-> DockerAddressProjections
+TGAddressImport -[hidden]-> DockerAddressLegacyApi
+TGAddressImport -[hidden]-> DockerAddressExtractApi
+TGAddressImport -[hidden]-> DockerAddressImportApi
+TGAddressProjections -[hidden]-> DockerAddressProjections
+TGAddressProjections -[hidden]-> DockerAddressLegacyApi
+TGAddressProjections -[hidden]-> DockerAddressExtractApi
+TGAddressProjections -[hidden]-> DockerAddressImportApi
+
+TGBuildingImport -[hidden]-> DockerBuildingProjections
+TGBuildingImport -[hidden]-> DockerBuildingLegacyApi
+TGBuildingImport -[hidden]-> DockerBuildingExtractApi
+TGBuildingImport -[hidden]-> DockerBuildingImportApi
+TGBuildingProjections -[hidden]-> DockerBuildingProjections
+TGBuildingProjections -[hidden]-> DockerBuildingLegacyApi
+TGBuildingProjections -[hidden]-> DockerBuildingExtractApi
+TGBuildingProjections -[hidden]-> DockerBuildingImportApi
+
+TGParcelImport -[hidden]-> DockerParcelProjections
+TGParcelProjections -[hidden]-> DockerParcelProjections
+TGParcelImport -[hidden]-> DockerParcelImportApi
+TGParcelImport -[hidden]-> DockerParcelLegacyApi
+TGParcelImport -[hidden]-> DockerParcelExtractApi
+TGParcelProjections -[hidden]-> DockerParcelImportApi
+TGParcelProjections -[hidden]-> DockerParcelLegacyApi
+TGParcelProjections -[hidden]-> DockerParcelExtractApi
+
+
+AivGebruiker ----> LBOps
+AnonymousGebruiker ---> ApiGW
+AnonymousGebruiker ---> LBDVR
+AnonymousGebruiker ---> LBDocs
+
+
+ApiGW --> LBPublic
+
+LBDocs ---> TGDocs
+LBPublic ---> TGPublic
+
+LBOps -----> TGDVRProjections
+LBDVR --> TGDVRUI
+LBDVR --> TGDVRApi
+
+LBOps -----> TGMunicipalityProjections
+LBOps -----> TGMunicipalityImport
+
+LBOps -----> TGPostalProjections
+LBOps -----> TGPostalImport
+
+LBOps -----> TGStreetNameProjections
+LBOps -----> TGStreetNameImport
+
+LBOps -----> TGAddressProjections
+LBOps -----> TGAddressImport
+
+LBOps -----> TGBuildingProjections
+LBOps -----> TGBuildingImport
+
+LBOps -----> TGParcelProjections
+LBOps -----> TGParcelImport
+
+TGPublic ---> DockerPublicApi
+TGDocs ---> DockerPublicApi
+
+TGDVRApi ---> DockerDvrApi
+TGDVRProjections ---> DockerDvrProjections
+TGDVRUI ---> DockerDvrUI
+
+DockerPublicApi --> DockerDvrApi
+
+TGMunicipalityProjections ---> DockerMunicipalityProjections
+TGMunicipalityImport --> DockerMunicipalityImportApi
+DockerPublicApi --> DockerMunicipalityLegacyApi
+DockerPublicApi --> DockerMunicipalityExtractApi
+
+TGPostalProjections ---> DockerPostalProjections
+TGPostalImport --> DockerPostalImportApi
+DockerPublicApi --> DockerPostalLegacyApi
+DockerPublicApi --> DockerPostalExtractApi
+
+TGStreetNameProjections ---> DockerStreetNameProjections
+TGStreetNameImport --> DockerStreetNameImportApi
+DockerPublicApi --> DockerStreetNameLegacyApi
+DockerPublicApi --> DockerStreetNameExtractApi
+
+TGAddressProjections ---> DockerAddressProjections
+TGAddressImport --> DockerAddressImportApi
+DockerPublicApi --> DockerAddressLegacyApi
+DockerPublicApi --> DockerAddressExtractApi
+
+TGBuildingProjections ---> DockerBuildingProjections
+TGBuildingImport --> DockerBuildingImportApi
+DockerPublicApi --> DockerBuildingLegacyApi
+DockerPublicApi --> DockerBuildingExtractApi
+
+TGParcelProjections ---> DockerParcelProjections
+TGParcelImport --> DockerParcelImportApi
+DockerPublicApi --> DockerParcelLegacyApi
+DockerPublicApi --> DockerParcelExtractApi
+
+@enduml
