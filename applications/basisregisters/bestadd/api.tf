@@ -55,6 +55,7 @@ module "gemeenten" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = var.vpc_link_id
 }
 
 module "straatnamen" {
@@ -64,6 +65,7 @@ module "straatnamen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = var.vpc_link_id
 }
 
 module "adressen" {
@@ -73,6 +75,7 @@ module "adressen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = var.vpc_link_id
 }
 
 module "adresvoorstellingen" {
@@ -82,6 +85,7 @@ module "adresvoorstellingen" {
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
   request_validator_id = aws_api_gateway_request_validator.gw.id
   authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = var.vpc_link_id
 }
 
 output "api_url" {

@@ -6,7 +6,7 @@ resource "aws_api_gateway_deployment" "gw" {
   stage_name = ""
 
   stage_description = md5(
-    "${file("${path.module}/api.tf")}\n${file("${path.module}/status.tf")}\n${file("${path.module}/feeds/main.tf")}\n${file("${path.module}/adresmatch/main.tf")}\n${file("${path.module}/adressen/main.tf")}\n${file("${path.module}/crabhuisnummers/main.tf")}\n${file("${path.module}/crabsubadressen/main.tf")}\n${file("${path.module}/dienstverleningen/main.tf")}\n${file("${path.module}/gebouwen/main.tf")}\n${file("${path.module}/gebouweenheden/main.tf")}\n${file("${path.module}/gemeenten/main.tf")}\n${file("${path.module}/postinfo/main.tf")}\n${file("${path.module}/straatnamen/main.tf")}",
+    "${file("${path.module}/api.tf")}\n${file("${path.module}/status.tf")}\n${file("${path.module}/feeds/main.tf")}\n${file("${path.module}/adresmatch/main.tf")}\n${file("${path.module}/adressen/main.tf")}\n${file("${path.module}/crabhuisnummers/main.tf")}\n${file("${path.module}/crabsubadressen/main.tf")}\n${file("${path.module}/dienstverleningen/main.tf")}\n${file("${path.module}/gebouwen/main.tf")}\n${file("${path.module}/gebouweenheden/main.tf")}\n${file("${path.module}/gemeenten/main.tf")}\n${file("${path.module}/percelen/main.tf")}\n${file("${path.module}/postinfo/main.tf")}\n${file("${path.module}/straatnamen/main.tf")}",
   )
 
   //   stage_description = <<EOF
@@ -22,6 +22,7 @@ resource "aws_api_gateway_deployment" "gw" {
   //   ${file("${path.module}/gebouwen/main.tf")}
   //   ${file("${path.module}/gebouweenheden/main.tf")}
   //   ${file("${path.module}/gemeenten/main.tf")}
+  //   ${file("${path.module}/percelen/main.tf")}
   //   ${file("${path.module}/postinfo/main.tf")}
   //   ${file("${path.module}/straatnamen/main.tf")}
   // ")}
@@ -137,6 +138,16 @@ module "gebouwen" {
 
 module "gebouweenheden" {
   source = "./gebouweenheden"
+
+  rest_api_id          = aws_api_gateway_rest_api.gw.id
+  parent_id            = aws_api_gateway_rest_api.gw.root_resource_id
+  request_validator_id = aws_api_gateway_request_validator.gw.id
+  authorizer_id        = aws_api_gateway_authorizer.gw.id
+  vpc_link_id          = aws_api_gateway_vpc_link.api.id
+}
+
+module "percelen" {
+  source = "./percelen"
 
   rest_api_id          = aws_api_gateway_rest_api.gw.id
   parent_id            = aws_api_gateway_rest_api.gw.root_resource_id

@@ -17,6 +17,8 @@ module "bestadd" {
   api_name       = "bestadd"
   api_stage_name = "bestadd"
 
+  vpc_link_id = module.api.vpc_link_id
+
   api_url               = "bosa"
   public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
   cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name

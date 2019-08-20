@@ -98,3 +98,7 @@ output "lb_dns_name" {
 output "lb_zone_id" {
   value = aws_lb.api.zone_id
 }
+
+output "vpc_link_id" {
+  value = aws_api_gateway_vpc_link.api.id
+}

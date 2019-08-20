@@ -1,7 +1,7 @@
-resource "aws_api_gateway_method" "get-adressen1" {
+resource "aws_api_gateway_method" "get-percelen1" {
   rest_api_id          = var.rest_api_id
-  resource_id          = aws_api_gateway_resource.adressen_root1.id
-  http_method          = "POST"
+  resource_id          = aws_api_gateway_resource.percelen_root1.id
+  http_method          = "GET"
   authorization        = "CUSTOM"
   request_validator_id = var.request_validator_id
   api_key_required     = true
@@ -14,10 +14,10 @@ resource "aws_api_gateway_method" "get-adressen1" {
   }
 }
 
-resource "aws_api_gateway_method" "get-adressen2" {
+resource "aws_api_gateway_method" "get-percelen2" {
   rest_api_id          = var.rest_api_id
-  resource_id          = aws_api_gateway_resource.adressen_root2.id
-  http_method          = "POST"
+  resource_id          = aws_api_gateway_resource.percelen_root2.id
+  http_method          = "GET"
   authorization        = "CUSTOM"
   request_validator_id = var.request_validator_id
   api_key_required     = true
@@ -30,10 +30,10 @@ resource "aws_api_gateway_method" "get-adressen2" {
   }
 }
 
-resource "aws_api_gateway_method" "get-adressen3" {
+resource "aws_api_gateway_method" "get-percelen3" {
   rest_api_id          = var.rest_api_id
-  resource_id          = aws_api_gateway_resource.adressen_root3.id
-  http_method          = "POST"
+  resource_id          = aws_api_gateway_resource.percelen_root3.id
+  http_method          = "GET"
   authorization        = "CUSTOM"
   request_validator_id = var.request_validator_id
   api_key_required     = true
@@ -46,18 +46,18 @@ resource "aws_api_gateway_method" "get-adressen3" {
   }
 }
 
-resource "aws_api_gateway_integration" "get-adressen-integration1" {
+resource "aws_api_gateway_integration" "get-percelen-integration1" {
   rest_api_id = var.rest_api_id
-  resource_id = aws_api_gateway_resource.adressen_root1.id
-  http_method = aws_api_gateway_method.get-adressen1.http_method
+  resource_id = aws_api_gateway_resource.percelen_root1.id
+  http_method = aws_api_gateway_method.get-percelen1.http_method
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "POST"
+  integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/adressen/"
+  uri = "http://$${stageVariables.baseHost}/v1/percelen/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -67,18 +67,18 @@ resource "aws_api_gateway_integration" "get-adressen-integration1" {
   }
 }
 
-resource "aws_api_gateway_integration" "get-adressen-integration2" {
+resource "aws_api_gateway_integration" "get-percelen-integration2" {
   rest_api_id = var.rest_api_id
-  resource_id = aws_api_gateway_resource.adressen_root2.id
-  http_method = aws_api_gateway_method.get-adressen2.http_method
+  resource_id = aws_api_gateway_resource.percelen_root2.id
+  http_method = aws_api_gateway_method.get-percelen2.http_method
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "POST"
+  integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/adressen.json"
+  uri = "http://$${stageVariables.baseHost}/v1/percelen.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -88,18 +88,18 @@ resource "aws_api_gateway_integration" "get-adressen-integration2" {
   }
 }
 
-resource "aws_api_gateway_integration" "get-adressen-integration3" {
+resource "aws_api_gateway_integration" "get-percelen-integration3" {
   rest_api_id = var.rest_api_id
-  resource_id = aws_api_gateway_resource.adressen_root3.id
-  http_method = aws_api_gateway_method.get-adressen3.http_method
+  resource_id = aws_api_gateway_resource.percelen_root3.id
+  http_method = aws_api_gateway_method.get-percelen3.http_method
 
   type                    = "HTTP_PROXY"
-  integration_http_method = "POST"
+  integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/adressen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/percelen.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
