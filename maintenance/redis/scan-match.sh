@@ -16,7 +16,7 @@ for server in $servers; do
         cursor=`echo $r | cut -f 1 -d' '`
         nf=`echo $r | awk '{print NF}'`
         if [ $nf -gt 1 ]; then
-            for x in `echo $r | cut -f 1 -d' ' --complement`; do
+            for x in `echo $r | cut -f 2- -d' '`; do
                 echo $x
             done
         fi
