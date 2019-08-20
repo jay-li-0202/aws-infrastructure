@@ -29,7 +29,7 @@ resource "aws_api_gateway_integration" "get-status-integration" {
   integration_http_method = "GET"
   passthrough_behavior    = "WHEN_NO_MATCH"
 
-  uri = "https://$${stageVariables.baseHost}/v1/status/"
+  uri = "http://$${stageVariables.baseHost}/v1/status/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

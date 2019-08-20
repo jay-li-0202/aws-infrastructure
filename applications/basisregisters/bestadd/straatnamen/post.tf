@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/straatnamen/"
+  uri = "http://$${stageVariables.baseHost}/v1/bosa/straatnamen/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/straatnamen.json"
+  uri = "http://$${stageVariables.baseHost}/v1/bosa/straatnamen.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-straatnamen-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/straatnamen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/bosa/straatnamen.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"

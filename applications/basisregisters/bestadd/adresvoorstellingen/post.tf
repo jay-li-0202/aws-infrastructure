@@ -57,7 +57,7 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration1" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen/"
+  uri = "http://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -78,7 +78,7 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration2" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen.json"
+  uri = "http://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen.json"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
@@ -99,7 +99,7 @@ resource "aws_api_gateway_integration" "get-adresvoorstellingen-integration3" {
   connection_type         = "VPC_LINK"
   connection_id           = var.vpc_link_id
 
-  uri = "https://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen.xml"
+  uri = "http://$${stageVariables.baseHost}/v1/bosa/adresvoorstellingen.xml"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
