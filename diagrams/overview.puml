@@ -1,4 +1,4 @@
-@startuml
+@startuml AWS Overview
 
 hide stereotype
 skinparam linetype ortho

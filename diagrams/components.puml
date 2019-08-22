@@ -1,0 +1,406 @@
+@startuml Component Dependencies
+
+hide stereotype
+' skinparam linetype ortho
+skinparam backgroundColor #EEEBDC
+skinparam handwritten true
+' scale 750 width
+left to right direction
+
+skinparam {
+  note {
+    borderColor black
+    backgroundColor #FAF0E6
+  }
+
+  usecase {
+    arrowColor black
+  }
+
+  component {
+    borderColor black
+    backgroundColor #9dd7fb
+    fontColor #444
+  }
+}
+
+skinparam component<<tool>> {
+  backgroundColor #AFB2EE
+  fontColor black
+}
+
+skinparam component<<library>> {
+  backgroundColor #EEBFBF
+  fontColor black
+}
+
+skinparam component<<registry>> {
+  backgroundColor #FFFF99
+  fontColor black
+}
+
+skinparam package<<nuget>> {
+  backgroundColor #99FF99
+}
+
+'.NET Core 2.2.6
+'.NET Core SDK 2.2.401
+
+package build_pipeline_sln as "build_pipeline (1.7.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/build-pipeline
+  'Contains generic files for all Basisregisters Vlaanderen pipelines.
+  component build_pipeline as "build_pipeline"<<tool>>
+}
+
+component tostring_builder as "tostring-builder (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/tostring-builder
+'Easily customize ToString of objects.
+
+component timestamp_jsonconverter as "timestamp-jsonconverter (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/timestamp-jsonconverter
+'JSON.NET converter for parsing timestamps in Zulu time.
+
+component csv_formatter as "csv-formatter (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/csv-formatter
+'ASP.NET Core MVC CSV formatter.
+
+component trim_string_jsonconverter as "trim-string-jsonconverter (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/trim-string-jsonconverter
+'JSON.NET converter for trimming and removing duplicate spaces in strings.
+
+component deterministic_guid_generator as "deterministic-guid-generator (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/deterministic-guid-generator
+'Create a deterministic GUID based on namespace Guid, a string and an optional version.
+
+component hexbyte_converter as "hexbyte-converter (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/hexbyte-converter
+'Easily convert between byte array and hex strings.
+
+
+component hashcode_calculator as "hashcode-calculator (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/hashcode-calculator
+'Calculates hashcode based on given fields.
+
+package api_helpers <<Rectangle>> {
+  component default_response_compression_quality_middleware as "default-response-compression-quality-middleware (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/default-response-compression-quality-middleware
+  'ASP.NET Core MVC Middleware to define default compression quality priorities.
+
+  component correlationid_middleware as "correlationid-middleware (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/correlationid-middleware
+  'Middleware component which adds a correlation id as a claim for the user on the request context.
+
+  component response_correlationid_middleware as "response-correlationid-middleware (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/response-correlationid-middleware
+  'ASP.NET Core MVC Middleware to add an 'x-correlation-id' header to all responses.
+
+  component logcontext_correlationid_middleware as "logcontext-correlationid-middleware (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/logcontext-correlationid-middleware
+  'Middleware component which adds the correlation id to the Serilog LogContext.
+
+  component http_security_headers_middleware as "http-security-headers-middleware (1.2.0)"<<library>>
+  'https://github.com/Informatievlaanderen/http-security-headers-middleware
+  'Middleware component which replaces and adds common security related http headers.
+
+  component http_logging_filter as "http-logging-filter (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/http-logging-filter
+  'A filter which logs HTTP calls. By default logs POST and PUT.
+
+  component guid_header_modelbinding as "guid-header-modelbinding (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/guid-header-modelbinding
+  'An MVC ModelBinder for GUID type or GUID as string, which also looks in the header.
+
+  component version_header_middleware as "version-header-middleware (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/version-header-middleware
+  'ASP.NET Core MVC Middleware to add a 'x-basisregister-version' header to the response containing the assembly version.
+
+  component remote_ipaddress_middleware as "remote-ipaddress-middleware (1.2.0)"<<library>>
+  'https://github.com/Informatievlaanderen/remote-ipaddress-middleware
+  'Middleware component which adds a the remote IP id as a claim for the user on the request context.
+
+  component problemdetails_middleware as "problemdetails-middleware (3.2.0)"<<library>>
+  'https://github.com/Informatievlaanderen/problemdetails-middleware
+  'Error handling middleware, using RFC7807.
+
+  component enable_requestrewind_middleware as "enable-requestrewind-middleware (1.1.0)"<<library>>
+  'https://github.com/Informatievlaanderen/enable-requestrewind-middleware
+  'Middleware component which enables rewinding of requests in order to help other middlewares.
+}
+
+component ef_entity_configuration as "ef-entity-configuration (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/ef-entity-configuration
+'Auto discover IEntityTypeConfiguration classes.
+
+
+component blob_store as "blob-store (1.2.0)"<<library>>
+'https://github.com/Informatievlaanderen/blob-store
+'Blob storage abstraction for SQL Server, AWSS3, Memory.
+
+component shaperon as "shaperon (4.2.0)"<<library>>
+'https://github.com/Informatievlaanderen/shaperon
+'Lightweight dbase and shape record handling.
+
+'TODO: Fix build and update version number
+component rfc3339_datetimeoffset as "rfc3339-datetimeoffset (1.2.0)"<<library>>
+'https://github.com/Informatievlaanderen/rfc3339-datetimeoffset
+'RFC 3339 DateTimeOffset.
+
+package datadog_tracing_sln as "datadog-tracing (3.7.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/datadog-tracing
+  'A C# Implementation of Data Dog Tracing
+
+  component datadog_tracing as "datadog-tracing"<<library>>
+  component datadog_tracing_aspnetcore as "datadog-tracing-aspnetcore"<<library>>
+  component datadog_tracing_sql as "datadog-tracing-sql"<<library>>
+  component datadog_tracing_sqlstreamstore as "datadog-tracing-sqlstreamstore"<<library>>
+  component datadog_tracing_autofac as "datadog-tracing-autofac"<<library>>
+
+  datadog_tracing_autofac --> datadog_tracing
+  datadog_tracing_aspnetcore --> datadog_tracing
+  datadog_tracing_sql --> datadog_tracing
+  datadog_tracing_sqlstreamstore --> datadog_tracing
+}
+
+package event_handling_sln as "event-handling (1.1.1)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/event-handling
+  'Lightweight event handling infrastructure.
+
+  component event_handling as "event-handling"<<library>>
+  component event_handling_autofac as "event-handling-autofac"<<library>>
+
+  event_handling --> trim_string_jsonconverter
+  event_handling_autofac --> event_handling
+}
+
+component redis_populator as "redis-populator (1.5.0)"<<tool>>
+'https://github.com/Informatievlaanderen/redis-populator
+'Populate a Redis cache based on a list of URLs.
+redis_populator --> datadog_tracing
+redis_populator --> datadog_tracing_aspnetcore
+redis_populator --> datadog_tracing_sql
+redis_populator --> datadog_tracing_sqlstreamstore
+redis_populator --> datadog_tracing_autofac
+
+package command_handling_sln as "command-handling (3.2.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/command-handling
+  'Lightweight infrastructure for doing command handling and eventsourcing using aggregates.
+
+  component aggregate_source as "aggregate-source"<<library>>
+  component aggregate_source_explicit_routing as "aggregate-source-explicit-routing"<<library>>
+  component aggregate_source_sqlstreamstore as "aggregate-source-sqlstreamstore"<<library>>
+  component aggregate_source_sqlstreamstore_autofac as "aggregate-source-sqlstreamstore-autofac"<<library>>
+  component aggregate_source_testing as "aggregate-source-testing"<<library>>
+  component aggregate_source_testing_commandhandling as "aggregate-source-testing-commandhandling"<<library>>
+  component aggregate_source_testing_nunit as "aggregate-source-testing-nunit"<<library>>
+  component aggregate_source_testing_sqlstreamstore as "aggregate-source-testing-sqlstreamstore"<<library>>
+  component aggregate_source_testing_sqlstreamstore_autofac as "aggregate-source-testing-sqlstreamstore-autofac"<<library>>
+  component aggregate_source_testing_xunit as "aggregate-source-testing-xunit-"<<library>>
+
+  component command_handling as "command-handling"<<library>>
+  component command_handling_sqlstreamstore as "command-handling-sqlstreamstore"<<library>>
+  component command_handling_idempotency as "command-handling-idempotency"<<library>>
+
+  aggregate_source --> hashcode_calculator
+  aggregate_source --> hexbyte_converter
+  aggregate_source --> tostring_builder
+
+  aggregate_source_explicit_routing --> aggregate_source
+
+  aggregate_source_sqlstreamstore --> aggregate_source
+  aggregate_source_sqlstreamstore --> event_handling
+
+  aggregate_source_sqlstreamstore_autofac --> aggregate_source
+  aggregate_source_sqlstreamstore_autofac --> aggregate_source_sqlstreamstore
+
+  aggregate_source_testing --> aggregate_source
+
+  aggregate_source_testing_commandhandling --> aggregate_source_testing
+  aggregate_source_testing_commandhandling --> command_handling
+
+  aggregate_source_testing_nunit --> aggregate_source_testing
+
+  aggregate_source_testing_sqlstreamstore --> aggregate_source_testing
+  aggregate_source_testing_sqlstreamstore --> event_handling
+
+  aggregate_source_testing_sqlstreamstore_autofac --> aggregate_source_testing_xunit
+  aggregate_source_testing_sqlstreamstore_autofac --> aggregate_source_testing_commandhandling
+  aggregate_source_testing_sqlstreamstore_autofac --> aggregate_source_testing_sqlstreamstore
+  aggregate_source_testing_sqlstreamstore_autofac --> aggregate_source_sqlstreamstore_autofac
+
+  aggregate_source_testing_xunit --> aggregate_source_testing
+
+  command_handling_idempotency --> timestamp_jsonconverter
+
+  command_handling_sqlstreamstore --> command_handling
+  command_handling_sqlstreamstore --> aggregate_source
+  command_handling_sqlstreamstore --> event_handling
+  command_handling_sqlstreamstore --> deterministic_guid_generator
+}
+
+component json_serializer_settings as "json-serializer-settings (1.3.0)"<<library>>
+'https://github.com/Informatievlaanderen/json-serializer-settings
+'Default Json.NET serializer settings.
+json_serializer_settings --> trim_string_jsonconverter
+json_serializer_settings --> rfc3339_datetimeoffset
+
+package swagger_sln as "swagger (1.3.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/swagger
+  'Swagger and ReDoc Helpers.
+  component swagger as "swagger"<<library>>
+  component swagger_redoc as "swagger-redoc"<<library>>
+
+  'TODO: Check if this is actually needed?
+  swagger --> json_serializer_settings
+  swagger_redoc --> swagger
+}
+
+package projection_handling_sln as "projection-handling (4.3.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/projection-handling
+  'Lightweight projection handling infrastructure.
+
+  component projection_handling_connector as "projection-handling-connector"<<library>>
+  component projection_handling_connector_testing as "projection-handling-connector-testing"<<library>>
+  component projection_handling_lastchangedlist as "projection-handling-lastchangedlist"<<library>>
+  component projection_handling_runner as "projection-handling-runner"<<library>>
+  component projection_handling_sqlstreamstore as "projection-handling-sqlstreamstore"<<library>>
+  component projection_handling_sqlstreamstore_autofac as "projection-handling-sqlstreamstore_autofac"<<library>>
+  component projection_handling_syndication as "projection-handling-syndication"<<library>>
+  component projection_handling_syndication_testing as "projection-handling-syndication-testing"<<library>>
+  component projection_handling_testing_nunit as "projection-handling-testing-nunit"<<library>>
+  component projection_handling_testing_xunit as "projection-handling-testing-xunit"<<library>>
+
+  projection_handling_connector_testing --> projection_handling_connector
+
+  projection_handling_lastchangedlist --> projection_handling_runner
+  projection_handling_lastchangedlist --> projection_handling_sqlstreamstore_autofac
+  projection_handling_lastchangedlist --> aggregate_source_testing_sqlstreamstore_autofac
+  projection_handling_lastchangedlist --> datadog_tracing_sql
+
+  projection_handling_runner --> projection_handling_connector
+  projection_handling_runner --> projection_handling_sqlstreamstore
+  projection_handling_runner --> ef_entity_configuration
+
+  projection_handling_sqlstreamstore --> event_handling
+
+  projection_handling_sqlstreamstore_autofac --> projection_handling_sqlstreamstore
+
+  projection_handling_syndication_testing --> projection_handling_syndication
+
+  projection_handling_testing_nunit --> projection_handling_connector_testing
+  projection_handling_testing_nunit --> projection_handling_sqlstreamstore
+
+  projection_handling_testing_xunit --> projection_handling_connector_testing
+  projection_handling_testing_xunit --> projection_handling_sqlstreamstore
+}
+
+component infrastructure_tests as "infrastructure-tests (1.1.0)"<<tool>>
+'https://github.com/Informatievlaanderen/infrastructure-tests
+'Infrastructure unit-tests to validate assemblies.
+infrastructure_tests --> aggregate_source
+infrastructure_tests --> event_handling
+
+package api_sln as "api (7.3.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/api
+  'Common API infrastructure and helpers.
+
+  component api as "api"<<library>>
+
+  api --> aggregate_source
+  api --> guid_header_modelbinding
+  api --> http_logging_filter
+  api --> json_serializer_settings
+  api --> correlationid_middleware
+  api --> logcontext_correlationid_middleware
+  api --> response_correlationid_middleware
+  api --> http_security_headers_middleware
+  api --> remote_ipaddress_middleware
+  api --> version_header_middleware
+  api --> default_response_compression_quality_middleware
+  api --> enable_requestrewind_middleware
+  api --> swagger
+  api --> swagger_redoc
+  api --> datadog_tracing
+  api --> datadog_tracing_aspnetcore
+  api --> datadog_tracing_autofac
+  api --> datadog_tracing_sql
+  api --> datadog_tracing_sqlstreamstore
+  api --> event_handling
+  api --> problemdetails_middleware
+  api --> deterministic_guid_generator
+}
+
+component crab as "crab (1.1.0)"<<library>>
+'https://github.com/Informatievlaanderen/crab
+'Common Crab functionality
+crab --> aggregate_source
+crab --> deterministic_guid_generator
+
+package grar_common_sln as "grar-common (11.1.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/api
+  'Common API infrastructure and helpers.
+
+  component grar_common as "grar-common"<<library>>
+  component grar_extracts as "grar-extracts"<<library>>
+  component grar_import as "grar-import"<<library>>
+  component grar_legacy as "grar-legacy"<<library>>
+  component grar_provenance as "grar-provenance"<<library>>
+
+  grar_common --> aggregate_source
+
+  grar_extracts --> api
+  grar_extracts --> shaperon
+
+  grar_import --> aggregate_source_sqlstreamstore
+  grar_import --> command_handling
+  grar_import --> command_handling_idempotency
+  grar_import --> event_handling
+  grar_import --> deterministic_guid_generator
+
+  grar_legacy--> rfc3339_datetimeoffset
+
+  grar_provenance --> grar_common
+  grar_provenance --> crab
+  grar_provenance --> command_handling
+}
+
+package projector_sln as "projector (3.3.0)"<<nuget>> {
+  component projector as "projector"<<library>>
+  'https://github.com/Informatievlaanderen/projector
+  'Generic projection runner infrastructure.
+
+  projector --> projection_handling_runner
+  projector --> projection_handling_connector
+  projector --> projection_handling_sqlstreamstore
+  projector --> projection_handling_sqlstreamstore_autofac
+  projector --> aggregate_source_sqlstreamstore_autofac
+  projector --> event_handling_autofac
+}
+
+
+'component municipality_registry as "municipality-registry"<<registry>>
+'component postal_registry as "postal-registry"<<registry>>
+'component streetname_registry as "streetname-registry"<<registry>>
+'component address_registry as "address-registry"<<registry>>
+'component building_registry as "building-registry"<<registry>>
+'component parcel_registry as "parcel-registry"<<registry>>
+'component publicservice_registry as "publicservice-registry"<<registry>>
+
+'component public_api as "public-api"<<registry>>
+
+'component aws_infrastructure as "aws-infrastructure"<<tool>>
+'aws_infrastructure --> public_api
+'aws_infrastructure --> municipality_registry
+'aws_infrastructure --> postal_registry
+'aws_infrastructure --> streetname_registry
+'aws_infrastructure --> address_registry
+'aws_infrastructure --> building_registry
+'aws_infrastructure --> parcel_registry
+'aws_infrastructure --> publicservice_registry
+
+
+' event_handling_autofac -[hidden]> command_handling_sln
+' projection_handling_sln -[hidden]> command_handling_sln
+' grar_common_sln -[hidden]> command_handling_sln
+' datadog_tracing_sln -[hidden]> grar_common_sln
+
+@enduml
