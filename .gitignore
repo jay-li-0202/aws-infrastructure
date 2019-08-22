@@ -9,6 +9,8 @@ COMMANDS.*.md
 .vs/
 .fake/
 .idea/
+.ionide/
+out/
 
 .DS_Store
 ehthumbs.db
