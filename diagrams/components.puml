@@ -1,10 +1,10 @@
 @startuml Component Dependencies
 
 hide stereotype
-' skinparam linetype ortho
+'skinparam linetype ortho
 skinparam backgroundColor #EEEBDC
-skinparam handwritten true
-' scale 750 width
+'skinparam handwritten true
+scale 900 width
 left to right direction
 
 skinparam {
@@ -364,20 +364,112 @@ package grar_common_sln as "grar-common (11.1.0)"<<nuget>> {
 }
 
 package projector_sln as "projector (3.3.0)"<<nuget>> {
-  component projector as "projector"<<library>>
   'https://github.com/Informatievlaanderen/projector
   'Generic projection runner infrastructure.
 
+  component projector as "projector"<<library>>
+
   projector --> projection_handling_runner
   projector --> projection_handling_connector
-  projector --> projection_handling_sqlstreamstore
-  projector --> projection_handling_sqlstreamstore_autofac
-  projector --> aggregate_source_sqlstreamstore_autofac
-  projector --> event_handling_autofac
+}
+
+package municipality_registry_sln as "municipality-registry (2.11.0)"<<nuget>> {
+'https://github.com/Informatievlaanderen/municipality-registry
+'Reference municipality registry.
+
+  component municipality_registry as "municipality-registry"<<registry>>
+  component municipality_registry_api_crabimport as "municipality-registry-api-crabimport"<<registry>>
+  component municipality_registry_api_extract as "municipality-registry-api-extract"<<registry>>
+  component municipality_registry_api_legacy as "municipality-registry-api-legacy"<<registry>>
+  component municipality_registry_projections_extract as "municipality-registry-projections-extract"<<registry>>
+  component municipality_registry_projections_lastchangedlist as "municipality-registry-projections-lastchangedlist"<<registry>>
+  component municipality_registry_projections_legacy as "municipality-registry-projections-legacy"<<registry>>
+  component municipality_registry_projector as "municipality-registry-projector"<<registry>>
+
+  component municipality_registry_infrastructure as "municipality-registry-infrastructure"<<registry>>
+  component municipality_registry_importer as "municipality-registry-importer"<<registry>>
+
+  municipality_registry_api_crabimport --> municipality_registry_infrastructure
+  municipality_registry_api_crabimport --> api
+  municipality_registry_api_crabimport --> command_handling_idempotency
+  municipality_registry_api_crabimport --> datadog_tracing_autofac
+  municipality_registry_api_crabimport --> event_handling_autofac
+  municipality_registry_api_crabimport --> projection_handling_sqlstreamstore_autofac
+  municipality_registry_api_crabimport --> grar_import
+
+  municipality_registry_api_extract --> municipality_registry_infrastructure
+  municipality_registry_api_extract --> municipality_registry_projections_extract
+  municipality_registry_api_extract --> api
+  municipality_registry_api_extract --> datadog_tracing_autofac
+  municipality_registry_api_extract --> event_handling_autofac
+  municipality_registry_api_extract --> grar_extracts
+
+  municipality_registry_api_legacy --> municipality_registry_infrastructure
+  municipality_registry_api_legacy --> municipality_registry_projections_legacy
+  municipality_registry_api_legacy --> api
+  municipality_registry_api_legacy --> datadog_tracing_autofac
+  municipality_registry_api_legacy --> event_handling_autofac
+
+  municipality_registry_importer --> municipality_registry
+  municipality_registry_importer --> aggregate_source
+  municipality_registry_importer --> crab
+  municipality_registry_importer --> deterministic_guid_generator
+  municipality_registry_importer --> hexbyte_converter
+  municipality_registry_importer --> grar_import
+  municipality_registry_importer --> grar_provenance
+
+  municipality_registry_infrastructure --> municipality_registry
+  municipality_registry_infrastructure --> aggregate_source
+  municipality_registry_infrastructure --> aggregate_source_sqlstreamstore
+  municipality_registry_infrastructure --> aggregate_source_sqlstreamstore_autofac
+  municipality_registry_infrastructure --> datadog_tracing_sqlstreamstore
+  municipality_registry_infrastructure --> datadog_tracing_sql
+
+  municipality_registry_projections_extract --> municipality_registry_infrastructure
+  municipality_registry_projections_extract --> event_handling_autofac
+  municipality_registry_projections_extract --> datadog_tracing_sql
+  municipality_registry_projections_extract --> projection_handling_runner
+  municipality_registry_projections_extract --> projection_handling_sqlstreamstore_autofac
+  municipality_registry_projections_extract --> shaperon
+  municipality_registry_projections_extract --> grar_common
+
+  municipality_registry_projections_lastchangedlist --> municipality_registry_infrastructure
+  municipality_registry_projections_lastchangedlist --> projection_handling_lastchangedlist
+  municipality_registry_projections_lastchangedlist --> projection_handling_sqlstreamstore
+
+  municipality_registry_projections_legacy --> municipality_registry_infrastructure
+  municipality_registry_projections_legacy --> event_handling_autofac
+  municipality_registry_projections_legacy --> datadog_tracing_sql
+  municipality_registry_projections_legacy --> projection_handling_runner
+  municipality_registry_projections_legacy --> projection_handling_sqlstreamstore_autofac
+  municipality_registry_projections_legacy --> grar_common
+  municipality_registry_projections_legacy --> grar_legacy
+
+  municipality_registry_projector --> municipality_registry_infrastructure
+  municipality_registry_projector --> municipality_registry_projections_extract
+  municipality_registry_projector --> municipality_registry_projections_lastchangedlist
+  municipality_registry_projector --> municipality_registry_projections_legacy
+  municipality_registry_projector --> api
+  municipality_registry_projector --> event_handling_autofac
+  municipality_registry_projector --> datadog_tracing_autofac
+  municipality_registry_projector --> projector
+
+  municipality_registry --> aggregate_source
+  municipality_registry --> aggregate_source_explicit_routing
+  municipality_registry --> crab
+  municipality_registry --> command_handling
+  municipality_registry --> command_handling_sqlstreamstore
+  municipality_registry --> event_handling
+  municipality_registry --> deterministic_guid_generator
+  municipality_registry --> hexbyte_converter
+  municipality_registry --> grar_provenance
 }
 
 
-'component municipality_registry as "municipality-registry"<<registry>>
+
+
+
+
 'component postal_registry as "postal-registry"<<registry>>
 'component streetname_registry as "streetname-registry"<<registry>>
 'component address_registry as "address-registry"<<registry>>
