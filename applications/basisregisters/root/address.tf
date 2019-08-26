@@ -20,15 +20,15 @@ module "address-registry" {
   api_memory        = 2048
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:1.12.0"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-crab-import:1.12.0"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-extract:1.12.0"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:1.12.1"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-crab-import:1.12.1"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-extract:1.12.1"
 
   projections_cpu           = 2048
   projections_memory        = 4096
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projector:1.12.0"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projections-syndication:1.12.0"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projector:1.12.1"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projections-syndication:1.12.1"
 
   cache_cpu      = 256
   cache_memory   = 512
