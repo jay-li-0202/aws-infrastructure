@@ -35,13 +35,13 @@ module "publicservice-registry" {
   api_memory        = 512
   api_min_instances = 2
   api_max_instances = 4
-  api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.8.2"
+  api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.9.0"
 
   orafin_cpu          = 256
   orafin_memory       = 512
   orafin_schedule     = "cron(0/5 * * * ? *)"
   orafin_enabled      = false
-  orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.8.2"
+  orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.9.0"
   orafin_ftp_host     = var.publicservice_orafin_ftp_host
   orafin_ftp_user     = var.publicservice_orafin_ftp_user
   orafin_ftp_password = var.publicservice_orafin_ftp_password
@@ -50,7 +50,7 @@ module "publicservice-registry" {
   projections_cpu           = 256
   projections_memory        = 512
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:1.8.2"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:1.9.0"
 
   cache_cpu      = 256
   cache_memory   = 512
@@ -62,7 +62,7 @@ module "publicservice-registry" {
   ui_cpu           = 256
   ui_memory        = 512
   ui_min_instances = 2
-  ui_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:1.8.2"
+  ui_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:1.9.0"
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
   sa_user     = var.sql_username

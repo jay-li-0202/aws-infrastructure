@@ -20,15 +20,15 @@ module "postal-registry" {
   api_memory        = 512
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:1.9.0"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:1.9.0"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:1.9.0"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:1.11.0"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:1.11.0"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:1.11.0"
 
   projections_cpu           = 256
   projections_memory        = 512
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:1.9.0"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:1.9.0"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:1.11.0"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:1.11.0"
 
   cache_cpu      = 256
   cache_memory   = 512
