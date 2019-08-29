@@ -307,6 +307,26 @@ variable "db_password" {
   type = string
 }
 
+variable "acm_host" {
+  type = string
+}
+
+variable "acm_shared_signing_key" {
+  type = string
+}
+
+variable "acm_cookie_name" {
+  type = string
+}
+
+variable "acm_client_id" {
+  type = string
+}
+
+variable "acm_client_secret" {
+  type = string
+}
+
 variable "task_security_group_id" {
   type = string
 }

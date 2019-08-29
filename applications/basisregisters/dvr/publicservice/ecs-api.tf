@@ -84,6 +84,12 @@ data "template_file" "api" {
     db_name          = var.db_name
     db_user          = var.db_user
     db_pass          = var.db_password
+
+    acm_host                = var.acm_host
+    acm_shared_signing_key  = var.acm_shared_signing_key
+    acm_cookie_name         = var.acm_cookie_name
+    acm_client_id           = var.acm_client_id
+    acm_client_secret       = var.acm_client_secret
   }
 }
 

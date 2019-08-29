@@ -10,6 +10,21 @@ variable "publicservice_orafin_ftp_user" {
 variable "publicservice_orafin_ftp_password" {
 }
 
+variable "publicservice_acm_host" {
+}
+
+variable "publicservice_acm_cookie_name" {
+}
+
+variable "publicservice_acm_client_id" {
+}
+
+variable "publicservice_acm_client_secret" {
+}
+
+variable "publicservice_acm_shared_signing_key" {
+}
+
 module "publicservice-registry" {
   source = "../dvr/publicservice"
 
@@ -48,7 +63,7 @@ module "publicservice-registry" {
   orafin_ftp_path     = "IN"
 
   projections_cpu           = 256
-  projections_memory        = 512
+  projections_memory        = 1024
   projections_min_instances = 1
   projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:1.9.4"
 
@@ -68,6 +83,12 @@ module "publicservice-registry" {
   sa_user     = var.sql_username
   sa_pass     = var.sql_password
   db_password = var.publicservice_password
+
+  acm_host = var.publicservice_acm_host
+  acm_cookie_name = var.publicservice_acm_cookie_name
+  acm_client_id = var.publicservice_acm_client_id
+  acm_client_secret = var.publicservice_acm_client_secret
+  acm_shared_signing_key = var.publicservice_acm_shared_signing_key
 
   ops_lb_arn          = module.ops-api.lb_arn
   ops_lb_listener_arn = module.ops-api.lb_listener_arn

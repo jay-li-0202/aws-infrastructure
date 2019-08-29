@@ -16,7 +16,31 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
-      { "name": "Cors__0", "value": "https://dienstverlening.${public_zone_name}" }
+      { "name": "Cors__0", "value": "https://dienstverlening.${public_zone_name}" },
+
+      { "name": "OIDCAuth__CallbackPath", "value": "/oic" },
+      { "name": "OIDCAuth__TokenEndPoint", "value": "/v1/token" },
+      { "name": "OIDCAuth__Authority", "value": "${acm_host}/op" },
+      { "name": "OIDCAuth__JwtSharedSigningKey", "value": "${acm_shared_signing_key}" },
+      { "name": "OIDCAuth__JwtCookieDurationInMinutes", "value": "1440" },
+      { "name": "OIDCAuth__JwtIssuer", "value": "https://dienstverlening.${public_zone_name}" },
+      { "name": "OIDCAuth__JwtAudience", "value": "https://dienstverlening.${public_zone_name}" },
+      { "name": "OIDCAuth__JwtCookieDomain", "value": ".dienstverlening.${public_zone_name}" },
+      { "name": "OIDCAuth__JwtCookieName", "value": "${acm_cookie_name}" },
+      { "name": "OIDCAuth__SignOutReturnUrl", "value": "https://dienstverlening.${public_zone_name}" },
+      { "name": "OIDCAuth__AuthorizationRedirectUri", "value": "https://dienstverlening.${public_zone_name}/oic" },
+      { "name": "OIDCAuth__ClientId", "value": "${acm_client_id}" },
+      { "name": "OIDCAuth__ClientSecret", "value": "${acm_client_secret}" },
+
+      { "name": "OIDCAuthAcm__Authority", "value": "${acm_host}/op" },
+      { "name": "OIDCAuthAcm__Issuer", "value": "${acm_host}/op" },
+      { "name": "OIDCAuthAcm__AuthorizationEndpoint", "value": "${acm_host}/op/v1/auth" },
+      { "name": "OIDCAuthAcm__UserInfoEndPoint", "value": "${acm_host}/op/v1/userinfo" },
+      { "name": "OIDCAuthAcm__EndSessionEndPoint", "value": "${acm_host}/op/v1/logout" },
+      { "name": "OIDCAuthAcm__JwksUri", "value": "${acm_host}/op/v1/keys" },
+      { "name": "OIDCAuthAcm__ClientId", "value": "${acm_client_id}" },
+      { "name": "OIDCAuthAcm__RedirectUri", "value": "https://dienstverlening.${public_zone_name}/oic" },
+      { "name": "OIDCAuthAcm__PostLogoutRedirectUri", "value": "https://dienstverlening.${public_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
