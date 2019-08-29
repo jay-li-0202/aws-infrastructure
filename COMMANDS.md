@@ -24,6 +24,16 @@ ssh -i <your_private_key.pem> \
 
 ## SQL
 
+### SQL - Find all ColumnStore indices
+
+```sql
+SELECT OBJECT_SCHEMA_NAME(OBJECT_ID) SchemaName, OBJECT_NAME(OBJECT_ID) TableName, i.name AS IndexName, i.type_desc IndexType
+FROM sys.indexes AS i 
+WHERE is_hypothetical = 0 
+  AND i.index_id <> 0 
+  AND i.type_desc IN ('CLUSTERED COLUMNSTORE','NONCLUSTERED COLUMNSTORE')
+  ```
+
 ### SQL - Delete all tables and sequences
 
 ```sql
@@ -33,7 +43,12 @@ FROM   sys.tables t
          ON t.[schema_id] = s.[schema_id]
 WHERE  t.type = 'U'
 UNION
-SELECT ' DROP SEQUENCE ' + QUOTENAME(DB_NAME()) + '.' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
+SELECT ' DROP VIEW ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(v.NAME) + '; '
+FROM   sys.views v
+       JOIN sys.schemas s
+         ON v.[schema_id] = s.[schema_id]
+UNION
+SELECT ' DROP SEQUENCE ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
 FROM   sys.sequences t
        JOIN sys.schemas s
          ON t.[schema_id] = s.[schema_id]
