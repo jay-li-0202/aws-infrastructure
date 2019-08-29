@@ -17,7 +17,9 @@
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
-      { "name": "DataDog__HostIp", "value": "localhost" }
+      { "name": "DataDog__HostIp", "value": "localhost" },
+
+      { "name": "Serilog__Properties__Application", "value": "PublicServiceRegistry - Redis Projections" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
