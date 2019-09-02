@@ -20,21 +20,21 @@ module "address-registry" {
   api_memory        = 2048
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:1.12.7"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-crab-import:1.12.7"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-extract:1.12.7"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:1.12.9"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-crab-import:1.12.9"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-extract:1.12.9"
 
   projections_cpu           = 2048
   projections_memory        = 4096
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projector:1.12.7"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projections-syndication:1.12.7"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projector:1.12.9"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projections-syndication:1.12.9"
 
   cache_cpu      = 256
   cache_memory   = 512
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_enabled  = false
-  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.5.4"
+  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.5.5"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
