@@ -20,21 +20,21 @@ module "postal-registry" {
   api_memory        = 512
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:1.11.7"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:1.11.7"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:1.11.7"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:1.11.8"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:1.11.8"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:1.11.8"
 
   projections_cpu           = 256
   projections_memory        = 512
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:1.11.7"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:1.11.7"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:1.11.8"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:1.11.8"
 
   cache_cpu      = 256
   cache_memory   = 512
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_enabled  = true
-  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.5.5"
+  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.5.6"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
