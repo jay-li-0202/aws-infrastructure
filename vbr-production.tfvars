@@ -48,7 +48,7 @@ sql_instance_type = "db.r4.large"
 sql_username      = "basisregisters"
 // sql_password = "x"
 sql_storage                 = 1200
-sql_backup_retention_period = 5
+sql_backup_retention_period = 7
 sql_multi_az                = false
 sql_performance_insights_retention_period = 731
 
