@@ -34,7 +34,7 @@ module "parcel-registry" {
   cache_memory   = 512
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_enabled  = false
-  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.5.6"
+  cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.6.0"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
