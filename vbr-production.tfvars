@@ -3,6 +3,10 @@ aws_region     = "eu-west-1"
 aws_profile    = "vbr-production"
 aws_account_id = "921707234258"
 
+// Azure Account Information
+azure_subscription_id = "abadb11e-30c6-4f9d-b2e5-7f2abef65619"
+azure_tenant_id       = "834d6985-72c6-486a-b1d5-5758cf0a293c"
+
 // Terraform State Bucket
 state_bucket = "basisregisters-aws-state"
 
@@ -11,6 +15,8 @@ tag_environment = "Production"
 tag_product     = "P009"
 tag_program     = "AGB"
 tag_contact     = "david.cumps@kb.vlaanderen.be"
+azure_subscription_id = ""
+azure_tenant_id = ""
 
 // General Information
 environment_label = "Basisregisters"

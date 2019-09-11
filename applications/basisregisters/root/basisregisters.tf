@@ -7,6 +7,12 @@ variable "aws_profile" {
 variable "aws_account_id" {
 }
 
+variable "azure_subscription_id" {
+}
+
+variable "azure_tenant_id" {
+}
+
 variable "environment_label" {
 }
 
@@ -78,6 +84,12 @@ provider "aws" {
   region              = "us-east-1"
   profile             = var.aws_profile
   allowed_account_ids = [var.aws_account_id]
+}
+
+provider "azurerm" {
+  version         = "~> 1.19"
+  subscription_id = "${var.azure_subscription_id}"
+  tenant_id       = "${var.azure_tenant_id}"
 }
 
 terraform {
