@@ -48,6 +48,10 @@ variable "db_password" {
   type = string
 }
 
+variable "db_reader_password" {
+  type = string
+}
+
 variable "sa_user" {
   type = string
 }
