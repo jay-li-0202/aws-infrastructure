@@ -44,7 +44,7 @@ module "building-registry" {
 
   wms_db_server   = module.wms.wms_fqdn
   wms_db_name     = var.wms_db_name
-  wms_db_user     = var.wms_user
+  wms_db_user     = "${var.wms_user}@${module.wms.azure_db_fqdn}"
   wms_db_password = var.wms_password
 
   ops_lb_arn          = module.ops-api.lb_arn

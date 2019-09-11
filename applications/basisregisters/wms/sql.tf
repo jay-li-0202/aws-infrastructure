@@ -2,43 +2,39 @@ data "template_file" "sql1" {
   template = file("${path.module}/01-create-user.sql")
 
   vars = {
-    database = var.db_name
     user     = var.db_user
     password = var.db_password
   }
 }
 
 data "template_file" "sql2" {
-  template = file("${path.module}/02-grant-dbo-permissions.sql")
+  template = file("${path.module}/02-grant-permissions.sql")
 
   vars = {
     user = var.db_user
+    role = "db_owner"
   }
 }
 
 data "template_file" "sql3" {
   template = file("${path.module}/03-create-schema.sql")
-
-  vars = {
-    database = var.db_name
-  }
 }
 
 data "template_file" "sql4" {
   template = file("${path.module}/01-create-user.sql")
 
   vars = {
-    database = var.db_name
     user     = "${var.db_user}-reader"
     password = var.db_reader_password
   }
 }
 
 data "template_file" "sql5" {
-  template = file("${path.module}/04-grant-reader-permissions.sql")
+  template = file("${path.module}/02-grant-permissions.sql")
 
   vars = {
     user = "${var.db_user}-reader"
+    role = "db_datareader"
   }
 }
 

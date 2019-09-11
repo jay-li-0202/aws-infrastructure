@@ -81,3 +81,7 @@ variable "allowed_ips" {
 output "wms_fqdn" {
   value = aws_route53_record.wms.fqdn
 }
+
+output "azure_db_fqdn" {
+  value = azurerm_sql_server.wms.fully_qualified_domain_name
+}
