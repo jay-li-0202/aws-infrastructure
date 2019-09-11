@@ -59,3 +59,12 @@ resource "aws_route53_record" "awverify_beta_cname" {
   ttl     = "60"
   records = ["awverify.vbr-beta-mgmtsvc.azurewebsites.net"]
 }
+
+// The ones below are already part of the new architecture
+resource "aws_route53_record" "wms_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "wms.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.wms_db_fqdn}"]
+}

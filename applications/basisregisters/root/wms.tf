@@ -10,9 +10,13 @@ variable "wms_db_max_size" {
 variable "wms_db_type" {
 }
 
+variable "wms_location" {
+}
+
 module "wms" {
   source = "../wms"
 
+  region            = var.wms_location
   environment_label = var.environment_label
   environment_name  = var.environment_name
 

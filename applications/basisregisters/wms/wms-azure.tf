@@ -1,12 +1,12 @@
 resource "azurerm_resource_group" "wms" {
   name     = "vbr-wms"
-  location = "West Europe"
+  location = var.region
 }
 
 resource "azurerm_sql_server" "wms" {
-  name                = "wms"
-  resource_group_name = "${azurerm_resource_group.wms.name}"
-  location            = "West Europe"
+  name                = "vbr-wms"
+  resource_group_name = azurerm_resource_group.wms.name
+  location            = var.region
   version             = "12.0"
 
   administrator_login          = var.sa_user
@@ -22,9 +22,9 @@ resource "azurerm_sql_server" "wms" {
 }
 
 resource "azurerm_sql_database" "wms" {
-  name                = "wms"
+  name                = "vbr-wms"
   resource_group_name = azurerm_resource_group.wms.name
-  location            = "West Europe"
+  location            = var.region
   server_name         = azurerm_sql_server.wms.name
 
   edition                          = var.db_edition
@@ -42,9 +42,9 @@ resource "azurerm_sql_database" "wms" {
 }
 
 resource "azurerm_sql_firewall_rule" "wms" {
-  name                = "wms"
-  resource_group_name = "${azurerm_resource_group.wms.name}"
-  server_name         = "${azurerm_sql_server.wms.name}"
+  name                = "vbr-wms"
+  resource_group_name = azurerm_resource_group.wms.name
+  server_name         = azurerm_sql_server.wms.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0" // TODO: Get Ips
 }
@@ -53,6 +53,6 @@ resource "aws_route53_record" "wms" {
   zone_id = var.public_zone_id
   type    = "CNAME"
   name    = "wms"
-  ttl     = "300"
+  ttl     = "60"
   records = ["${azurerm_sql_server.wms.fully_qualified_domain_name}"]
 }

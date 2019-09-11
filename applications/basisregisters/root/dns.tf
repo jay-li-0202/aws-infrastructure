@@ -15,4 +15,6 @@ module "dns" {
 
   vpc_id           = data.terraform_remote_state.vpc.outputs.vpc_id
   public_zone_name = var.alias_zone_name
+
+  wms_db_fqdn = module.wms.wms_fqdn
 }

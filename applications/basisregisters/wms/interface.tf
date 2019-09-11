@@ -2,6 +2,10 @@ provider "null" {
   version = "~> 2.1.2"
 }
 
+variable "region" {
+  type = string
+}
+
 variable "environment_label" {
   type = string
 }
@@ -53,16 +57,20 @@ variable "sa_pass" {
 }
 
 variable "db_edition" {
-  type = string
+  type    = string
   default = "Standard"
 }
 
 variable "db_max_size" {
-  type = string
-  default = "527958016000" // 250GB
+  type    = string
+  default = "268435456000" // 250GB
 }
 
 variable "db_type" {
-  type = string
+  type    = string
   default = "S2"
+}
+
+output "wms_fqdn" {
+  value = aws_route53_record.wms.fqdn
 }
