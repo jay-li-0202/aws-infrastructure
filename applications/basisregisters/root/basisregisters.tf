@@ -45,6 +45,9 @@ variable "sql_username" {
 variable "sql_password" {
 }
 
+variable "azure_sql_password" {
+}
+
 // Predefined API keys
 variable "anon_key" {
 }
@@ -87,9 +90,9 @@ provider "aws" {
 }
 
 provider "azurerm" {
-  version         = "~> 1.19"
-  subscription_id = "${var.azure_subscription_id}"
-  tenant_id       = "${var.azure_tenant_id}"
+  version         = "~> 1.33.1"
+  subscription_id = var.azure_subscription_id
+  tenant_id       = var.azure_tenant_id
 }
 
 terraform {

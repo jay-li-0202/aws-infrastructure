@@ -51,3 +51,18 @@ variable "sa_user" {
 variable "sa_pass" {
   type = string
 }
+
+variable "db_edition" {
+  type = string
+  default = "Standard"
+}
+
+variable "db_max_size" {
+  type = string
+  default = "527958016000" // 250GB
+}
+
+variable "db_type" {
+  type = string
+  default = "S2"
+}

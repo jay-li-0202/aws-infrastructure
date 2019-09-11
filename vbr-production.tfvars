@@ -4,7 +4,7 @@ aws_profile    = "vbr-production"
 aws_account_id = "921707234258"
 
 // Azure Account Information
-azure_subscription_id = "abadb11e-30c6-4f9d-b2e5-7f2abef65619"
+azure_subscription_id = "98799e4a-733c-4218-abac-7b1cb29d10ea" // VBR-productie
 azure_tenant_id       = "834d6985-72c6-486a-b1d5-5758cf0a293c"
 
 // Terraform State Bucket
@@ -15,8 +15,6 @@ tag_environment = "Production"
 tag_product     = "P009"
 tag_program     = "AGB"
 tag_contact     = "david.cumps@kb.vlaanderen.be"
-azure_subscription_id = ""
-azure_tenant_id = ""
 
 // General Information
 environment_label = "Basisregisters"
@@ -47,7 +45,7 @@ cache_parameter_group = "default.redis5.0.cluster.on"
 cache_instance_type   = "cache.m5.large"
 cache_cluster_size    = 3
 
-// SQL Server Information
+// AWS SQL Server Information
 sql_version       = "14.00.3049.1.v1"
 sql_major_version = "14.00"
 sql_family        = "sqlserver-se-14.0"
@@ -58,6 +56,11 @@ sql_storage                 = 1200
 sql_backup_retention_period = 5
 sql_multi_az                = false
 sql_performance_insights_retention_period = 731
+
+// Azure WMS Database Information
+wms_db_edition  = "Standard"
+wms_db_max_size = "527958016000" // 250GB
+wms_db_type     = "S2"
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services

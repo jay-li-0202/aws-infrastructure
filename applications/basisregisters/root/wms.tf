@@ -1,6 +1,15 @@
 variable "wms_password" {
 }
 
+variable "wms_db_edition" {
+}
+
+variable "wms_db_max_size" {
+}
+
+variable "wms_db_type" {
+}
+
 module "wms" {
   source = "../wms"
 
@@ -13,8 +22,11 @@ module "wms" {
   tag_contact     = var.tag_contact
 
   sa_user     = var.sql_username
-  sa_pass     = var.sql_password
+  sa_pass     = var.azure_sql_password
   db_password = var.wms_password
+  db_edition  = var.wms_db_edition
+  db_max_size = var.wms_db_max_size
+  db_type     = var.wms_db_type
 
   public_zone_id = data.terraform_remote_state.dns.outputs.public_zone_id
 }

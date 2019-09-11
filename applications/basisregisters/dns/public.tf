@@ -21,7 +21,7 @@ awverify.beta   CNAME   awverify.vbr-beta-mgmtsvc.azurewebsites.net
 */
 
 resource "aws_route53_record" "root_a" {
-  zone_id = "${aws_route53_zone.public.zone_id}"
+  zone_id = aws_route53_zone.public.zone_id
   name    = var.public_zone_name
   type    = "A"
   ttl     = "60"
@@ -29,7 +29,7 @@ resource "aws_route53_record" "root_a" {
 }
 
 resource "aws_route53_record" "root_txt" {
-  zone_id = "${aws_route53_zone.public.zone_id}"
+  zone_id = aws_route53_zone.public.zone_id
   name    = var.public_zone_name
   type    = "TXT"
   ttl     = "60"
@@ -37,7 +37,7 @@ resource "aws_route53_record" "root_txt" {
 }
 
 resource "aws_route53_record" "awverify_cname" {
-  zone_id = "${aws_route53_zone.public.zone_id}"
+  zone_id = aws_route53_zone.public.zone_id
   name    = "awverify.${var.public_zone_name}"
   type    = "CNAME"
   ttl     = "60"
@@ -45,7 +45,7 @@ resource "aws_route53_record" "awverify_cname" {
 }
 
 resource "aws_route53_record" "beta_cname" {
-  zone_id = "${aws_route53_zone.public.zone_id}"
+  zone_id = aws_route53_zone.public.zone_id
   name    = "beta.${var.public_zone_name}"
   type    = "CNAME"
   ttl     = "60"
@@ -53,7 +53,7 @@ resource "aws_route53_record" "beta_cname" {
 }
 
 resource "aws_route53_record" "awverify_beta_cname" {
-  zone_id = "${aws_route53_zone.public.zone_id}"
+  zone_id = aws_route53_zone.public.zone_id
   name    = "awverify.beta.${var.public_zone_name}"
   type    = "CNAME"
   ttl     = "60"

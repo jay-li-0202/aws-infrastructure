@@ -23,14 +23,14 @@ resource "azurerm_sql_server" "wms" {
 
 resource "azurerm_sql_database" "wms" {
   name                = "wms"
-  resource_group_name = "${azurerm_resource_group.wms.name}"
+  resource_group_name = azurerm_resource_group.wms.name
   location            = "West Europe"
-  server_name         = "${azurerm_sql_server.wms.name}"
+  server_name         = azurerm_sql_server.wms.name
 
-  edition                          = "" // TODO: https://docs.microsoft.com/en-us/azure/sql-database/sql-database-purchase-models
+  edition                          = var.db_edition
   collation                        = "SQL_LATIN1_GENERAL_CP1_CI_AS"
-  max_size_bytes                   = "" // TODO: https://docs.microsoft.com/en-us/azure/sql-database/sql-database-purchase-models
-  requested_service_objective_name = "" // TODO: S0, S1, S2, S3, P1, P2, P4, P6, P11
+  max_size_bytes                   = var.db_max_size
+  requested_service_objective_name = var.db_type
 
   tags = {
     Name        = "WMS SQL Server Database // ${var.environment_label} ${var.environment_name}"
