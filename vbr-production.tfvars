@@ -25,6 +25,7 @@ vpc_cidr_block = "172.21.0.0/16"
 // DNS Information
 public_zone_name  = "basisregisters.vlaanderen"
 private_zone_name = "basisregisters.local"
+alias_zone_name   = "basisregisters.vlaanderen.be"
 
 // Elasticsearch Information
 elasticsearch_version              = "6.5"
