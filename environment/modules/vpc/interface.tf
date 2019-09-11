@@ -56,23 +56,23 @@ output "cidr_block" {
 }
 
 output "private_subnets" {
-  value = [aws_subnet.private.*.id]
+  value = aws_subnet.private.*.id
 }
 
 output "private_availability_zones" {
-  value = [aws_subnet.private.*.availability_zone]
+  value = aws_subnet.private.*.availability_zone
 }
 
 output "public_availability_zones" {
-  value = [aws_subnet.public.*.availability_zone]
+  value = aws_subnet.public.*.availability_zone
 }
 
 output "public_subnets" {
-  value = [aws_subnet.public.*.id]
+  value = aws_subnet.public.*.id
 }
 
 output "nat_ips" {
-  value = [aws_nat_gateway.private.*.public_ip]
+  value = aws_nat_gateway.private.*.public_ip
 }
 
 output "vpc_id" {
