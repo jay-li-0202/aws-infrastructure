@@ -1,3 +1,6 @@
+variable "wms_user" {
+}
+
 variable "wms_password" {
 }
 
@@ -13,6 +16,9 @@ variable "wms_db_type" {
 variable "wms_location" {
 }
 
+variable "wms_allowed_ips" {
+}
+
 module "wms" {
   source = "../wms"
 
@@ -25,8 +31,11 @@ module "wms" {
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
 
+  allowed_ips = var.wms_allowed_ips
+
   sa_user     = var.sql_username
   sa_pass     = var.azure_sql_password
+  db_user     = var.wms_user
   db_password = var.wms_password
   db_edition  = var.wms_db_edition
   db_max_size = var.wms_db_max_size

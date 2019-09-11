@@ -36,12 +36,12 @@ variable "public_zone_id" {
 
 variable "db_name" {
   type    = string
-  default = "address-registry"
+  default = "vbr-wms"
 }
 
 variable "db_user" {
   type    = string
-  default = "address"
+  default = "wms"
 }
 
 variable "db_password" {
@@ -69,6 +69,10 @@ variable "db_max_size" {
 variable "db_type" {
   type    = string
   default = "S2"
+}
+
+variable "allowed_ips" {
+  type = list(string)
 }
 
 output "wms_fqdn" {

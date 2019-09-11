@@ -58,6 +58,7 @@ sql_multi_az                = false
 sql_performance_insights_retention_period = 731
 
 // Azure WMS Database Information
+wms_user        = "wms"
 wms_location    = "West Europe"
 wms_db_edition  = "Standard"
 wms_db_max_size = "268435456000" // 250GB

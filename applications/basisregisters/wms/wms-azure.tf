@@ -22,7 +22,7 @@ resource "azurerm_sql_server" "wms" {
 }
 
 resource "azurerm_sql_database" "wms" {
-  name                = "vbr-wms"
+  name                = var.db_name
   resource_group_name = azurerm_resource_group.wms.name
   location            = var.region
   server_name         = azurerm_sql_server.wms.name
@@ -41,12 +41,22 @@ resource "azurerm_sql_database" "wms" {
   }
 }
 
-resource "azurerm_sql_firewall_rule" "wms" {
-  name                = "vbr-wms"
+// resource "azurerm_sql_firewall_rule" "wms" {
+//   name                = "vbr-wms"
+//   resource_group_name = azurerm_resource_group.wms.name
+//   server_name         = azurerm_sql_server.wms.name
+//   start_ip_address    = "0.0.0.0"
+//   end_ip_address      = "0.0.0.0"
+// }
+
+resource "azurerm_sql_firewall_rule" "ingress_sql" {
+  count = length(var.allowed_ips)
+
+  name                = element(split("|", element(var.allowed_ips, count.index)), 1)
   resource_group_name = azurerm_resource_group.wms.name
   server_name         = azurerm_sql_server.wms.name
-  start_ip_address    = "0.0.0.0"
-  end_ip_address      = "0.0.0.0" // TODO: Get Ips
+  start_ip_address    = element(split("|", element(var.allowed_ips, count.index)), 0)
+  end_ip_address      = element(split("|", element(var.allowed_ips, count.index)), 0)
 }
 
 resource "aws_route53_record" "wms" {
