@@ -1,5 +1,5 @@
 resource "aws_api_gateway_deployment" "gw" {
-  depends_on  = [aws_api_gateway_integration.get-status-integration]
+  depends_on  = [aws_api_gateway_integration.get-versions-integration]
   rest_api_id = aws_api_gateway_rest_api.gw.id
   description = "Basisregisters Vlaanderen // ${var.environment_label} ${var.environment_name}"
 

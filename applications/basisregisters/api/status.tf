@@ -1,12 +1,12 @@
-resource "aws_api_gateway_resource" "status" {
+resource "aws_api_gateway_resource" "versions" {
   rest_api_id = aws_api_gateway_rest_api.gw.id
   parent_id   = aws_api_gateway_rest_api.gw.root_resource_id
-  path_part   = "status"
+  path_part   = "versions"
 }
 
-resource "aws_api_gateway_method" "get-status" {
+resource "aws_api_gateway_method" "get-versions" {
   rest_api_id          = aws_api_gateway_rest_api.gw.id
-  resource_id          = aws_api_gateway_resource.status.id
+  resource_id          = aws_api_gateway_resource.versions.id
   http_method          = "GET"
   authorization        = "CUSTOM"
   request_validator_id = aws_api_gateway_request_validator.gw.id
@@ -20,10 +20,10 @@ resource "aws_api_gateway_method" "get-status" {
   }
 }
 
-resource "aws_api_gateway_integration" "get-status-integration" {
+resource "aws_api_gateway_integration" "get-versions-integration" {
   rest_api_id = aws_api_gateway_rest_api.gw.id
-  resource_id = aws_api_gateway_resource.status.id
-  http_method = aws_api_gateway_method.get-status.http_method
+  resource_id = aws_api_gateway_resource.versions.id
+  http_method = aws_api_gateway_method.get-versions.http_method
 
   type                    = "HTTP_PROXY"
   integration_http_method = "GET"
@@ -31,7 +31,7 @@ resource "aws_api_gateway_integration" "get-status-integration" {
   connection_type         = "VPC_LINK"
   connection_id           = aws_api_gateway_vpc_link.api.id
 
-  uri = "http://$${stageVariables.baseHost}/v1/status/"
+  uri = "http://$${stageVariables.baseHost}/versions/"
 
   request_parameters = {
     "integration.request.header.Accept"          = "method.request.header.Accept"
