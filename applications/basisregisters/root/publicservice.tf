@@ -84,10 +84,10 @@ module "publicservice-registry" {
   sa_pass     = var.sql_password
   db_password = var.publicservice_password
 
-  acm_host = var.publicservice_acm_host
-  acm_cookie_name = var.publicservice_acm_cookie_name
-  acm_client_id = var.publicservice_acm_client_id
-  acm_client_secret = var.publicservice_acm_client_secret
+  acm_host               = var.publicservice_acm_host
+  acm_cookie_name        = var.publicservice_acm_cookie_name
+  acm_client_id          = var.publicservice_acm_client_id
+  acm_client_secret      = var.publicservice_acm_client_secret
   acm_shared_signing_key = var.publicservice_acm_shared_signing_key
 
   ops_lb_arn          = module.ops-api.lb_arn
