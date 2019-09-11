@@ -37,7 +37,9 @@ module "wms" {
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
 
-  allowed_ips = var.wms_allowed_ips
+  allowed_ips = concat(
+    var.wms_allowed_ips,
+    formatlist("%s|AWS NAT IP", data.terraform_remote_state.vpc.outputs.nat_ips))
 
   sa_user     = var.sql_username
   sa_pass     = var.azure_sql_password

@@ -70,25 +70,25 @@ module "vpc" {
     cidrsubnet(var.vpc_cidr_block, 5, 2),
   ]
 
-  availability_zones = [data.aws_availability_zones.zones.names]
+  availability_zones = data.aws_availability_zones.zones.names
 
   log_group_retention_in_days = 120
 }
 
 output "private_subnet_ids" {
-  value = [module.vpc.private_subnets]
+  value = module.vpc.private_subnets
 }
 
 output "public_subnet_ids" {
-  value = [module.vpc.public_subnets]
+  value = module.vpc.public_subnets
 }
 
 output "private_availability_zones" {
-  value = [module.vpc.private_availability_zones]
+  value = module.vpc.private_availability_zones
 }
 
 output "public_availability_zones" {
-  value = [module.vpc.public_availability_zones]
+  value = module.vpc.public_availability_zones
 }
 
 output "vpc_id" {
@@ -101,4 +101,8 @@ output "s3_vpce_id" {
 
 output "cidr_block" {
   value = module.vpc.cidr_block
+}
+
+output "nat_ips" {
+  value = module.vpc.nat_ips
 }

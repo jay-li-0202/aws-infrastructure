@@ -71,6 +71,10 @@ output "public_subnets" {
   value = [aws_subnet.public.*.id]
 }
 
+output "nat_ips" {
+  value = [aws_nat_gateway.private.*.public_ip]
+}
+
 output "vpc_id" {
   value = aws_vpc.vpc.id
 }
