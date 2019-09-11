@@ -13,6 +13,6 @@ module "dns" {
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
 
-  vpc_id            = data.terraform_remote_state.vpc.outputs.vpc_id
-  public_zone_name  = var.alias_zone_name
+  vpc_id           = data.terraform_remote_state.vpc.outputs.vpc_id
+  public_zone_name = var.alias_zone_name
 }

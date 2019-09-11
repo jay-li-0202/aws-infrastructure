@@ -4,10 +4,10 @@ resource "azurerm_resource_group" "wms" {
 }
 
 resource "azurerm_sql_server" "wms" {
-  name                         = "wms"
-  resource_group_name          = "${azurerm_resource_group.wms.name}"
-  location                     = "West Europe"
-  version                      = "12.0"
+  name                = "wms"
+  resource_group_name = "${azurerm_resource_group.wms.name}"
+  location            = "West Europe"
+  version             = "12.0"
 
   administrator_login          = var.sa_user
   administrator_login_password = var.sa_pass
@@ -27,9 +27,9 @@ resource "azurerm_sql_database" "wms" {
   location            = "West Europe"
   server_name         = "${azurerm_sql_server.wms.name}"
 
-  edition = "" // TODO: https://docs.microsoft.com/en-us/azure/sql-database/sql-database-purchase-models
-  collation = "SQL_LATIN1_GENERAL_CP1_CI_AS"
-  max_size_bytes = "" // TODO: https://docs.microsoft.com/en-us/azure/sql-database/sql-database-purchase-models
+  edition                          = "" // TODO: https://docs.microsoft.com/en-us/azure/sql-database/sql-database-purchase-models
+  collation                        = "SQL_LATIN1_GENERAL_CP1_CI_AS"
+  max_size_bytes                   = "" // TODO: https://docs.microsoft.com/en-us/azure/sql-database/sql-database-purchase-models
   requested_service_objective_name = "" // TODO: S0, S1, S2, S3, P1, P2, P4, P6, P11
 
   tags = {

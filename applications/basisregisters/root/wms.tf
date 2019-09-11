@@ -16,5 +16,5 @@ module "wms" {
   sa_pass     = var.sql_password
   db_password = var.wms_password
 
-  public_zone_id     = data.terraform_remote_state.dns.outputs.public_zone_id
+  public_zone_id = data.terraform_remote_state.dns.outputs.public_zone_id
 }

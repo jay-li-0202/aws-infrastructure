@@ -8,8 +8,8 @@ resource "aws_lb_target_group" "api" {
 
   health_check {
     protocol = "HTTP"
-    port = var.container_port
-    path = "/health"
+    port     = var.container_port
+    path     = "/health"
   }
 
   stickiness {
