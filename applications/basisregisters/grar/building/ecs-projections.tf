@@ -85,6 +85,10 @@ data "template_file" "projections" {
     db_name         = var.db_name
     db_user         = var.db_user
     db_pass         = var.db_password
+    wms_server       = var.wms_db_server
+    wms_name         = var.wms_db_name
+    wms_user         = var.wms_db_user
+    wms_pass         = var.wms_db_password
   }
 }
 

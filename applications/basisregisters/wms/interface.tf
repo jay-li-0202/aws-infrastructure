@@ -36,7 +36,6 @@ variable "public_zone_id" {
 
 variable "db_name" {
   type    = string
-  default = "vbr-wms"
 }
 
 variable "db_user" {

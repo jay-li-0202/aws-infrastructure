@@ -42,6 +42,11 @@ module "building-registry" {
   sa_pass     = var.sql_password
   db_password = var.building_password
 
+  wms_db_server   = module.wms.wms_fqdn
+  wms_db_name     = var.wms_db_name
+  wms_db_user     = var.wms_user
+  wms_db_password = var.wms_password
+
   ops_lb_arn          = module.ops-api.lb_arn
   ops_lb_listener_arn = module.ops-api.lb_listener_arn
   ops_cert_arn        = module.ops-api.cert_arn

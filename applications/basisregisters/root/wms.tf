@@ -7,6 +7,9 @@ variable "wms_password" {
 variable "wms_reader_password" {
 }
 
+variable "wms_db_name" {
+}
+
 variable "wms_db_edition" {
 }
 
@@ -38,6 +41,7 @@ module "wms" {
 
   sa_user     = var.sql_username
   sa_pass     = var.azure_sql_password
+  db_name = var.wms_db_name
   db_user     = var.wms_user
   db_password = var.wms_password
   db_reader_password = var.wms_reader_password

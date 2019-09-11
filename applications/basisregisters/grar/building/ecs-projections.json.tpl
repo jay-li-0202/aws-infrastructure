@@ -14,8 +14,8 @@
       { "name": "ConnectionStrings__ExtractProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__LastChangedList", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "ConnectionStrings__LastChangedListAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
-      { "name": "ConnectionStrings__WmsProjections", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
-      { "name": "ConnectionStrings__WmsProjectionsAdmin", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "ConnectionStrings__WmsProjections", "value": "Server=${wms_server};Database=${wms_name};User=${wms_user};Password=${wms_pass};" },
+      { "name": "ConnectionStrings__WmsProjectionsAdmin", "value": "Server=${wms_server};Database=${wms_name};User=${wms_user};Password=${wms_pass};" },
 
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },

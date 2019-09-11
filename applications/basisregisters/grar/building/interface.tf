@@ -136,6 +136,22 @@ variable "sa_pass" {
   type = string
 }
 
+variable "wms_db_server" {
+  type = string
+}
+
+variable "wms_db_name" {
+  type    = string
+}
+
+variable "wms_db_user" {
+  type    = string
+}
+
+variable "wms_db_password" {
+  type = string
+}
+
 variable "fargate_cluster_name" {
   type = string
 }
