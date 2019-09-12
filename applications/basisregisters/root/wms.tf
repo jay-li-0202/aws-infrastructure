@@ -42,7 +42,8 @@ module "wms" {
     [
       for idx, ip in data.terraform_remote_state.vpc.outputs.nat_ips:
       format("%s|AWS NAT IP %d", ip, (idx + 1))
-    ])
+    ],
+    ["0.0.0.0|Allow Access To Azure Services"])
 
   sa_user     = var.sql_username
   sa_pass     = var.azure_sql_password

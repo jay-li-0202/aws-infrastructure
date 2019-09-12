@@ -41,14 +41,6 @@ resource "azurerm_sql_database" "wms" {
   }
 }
 
-// resource "azurerm_sql_firewall_rule" "wms" {
-//   name                = "vbr-wms"
-//   resource_group_name = azurerm_resource_group.wms.name
-//   server_name         = azurerm_sql_server.wms.name
-//   start_ip_address    = "0.0.0.0"
-//   end_ip_address      = "0.0.0.0"
-// }
-
 resource "azurerm_sql_firewall_rule" "ingress_sql" {
   count = length(var.allowed_ips)
 
