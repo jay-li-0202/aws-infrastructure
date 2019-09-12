@@ -27,31 +27,34 @@ ssh -i <your_private_key.pem> \
 ### SQL - Find all ColumnStore indices
 
 ```sql
-SELECT OBJECT_SCHEMA_NAME(OBJECT_ID) SchemaName, OBJECT_NAME(OBJECT_ID) TableName, i.name AS IndexName, i.type_desc IndexType
-FROM sys.indexes AS i 
-WHERE is_hypothetical = 0 
-  AND i.index_id <> 0 
-  AND i.type_desc IN ('CLUSTERED COLUMNSTORE','NONCLUSTERED COLUMNSTORE')
-  ```
+SELECT OBJECT_SCHEMA_NAME(OBJECT_ID) SchemaName,
+       OBJECT_NAME(OBJECT_ID) TableName,
+       i.name AS IndexName,
+       i.type_desc IndexType
+  FROM sys.indexes AS i
+ WHERE is_hypothetical = 0
+   AND i.index_id <> 0
+   AND i.type_desc IN ('CLUSTERED COLUMNSTORE','NONCLUSTERED COLUMNSTORE')
+```
 
 ### SQL - Delete all tables and sequences
 
 ```sql
 SELECT ' DROP TABLE ' + QUOTENAME(DB_NAME()) + '.' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
-FROM   sys.tables t
-       JOIN sys.schemas s
-         ON t.[schema_id] = s.[schema_id]
-WHERE  t.type = 'U'
-UNION
+  FROM sys.tables t
+  JOIN sys.schemas s
+    ON t.[schema_id] = s.[schema_id]
+ WHERE t.type = 'U'
+ UNION
 SELECT ' DROP VIEW ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(v.NAME) + '; '
-FROM   sys.views v
-       JOIN sys.schemas s
-         ON v.[schema_id] = s.[schema_id]
-UNION
+  FROM sys.views v
+  JOIN sys.schemas s
+    ON v.[schema_id] = s.[schema_id]
+ UNION
 SELECT ' DROP SEQUENCE ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + '; '
-FROM   sys.sequences t
-       JOIN sys.schemas s
-         ON t.[schema_id] = s.[schema_id]
+  FROM sys.sequences t
+  JOIN sys.schemas s
+    ON t.[schema_id] = s.[schema_id]
 ```
 
 ### SQL - Select all ProjectionStates
@@ -60,28 +63,131 @@ FROM   sys.sequences t
 SELECT 'DECLARE @Events INT' + CHAR(13) + CHAR(10) +
        'SELECT @Events = COUNT(*) - 1 FROM ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + CHAR(13) + CHAR(10) +
        'SELECT ''' + QUOTENAME(s.NAME) + ''' AS Name, @Events AS Position, '''' As Status UNION' + CHAR(13) + CHAR(10)
-FROM   sys.tables t
-       JOIN sys.schemas s
-         ON t.[schema_id] = s.[schema_id]
-WHERE  t.type = 'U'
-  AND  t.name like '%Messages%'
-UNION
+  FROM sys.tables t
+  JOIN sys.schemas s
+    ON t.[schema_id] = s.[schema_id]
+ WHERE t.type = 'U'
+   AND t.name like '%Messages%'
+ UNION
 SELECT 'SELECT  Name, Position, IIF(Position = @Events, ''Ready'', ''Running'') AS Status FROM ' + QUOTENAME(s.NAME) + '.' + QUOTENAME(t.NAME) + ' UNION '
-FROM   sys.tables t
-       JOIN sys.schemas s
-         ON t.[schema_id] = s.[schema_id]
-WHERE  t.type = 'U'
-  AND  t.name like '%ProjectionStates%'
+  FROM sys.tables t
+  JOIN sys.schemas s
+    ON t.[schema_id] = s.[schema_id]
+ WHERE t.type = 'U'
+   AND t.name like '%ProjectionStates%'
 ```
 
 ```sql
 sp_MSforeachdb 'IF EXISTS (SELECT "?" AS DB, * FROM [?].sys.tables WHERE name like ''%ProjectionStates%'')
 SELECT ''SELECT * FROM [?].'' + QUOTENAME(s.NAME) + ''.'' + QUOTENAME(t.NAME) + ''; ''
-FROM   [?].sys.tables t
-       JOIN [?].sys.schemas s
-         ON t.[schema_id] = s.[schema_id]
-WHERE  t.type = ''U''
-  AND  t.name like ''%ProjectionStates%'''
+  FROM [?].sys.tables t
+  JOIN [?].sys.schemas s
+    ON t.[schema_id] = s.[schema_id]
+ WHERE t.type = ''U''
+   AND t.name like ''%ProjectionStates%'''
+```
+
+### SQL - Show Missing Index Suggestions
+
+```sql
+SELECT db.[name] AS [DatabaseName]
+    ,id.[object_id] AS [ObjectID]
+    ,OBJECT_NAME(id.[object_id], db.[database_id]) AS [ObjectName]
+    ,id.[statement] AS [FullyQualifiedObjectName]
+    ,id.[equality_columns] AS [EqualityColumns]
+    ,id.[inequality_columns] AS [InEqualityColumns]
+    ,id.[included_columns] AS [IncludedColumns]
+    ,gs.[unique_compiles] AS [UniqueCompiles]
+    ,gs.[user_seeks] AS [UserSeeks]
+    ,gs.[user_scans] AS [UserScans]
+    ,gs.[last_user_seek] AS [LastUserSeekTime]
+    ,gs.[last_user_scan] AS [LastUserScanTime]
+    ,gs.[avg_total_user_cost] AS [AvgTotalUserCost]  -- Average cost of the user queries that could be reduced by the index in the group.
+    ,gs.[avg_user_impact] AS [AvgUserImpact]  -- The value means that the query cost would on average drop by this percentage if this missing index group was implemented.
+    ,gs.[system_seeks] AS [SystemSeeks]
+    ,gs.[system_scans] AS [SystemScans]
+    ,gs.[last_system_seek] AS [LastSystemSeekTime]
+    ,gs.[last_system_scan] AS [LastSystemScanTime]
+    ,gs.[avg_total_system_cost] AS [AvgTotalSystemCost]
+    ,gs.[avg_system_impact] AS [AvgSystemImpact]  -- Average percentage benefit that system queries could experience if this missing index group was implemented.
+    ,gs.[user_seeks] * gs.[avg_total_user_cost] * (gs.[avg_user_impact] * 0.01) AS [IndexAdvantage]
+    ,'CREATE INDEX [IX_' + OBJECT_NAME(id.[object_id], db.[database_id]) + '_' + REPLACE(REPLACE(REPLACE(ISNULL(id.[equality_columns], ''), ', ', '_'), '[', ''), ']', '') + CASE
+        WHEN id.[equality_columns] IS NOT NULL
+            AND id.[inequality_columns] IS NOT NULL
+            THEN '_'
+        ELSE ''
+        END + REPLACE(REPLACE(REPLACE(ISNULL(id.[inequality_columns], ''), ', ', '_'), '[', ''), ']', '') + '_' + LEFT(CAST(NEWID() AS [nvarchar](64)), 5) + ']' + ' ON ' + id.[statement] + ' (' + ISNULL(id.[equality_columns], '') + CASE
+        WHEN id.[equality_columns] IS NOT NULL
+            AND id.[inequality_columns] IS NOT NULL
+            THEN ','
+        ELSE ''
+        END + ISNULL(id.[inequality_columns], '') + ')' + ISNULL(' INCLUDE (' + id.[included_columns] + ')', '') AS [ProposedIndex]
+    ,CAST(CURRENT_TIMESTAMP AS [smalldatetime]) AS [CollectionDate]
+FROM [sys].[dm_db_missing_index_group_stats] gs WITH (NOLOCK)
+INNER JOIN [sys].[dm_db_missing_index_groups] ig WITH (NOLOCK) ON gs.[group_handle] = ig.[index_group_handle]
+INNER JOIN [sys].[dm_db_missing_index_details] id WITH (NOLOCK) ON ig.[index_handle] = id.[index_handle]
+INNER JOIN [sys].[databases] db WITH (NOLOCK) ON db.[database_id] = id.[database_id]
+WHERE  db.[database_id] = DB_ID()
+--AND OBJECT_NAME(id.[object_id], db.[database_id]) = 'YourTableName'
+ORDER BY ObjectName, [IndexAdvantage] DESC
+OPTION (RECOMPILE);
+```
+
+### SQL - Show SQL Query for Missing Index Suggestions
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+GO
+
+WITH XMLNAMESPACES (DEFAULT 'http://schemas.microsoft.com/sqlserver/2004/07/showplan')
+, PlanMissingIndexes
+AS (SELECT query_plan, usecounts
+    FROM sys.dm_exec_cached_plans cp
+    CROSS APPLY sys.dm_exec_query_plan(cp.plan_handle) qp
+    WHERE qp.query_plan.exist('//MissingIndexes') = 1)
+, MissingIndexes
+AS (SELECT stmt_xml.value('(QueryPlan/MissingIndexes/MissingIndexGroup/MissingIndex/@Database)[1]', 'sysname') AS DatabaseName,
+           stmt_xml.value('(QueryPlan/MissingIndexes/MissingIndexGroup/MissingIndex/@Schema)[1]', 'sysname') AS SchemaName,
+           stmt_xml.value('(QueryPlan/MissingIndexes/MissingIndexGroup/MissingIndex/@Table)[1]', 'sysname') AS TableName,
+           stmt_xml.value('(QueryPlan/MissingIndexes/MissingIndexGroup/@Impact)[1]', 'float') AS Impact,
+           ISNULL(CAST(stmt_xml.value('(@StatementSubTreeCost)[1]', 'VARCHAR(128)') AS FLOAT), 0) AS Cost,
+           pmi.usecounts UseCounts,
+           STUFF((SELECT DISTINCT ', ' + c.value('(@Name)[1]', 'sysname')
+      FROM stmt_xml.nodes('//ColumnGroup') AS t(cg)
+     CROSS APPLY cg.nodes('Column') AS r(c)
+     WHERE cg.value('(@Usage)[1]', 'sysname') = 'EQUALITY'
+          FOR XML PATH('')),1,2,'') AS equality_columns,
+           STUFF(( SELECT DISTINCT ', ' + c.value('(@Name)[1]', 'sysname')
+          FROM stmt_xml.nodes('//ColumnGroup') AS t(cg)
+          CROSS APPLY cg.nodes('Column') AS r(c)
+          WHERE cg.value('(@Usage)[1]', 'sysname') = 'INEQUALITY'
+          FOR XML PATH('')),1,2,'') AS inequality_columns,
+           STUFF((SELECT DISTINCT ', ' + c.value('(@Name)[1]', 'sysname')
+          FROM stmt_xml.nodes('//ColumnGroup') AS t(cg)
+          CROSS APPLY cg.nodes('Column') AS r(c)
+          WHERE cg.value('(@Usage)[1]', 'sysname') = 'INCLUDE'
+          FOR XML PATH('')),1,2,'') AS include_columns,
+           query_plan,
+           stmt_xml.value('(@StatementText)[1]', 'varchar(4000)') AS sql_text
+    FROM PlanMissingIndexes pmi
+    CROSS APPLY query_plan.nodes('//StmtSimple') AS stmt(stmt_xml)
+    WHERE stmt_xml.exist('QueryPlan/MissingIndexes') = 1)
+
+SELECT TOP 200
+       DatabaseName,
+       SchemaName,
+       TableName,
+       equality_columns,
+       inequality_columns,
+       include_columns,
+       UseCounts,
+       Cost,
+       Cost * UseCounts [AggregateCost],
+       Impact,
+       query_plan
+FROM MissingIndexes
+WHERE DatabaseName = '[YourDatabaseName]' AND TableName = '[YourTableName]'
+ORDER BY Cost * UseCounts DESC;
 ```
 
 ## Redis
