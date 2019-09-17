@@ -35,8 +35,8 @@ resource "aws_api_gateway_usage_plan" "gw-anonymous" {
   }
 
   throttle_settings {
-    burst_limit = "${ceil(abs(var.api_anonymous_rate_limit_per_5min / 5 / 60))}"
-    rate_limit  = "${ceil(abs(var.api_anonymous_rate_limit_per_5min / 5 / 60))}"
+    burst_limit = var.aws_api_gateway_method_settings_throttling_burst_limit
+    rate_limit  = var.aws_api_gateway_method_settings_throttling_rate_limit
   }
 }
 

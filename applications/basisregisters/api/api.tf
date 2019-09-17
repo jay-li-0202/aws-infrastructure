@@ -33,6 +33,8 @@ resource "aws_api_gateway_deployment" "gw" {
   }
 }
 
+variable "aws_api_gateway_method_settings_throttling_rate_limit" { default = 10000 }
+variable "aws_api_gateway_method_settings_throttling_burst_limit" { default = 5000 }
 resource "aws_api_gateway_method_settings" "gw" {
   rest_api_id = aws_api_gateway_rest_api.gw.id
   stage_name  = aws_api_gateway_stage.gw.stage_name
@@ -44,8 +46,8 @@ resource "aws_api_gateway_method_settings" "gw" {
     data_trace_enabled = true
 
     // https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html
-    throttling_rate_limit  = 10000
-    throttling_burst_limit = 5000
+    throttling_rate_limit  = var.aws_api_gateway_method_settings_throttling_rate_limit
+    throttling_burst_limit = var.aws_api_gateway_method_settings_throttling_burst_limit
   }
 }
 

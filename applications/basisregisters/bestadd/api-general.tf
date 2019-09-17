@@ -35,8 +35,8 @@ resource "aws_api_gateway_usage_plan" "gw-anonymous" {
   }
 
   throttle_settings {
-    burst_limit = 1
-    rate_limit  = 1
+    burst_limit = var.aws_api_gateway_method_settings_throttling_burst_limit
+    rate_limit  = var.aws_api_gateway_method_settings_throttling_rate_limit
   }
 }
 
