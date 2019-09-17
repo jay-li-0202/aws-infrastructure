@@ -21,6 +21,8 @@ module "api" {
 
   api_name       = "basisregisters"
   api_stage_name = "basisregisters"
+  api_anonymous_waf_acl_id = module.waf.acl_id
+  api_anonymous_rate_limit_per_5min = module.waf.api_anonymous_rate_limit_per_5min
 
   api_url               = "api"
   public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name

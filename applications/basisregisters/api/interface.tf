@@ -1,9 +1,9 @@
 provider "aws" {
-  version = "~> 2.23.0"
+  version = "~> 2.28.1"
 }
 
 provider "aws" {
-  version = "~> 2.23.0"
+  version = "~> 2.28.1"
   alias   = "cert"
 }
 
@@ -85,6 +85,14 @@ variable "api_stage_name" {
 variable "api_name" {
   type    = string
   default = "api"
+}
+
+variable "api_anonymous_rate_limit_per_5min" {
+  type    = string
+}
+
+variable "api_anonymous_waf_acl_id" {
+  type    = string
 }
 
 output "lb_arn" {

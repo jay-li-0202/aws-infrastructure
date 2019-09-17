@@ -16,6 +16,8 @@ module "bestadd" {
 
   api_name       = "bestadd"
   api_stage_name = "bestadd"
+  api_anonymous_waf_acl_id = module.waf.acl_id
+  api_anonymous_rate_limit_per_5min = module.waf.api_anonymous_rate_limit_per_5min
 
   vpc_link_id = module.api.vpc_link_id
 
