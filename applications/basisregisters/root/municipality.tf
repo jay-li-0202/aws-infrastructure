@@ -20,14 +20,14 @@ module "municipality-registry" {
   api_memory        = 512
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.12.1"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.12.1"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.12.1"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.13.4"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.13.4"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.13.4"
 
   projections_cpu           = 256
   projections_memory        = 512
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.12.1"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.13.4"
 
   cache_cpu      = 256
   cache_memory   = 512
