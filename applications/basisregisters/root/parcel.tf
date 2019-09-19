@@ -20,15 +20,15 @@ module "parcel-registry" {
   api_memory        = 2048
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-legacy:1.14.3"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-crab-import:1.14.3"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-extract:1.14.3"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-legacy:1.14.5"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-crab-import:1.14.5"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-extract:1.14.5"
 
   projections_cpu           = 256
   projections_memory        = 1024
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projector:1.14.3"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projections-syndication:1.14.3"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projector:1.14.5"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projections-syndication:1.14.5"
 
   cache_cpu      = 256
   cache_memory   = 512

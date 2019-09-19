@@ -7,18 +7,18 @@ resource "aws_security_group_rule" "ingress_http" {
   to_port     = "65535"
   protocol    = "tcp"
   cidr_blocks = [element(split("|", element(var.admin_cidr_blocks, count.index)), 0)]
-  description = "Ops Api Load Balancer (${element(split("|", element(var.admin_cidr_blocks, count.index)), 1)})"
+  description = "Site Load Balancer (${element(split("|", element(var.admin_cidr_blocks, count.index)), 1)})"
 
   security_group_id = aws_security_group.main-lb.id
 }
 
 resource "aws_security_group" "main-lb" {
-  name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-ops-api-lb"
-  description = "Security group for Ops Api Balancer"
+  name        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-site-lb"
+  description = "Security group for Site Balancer"
   vpc_id      = var.vpc_id
 
   tags = {
-    Name        = "Ops Api Load Balancer // ${var.environment_label} ${var.environment_name}"
+    Name        = "Site Load Balancer // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program
@@ -27,24 +27,20 @@ resource "aws_security_group" "main-lb" {
 }
 
 resource "aws_security_group_rule" "lb_egress_rule" {
-  count = length(var.ecs_sg_ports)
-
-  description              = "Ops Api Load Balancer To Task on port ${element(var.ecs_sg_ports, count.index)}"
+  description              = "Site Load Balancer To Task on port ${var.site_port}"
   type                     = "egress"
-  from_port                = element(split("-", element(var.ecs_sg_ports, count.index)), 0)
-  to_port                  = element(split("-", element(var.ecs_sg_ports, count.index)), 1)
+  from_port                = var.site_port
+  to_port                  = var.site_port
   protocol                 = "tcp"
   source_security_group_id = var.ecs_sg_id
   security_group_id        = aws_security_group.main-lb.id
 }
 
 resource "aws_security_group_rule" "task_ingress_rule" {
-  count = length(var.ecs_sg_ports)
-
-  description              = "Ops Api Load Balancer To Task on port ${element(var.ecs_sg_ports, count.index)}"
+  description              = "Site Load Balancer To Task on port ${var.site_port}"
   type                     = "ingress"
-  from_port                = element(split("-", element(var.ecs_sg_ports, count.index)), 0)
-  to_port                  = element(split("-", element(var.ecs_sg_ports, count.index)), 1)
+  from_port                = var.site_port
+  to_port                  = var.site_port
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.main-lb.id
   security_group_id        = var.ecs_sg_id
