@@ -1,13 +1,25 @@
 # Incoming HTTP
 resource "aws_security_group_rule" "ingress_http" {
-  count = length(var.admin_cidr_blocks)
   type  = "ingress"
 
-  from_port   = "0"
-  to_port     = "65535"
+  from_port   = var.lb_port
+  to_port     = var.lb_port
   protocol    = "tcp"
-  cidr_blocks = [element(split("|", element(var.admin_cidr_blocks, count.index)), 0)]
-  description = "Site Load Balancer (${element(split("|", element(var.admin_cidr_blocks, count.index)), 1)})"
+  cidr_blocks = ["0.0.0.0/0"]
+  description = "Site Load Balancer (HTTP)"
+
+  security_group_id = aws_security_group.main-lb.id
+}
+
+# Incoming HTTPS
+resource "aws_security_group_rule" "ingress_https" {
+  type  = "ingress"
+
+  from_port   = var.lb_https_port
+  to_port     = var.lb_https_port
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  description = "Site Load Balancer (HTTPS)"
 
   security_group_id = aws_security_group.main-lb.id
 }
