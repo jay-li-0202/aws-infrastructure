@@ -298,6 +298,23 @@ module "general" {
   ]
 }
 
+module "site" {
+  source = "../../modules/docker_repo"
+
+  environment_label = var.environment_label
+  environment_name  = var.environment_name
+
+  tag_environment = var.tag_environment
+  tag_product     = var.tag_product
+  tag_program     = var.tag_program
+  tag_contact     = var.tag_contact
+
+  // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
+  repository_names = [
+    "basisregisters/site",
+  ]
+}
+
 module "docker" {
   source = "../../modules/docker_user"
 }
