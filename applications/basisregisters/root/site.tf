@@ -16,7 +16,7 @@ module "site" {
   site_memory        = 512
   site_min_instances = 2
   site_max_instances = 4
-  site_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/basisregisters/site:1.0.0"
+  site_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/basisregisters/site:1.0.1"
   site_port          = 80
 
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
