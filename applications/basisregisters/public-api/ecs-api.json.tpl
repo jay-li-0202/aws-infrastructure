@@ -61,7 +61,15 @@
 
       { "name": "ApiConfiguration__BuildingRegistry__ApiUrl", "value": "http://${disco_namespace}-building-registry-api.${disco_zone_name}:6002/v1" },
       { "name": "ApiConfiguration__BuildingRegistry__HealthUrl", "value": "http://${disco_namespace}-building-registry-api.${disco_zone_name}:6002/health" },
-      { "name": "ApiConfiguration__BuildingRegistry__UseCache", "value": "false" },
+      { "name": "ApiConfiguration__BuildingRegistry__GebouwNaamruimte", "value": "https://data.vlaanderen.be/id/gebouw" },
+      { "name": "ApiConfiguration__BuildingRegistry__GebouweenheidNaamruimte", "value": "https://data.vlaanderen.be/id/gebouweenheid" },
+      { "name": "ApiConfiguration__BuildingRegistry__GebouwDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouwen/{0}" },
+      { "name": "ApiConfiguration__BuildingRegistry__GebouweenheidDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden/{0}" },
+      { "name": "ApiConfiguration__BuildingRegistry__PerceelUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
+      { "name": "ApiConfiguration__BuildingRegistry__AdresUrl", "value": "https://api.${public_zone_name}/v1/adressen/{0}" },
+      { "name": "ApiConfiguration__BuildingRegistry__GebouwVolgendeUrl", "value": "https://api.${public_zone_name}/v1/gebouwen?offset={0}&limit={1}" },
+      { "name": "ApiConfiguration__BuildingRegistry__GebouweenheidVolgendeUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden?offset={0}&limit={1}" },
+      { "name": "ApiConfiguration__BuildingRegistry__Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/gebouwen.atom?offset={0}&limit={1}" },
 
       { "name": "ApiConfiguration__ParcelRegistry__ApiUrl", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/v1" },
       { "name": "ApiConfiguration__ParcelRegistry__HealthUrl", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/health" },
