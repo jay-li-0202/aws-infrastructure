@@ -20,15 +20,15 @@ module "building-registry" {
   api_memory        = 2048
   api_min_instances = 2
   api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-legacy:1.12.4"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-crab-import:1.12.4"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-extract:1.12.4"
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-legacy:1.13.0"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-crab-import:1.13.0"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-extract:1.13.0"
 
   projections_cpu           = 256
   projections_memory        = 1024
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/projector:1.12.4"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/projections-syndication:1.12.4"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/projector:1.13.0"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/projections-syndication:1.13.0"
 
   cache_cpu      = 256
   cache_memory   = 512
