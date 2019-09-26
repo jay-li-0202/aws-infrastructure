@@ -29,7 +29,7 @@ variable "vpc_cidr_block" {
 }
 
 provider "aws" {
-  version             = "~> 2.28.1"
+  version             = "~> 2.29.0"
   region              = var.aws_region
   profile             = var.aws_profile
   allowed_account_ids = [var.aws_account_id]

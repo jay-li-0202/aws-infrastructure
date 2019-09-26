@@ -1,9 +1,9 @@
 provider "aws" {
-  version = "~> 2.28.1"
+  version = "~> 2.29.0"
 }
 
 provider "aws" {
-  version = "~> 2.28.1"
+  version = "~> 2.29.0"
   alias   = "cert"
 }
 
