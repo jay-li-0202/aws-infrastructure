@@ -181,6 +181,30 @@ variable "extracts_expiration_days" {
   type = string
 }
 
+variable "extract_bundler_image" {
+  type = string
+}
+
+variable "extract_bundler_enabled" {
+  type    = string
+  default = true
+}
+
+variable "extract_bundler_cpu" {
+  type    = string
+  default = 256
+}
+
+variable "extract_bundler_memory" {
+  type    = string
+  default = 512
+}
+
+variable "extract_bundler_schedule" {
+  type    = string
+  default = "cron(0 22 * * ? *)"
+}
+
 output "task_security_group_id" {
   value = var.ecs_sg_id
 }
