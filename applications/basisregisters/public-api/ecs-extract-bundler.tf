@@ -25,7 +25,7 @@ data "template_file" "extract-bundler" {
     datadog_api_key  = var.datadog_api_key
     disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
     app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-extract-bundler"
-    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
     extract_bundler_image      = var.extract_bundler_image
     region           = var.region
     datadog_env      = var.datadog_env
