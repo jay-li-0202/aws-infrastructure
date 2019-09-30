@@ -177,6 +177,10 @@ variable "docs_target_group_arn" {
   type = string
 }
 
+variable "extracts_expiration_days" {
+  type = string
+}
+
 output "task_security_group_id" {
   value = var.ecs_sg_id
 }

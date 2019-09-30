@@ -26,6 +26,8 @@ module "public-api" {
     "2080-2080",
   ]
 
+  extracts_expiration_days = var.extracts_expiration_days
+
   task_execution_role_arn = aws_iam_role.ecsTaskExecutionRole.arn
 
   vpc_id          = data.terraform_remote_state.vpc.outputs.vpc_id

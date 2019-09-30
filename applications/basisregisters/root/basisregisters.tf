@@ -70,6 +70,9 @@ variable "bosa_demo_key" {
 variable "bosa_test_key" {
 }
 
+variable "extracts_expiration_days" {
+}
+
 variable "admin_cidr_blocks" {
   type = list(string)
 }

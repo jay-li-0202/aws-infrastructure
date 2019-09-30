@@ -68,3 +68,6 @@ wms_db_type     = "S2"
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services
 // datadog_api_key = "x"     // https://app.datadoghq.com/account/settings#api
+
+// Basisregisters Information
+extracts_expiration_days = 5
