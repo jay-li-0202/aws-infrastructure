@@ -134,6 +134,10 @@ variable "fargate_cluster_id" {
   type = string
 }
 
+variable "site_version" {
+  type = string
+}
+
 variable "site_image" {
   type = string
 }

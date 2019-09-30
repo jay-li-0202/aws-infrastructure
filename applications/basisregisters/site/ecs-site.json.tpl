@@ -5,6 +5,8 @@
     "essential": true,
     "networkMode": "awsvpc",
     "environment" : [
+      { "name": "API_VERSION", "value": "${site_version}" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}-site" },
