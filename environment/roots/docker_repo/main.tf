@@ -261,6 +261,7 @@ module "public-api" {
   repository_names = [
     "public-api/api",
     "public-api/api-legacy",
+    "public-api/extract-bundler",
   ]
 }
 
