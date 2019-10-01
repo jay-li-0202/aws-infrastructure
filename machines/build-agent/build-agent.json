@@ -50,6 +50,7 @@
         "chmod +x dotnet-install.sh",
         "./dotnet-install.sh --no-path --runtime aspnetcore --version 2.2.4   # 2.2.4",
         "./dotnet-install.sh --no-path --version 2.2.401                      # 2.2.6",
+        "./dotnet-install.sh --no-path --version 3.0.100                      # 3.0.0",
         "sudo rm -rf /usr/share/dotnet",
         "ln -s ~/.dotnet /usr/share/dotnet",
         "export PATH=\"$PATH:/usr/share/dotnet\" >> ~/.profile",
