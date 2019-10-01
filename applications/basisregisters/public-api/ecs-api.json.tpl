@@ -7,7 +7,9 @@
     "environment" : [
       { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
 
+      { "name": "SiteUrl", "value": "https://${public_zone_name}/" },
       { "name": "BaseUrl", "value": "https://api.${public_zone_name}/" },
+      { "name": "BaseName", "value": "${environment_name}" },
 
       { "name": "Redis__Enabled", "value": "true" },
       { "name": "Redis__ClientName", "value": "Legacy - API" },
