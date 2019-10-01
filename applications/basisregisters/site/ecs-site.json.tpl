@@ -6,6 +6,7 @@
     "networkMode": "awsvpc",
     "environment" : [
       { "name": "API_VERSION", "value": "${site_version}" },
+      { "name": "API_ENDPOINT", "value": "https://api.${public_zone_name}/" },
 
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
