@@ -143,7 +143,7 @@ variable "site_image" {
 }
 
 variable "site_port" {
-  type = string
+  type    = string
   default = 80
 }
 

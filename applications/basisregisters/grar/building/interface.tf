@@ -141,11 +141,11 @@ variable "wms_db_server" {
 }
 
 variable "wms_db_name" {
-  type    = string
+  type = string
 }
 
 variable "wms_db_user" {
-  type    = string
+  type = string
 }
 
 variable "wms_db_password" {

@@ -4,6 +4,12 @@ resource "aws_api_gateway_resource" "gebouweenheid_detail1" {
   path_part   = "{gebouweenheidId}"
 }
 
+module "cors-gebouweenheid1" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.gebouweenheid_detail1.id
+}
+
 resource "aws_api_gateway_method" "get-gebouweenheid1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.gebouweenheid_detail1.id

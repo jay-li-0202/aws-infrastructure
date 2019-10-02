@@ -63,21 +63,21 @@ data "template_file" "site" {
   template = file("${path.module}/ecs-site.json.tpl")
 
   vars = {
-    environment_name  = lower(replace(var.environment_name, " ", "-"))
-    datadog_api_key   = var.datadog_api_key
-    disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    logging_name      = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-site"
-    site_version      = var.site_version
-    site_image        = var.site_image
-    site_port         = var.site_port
-    region            = var.region
-    datadog_env       = var.datadog_env
-    tag_environment   = var.tag_environment
-    tag_product       = var.tag_product
-    tag_program       = var.tag_program
-    tag_contact       = var.tag_contact
-    public_zone_name  = replace(var.public_zone_name, "/[.]$/", "")
+    environment_name = lower(replace(var.environment_name, " ", "-"))
+    datadog_api_key  = var.datadog_api_key
+    disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-site"
+    site_version     = var.site_version
+    site_image       = var.site_image
+    site_port        = var.site_port
+    region           = var.region
+    datadog_env      = var.datadog_env
+    tag_environment  = var.tag_environment
+    tag_product      = var.tag_product
+    tag_program      = var.tag_program
+    tag_contact      = var.tag_contact
+    public_zone_name = replace(var.public_zone_name, "/[.]$/", "")
   }
 }
 

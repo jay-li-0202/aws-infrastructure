@@ -1,3 +1,9 @@
+module "cors-adresvoorstellingen1" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.adresvoorstellingen_root1.id
+}
+
 resource "aws_api_gateway_method" "get-adresvoorstellingen1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.adresvoorstellingen_root1.id
@@ -14,6 +20,12 @@ resource "aws_api_gateway_method" "get-adresvoorstellingen1" {
   }
 }
 
+module "cors-adresvoorstellingen2" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.adresvoorstellingen_root2.id
+}
+
 resource "aws_api_gateway_method" "get-adresvoorstellingen2" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.adresvoorstellingen_root2.id
@@ -28,6 +40,12 @@ resource "aws_api_gateway_method" "get-adresvoorstellingen2" {
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
   }
+}
+
+module "cors-adresvoorstellingen3" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.adresvoorstellingen_root3.id
 }
 
 resource "aws_api_gateway_method" "get-adresvoorstellingen3" {

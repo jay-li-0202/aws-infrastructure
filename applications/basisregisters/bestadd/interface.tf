@@ -77,11 +77,11 @@ variable "api_name" {
 }
 
 variable "api_anonymous_rate_limit_per_5min" {
-  type    = string
+  type = string
 }
 
 variable "api_anonymous_waf_acl_id" {
-  type    = string
+  type = string
 }
 
 variable "vpc_link_id" {

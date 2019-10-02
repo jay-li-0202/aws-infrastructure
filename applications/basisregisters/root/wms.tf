@@ -40,20 +40,20 @@ module "wms" {
   allowed_ips = concat(
     var.wms_allowed_ips,
     [
-      for idx, ip in data.terraform_remote_state.vpc.outputs.nat_ips:
+      for idx, ip in data.terraform_remote_state.vpc.outputs.nat_ips :
       format("%s|AWS NAT IP %d", ip, (idx + 1))
     ],
-    ["0.0.0.0|Allow Access To Azure Services"])
+  ["0.0.0.0|Allow Access To Azure Services"])
 
-  sa_user     = var.sql_username
-  sa_pass     = var.azure_sql_password
-  db_name = var.wms_db_name
-  db_user     = var.wms_user
-  db_password = var.wms_password
+  sa_user            = var.sql_username
+  sa_pass            = var.azure_sql_password
+  db_name            = var.wms_db_name
+  db_user            = var.wms_user
+  db_password        = var.wms_password
   db_reader_password = var.wms_reader_password
-  db_edition  = var.wms_db_edition
-  db_max_size = var.wms_db_max_size
-  db_type     = var.wms_db_type
+  db_edition         = var.wms_db_edition
+  db_max_size        = var.wms_db_max_size
+  db_type            = var.wms_db_type
 
   public_zone_id = data.terraform_remote_state.dns.outputs.public_zone_id
 }

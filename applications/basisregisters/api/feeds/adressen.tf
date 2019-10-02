@@ -16,6 +16,12 @@ resource "aws_api_gateway_resource" "adres_detail3" {
   path_part   = "adressen.atom"
 }
 
+module "cors-adressen1" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.adres_detail1.id
+}
+
 resource "aws_api_gateway_method" "get-adressen1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.adres_detail1.id
@@ -32,6 +38,12 @@ resource "aws_api_gateway_method" "get-adressen1" {
   }
 }
 
+module "cors-adressen2" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.adres_detail2.id
+}
+
 resource "aws_api_gateway_method" "get-adressen2" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.adres_detail2.id
@@ -46,6 +58,12 @@ resource "aws_api_gateway_method" "get-adressen2" {
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
   }
+}
+
+module "cors-adressen3" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.adres_detail3.id
 }
 
 resource "aws_api_gateway_method" "get-adressen3" {

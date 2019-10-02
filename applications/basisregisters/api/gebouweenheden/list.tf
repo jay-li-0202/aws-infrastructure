@@ -1,3 +1,9 @@
+module "cors-gebouweenheden1" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.gebouweenheden_root1.id
+}
+
 resource "aws_api_gateway_method" "get-gebouweenheden1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.gebouweenheden_root1.id
@@ -14,6 +20,12 @@ resource "aws_api_gateway_method" "get-gebouweenheden1" {
   }
 }
 
+module "cors-gebouweenheden2" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.gebouweenheden_root2.id
+}
+
 resource "aws_api_gateway_method" "get-gebouweenheden2" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.gebouweenheden_root2.id
@@ -28,6 +40,12 @@ resource "aws_api_gateway_method" "get-gebouweenheden2" {
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
   }
+}
+
+module "cors-gebouweenheden3" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.gebouweenheden_root3.id
 }
 
 resource "aws_api_gateway_method" "get-gebouweenheden3" {

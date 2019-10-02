@@ -4,6 +4,12 @@ resource "aws_api_gateway_resource" "postinfo_detail1" {
   path_part   = "{postinfoId}"
 }
 
+module "cors-postinfo1" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.postinfo_detail1.id
+}
+
 resource "aws_api_gateway_method" "get-postinfo1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.postinfo_detail1.id

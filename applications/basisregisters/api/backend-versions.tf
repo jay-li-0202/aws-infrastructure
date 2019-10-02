@@ -4,6 +4,12 @@ resource "aws_api_gateway_resource" "versions" {
   path_part   = "versions"
 }
 
+module "cors-versions" {
+  source          = "./cors"
+  api_id          = aws_api_gateway_rest_api.gw.id
+  api_resource_id = aws_api_gateway_resource.versions.id
+}
+
 resource "aws_api_gateway_method" "get-versions" {
   rest_api_id          = aws_api_gateway_rest_api.gw.id
   resource_id          = aws_api_gateway_resource.versions.id

@@ -1,6 +1,6 @@
 # Incoming HTTP
 resource "aws_security_group_rule" "ingress_http" {
-  type  = "ingress"
+  type = "ingress"
 
   from_port   = var.lb_port
   to_port     = var.lb_port
@@ -13,7 +13,7 @@ resource "aws_security_group_rule" "ingress_http" {
 
 # Incoming HTTPS
 resource "aws_security_group_rule" "ingress_https" {
-  type  = "ingress"
+  type = "ingress"
 
   from_port   = var.lb_https_port
   to_port     = var.lb_https_port

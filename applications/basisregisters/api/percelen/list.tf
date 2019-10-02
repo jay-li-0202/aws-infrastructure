@@ -1,3 +1,9 @@
+module "cors-percelen1" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.percelen_root1.id
+}
+
 resource "aws_api_gateway_method" "get-percelen1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.percelen_root1.id
@@ -14,6 +20,12 @@ resource "aws_api_gateway_method" "get-percelen1" {
   }
 }
 
+module "cors-percelen2" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.percelen_root2.id
+}
+
 resource "aws_api_gateway_method" "get-percelen2" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.percelen_root2.id
@@ -28,6 +40,12 @@ resource "aws_api_gateway_method" "get-percelen2" {
     "method.request.header.Cookie" = false
     "method.request.header.Host"   = true
   }
+}
+
+module "cors-percelen3" {
+  source          = "../cors"
+  api_id          = var.rest_api_id
+  api_resource_id = aws_api_gateway_resource.percelen_root3.id
 }
 
 resource "aws_api_gateway_method" "get-percelen3" {

@@ -21,21 +21,21 @@ data "template_file" "extract-bundler" {
   template = file("${path.module}/ecs-extract-bundler.json.tpl")
 
   vars = {
-    environment_name = lower(replace(var.environment_name, " ", "-"))
-    datadog_api_key  = var.datadog_api_key
-    disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-extract-bundler"
-    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
-    extract_bundler_image      = var.extract_bundler_image
-    region           = var.region
-    datadog_env      = var.datadog_env
-    tag_environment  = var.tag_environment
-    tag_product      = var.tag_product
-    tag_program      = var.tag_program
-    tag_contact      = var.tag_contact
+    environment_name       = lower(replace(var.environment_name, " ", "-"))
+    datadog_api_key        = var.datadog_api_key
+    disco_namespace        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    app_name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-extract-bundler"
+    logging_name           = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+    extract_bundler_image  = var.extract_bundler_image
+    region                 = var.region
+    datadog_env            = var.datadog_env
+    tag_environment        = var.tag_environment
+    tag_product            = var.tag_product
+    tag_program            = var.tag_program
+    tag_contact            = var.tag_contact
     extract_bundler_bucket = aws_s3_bucket.extract.id
-    public_zone_name = replace(var.public_zone_name, "/[.]$/", "")
-    disco_zone_name  = replace(var.disco_zone_name, "/[.]$/", "")
+    public_zone_name       = replace(var.public_zone_name, "/[.]$/", "")
+    disco_zone_name        = replace(var.disco_zone_name, "/[.]$/", "")
   }
 }
 

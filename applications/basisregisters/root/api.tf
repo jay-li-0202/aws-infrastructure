@@ -19,9 +19,9 @@ module "api" {
   ui_key   = var.ui_key
   test_key = var.test_key
 
-  api_name       = "basisregisters"
-  api_stage_name = "basisregisters"
-  api_anonymous_waf_acl_id = module.waf.acl_id
+  api_name                          = "basisregisters"
+  api_stage_name                    = "basisregisters"
+  api_anonymous_waf_acl_id          = module.waf.acl_id
   api_anonymous_rate_limit_per_5min = module.waf.api_anonymous_rate_limit_per_5min
 
   api_url               = "api"

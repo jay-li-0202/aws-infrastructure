@@ -35,7 +35,7 @@ variable "public_zone_id" {
 }
 
 variable "db_name" {
-  type    = string
+  type = string
 }
 
 variable "db_user" {

@@ -52,10 +52,10 @@ module "publicservice-registry" {
   api_max_instances = 4
   api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.12.1"
 
-  orafin_cpu          = 256
-  orafin_memory       = 512
+  orafin_cpu    = 256
+  orafin_memory = 512
   // Every day at 20:00
-  orafin_schedule     = "cron(0 20 * * ? *)"
+  orafin_schedule = "cron(0 20 * * ? *)"
   // orafin_schedule     = "cron(0/5 * * * ? *)"
   orafin_enabled      = true
   orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.12.1"
