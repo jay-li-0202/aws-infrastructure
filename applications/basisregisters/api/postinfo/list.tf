@@ -1,5 +1,5 @@
 module "cors-postinfo-list1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.postinfo_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-postinfo-list1" {
 }
 
 module "cors-postinfo-list2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.postinfo_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-postinfo-list2" {
 }
 
 module "cors-postinfo-list3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.postinfo_root3.id
 }

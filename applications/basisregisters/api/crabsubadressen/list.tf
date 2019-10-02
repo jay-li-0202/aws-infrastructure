@@ -1,5 +1,5 @@
 module "cors-crabsubadressen1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.crabsubadressen_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-crabsubadressen1" {
 }
 
 module "cors-crabsubadressen2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.crabsubadressen_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-crabsubadressen2" {
 }
 
 module "cors-crabsubadressen3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.crabsubadressen_root3.id
 }

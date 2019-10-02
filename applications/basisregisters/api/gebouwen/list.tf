@@ -1,5 +1,5 @@
 module "cors-gebouwen1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gebouwen_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-gebouwen1" {
 }
 
 module "cors-gebouwen2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gebouwen_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-gebouwen2" {
 }
 
 module "cors-gebouwen3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gebouwen_root3.id
 }

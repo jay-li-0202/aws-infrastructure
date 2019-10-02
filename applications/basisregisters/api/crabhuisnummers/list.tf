@@ -1,5 +1,5 @@
 module "cors-crabhuisnummers1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.crabhuisnummers_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-crabhuisnummers1" {
 }
 
 module "cors-crabhuisnummers2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.crabhuisnummers_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-crabhuisnummers2" {
 }
 
 module "cors-crabhuisnummers3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.crabhuisnummers_root3.id
 }

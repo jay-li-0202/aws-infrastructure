@@ -17,7 +17,7 @@ resource "aws_api_gateway_resource" "perceel_detail3" {
 }
 
 module "cors-percelen1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.perceel_detail1.id
 }
@@ -39,7 +39,7 @@ resource "aws_api_gateway_method" "get-percelen1" {
 }
 
 module "cors-percelen2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.perceel_detail2.id
 }
@@ -61,7 +61,7 @@ resource "aws_api_gateway_method" "get-percelen2" {
 }
 
 module "cors-percelen3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.perceel_detail3.id
 }

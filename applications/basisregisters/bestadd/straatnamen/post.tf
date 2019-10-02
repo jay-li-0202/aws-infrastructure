@@ -1,5 +1,5 @@
 module "cors-straatnamen1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.straatnamen_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-straatnamen1" {
 }
 
 module "cors-straatnamen2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.straatnamen_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-straatnamen2" {
 }
 
 module "cors-straatnamen3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.straatnamen_root3.id
 }

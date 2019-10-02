@@ -5,7 +5,7 @@ resource "aws_api_gateway_resource" "gebouweenheid_detail1" {
 }
 
 module "cors-gebouweenheid1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gebouweenheid_detail1.id
 }

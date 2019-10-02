@@ -17,7 +17,7 @@ resource "aws_api_gateway_resource" "gemeente_detail3" {
 }
 
 module "cors-gemeenten1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gemeente_detail1.id
 }
@@ -39,7 +39,7 @@ resource "aws_api_gateway_method" "get-gemeenten1" {
 }
 
 module "cors-gemeenten2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gemeente_detail2.id
 }
@@ -61,7 +61,7 @@ resource "aws_api_gateway_method" "get-gemeenten2" {
 }
 
 module "cors-gemeenten3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.gemeente_detail3.id
 }

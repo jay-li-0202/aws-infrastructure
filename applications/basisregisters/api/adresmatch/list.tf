@@ -1,5 +1,5 @@
 module "cors-adresmatch1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.adresmatch_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-adresmatch1" {
 }
 
 module "cors-adresmatch2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.adresmatch_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-adresmatch2" {
 }
 
 module "cors-adresmatch3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.adresmatch_root3.id
 }

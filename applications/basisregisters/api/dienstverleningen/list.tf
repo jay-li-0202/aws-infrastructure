@@ -1,5 +1,5 @@
 module "cors-dienstverleningen1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.dienstverleningen_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-dienstverleningen1" {
 }
 
 module "cors-dienstverleningen2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.dienstverleningen_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-dienstverleningen2" {
 }
 
 module "cors-dienstverleningen3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.dienstverleningen_root3.id
 }

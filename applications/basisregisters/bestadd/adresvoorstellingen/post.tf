@@ -1,5 +1,5 @@
 module "cors-adresvoorstellingen1" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.adresvoorstellingen_root1.id
 }
@@ -21,7 +21,7 @@ resource "aws_api_gateway_method" "get-adresvoorstellingen1" {
 }
 
 module "cors-adresvoorstellingen2" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.adresvoorstellingen_root2.id
 }
@@ -43,7 +43,7 @@ resource "aws_api_gateway_method" "get-adresvoorstellingen2" {
 }
 
 module "cors-adresvoorstellingen3" {
-  source          = "../cors"
+  source          = "../../cors"
   api_id          = var.rest_api_id
   api_resource_id = aws_api_gateway_resource.adresvoorstellingen_root3.id
 }
