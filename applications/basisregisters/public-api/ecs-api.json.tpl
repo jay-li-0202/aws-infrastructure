@@ -15,6 +15,9 @@
       { "name": "Redis__ClientName", "value": "Legacy - API" },
       { "name": "Redis__ConnectionString", "value": "cache.${private_zone_name}" },
 
+      { "name": "Cors__0", "value": "https://api.${public_zone_name}" },
+      { "name": "Cors__1", "value": "http://localhost:8080" }
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
