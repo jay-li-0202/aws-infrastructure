@@ -69,6 +69,14 @@ variable "cert_public_zone_name" {
   type = string
 }
 
+variable "cert_alias_zone_name" {
+  type = string
+}
+
+variable "cert_alias_zone_id" {
+  type = string
+}
+
 variable "cert_public_zone_id" {
   type = string
 }

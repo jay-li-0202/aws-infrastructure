@@ -25,6 +25,8 @@ module "docs" {
   public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id
   cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name
   cert_public_zone_id   = data.terraform_remote_state.dns.outputs.public_zone_id
+  cert_alias_zone_name  = module.dns.public_zone_name
+  cert_alias_zone_id    = module.dns.public_zone_id
 
   datadog_logging_lambda = data.terraform_remote_state.datadog.outputs.datadog_lambda_arn
 }

@@ -79,7 +79,7 @@
       { "name": "PerceelUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
 
       { "name": "Syndication__Category1", "value": "https://data.vlaanderen.be/ns/gebouw" },
-      { "name": "Syndication__Category1", "value": "https://data.vlaanderen.be/ns/gebouweenheid" },
+      { "name": "Syndication__Category2", "value": "https://data.vlaanderen.be/ns/gebouweenheid" },
       { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/gebouwen.atom" },
       { "name": "Syndication__Self", "value": "https://api.${public_zone_name}/syndication/feed/building.atom" },
       { "name": "Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/gebouwen.atom?offset={0}&limit={1}" },
