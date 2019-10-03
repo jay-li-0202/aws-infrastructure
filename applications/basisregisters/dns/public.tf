@@ -69,6 +69,14 @@ resource "aws_route53_record" "api_cname" {
   records = ["${var.api_fqdn}"]
 }
 
+resource "aws_route53_record" "docs_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "docs.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.docs_fqdn}"]
+}
+
 resource "aws_route53_record" "wms_cname" {
   zone_id = aws_route53_zone.public.zone_id
   name    = "wms.${var.public_zone_name}"

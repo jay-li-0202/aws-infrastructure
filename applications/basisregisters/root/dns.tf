@@ -17,5 +17,6 @@ module "dns" {
   public_zone_name = var.alias_zone_name
 
   api_fqdn    = module.api.api_fqdn
+  docs_fqdn   = module.docs.docs_fqdn
   wms_db_fqdn = module.wms.wms_fqdn
 }

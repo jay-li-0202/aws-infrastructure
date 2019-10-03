@@ -106,3 +106,7 @@ variable "ecs_sg_ports" {
 output "target_group_id" {
   value = aws_lb_target_group.docs.id
 }
+
+output "docs_fqdn" {
+  value = aws_route53_record.docs.fqdn
+}
