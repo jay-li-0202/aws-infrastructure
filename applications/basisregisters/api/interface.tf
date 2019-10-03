@@ -118,3 +118,7 @@ output "lb_zone_id" {
 output "vpc_link_id" {
   value = aws_api_gateway_vpc_link.api.id
 }
+
+output "api_fqdn" {
+  value = aws_route53_record.gw_record.fqdn
+}
