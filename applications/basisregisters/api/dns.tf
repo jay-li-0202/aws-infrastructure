@@ -5,8 +5,20 @@ resource "aws_api_gateway_domain_name" "gw" {
   security_policy = "TLS_1_2"
 }
 
+resource "aws_api_gateway_domain_name" "gw_alias" {
+  domain_name = "${var.api_url}.${replace(var.alias_zone_name, "/[.]$/", "")}"
+
+  certificate_arn = aws_acm_certificate.cert.arn
+  security_policy = "TLS_1_2"
+}
+
 data "aws_route53_zone" "gw_zone" {
   name         = var.public_zone_name
+  private_zone = false
+}
+
+data "aws_route53_zone" "gw_zone_alias" {
+  name         = var.alias_zone_name
   private_zone = false
 }
 
@@ -23,11 +35,15 @@ resource "aws_route53_record" "gw_record" {
   }
 }
 
-// TODO: It is possible we can remove this thanks to the wildcard DNS, unless it doesnt work with 2 subdomains
-// resource "aws_route53_record" "api_gw_record" {
-//   zone_id = "${data.aws_route53_zone.gw_zone.id}"
-//   type    = "CNAME"
-//   name    = "api.${var.api_name}"
-//   ttl     = "300"
-//   records = ["${data.terraform_remote_state.hashi_servers.outputs.lb_fqdn}"]
-// }
+resource "aws_route53_record" "gw_record_alias" {
+  zone_id = data.aws_route53_zone.gw_zone_alias.id
+
+  name = aws_api_gateway_domain_name.gw_alias.domain_name
+  type = "A"
+
+  alias {
+    name                   = aws_api_gateway_domain_name.gw_alias.cloudfront_domain_name
+    zone_id                = aws_api_gateway_domain_name.gw_alias.cloudfront_zone_id
+    evaluate_target_health = true
+  }
+}

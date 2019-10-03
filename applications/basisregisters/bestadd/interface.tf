@@ -49,6 +49,10 @@ variable "public_zone_name" {
   type = string
 }
 
+variable "alias_zone_name" {
+  type = string
+}
+
 variable "api_url" {
   type    = string
   default = "bosa"

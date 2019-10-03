@@ -23,6 +23,7 @@ module "bestadd" {
 
   api_url               = "bosa"
   public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
+  alias_zone_name       = module.dns.public_zone_name
   cert_public_zone_name = data.terraform_remote_state.dns.outputs.public_zone_name
   cert_public_zone_id   = data.terraform_remote_state.dns.outputs.public_zone_id
   cert_alias_zone_name  = module.dns.public_zone_name

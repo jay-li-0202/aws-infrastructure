@@ -50,6 +50,13 @@ resource "aws_api_gateway_base_path_mapping" "v1" {
   base_path   = "v1"
 }
 
+resource "aws_api_gateway_base_path_mapping" "v1_alias" {
+  api_id      = aws_api_gateway_rest_api.gw.id
+  stage_name  = aws_api_gateway_stage.gw.stage_name
+  domain_name = aws_api_gateway_domain_name.gw_alias.domain_name
+  base_path   = "v1"
+}
+
 module "gemeenten" {
   source = "./gemeenten"
 
