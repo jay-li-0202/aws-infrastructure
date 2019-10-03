@@ -1,5 +1,5 @@
 data "template_file" "sql1" {
-  template = file("${path.module}/../01-create-db.sql")
+  template = file("${path.module}/../../sql/01-create-db.sql")
 
   vars = {
     database = var.db_name
@@ -7,7 +7,7 @@ data "template_file" "sql1" {
 }
 
 data "template_file" "sql2" {
-  template = file("${path.module}/../02-create-schema.sql")
+  template = file("${path.module}/../../sql/02-create-schema.sql")
 
   vars = {
     database = var.db_name
@@ -16,7 +16,7 @@ data "template_file" "sql2" {
 }
 
 data "template_file" "sql3" {
-  template = file("${path.module}/../03-create-user.sql")
+  template = file("${path.module}/../../sql/03-create-user.sql")
 
   vars = {
     database = var.db_name

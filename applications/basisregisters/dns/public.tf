@@ -1,10 +1,10 @@
 resource "aws_route53_zone" "public" {
   name          = var.public_zone_name
-  comment       = "Public zone for ${var.environment_label} ${var.environment_name}."
+  comment       = "Public zone for Base Registries ${var.environment_label} ${var.environment_name}."
   force_destroy = true
 
   tags = {
-    Name        = "Public Zone // ${var.environment_label} ${var.environment_name}"
+    Name        = "Public Zone Base Registries // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment
     Productcode = var.tag_product
     Programma   = var.tag_program
@@ -61,6 +61,14 @@ resource "aws_route53_record" "awverify_beta_cname" {
 }
 
 // The ones below are already part of the new architecture
+resource "aws_route53_record" "api_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "api.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.api_fqdn}"]
+}
+
 resource "aws_route53_record" "wms_cname" {
   zone_id = aws_route53_zone.public.zone_id
   name    = "wms.${var.public_zone_name}"

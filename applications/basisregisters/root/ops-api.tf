@@ -21,6 +21,7 @@ module "ops-api" {
     "6000-6007",
     "7000-7007",
     "8000-8007",
+    "9000-9007",
   ]
 
   vpc_id            = data.terraform_remote_state.vpc.outputs.vpc_id
