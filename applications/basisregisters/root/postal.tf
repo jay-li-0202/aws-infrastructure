@@ -54,6 +54,7 @@ module "postal-registry" {
 
   disco_namespace_id = aws_service_discovery_private_dns_namespace.basisregisters.id
   disco_zone_name    = var.disco_zone_name
+  alias_zone_name    = var.alias_zone_name
   public_zone_id     = data.terraform_remote_state.dns.outputs.public_zone_id
   public_zone_name   = data.terraform_remote_state.dns.outputs.public_zone_name
 

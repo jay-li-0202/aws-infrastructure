@@ -66,16 +66,16 @@
 
       { "name": "Naamruimte", "value": "https://data.vlaanderen.be/id/perceel" },
 
-      { "name": "DetailUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
-      { "name": "AdresDetailUrl", "value": "https://api.${public_zone_name}/v1/adressen/{0}" },
+      { "name": "DetailUrl", "value": "https://api.${alias_zone_name}/v1/percelen/{0}" },
+      { "name": "AdresDetailUrl", "value": "https://api.${alias_zone_name}/v1/adressen/{0}" },
 
-      { "name": "VolgendeUrl", "value": "https://api.${public_zone_name}/v1/percelen?offset={0}&limit={1}" },
+      { "name": "VolgendeUrl", "value": "https://api.${alias_zone_name}/v1/percelen?offset={0}&limit={1}" },
 
       { "name": "Syndication__Category", "value": "https://data.vlaanderen.be/ns/perceel" },
-      { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/percelen.atom" },
-      { "name": "Syndication__Self", "value": "https://api.${public_zone_name}/syndication/feed/parcel.atom" },
-      { "name": "Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/percelen.atom?offset={0}&limit={1}" },
-      { "name": "Syndication__Related__0", "value": "https://api.${public_zone_name}" }
+      { "name": "Syndication__Id", "value": "https://api.${alias_zone_name}/v1/feeds/percelen.atom" },
+      { "name": "Syndication__Self", "value": "https://api.${alias_zone_name}/syndication/feed/parcel.atom" },
+      { "name": "Syndication__NextUri", "value": "https://api.${alias_zone_name}/v1/feeds/percelen.atom?offset={0}&limit={1}" },
+      { "name": "Syndication__Related__0", "value": "https://api.${alias_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

@@ -81,6 +81,10 @@ variable "public_zone_name" {
   type = string
 }
 
+variable "alias_zone_name" {
+  type = string
+}
+
 variable "public_zone_id" {
   type = string
 }

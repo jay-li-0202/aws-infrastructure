@@ -61,14 +61,6 @@ resource "aws_route53_record" "awverify_beta_cname" {
 }
 
 // The ones below are already part of the new architecture
-// resource "aws_route53_record" "api_cname" {
-//   zone_id = aws_route53_zone.public.zone_id
-//   name    = "api.${var.public_zone_name}"
-//   type    = "CNAME"
-//   ttl     = "60"
-//   records = ["${var.api_fqdn}"]
-// }
-
 resource "aws_route53_record" "docs_cname" {
   zone_id = aws_route53_zone.public.zone_id
   name    = "docs.${var.public_zone_name}"

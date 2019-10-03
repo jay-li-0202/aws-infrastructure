@@ -67,15 +67,15 @@
       { "name": "Naamruimte", "value": "https://data.vlaanderen.be/id/straatnaam" },
       { "name": "GemeenteNaamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
 
-      { "name": "DetailUrl", "value": "https://api.${public_zone_name}/v1/straatnamen/{0}" },
-      { "name": "VolgendeUrl", "value": "https://api.${public_zone_name}/v1/straatnamen?offset={0}&limit={1}" },
-      { "name": "GemeenteDetailUrl", "value": "https://api.${public_zone_name}/v1/gemeenten/{0}" },
+      { "name": "DetailUrl", "value": "https://api.${alias_zone_name}/v1/straatnamen/{0}" },
+      { "name": "VolgendeUrl", "value": "https://api.${alias_zone_name}/v1/straatnamen?offset={0}&limit={1}" },
+      { "name": "GemeenteDetailUrl", "value": "https://api.${alias_zone_name}/v1/gemeenten/{0}" },
 
       { "name": "Syndication__Category", "value": "https://data.vlaanderen.be/ns/straatnaam" },
-      { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/straatnamen.atom" },
-      { "name": "Syndication__Self", "value": "https://api.${public_zone_name}/syndication/feed/streetname.atom" },
-      { "name": "Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/straatnamen.atom?offset={0}&limit={1}" },
-      { "name": "Syndication__Related__0", "value": "https://api.${public_zone_name}" }
+      { "name": "Syndication__Id", "value": "https://api.${alias_zone_name}/v1/feeds/straatnamen.atom" },
+      { "name": "Syndication__Self", "value": "https://api.${alias_zone_name}/syndication/feed/streetname.atom" },
+      { "name": "Syndication__NextUri", "value": "https://api.${alias_zone_name}/v1/feeds/straatnamen.atom?offset={0}&limit={1}" },
+      { "name": "Syndication__Related__0", "value": "https://api.${alias_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

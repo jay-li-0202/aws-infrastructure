@@ -69,21 +69,21 @@
       { "name": "GebouwNaamruimte", "value": "https://data.vlaanderen.be/id/gebouw" },
       { "name": "GebouweenheidNaamruimte", "value": "https://data.vlaanderen.be/id/gebouweenheid" },
 
-      { "name": "GebouwDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouwen/{0}" },
-      { "name": "GebouweenheidDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden/{0}" },
+      { "name": "GebouwDetailUrl", "value": "https://api.${alias_zone_name}/v1/gebouwen/{0}" },
+      { "name": "GebouweenheidDetailUrl", "value": "https://api.${alias_zone_name}/v1/gebouweenheden/{0}" },
 
-      { "name": "GebouwVolgendeUrl", "value": "https://api.${public_zone_name}/v1/gebouwen?offset={0}&limit={1}" },
-      { "name": "GebouweenheidVolgendeUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden?offset={0}&limit={1}" },
+      { "name": "GebouwVolgendeUrl", "value": "https://api.${alias_zone_name}/v1/gebouwen?offset={0}&limit={1}" },
+      { "name": "GebouweenheidVolgendeUrl", "value": "https://api.${alias_zone_name}/v1/gebouweenheden?offset={0}&limit={1}" },
 
-      { "name": "AdresUrl", "value": "https://api.${public_zone_name}/v1/adressen/{0}" },
-      { "name": "PerceelUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
+      { "name": "AdresUrl", "value": "https://api.${alias_zone_name}/v1/adressen/{0}" },
+      { "name": "PerceelUrl", "value": "https://api.${alias_zone_name}/v1/percelen/{0}" },
 
       { "name": "Syndication__Category1", "value": "https://data.vlaanderen.be/ns/gebouw" },
       { "name": "Syndication__Category2", "value": "https://data.vlaanderen.be/ns/gebouweenheid" },
-      { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/gebouwen.atom" },
-      { "name": "Syndication__Self", "value": "https://api.${public_zone_name}/syndication/feed/building.atom" },
-      { "name": "Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/gebouwen.atom?offset={0}&limit={1}" },
-      { "name": "Syndication__Related__0", "value": "https://api.${public_zone_name}" }
+      { "name": "Syndication__Id", "value": "https://api.${alias_zone_name}/v1/feeds/gebouwen.atom" },
+      { "name": "Syndication__Self", "value": "https://api.${alias_zone_name}/syndication/feed/building.atom" },
+      { "name": "Syndication__NextUri", "value": "https://api.${alias_zone_name}/v1/feeds/gebouwen.atom?offset={0}&limit={1}" },
+      { "name": "Syndication__Related__0", "value": "https://api.${alias_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

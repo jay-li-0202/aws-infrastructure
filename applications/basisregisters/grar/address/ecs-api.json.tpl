@@ -72,24 +72,24 @@
       { "name": "GemeenteNaamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
       { "name": "StraatNaamNaamruimte", "value": "https://data.vlaanderen.be/id/straatnaam" },
 
-      { "name": "DetailUrl", "value": "https://api.${public_zone_name}/v1/adressen/{0}" },
-      { "name": "VolgendeUrl", "value": "https://api.${public_zone_name}/v1/adressen?offset={0}&limit={1}" },
-      { "name": "CrabHuisnummersVolgendeUrl", "value": "https://api.${public_zone_name}/v1/crabhuisnummers?offset={0}&limit={1}" },
-      { "name": "CrabSubadressenVolgendeUrl", "value": "https://api.${public_zone_name}/v1/crabsubadressen?offset={0}&limit={1}" },
-      { "name": "PostInfoDetailUrl", "value": "https://api.${public_zone_name}/v1/postinfo/{0}" },
-      { "name": "GemeenteDetailUrl", "value": "https://api.${public_zone_name}/v1/gemeenten/{0}" },
-      { "name": "StraatnaamDetailUrl", "value": "https://api.${public_zone_name}/v1/straatnamen/{0}" },
-      { "name": "GebouweenheidDetailUrl", "value": "https://api.${public_zone_name}/v1/gebouweenheden/{0}" },
-      { "name": "PerceelDetailUrl", "value": "https://api.${public_zone_name}/v1/percelen/{0}" },
+      { "name": "DetailUrl", "value": "https://api.${alias_zone_name}/v1/adressen/{0}" },
+      { "name": "VolgendeUrl", "value": "https://api.${alias_zone_name}/v1/adressen?offset={0}&limit={1}" },
+      { "name": "CrabHuisnummersVolgendeUrl", "value": "https://api.${alias_zone_name}/v1/crabhuisnummers?offset={0}&limit={1}" },
+      { "name": "CrabSubadressenVolgendeUrl", "value": "https://api.${alias_zone_name}/v1/crabsubadressen?offset={0}&limit={1}" },
+      { "name": "PostInfoDetailUrl", "value": "https://api.${alias_zone_name}/v1/postinfo/{0}" },
+      { "name": "GemeenteDetailUrl", "value": "https://api.${alias_zone_name}/v1/gemeenten/{0}" },
+      { "name": "StraatnaamDetailUrl", "value": "https://api.${alias_zone_name}/v1/straatnamen/{0}" },
+      { "name": "GebouweenheidDetailUrl", "value": "https://api.${alias_zone_name}/v1/gebouweenheden/{0}" },
+      { "name": "PerceelDetailUrl", "value": "https://api.${alias_zone_name}/v1/percelen/{0}" },
 
       { "name": "SimilarityThreshold", "value": "75.0" },
       { "name": "MaxStreetNamesThreshold", "value": "100" },
 
       { "name": "Syndication__Category", "value": "https://data.vlaanderen.be/ns/adres" },
-      { "name": "Syndication__Id", "value": "https://api.${public_zone_name}/v1/feeds/adressen.atom" },
-      { "name": "Syndication__Self", "value": "https://api.${public_zone_name}/syndication/feed/address.atom" },
-      { "name": "Syndication__NextUri", "value": "https://api.${public_zone_name}/v1/feeds/adressen.atom?offset={0}&limit={1}" },
-      { "name": "Syndication__Related__0", "value": "https://api.${public_zone_name}" }
+      { "name": "Syndication__Id", "value": "https://api.${alias_zone_name}/v1/feeds/adressen.atom" },
+      { "name": "Syndication__Self", "value": "https://api.${alias_zone_name}/syndication/feed/address.atom" },
+      { "name": "Syndication__NextUri", "value": "https://api.${alias_zone_name}/v1/feeds/adressen.atom?offset={0}&limit={1}" },
+      { "name": "Syndication__Related__0", "value": "https://api.${alias_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
