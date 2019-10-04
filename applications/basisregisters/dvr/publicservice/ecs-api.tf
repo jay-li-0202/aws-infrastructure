@@ -79,6 +79,7 @@ data "template_file" "api" {
     tag_product      = var.tag_product
     tag_program      = var.tag_program
     tag_contact      = var.tag_contact
+    alias_zone_name  = replace(var.alias_zone_name, "/[.]$/", "")
     public_zone_name = replace(var.public_zone_name, "/[.]$/", "")
     db_server        = var.db_server
     db_name          = var.db_name

@@ -126,6 +126,10 @@ variable "public_zone_name" {
   type = string
 }
 
+variable "alias_zone_name" {
+  type = string
+}
+
 variable "private_zone_name" {
   type = string
 }
@@ -360,4 +364,12 @@ output "lb_arn" {
 
 output "lb_listener_arn" {
   value = aws_lb_listener.https.arn
+}
+
+output "ui_fqdn" {
+  value = aws_route53_record.publicservice-ui.fqdn
+}
+
+output "api_fqdn" {
+  value = aws_route53_record.publicservice-api.fqdn
 }

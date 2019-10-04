@@ -361,3 +361,11 @@ variable "ecs_as_cpu_high_threshold_per" {
 // output "lb_listener_arn" {
 //   value = aws_lb_listener.https.arn
 // }
+
+output "ui_fqdn" {
+  value = aws_route53_record.organisation-ui.fqdn
+}
+
+output "api_fqdn" {
+  value = aws_route53_record.organisation-api.fqdn
+}

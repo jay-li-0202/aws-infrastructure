@@ -76,3 +76,35 @@ resource "aws_route53_record" "wms_cname" {
   ttl     = "60"
   records = ["${var.wms_db_fqdn}"]
 }
+
+resource "aws_route53_record" "dienstverlening_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "dienstverlening.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.dienstverlening_fqdn}"]
+}
+
+resource "aws_route53_record" "dienstverlening_api_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "dienstverlening-api.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.dienstverlening_api_fqdn}"]
+}
+
+resource "aws_route53_record" "organisatie_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "organisatie.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.organisatie_fqdn}"]
+}
+
+resource "aws_route53_record" "organisatie_api_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "organisatie-api.${var.public_zone_name}"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.organisatie_api_fqdn}"]
+}

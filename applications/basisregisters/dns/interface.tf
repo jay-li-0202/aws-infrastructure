@@ -47,6 +47,22 @@ variable "wms_db_fqdn" {
   type = string
 }
 
+variable "dienstverlening_fqdn" {
+  type = string
+}
+
+variable "dienstverlening_api_fqdn" {
+  type = string
+}
+
+variable "organisatie_fqdn" {
+  type = string
+}
+
+variable "organisatie_api_fqdn" {
+  type = string
+}
+
 output "public_zone_id" {
   value = aws_route53_zone.public.zone_id
 }

@@ -17,6 +17,7 @@
       { "name": "DataDog__HostIp", "value": "localhost" },
 
       { "name": "Cors__0", "value": "https://dienstverlening.${public_zone_name}" },
+      { "name": "Cors__1", "value": "https://dienstverlening.${alias_zone_name}" },
 
       { "name": "OIDCAuth__CallbackPath", "value": "/oic" },
       { "name": "OIDCAuth__TokenEndPoint", "value": "/v1/token" },
