@@ -130,7 +130,8 @@ monitoring: roots/monitoring/.terraform/terraform.tfstate ## Run Terraform to se
 	$(call check_defined, ENVIRONMENT, Environment to use, 'staging' or 'production')
 	@cd roots/monitoring && \
 		terraform $(ACTION) \
-			-var-file=../../../$(ENVIRONMENT).tfvars
+			-var-file=../../../$(ENVIRONMENT).tfvars \
+			-var-file=../../../$(ENVIRONMENT).secret.tfvars
 
 ##############
 
