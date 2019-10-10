@@ -26,6 +26,14 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
+      { "name": "Extract__S3__ApiKey", "value": "x" },
+      { "name": "Extract__S3__Secret", "value": "x" },
+      { "name": "Extract__S3__Region", "value": "${region}" },
+      { "name": "Extract__Download__Bucket", "value": "${extract_bundler_bucket}" },
+      { "name": "Extract__Download__DestinationPath", "value": "" },
+      { "name": "Extract__Download__BundleName", "value": "basisregisters" },
+      { "name": "Extract__Download__ExpiresInSeconds", "value": "300" },
+
       { "name": "ApiConfiguration__MunicipalityRegistry__ApiUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1" },
       { "name": "ApiConfiguration__MunicipalityRegistry__HealthUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/health" },
       { "name": "ApiConfiguration__MunicipalityRegistry__UseCache", "value": "true" },

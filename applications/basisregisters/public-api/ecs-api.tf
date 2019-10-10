@@ -86,6 +86,7 @@ data "template_file" "api" {
     tag_product       = var.tag_product
     tag_program       = var.tag_program
     tag_contact       = var.tag_contact
+    extract_bundler_bucket = aws_s3_bucket.extract.id
     alias_zone_name   = replace(var.alias_zone_name, "/[.]$/", "")
     public_zone_name  = replace(var.public_zone_name, "/[.]$/", "")
     private_zone_name = replace(var.private_zone_name, "/[.]$/", "")
