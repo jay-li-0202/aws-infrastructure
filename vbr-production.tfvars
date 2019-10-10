@@ -41,7 +41,7 @@ elasticsearch_data_instance_type   = "t2.medium.elasticsearch"
 elasticsearch_data_cluster_size    = 4
 
 // ElastiCache Information
-cache_redis_version   = "5.0.4"
+cache_redis_version   = "5.0.5"
 cache_parameter_group = "default.redis5.0.cluster.on"
 cache_instance_type   = "cache.m5.large"
 cache_cluster_size    = 3
