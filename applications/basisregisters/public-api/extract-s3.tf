@@ -33,7 +33,7 @@ resource "aws_s3_bucket" "extract-logs" {
 
 resource "aws_s3_bucket" "extract" {
   bucket        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-extracts"
-  acl           = "public-read"
+  acl           = "private"
   force_destroy = true
 
   tags = {

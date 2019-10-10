@@ -26,8 +26,6 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
-      { "name": "Extract__S3__ApiKey", "value": "x" },
-      { "name": "Extract__S3__Secret", "value": "x" },
       { "name": "Extract__S3__Region", "value": "${region}" },
       { "name": "Extract__Download__Bucket", "value": "${extract_bundler_bucket}" },
       { "name": "Extract__Download__DestinationPath", "value": "" },
