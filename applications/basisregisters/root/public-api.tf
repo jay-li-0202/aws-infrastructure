@@ -15,14 +15,14 @@ module "public-api" {
   memory         = 512
   min_instances  = 2
   max_instances  = 4
-  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.37.1"
+  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.38.0"
   container_port = 2080
 
   extract_bundler_cpu      = 256
   extract_bundler_memory   = 512
   extract_bundler_schedule = "cron(0 22 * * ? *)"
   extract_bundler_enabled  = false
-  extract_bundler_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/extract-bundler:1.1.0"
+  extract_bundler_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/extract-bundler:1.1.1"
 
   lb_port     = 80
   lb_protocol = "TCP"
