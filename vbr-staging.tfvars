@@ -55,3 +55,10 @@ sql_performance_insights_retention_period = 7
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services
 // datadog_api_key = "x"     // https://app.datadoghq.com/account/settings#api
+
+// Basisregisters Information
+logs_expiration_days       = 30
+cloudtrail_expiration_days = 30
+extracts_expiration_days   = 30
+
+api_anonymous_rate_limit_per_5min = 100
