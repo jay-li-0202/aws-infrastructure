@@ -59,7 +59,7 @@ variable "sql_performance_insights_retention_period" {
 }
 
 provider "aws" {
-  version             = "~> 2.29.0"
+  version             = "~> 2.32.0"
   region              = var.aws_region
   profile             = var.aws_profile
   allowed_account_ids = [var.aws_account_id]
