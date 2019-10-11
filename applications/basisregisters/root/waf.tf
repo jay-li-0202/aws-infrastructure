@@ -1,3 +1,6 @@
+variable "api_anonymous_rate_limit_per_5min" {
+}
+
 module "waf" {
   source = "../waf"
 
@@ -13,6 +16,5 @@ module "waf" {
   app = "basisregisters"
 
   // https://github.com/terraform-providers/terraform-provider-aws/pull/9946
-  // api_anonymous_rate_limit_per_5min = "100"
-  api_anonymous_rate_limit_per_5min = "2000"
+  api_anonymous_rate_limit_per_5min = var.api_anonymous_rate_limit_per_5min
 }

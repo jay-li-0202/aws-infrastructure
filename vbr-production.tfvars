@@ -71,4 +71,8 @@ wms_db_type     = "S2"
 // datadog_api_key = "x"     // https://app.datadoghq.com/account/settings#api
 
 // Basisregisters Information
-extracts_expiration_days = 5
+logs_expiration_days       = 30
+cloudtrail_expiration_days = 30
+extracts_expiration_days   = 30
+
+api_anonymous_rate_limit_per_5min = 100
