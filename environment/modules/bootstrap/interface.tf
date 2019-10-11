@@ -38,6 +38,14 @@ output "log_bucket_name" {
   value = aws_s3_bucket.log.bucket
 }
 
+variable "logs_expiration_days" {
+  type = string
+}
+
+variable "cloudtrail_expiration_days" {
+  type = string
+}
+
 output "tf_user_name" {
   value = aws_iam_user.tf.name
 }

@@ -3,14 +3,6 @@ resource "aws_s3_bucket" "extract-logs" {
   acl           = "log-delivery-write"
   force_destroy = true
 
-  tags = {
-    Name        = "Extracts Logs // ${var.environment_label} ${var.environment_name}"
-    Environment = var.tag_environment
-    Productcode = var.tag_product
-    Programma   = var.tag_program
-    Contact     = var.tag_contact
-  }
-
   lifecycle_rule {
     id                                     = "cleanup"
     enabled                                = true
@@ -28,6 +20,14 @@ resource "aws_s3_bucket" "extract-logs" {
         sse_algorithm = "AES256"
       }
     }
+  }
+
+  tags = {
+    Name        = "Extracts Logs // ${var.environment_label} ${var.environment_name}"
+    Environment = var.tag_environment
+    Productcode = var.tag_product
+    Programma   = var.tag_program
+    Contact     = var.tag_contact
   }
 }
 

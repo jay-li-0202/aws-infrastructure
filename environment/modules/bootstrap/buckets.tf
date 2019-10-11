@@ -3,6 +3,17 @@ resource "aws_s3_bucket" "log" {
   acl           = "private"
   force_destroy = true
 
+  lifecycle_rule {
+    id                                     = "cleanup"
+    enabled                                = true
+    abort_incomplete_multipart_upload_days = 1
+    prefix                                 = ""
+
+    expiration {
+      days = var.logs_expiration_days
+    }
+  }
+
   tags = {
     Name        = "Logs // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment

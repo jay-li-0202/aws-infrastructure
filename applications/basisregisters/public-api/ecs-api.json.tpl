@@ -26,11 +26,11 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
-      { "name": "Extract__S3__Region", "value": "${region}" },
-      { "name": "Extract__Download__Bucket", "value": "${extract_bundler_bucket}" },
-      { "name": "Extract__Download__DestinationPath", "value": "" },
-      { "name": "Extract__Download__BundleName", "value": "basisregisters" },
-      { "name": "Extract__Download__ExpiresInSeconds", "value": "300" },
+      { "name": "Extract__Region", "value": "${region}" },
+      { "name": "Extract__Bucket", "value": "${extract_bundler_bucket}" },
+      { "name": "Extract__DestinationPath", "value": "" },
+      { "name": "Extract__BundleName", "value": "basisregisters" },
+      { "name": "Extract__ExpiresInSeconds", "value": "300" },
 
       { "name": "ApiConfiguration__MunicipalityRegistry__ApiUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1" },
       { "name": "ApiConfiguration__MunicipalityRegistry__HealthUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/health" },

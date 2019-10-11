@@ -19,6 +19,17 @@ resource "aws_s3_bucket" "cloudtrail" {
   bucket        = "${lower(replace(var.environment_label, " ", "-"))}-${lower(replace(var.environment_name, " ", "-"))}-cloudtrail"
   force_destroy = true
 
+  lifecycle_rule {
+    id                                     = "cleanup"
+    enabled                                = true
+    abort_incomplete_multipart_upload_days = 1
+    prefix                                 = ""
+
+    expiration {
+      days = var.cloudtrail_expiration_days
+    }
+  }
+
   tags = {
     Name        = "CloudTrail // ${var.environment_label} ${var.environment_name}"
     Environment = var.tag_environment

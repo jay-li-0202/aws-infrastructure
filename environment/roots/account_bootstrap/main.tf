@@ -47,6 +47,9 @@ module "bootstrap" {
   tag_product       = var.tag_product
   tag_program       = var.tag_program
   tag_contact       = var.tag_contact
+
+  logs_expiration_days = 30
+  cloudtrail_expiration_days = 30
 }
 
 output "backup_bucket_arn" {
