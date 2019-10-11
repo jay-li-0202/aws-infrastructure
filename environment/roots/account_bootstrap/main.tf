@@ -25,6 +25,12 @@ variable "tag_program" {
 variable "tag_contact" {
 }
 
+variable "logs_expiration_days" {
+}
+
+variable "cloudtrail_expiration_days" {
+}
+
 provider "aws" {
   version             = "~> 2.29.0"
   region              = var.aws_region
@@ -48,8 +54,8 @@ module "bootstrap" {
   tag_program       = var.tag_program
   tag_contact       = var.tag_contact
 
-  logs_expiration_days = 30
-  cloudtrail_expiration_days = 30
+  logs_expiration_days       = var.logs_expiration_days
+  cloudtrail_expiration_days = var.cloudtrail_expiration_days
 }
 
 output "backup_bucket_arn" {

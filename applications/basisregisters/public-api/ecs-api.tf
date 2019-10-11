@@ -74,23 +74,23 @@ data "template_file" "api" {
   template = file("${path.module}/ecs-api.json.tpl")
 
   vars = {
-    environment_name  = lower(replace(var.environment_name, " ", "-"))
-    datadog_api_key   = var.datadog_api_key
-    app_name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
-    disco_namespace   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    image             = var.image
-    region            = var.region
-    port              = var.container_port
-    datadog_env       = var.datadog_env
-    tag_environment   = var.tag_environment
-    tag_product       = var.tag_product
-    tag_program       = var.tag_program
-    tag_contact       = var.tag_contact
+    environment_name       = lower(replace(var.environment_name, " ", "-"))
+    datadog_api_key        = var.datadog_api_key
+    app_name               = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-public-api"
+    disco_namespace        = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    image                  = var.image
+    region                 = var.region
+    port                   = var.container_port
+    datadog_env            = var.datadog_env
+    tag_environment        = var.tag_environment
+    tag_product            = var.tag_product
+    tag_program            = var.tag_program
+    tag_contact            = var.tag_contact
     extract_bundler_bucket = aws_s3_bucket.extract.id
-    alias_zone_name   = replace(var.alias_zone_name, "/[.]$/", "")
-    public_zone_name  = replace(var.public_zone_name, "/[.]$/", "")
-    private_zone_name = replace(var.private_zone_name, "/[.]$/", "")
-    disco_zone_name   = replace(var.disco_zone_name, "/[.]$/", "")
+    alias_zone_name        = replace(var.alias_zone_name, "/[.]$/", "")
+    public_zone_name       = replace(var.public_zone_name, "/[.]$/", "")
+    private_zone_name      = replace(var.private_zone_name, "/[.]$/", "")
+    disco_zone_name        = replace(var.disco_zone_name, "/[.]$/", "")
   }
 }
 
