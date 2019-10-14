@@ -43,6 +43,10 @@ variable "docs_fqdn" {
   type = string
 }
 
+variable "portal_fqdn" {
+  type = string
+}
+
 variable "wms_db_fqdn" {
   type = string
 }

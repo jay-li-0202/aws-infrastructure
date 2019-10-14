@@ -76,3 +76,5 @@ cloudtrail_expiration_days = 30
 extracts_expiration_days   = 30
 
 api_anonymous_rate_limit_per_5min = 100
+
+portal_fqdn = "example.org"

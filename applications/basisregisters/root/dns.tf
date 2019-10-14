@@ -18,6 +18,7 @@ module "dns" {
 
   api_fqdn                 = module.api.api_fqdn
   docs_fqdn                = module.docs.docs_fqdn
+  portal_fqdn              = module.portal.portal_fqdn
   wms_db_fqdn              = module.wms.wms_fqdn
   dienstverlening_fqdn     = module.publicservice-registry.ui_fqdn
   dienstverlening_api_fqdn = module.publicservice-registry.api_fqdn

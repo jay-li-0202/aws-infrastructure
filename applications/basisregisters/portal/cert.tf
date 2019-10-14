@@ -1,14 +1,12 @@
 resource "aws_acm_certificate" "portal" {
+  provider = aws.cert
+
   validation_method = "DNS"
   domain_name       = "portal.${var.cert_public_zone_name}"
 
   subject_alternative_names = [
     "portal.${var.cert_alias_zone_name}",
   ]
-
-  lifecycle {
-    create_before_destroy = true
-  }
 
   tags = {
     Name        = "Basisregisters Portal Certificate // ${var.environment_label} ${var.environment_name}"

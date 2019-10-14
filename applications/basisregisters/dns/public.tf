@@ -38,7 +38,7 @@ resource "aws_route53_record" "root_txt" {
 
 resource "aws_route53_record" "awverify_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "awverify.${var.public_zone_name}"
+  name    = "awverify"
   type    = "CNAME"
   ttl     = "60"
   records = ["awverify.vbr-prod-queryservice.azurewebsites.net"]
@@ -46,7 +46,7 @@ resource "aws_route53_record" "awverify_cname" {
 
 resource "aws_route53_record" "beta_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "beta.${var.public_zone_name}"
+  name    = "beta"
   type    = "CNAME"
   ttl     = "60"
   records = ["vbr-beta-mgmtsvc.azurewebsites.net"]
@@ -54,7 +54,7 @@ resource "aws_route53_record" "beta_cname" {
 
 resource "aws_route53_record" "awverify_beta_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "awverify.beta.${var.public_zone_name}"
+  name    = "awverify.beta"
   type    = "CNAME"
   ttl     = "60"
   records = ["awverify.vbr-beta-mgmtsvc.azurewebsites.net"]
@@ -63,15 +63,23 @@ resource "aws_route53_record" "awverify_beta_cname" {
 // The ones below are already part of the new architecture
 resource "aws_route53_record" "docs_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "docs.${var.public_zone_name}"
+  name    = "docs"
   type    = "CNAME"
   ttl     = "60"
   records = ["${var.docs_fqdn}"]
 }
 
+resource "aws_route53_record" "portal_cname" {
+  zone_id = aws_route53_zone.public.zone_id
+  name    = "portal"
+  type    = "CNAME"
+  ttl     = "60"
+  records = ["${var.portal_fqdn}"]
+}
+
 resource "aws_route53_record" "wms_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "wms.${var.public_zone_name}"
+  name    = "wms"
   type    = "CNAME"
   ttl     = "60"
   records = ["${var.wms_db_fqdn}"]
@@ -79,7 +87,7 @@ resource "aws_route53_record" "wms_cname" {
 
 resource "aws_route53_record" "dienstverlening_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "dienstverlening.${var.public_zone_name}"
+  name    = "dienstverlening"
   type    = "CNAME"
   ttl     = "60"
   records = ["${var.dienstverlening_fqdn}"]
@@ -87,7 +95,7 @@ resource "aws_route53_record" "dienstverlening_cname" {
 
 resource "aws_route53_record" "dienstverlening_api_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "dienstverlening-api.${var.public_zone_name}"
+  name    = "dienstverlening-api"
   type    = "CNAME"
   ttl     = "60"
   records = ["${var.dienstverlening_api_fqdn}"]
@@ -95,7 +103,7 @@ resource "aws_route53_record" "dienstverlening_api_cname" {
 
 resource "aws_route53_record" "organisatie_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "organisatie.${var.public_zone_name}"
+  name    = "organisatie"
   type    = "CNAME"
   ttl     = "60"
   records = ["${var.organisatie_fqdn}"]
@@ -103,7 +111,7 @@ resource "aws_route53_record" "organisatie_cname" {
 
 resource "aws_route53_record" "organisatie_api_cname" {
   zone_id = aws_route53_zone.public.zone_id
-  name    = "organisatie-api.${var.public_zone_name}"
+  name    = "organisatie-api"
   type    = "CNAME"
   ttl     = "60"
   records = ["${var.organisatie_api_fqdn}"]
