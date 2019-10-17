@@ -39,3 +39,7 @@ module "api" {
     aws.cert = aws.cert
   }
 }
+
+output "api_fqdn" {
+  value =  module.api.api_fqdn
+}

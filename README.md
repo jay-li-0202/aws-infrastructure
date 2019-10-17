@@ -267,3 +267,7 @@ env ENVIRONMENT=... ACTION=apply make basisregisters
 * [ansible-locales](https://github.com/Oefenweb/ansible-locales/blob/master/LICENSE.txt) - _Ansible role to set up locales in Debian-like systems._ - [MIT](https://choosealicense.com/licenses/mit/)
 * [ansible-role-nodejs](https://github.com/geerlingguy/ansible-role-nodejs/blob/master/LICENSE) - _Ansible Role - Node.js_ - [MIT](https://choosealicense.com/licenses/mit/)
 * [ansible-pip](https://github.com/Oefenweb/ansible-pip/blob/master/LICENSE.txt) - _Ansible role to set up (the latest version of) pip, wheel and setuptools in Debian-like systems._ - [MIT](https://choosealicense.com/licenses/mit/)
+
+### Terraform Inspiration
+
+* [terraform-aws-ses-domain](https://github.com/trussworks/terraform-aws-ses-domain/blob/master/LICENSE) - _Configures a domain hosted on Route53 to work with AWS Simple Email Service (SES)._ - [BSD](https://choosealicense.com/licenses/bsd-3-clause/)
