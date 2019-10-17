@@ -70,6 +70,21 @@ resource "aws_api_gateway_usage_plan" "gw-ui" {
   }
 }
 
+resource "aws_api_gateway_usage_plan" "gw-portal" {
+  name        = "${var.api_name}-portal"
+  description = "Basisregisters Vlaanderen Portal."
+
+  api_stages {
+    api_id = aws_api_gateway_rest_api.gw.id
+    stage  = aws_api_gateway_stage.gw.stage_name
+  }
+
+  throttle_settings {
+    burst_limit = 25
+    rate_limit  = 50
+  }
+}
+
 resource "aws_api_gateway_usage_plan" "gw-test" {
   name        = "${var.api_name}-test"
   description = "Basisregisters Vlaanderen Test."
