@@ -80,8 +80,8 @@ resource "aws_api_gateway_usage_plan" "gw-portal" {
   }
 
   throttle_settings {
-    burst_limit = 25
-    rate_limit  = 50
+    burst_limit = 5
+    rate_limit  = 5
   }
 }
 
