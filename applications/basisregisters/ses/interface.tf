@@ -41,6 +41,18 @@ variable "enable_verification" {
   default     = true
 }
 
+variable "create_spf_txt_records" {
+  description = "Control whether or not to create SES DNS SPF TXT records."
+  type        = "string"
+  default     = true
+}
+
+variable "create_spf_records" {
+  description = "Control whether or not to create SES DNS SPF records."
+  type        = "string"
+  default     = true
+}
+
 variable "mail_from_domain" {
   description = " Subdomain (of the route53 zone) which is to be used as MAIL FROM address"
   type        = "string"
@@ -62,4 +74,8 @@ output "smtp_password" {
 
 output "smtp_user" {
   value = aws_iam_access_key.smtp.user
+}
+
+output "spf_record" {
+  value = "v=spf1 include:amazonses.com -all"
 }

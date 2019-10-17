@@ -33,7 +33,7 @@ resource "aws_route53_record" "root_txt" {
   name    = var.public_zone_name
   type    = "TXT"
   ttl     = "60"
-  records = ["vbr-prod-queryservice.azurewebsites.net"]
+  records = concat(["vbr-prod-queryservice.azurewebsites.net"], var.root_txt_records)
 }
 
 resource "aws_route53_record" "awverify_cname" {
@@ -66,7 +66,7 @@ resource "aws_route53_record" "docs_cname" {
   name    = "docs"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.docs_fqdn}"]
+  records = [var.docs_fqdn]
 }
 
 resource "aws_route53_record" "portal_cname" {
@@ -74,7 +74,7 @@ resource "aws_route53_record" "portal_cname" {
   name    = "portal"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.portal_fqdn}"]
+  records = [var.portal_fqdn]
 }
 
 resource "aws_route53_record" "wms_cname" {
@@ -82,7 +82,7 @@ resource "aws_route53_record" "wms_cname" {
   name    = "wms"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.wms_db_fqdn}"]
+  records = [var.wms_db_fqdn]
 }
 
 resource "aws_route53_record" "dienstverlening_cname" {
@@ -90,7 +90,7 @@ resource "aws_route53_record" "dienstverlening_cname" {
   name    = "dienstverlening"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.dienstverlening_fqdn}"]
+  records = [var.dienstverlening_fqdn]
 }
 
 resource "aws_route53_record" "dienstverlening_api_cname" {
@@ -98,7 +98,7 @@ resource "aws_route53_record" "dienstverlening_api_cname" {
   name    = "dienstverlening-api"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.dienstverlening_api_fqdn}"]
+  records = [var.dienstverlening_api_fqdn]
 }
 
 resource "aws_route53_record" "organisatie_cname" {
@@ -106,7 +106,7 @@ resource "aws_route53_record" "organisatie_cname" {
   name    = "organisatie"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.organisatie_fqdn}"]
+  records = [var.organisatie_fqdn]
 }
 
 resource "aws_route53_record" "organisatie_api_cname" {
@@ -114,5 +114,5 @@ resource "aws_route53_record" "organisatie_api_cname" {
   name    = "organisatie-api"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.organisatie_api_fqdn}"]
+  records = [var.organisatie_api_fqdn]
 }

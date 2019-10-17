@@ -24,4 +24,8 @@ module "dns" {
   dienstverlening_api_fqdn = module.publicservice-registry.api_fqdn
   organisatie_fqdn         = module.organisation-registry.ui_fqdn
   organisatie_api_fqdn     = module.organisation-registry.api_fqdn
+
+  root_txt_records = [
+    module.ses.spf_record
+  ]
 }

@@ -67,6 +67,10 @@ variable "organisatie_api_fqdn" {
   type = string
 }
 
+variable "root_txt_records"{
+  type = list(string)
+}
+
 output "public_zone_id" {
   value = aws_route53_zone.public.zone_id
 }

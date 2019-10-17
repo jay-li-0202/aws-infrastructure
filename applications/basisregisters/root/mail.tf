@@ -16,6 +16,7 @@ module "ses" {
   public_zone_id     = data.terraform_remote_state.dns.outputs.public_zone_id
   mail_from_domain   = "email.${data.terraform_remote_state.dns.outputs.public_zone_name}"
   dmarc_rua = var.tag_contact
+  create_spf_records = true
 }
 
 output "main_smtp_password" {
@@ -44,6 +45,8 @@ module "ses_alias" {
   public_zone_id     = module.dns.public_zone_id
   mail_from_domain   = "email.${module.dns.public_zone_name}"
   dmarc_rua = var.tag_contact
+  create_spf_txt_records = false
+  create_spf_records = true
 }
 
 output "alias_smtp_password" {

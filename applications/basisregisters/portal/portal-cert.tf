@@ -36,6 +36,8 @@ resource "aws_route53_record" "portal_public_cert_validation1" {
 }
 
 resource "aws_acm_certificate_validation" "portal" {
+  provider = aws.cert
+
   certificate_arn = aws_acm_certificate.portal.arn
 
   validation_record_fqdns = [
