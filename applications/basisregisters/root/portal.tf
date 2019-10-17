@@ -1,3 +1,6 @@
+variable "auth_fqdn" {
+}
+
 variable "portal_fqdn" {
 }
 
@@ -13,6 +16,7 @@ module "portal" {
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
 
+  auth_fqdn   = var.auth_fqdn
   portal_fqdn = var.portal_fqdn
 
   public_zone_id        = data.terraform_remote_state.dns.outputs.public_zone_id

@@ -17,7 +17,7 @@ resource "aws_acm_certificate" "portal" {
   }
 }
 
-resource "aws_route53_record" "public_cert_validation0" {
+resource "aws_route53_record" "portal_public_cert_validation0" {
   zone_id = var.cert_public_zone_id
 
   name    = aws_acm_certificate.portal.domain_validation_options.0.resource_record_name
@@ -26,7 +26,7 @@ resource "aws_route53_record" "public_cert_validation0" {
   ttl     = 60
 }
 
-resource "aws_route53_record" "public_cert_validation1" {
+resource "aws_route53_record" "portal_public_cert_validation1" {
   zone_id = var.cert_alias_zone_id
 
   name    = aws_acm_certificate.portal.domain_validation_options.1.resource_record_name
@@ -39,7 +39,7 @@ resource "aws_acm_certificate_validation" "portal" {
   certificate_arn = aws_acm_certificate.portal.arn
 
   validation_record_fqdns = [
-    aws_route53_record.public_cert_validation0.fqdn,
-    aws_route53_record.public_cert_validation1.fqdn,
+    aws_route53_record.portal_public_cert_validation0.fqdn,
+    aws_route53_record.portal_public_cert_validation1.fqdn,
   ]
 }

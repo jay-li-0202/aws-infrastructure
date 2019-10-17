@@ -59,10 +59,18 @@ variable "portal_fqdn" {
   type = string
 }
 
+variable "auth_fqdn" {
+  type = string
+}
+
 output "cert_arn" {
   value = aws_acm_certificate.portal.arn
 }
 
 output "portal_fqdn" {
   value = aws_route53_record.portal.fqdn
+}
+
+output "auth_fqdn" {
+  value = aws_route53_record.auth.fqdn
 }
