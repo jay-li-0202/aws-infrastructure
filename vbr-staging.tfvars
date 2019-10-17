@@ -3,6 +3,10 @@ aws_region     = "eu-west-1"
 aws_profile    = "vbr-staging"
 aws_account_id = "830031229216"
 
+// Azure Account Information
+azure_subscription_id = "4fcc49a0-0e99-4090-8b0c-286779f92a7d" // VBR-beta
+azure_tenant_id       = "834d6985-72c6-486a-b1d5-5758cf0a293c"
+
 // Terraform State Bucket
 state_bucket = "basisregisters-staging-aws-state"
 
@@ -41,7 +45,7 @@ cache_instance_type   = "cache.t2.medium"
 cache_cluster_size    = 3
 
 // SQL Server Information
-sql_version       = "14.00.3049.1.v1"
+sql_version       = "14.00.3192.2.v1"
 sql_major_version = "14.00"
 sql_family        = "sqlserver-se-14.0"
 sql_instance_type = "db.r4.large"
