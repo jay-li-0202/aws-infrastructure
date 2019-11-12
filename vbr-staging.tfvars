@@ -60,6 +60,7 @@ sql_performance_insights_retention_period = 7
 
 // Azure WMS Database Information
 wms_user        = "wms"
+wms_db_server   = "vbr-wms-staging"
 wms_db_name     = "vbr-wms"
 wms_location    = "West Europe"
 wms_db_edition  = "Standard"
