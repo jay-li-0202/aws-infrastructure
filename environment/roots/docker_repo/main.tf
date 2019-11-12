@@ -216,14 +216,12 @@ module "organisation-registry" {
 
   // NOTE: Append to the bottom if you do not want to nuke the ones below the line you add!
   repository_names = [
-    "organisation-registry/api-wegwijs",
+    "organisation-registry/api",
     "organisation-registry/batch-vlaanderenbe",
-    "organisation-registry/elasticsearch-projections",
-    "organisation-registry/elasticsearch-janitor",
+    "organisation-registry/projections-elasticsearch",
     "organisation-registry/projections-delegations",
     "organisation-registry/projections-reporting",
     "organisation-registry/batch-agentschapzorgengezondheidftpdump",
-    "organisation-registry/openid",
     "organisation-registry/ui",
   ]
 }
