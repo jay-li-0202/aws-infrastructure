@@ -41,5 +41,5 @@ module "api" {
 }
 
 output "api_fqdn" {
-  value =  module.api.api_fqdn
+  value = module.api.api_fqdn
 }
