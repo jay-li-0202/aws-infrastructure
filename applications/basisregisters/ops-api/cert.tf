@@ -1,12 +1,13 @@
 locals {
   zonemap = map(
-    "*.ops-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
     "ops-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
     "dev-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
-    "*.ops-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
     "ops-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
     "dev-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
   )
+  filtered_names = [
+    for d in aws_acm_certificate.main.domain_validation_options : d if substr(d.domain_name, 0, 2) != "*."
+  ]
 }
 
 resource "aws_acm_certificate" "main" {
@@ -37,11 +38,11 @@ resource "aws_acm_certificate" "main" {
 resource "aws_route53_record" "public_cert_validation" {
   count = length(local.zonemap)
 
-  zone_id = lookup(local.zonemap, "${lookup(aws_acm_certificate.main.domain_validation_options[count.index], "domain_name")}.")
+  zone_id = lookup(local.zonemap, "${lookup(local.filtered_names[count.index], "domain_name")}.")
 
-  name    = lookup(aws_acm_certificate.main.domain_validation_options[count.index], "resource_record_name")
-  type    = lookup(aws_acm_certificate.main.domain_validation_options[count.index], "resource_record_type")
-  records = [lookup(aws_acm_certificate.main.domain_validation_options[count.index], "resource_record_value")]
+  name    = lookup(local.filtered_names[count.index], "resource_record_name")
+  type    = lookup(local.filtered_names[count.index], "resource_record_type")
+  records = [lookup(local.filtered_names[count.index], "resource_record_value")]
   ttl     = 60
 }
 
