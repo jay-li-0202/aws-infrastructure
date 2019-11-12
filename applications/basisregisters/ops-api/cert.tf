@@ -1,7 +1,9 @@
 locals {
   zonemap = map(
+    "*.ops-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
     "ops-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
     "dev-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
+    "*.ops-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
     "ops-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
     "dev-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
   )
