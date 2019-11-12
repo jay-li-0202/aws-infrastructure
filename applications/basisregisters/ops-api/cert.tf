@@ -46,6 +46,6 @@ resource "aws_route53_record" "public_cert_validation" {
 }
 
 resource "aws_acm_certificate_validation" "main" {
-  certificate_arn = aws_acm_certificate.main.arn
+  certificate_arn         = aws_acm_certificate.main.arn
   validation_record_fqdns = aws_route53_record.public_cert_validation.*.fqdn
 }

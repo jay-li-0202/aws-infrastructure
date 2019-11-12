@@ -12,10 +12,10 @@ module "ses" {
 
   app = "basisregisters"
 
-  public_zone_name      = data.terraform_remote_state.dns.outputs.public_zone_name
+  public_zone_name   = data.terraform_remote_state.dns.outputs.public_zone_name
   public_zone_id     = data.terraform_remote_state.dns.outputs.public_zone_id
   mail_from_domain   = "email.${data.terraform_remote_state.dns.outputs.public_zone_name}"
-  dmarc_rua = var.tag_contact
+  dmarc_rua          = var.tag_contact
   create_spf_records = true
 }
 
@@ -42,11 +42,11 @@ module "ses_alias" {
   app = "basisregisters"
 
   public_zone_name       = module.dns.public_zone_name
-  public_zone_id     = module.dns.public_zone_id
-  mail_from_domain   = "email.${module.dns.public_zone_name}"
-  dmarc_rua = var.tag_contact
+  public_zone_id         = module.dns.public_zone_id
+  mail_from_domain       = "email.${module.dns.public_zone_name}"
+  dmarc_rua              = var.tag_contact
   create_spf_txt_records = false
-  create_spf_records = true
+  create_spf_records     = true
 }
 
 output "alias_smtp_password" {

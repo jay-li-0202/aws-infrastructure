@@ -36,7 +36,7 @@ resource "aws_route53_record" "auth_public_cert_validation" {
 }
 
 resource "aws_acm_certificate_validation" "auth" {
-  provider = aws.cert
-  certificate_arn = aws_acm_certificate.auth.arn
+  provider                = aws.cert
+  certificate_arn         = aws_acm_certificate.auth.arn
   validation_record_fqdns = aws_route53_record.auth_public_cert_validation.*.fqdn
 }

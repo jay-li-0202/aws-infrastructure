@@ -67,7 +67,7 @@ variable "organisatie_api_fqdn" {
   type = string
 }
 
-variable "root_txt_records"{
+variable "root_txt_records" {
   type = list(string)
 }
 

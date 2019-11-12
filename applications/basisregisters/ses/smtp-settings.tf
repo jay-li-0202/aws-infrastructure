@@ -4,7 +4,7 @@ resource "aws_iam_user" "smtp" {
 }
 
 resource "aws_iam_access_key" "smtp" {
-  user    = aws_iam_user.smtp.name
+  user = aws_iam_user.smtp.name
 }
 
 resource "aws_iam_user_policy" "smtp" {
