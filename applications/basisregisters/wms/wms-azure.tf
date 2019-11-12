@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "wms" {
 }
 
 resource "azurerm_sql_server" "wms" {
-  name                = "vbr-wms"
+  name                = var.db_server
   resource_group_name = azurerm_resource_group.wms.name
   location            = var.region
   version             = "12.0"

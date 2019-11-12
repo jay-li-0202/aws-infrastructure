@@ -38,6 +38,10 @@ variable "rg_name" {
   type = "string"
 }
 
+variable "db_server" {
+  type = "string"
+}
+
 variable "db_name" {
   type = string
 }
