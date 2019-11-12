@@ -1,3 +1,10 @@
+locals {
+  portal_zonemap = map(
+    "portal.${var.cert_public_zone_name}", var.cert_public_zone_id,
+    "portal.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
+  )
+}
+
 resource "aws_acm_certificate" "portal" {
   provider = aws.cert
 
@@ -17,31 +24,18 @@ resource "aws_acm_certificate" "portal" {
   }
 }
 
-resource "aws_route53_record" "portal_public_cert_validation0" {
-  zone_id = var.cert_public_zone_id
+resource "aws_route53_record" "portal_public_cert_validation" {
+  count = length(local.portal_zonemap)
 
-  name    = aws_acm_certificate.portal.domain_validation_options.0.resource_record_name
-  type    = aws_acm_certificate.portal.domain_validation_options.0.resource_record_type
-  records = [aws_acm_certificate.portal.domain_validation_options.0.resource_record_value]
-  ttl     = 60
-}
+  zone_id = lookup(local.portal_zonemap, "${lookup(aws_acm_certificate.portal.domain_validation_options[count.index], "domain_name")}.")
 
-resource "aws_route53_record" "portal_public_cert_validation1" {
-  zone_id = var.cert_alias_zone_id
-
-  name    = aws_acm_certificate.portal.domain_validation_options.1.resource_record_name
-  type    = aws_acm_certificate.portal.domain_validation_options.1.resource_record_type
-  records = [aws_acm_certificate.portal.domain_validation_options.1.resource_record_value]
+  name    = lookup(aws_acm_certificate.portal.domain_validation_options[count.index], "resource_record_name")
+  type    = lookup(aws_acm_certificate.portal.domain_validation_options[count.index], "resource_record_type")
+  records = [lookup(aws_acm_certificate.portal.domain_validation_options[count.index], "resource_record_value")]
   ttl     = 60
 }
 
 resource "aws_acm_certificate_validation" "portal" {
-  provider = aws.cert
-
   certificate_arn = aws_acm_certificate.portal.arn
-
-  validation_record_fqdns = [
-    aws_route53_record.portal_public_cert_validation0.fqdn,
-    aws_route53_record.portal_public_cert_validation1.fqdn,
-  ]
+  validation_record_fqdns = aws_route53_record.portal_public_cert_validation.*.fqdn
 }

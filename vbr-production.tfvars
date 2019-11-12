@@ -65,6 +65,7 @@ wms_location    = "West Europe"
 wms_db_edition  = "Standard"
 wms_db_max_size = "268435456000" // 250GB
 wms_db_type     = "S2"
+wms_rg_name     = "vbr-wms"
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services
