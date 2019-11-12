@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "wms" {
-  name     = "vbr-wms"
+  name     = var.rg_name
   location = var.region
 }
 

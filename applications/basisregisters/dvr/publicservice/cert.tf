@@ -1,3 +1,12 @@
+locals {
+  zonemap = map(
+    "dienstverlening-api.${var.cert_public_zone_name}", var.cert_public_zone_id,
+    "dienstverlening.${var.cert_public_zone_name}", var.cert_public_zone_id,
+    "dienstverlening-api.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
+    "dienstverlening.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
+  )
+}
+
 resource "aws_acm_certificate" "api" {
   validation_method = "DNS"
   domain_name       = "dienstverlening-api.${var.cert_public_zone_name}"
@@ -21,49 +30,18 @@ resource "aws_acm_certificate" "api" {
   }
 }
 
-resource "aws_route53_record" "public_cert_validation0" {
-  zone_id = var.cert_public_zone_id
+resource "aws_route53_record" "public_cert_validation" {
+  count = length(local.zonemap)
 
-  name    = aws_acm_certificate.api.domain_validation_options.0.resource_record_name
-  type    = aws_acm_certificate.api.domain_validation_options.0.resource_record_type
-  records = [aws_acm_certificate.api.domain_validation_options.0.resource_record_value]
-  ttl     = 60
-}
+  zone_id = lookup(local.zonemap, "${lookup(aws_acm_certificate.api.domain_validation_options[count.index], "domain_name")}.")
 
-resource "aws_route53_record" "public_cert_validation1" {
-  zone_id = var.cert_public_zone_id
-
-  name    = aws_acm_certificate.api.domain_validation_options.1.resource_record_name
-  type    = aws_acm_certificate.api.domain_validation_options.1.resource_record_type
-  records = [aws_acm_certificate.api.domain_validation_options.1.resource_record_value]
-  ttl     = 60
-}
-
-resource "aws_route53_record" "public_cert_validation2" {
-  zone_id = var.cert_alias_zone_id
-
-  name    = aws_acm_certificate.api.domain_validation_options.2.resource_record_name
-  type    = aws_acm_certificate.api.domain_validation_options.2.resource_record_type
-  records = [aws_acm_certificate.api.domain_validation_options.2.resource_record_value]
-  ttl     = 60
-}
-
-resource "aws_route53_record" "public_cert_validation3" {
-  zone_id = var.cert_alias_zone_id
-
-  name    = aws_acm_certificate.api.domain_validation_options.3.resource_record_name
-  type    = aws_acm_certificate.api.domain_validation_options.3.resource_record_type
-  records = [aws_acm_certificate.api.domain_validation_options.3.resource_record_value]
+  name    = lookup(aws_acm_certificate.api.domain_validation_options[count.index], "resource_record_name")
+  type    = lookup(aws_acm_certificate.api.domain_validation_options[count.index], "resource_record_type")
+  records = [lookup(aws_acm_certificate.api.domain_validation_options[count.index], "resource_record_value")]
   ttl     = 60
 }
 
 resource "aws_acm_certificate_validation" "api" {
   certificate_arn = aws_acm_certificate.api.arn
-
-  validation_record_fqdns = [
-    aws_route53_record.public_cert_validation0.fqdn,
-    aws_route53_record.public_cert_validation1.fqdn,
-    aws_route53_record.public_cert_validation2.fqdn,
-    aws_route53_record.public_cert_validation3.fqdn,
-  ]
+  validation_record_fqdns = aws_route53_record.public_cert_validation.*.fqdn
 }

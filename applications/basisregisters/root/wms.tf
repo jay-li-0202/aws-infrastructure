@@ -25,6 +25,9 @@ variable "wms_location" {
 variable "wms_allowed_ips" {
 }
 
+variable "wms_rg_name" {
+}
+
 module "wms" {
   source = "../wms"
 
@@ -54,6 +57,7 @@ module "wms" {
   db_edition         = var.wms_db_edition
   db_max_size        = var.wms_db_max_size
   db_type            = var.wms_db_type
+  rg_name            = var.wms_rg_name
 
   public_zone_id = data.terraform_remote_state.dns.outputs.public_zone_id
 }

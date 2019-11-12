@@ -34,6 +34,10 @@ variable "public_zone_id" {
   type = string
 }
 
+variable "rg_name" {
+  type = "string"
+}
+
 variable "db_name" {
   type = string
 }
