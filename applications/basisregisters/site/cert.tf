@@ -12,8 +12,8 @@ resource "aws_acm_certificate" "main" {
   domain_name       = "${var.cert_public_zone_name}"
 
   subject_alternative_names = [
-    "www.${var.cert_public_zone_name}",
     "${var.cert_alias_zone_name}",
+    "www.${var.cert_public_zone_name}",
     "www.${var.cert_alias_zone_name}",
   ]
 
