@@ -32,16 +32,19 @@ resource "null_resource" "db_setup" {
 
   provisioner "local-exec" {
     command    = "sqlcmd -S tcp:127.0.0.1,9001 -U ${var.sa_user} -P ${var.sa_pass} -q \"${data.template_file.sql1.rendered}\""
+    interpreter = ["bash", "-c"]
     on_failure = "continue"
   }
 
   provisioner "local-exec" {
     command    = "sqlcmd -S tcp:127.0.0.1,9001 -U ${var.sa_user} -P ${var.sa_pass} -q \"${data.template_file.sql2.rendered}\""
+    interpreter = ["bash", "-c"]
     on_failure = "continue"
   }
 
   provisioner "local-exec" {
     command    = "sqlcmd -S tcp:127.0.0.1,9001 -U ${var.sa_user} -P ${var.sa_pass} -q \"${data.template_file.sql3.rendered}\""
+    interpreter = ["bash", "-c"]
     on_failure = "continue"
   }
 }
