@@ -79,5 +79,5 @@ extracts_expiration_days   = 30
 
 api_anonymous_rate_limit_per_5min = 100
 
-portal_fqdn = ""
-auth_fqdn = ""
+portal_fqdn = "d2gtj4t3cfp7t.cloudfront.net"
+auth_fqdn = "d3g80n6oqcib3n.cloudfront.net"
