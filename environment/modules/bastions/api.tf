@@ -1,8 +1,14 @@
 resource "aws_api_gateway_rest_api" "bastions" {
   name                     = "bastions-api"
   description              = "Bastions Api // ${var.environment_label} ${var.environment_name}"
-  api_key_source           = "HEADER"
+
   minimum_compression_size = 0
+  api_key_source           = "HEADER"
+  // binary_media_types = ["*/*"]
+
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_deployment" "bastions" {

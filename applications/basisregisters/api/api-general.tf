@@ -6,6 +6,10 @@ resource "aws_api_gateway_rest_api" "gw" {
   minimum_compression_size = 0
   api_key_source           = "AUTHORIZER"
   // binary_media_types = ["*/*"]
+
+  endpoint_configuration {
+    types = ["REGIONAL"]
+  }
 }
 
 resource "aws_api_gateway_authorizer" "gw" {
