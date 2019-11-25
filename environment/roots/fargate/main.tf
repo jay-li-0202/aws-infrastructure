@@ -53,6 +53,8 @@ module "fargate" {
   tag_product     = var.tag_product
   tag_program     = var.tag_program
   tag_contact     = var.tag_contact
+
+  bastion_sg_id = data.terraform_remote_state.bastions.outputs.bastion_security_group_id
 }
 
 data "terraform_remote_state" "vpc" {
@@ -62,6 +64,17 @@ data "terraform_remote_state" "vpc" {
     bucket  = var.state_bucket
     region  = var.aws_region
     key     = "vpc/terraform.tfstate"
+    profile = var.aws_profile
+  }
+}
+
+data "terraform_remote_state" "bastions" {
+  backend = "s3"
+
+  config = {
+    bucket  = var.state_bucket
+    region  = var.aws_region
+    key     = "bastions/terraform.tfstate"
     profile = var.aws_profile
   }
 }

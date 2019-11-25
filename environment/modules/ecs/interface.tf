@@ -26,6 +26,10 @@ variable "tag_contact" {
   type = string
 }
 
+variable "bastion_sg_id" {
+  type = string
+}
+
 output "cluster_id" {
   value = aws_ecs_cluster.basisregisters.id
 }
