@@ -56,6 +56,21 @@ variable "ui_key" {
 variable "test_key" {
 }
 
+variable "api_key_source"{
+  type = string
+  default = "HEADER"
+}
+
+variable "authorization" {
+  type = string
+  default = "NONE"
+}
+
+variable "api_key_required" {
+  type = string
+  default = "false"
+}
+
 variable "public_zone_name" {
   type = string
 }

@@ -26,9 +26,9 @@ resource "aws_api_gateway_method" "get-postinfo1" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.postinfo_detail1.id
   http_method          = "GET"
-  authorization        = "CUSTOM"
+  authorization        = var.authorization
   request_validator_id = var.request_validator_id
-  api_key_required     = true
+  api_key_required     = var.api_key_required
   authorizer_id        = var.authorizer_id
 
   request_parameters = {
@@ -48,9 +48,9 @@ resource "aws_api_gateway_method" "get-postinfo2" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.postinfo_detail2.id
   http_method          = "GET"
-  authorization        = "CUSTOM"
+  authorization        = var.authorization
   request_validator_id = var.request_validator_id
-  api_key_required     = true
+  api_key_required     = var.api_key_required
   authorizer_id        = var.authorizer_id
 
   request_parameters = {
@@ -70,9 +70,9 @@ resource "aws_api_gateway_method" "get-postinfo3" {
   rest_api_id          = var.rest_api_id
   resource_id          = aws_api_gateway_resource.postinfo_detail3.id
   http_method          = "GET"
-  authorization        = "CUSTOM"
+  authorization        = var.authorization
   request_validator_id = var.request_validator_id
-  api_key_required     = true
+  api_key_required     = var.api_key_required
   authorizer_id        = var.authorizer_id
 
   request_parameters = {

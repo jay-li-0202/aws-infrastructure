@@ -4,7 +4,7 @@ resource "aws_api_gateway_rest_api" "gw" {
   description = "Stelsel van Vlaamse Basisregisters."
 
   minimum_compression_size = 0
-  api_key_source           = "AUTHORIZER"
+  api_key_source           = var.api_key_source
   // binary_media_types = ["*/*"]
 
   endpoint_configuration {

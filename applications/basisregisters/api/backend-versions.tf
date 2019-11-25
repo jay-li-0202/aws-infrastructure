@@ -14,9 +14,9 @@ resource "aws_api_gateway_method" "get-versions" {
   rest_api_id          = aws_api_gateway_rest_api.gw.id
   resource_id          = aws_api_gateway_resource.versions.id
   http_method          = "GET"
-  authorization        = "CUSTOM"
+  authorization        = var.authorization
   request_validator_id = aws_api_gateway_request_validator.gw.id
-  api_key_required     = true
+  api_key_required     = var.api_key_required
   authorizer_id        = aws_api_gateway_authorizer.gw.id
 
   request_parameters = {
