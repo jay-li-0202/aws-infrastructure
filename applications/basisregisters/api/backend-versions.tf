@@ -17,7 +17,7 @@ resource "aws_api_gateway_method" "get-versions" {
   authorization        = var.authorization
   request_validator_id = aws_api_gateway_request_validator.gw.id
   api_key_required     = var.api_key_required
-  authorizer_id        = aws_api_gateway_authorizer.gw.id
+  //authorizer_id        = aws_api_gateway_authorizer.gw.id
 
   request_parameters = {
     "method.request.header.Accept" = false

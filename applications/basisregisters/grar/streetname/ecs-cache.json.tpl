@@ -14,6 +14,9 @@
 
       { "name": "ApiBaseAddress", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002" },
 
+      { "name": "HeadersToStore__0", "value": "x-basisregister-version" },
+      { "name": "HeadersToStore__1", "value": "x-basisregister-downstream-version" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },

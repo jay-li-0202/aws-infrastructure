@@ -56,18 +56,18 @@ variable "ui_key" {
 variable "test_key" {
 }
 
-variable "api_key_source"{
-  type = string
+variable "api_key_source" {
+  type    = string
   default = "HEADER"
 }
 
 variable "authorization" {
-  type = string
+  type    = string
   default = "NONE"
 }
 
 variable "api_key_required" {
-  type = string
+  type    = string
   default = "false"
 }
 

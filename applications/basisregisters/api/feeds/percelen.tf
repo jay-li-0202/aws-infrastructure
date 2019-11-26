@@ -29,7 +29,7 @@ resource "aws_api_gateway_method" "get-percelen1" {
   authorization        = var.authorization
   request_validator_id = var.request_validator_id
   api_key_required     = var.api_key_required
-  authorizer_id        = var.authorizer_id
+  //authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.header.Accept" = false
@@ -51,7 +51,7 @@ resource "aws_api_gateway_method" "get-percelen2" {
   authorization        = var.authorization
   request_validator_id = var.request_validator_id
   api_key_required     = var.api_key_required
-  authorizer_id        = var.authorizer_id
+  //authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.header.Accept" = false
@@ -73,7 +73,7 @@ resource "aws_api_gateway_method" "get-percelen3" {
   authorization        = var.authorization
   request_validator_id = var.request_validator_id
   api_key_required     = var.api_key_required
-  authorizer_id        = var.authorizer_id
+  //authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.header.Accept" = false

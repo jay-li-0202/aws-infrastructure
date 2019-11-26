@@ -17,7 +17,7 @@ resource "aws_api_gateway_method" "get-postinfo1" {
   authorization        = var.authorization
   request_validator_id = var.request_validator_id
   api_key_required     = var.api_key_required
-  authorizer_id        = var.authorizer_id
+  //authorizer_id        = var.authorizer_id
 
   request_parameters = {
     "method.request.path.postinfoId"          = true
