@@ -1,6 +1,36 @@
 variable "streetname_password" {
 }
 
+variable "streetname_registry_version" {
+}
+
+variable "streetname_registry_api_cpu" {
+}
+
+variable "streetname_registry_api_memory" {
+}
+
+variable "streetname_registry_api_min_instances" {
+}
+
+variable "streetname_registry_api_max_instances" {
+}
+
+variable "streetname_registry_projections_cpu" {
+}
+
+variable "streetname_registry_projections_memory" {
+}
+
+variable "streetname_registry_cache_cpu" {
+}
+
+variable "streetname_registry_cache_memory" {
+}
+
+variable "streetname_registry_cache_enabled" {
+}
+
 module "streetname-registry" {
   source = "../grar/streetname"
 
@@ -16,24 +46,24 @@ module "streetname-registry" {
   app        = "basisregisters"
   port_range = 4000
 
-  api_cpu           = 256
-  api_memory        = 2048
-  api_min_instances = 2
-  api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:1.17.6"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-crab-import:1.17.6"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-extract:1.17.6"
+  api_cpu           = var.streetname_registry_api_cpu
+  api_memory        = var.streetname_registry_api_memory
+  api_min_instances = var.streetname_registry_api_min_instances
+  api_max_instances = var.streetname_registry_api_max_instances
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:${var.streetname_registry_version}"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-crab-import:${var.streetname_registry_version}"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-extract:${var.streetname_registry_version}"
 
-  projections_cpu           = 256
-  projections_memory        = 1024
+  projections_cpu           = var.streetname_registry_projections_cpu
+  projections_memory        = var.streetname_registry_projections_memory
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:1.17.6"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:1.17.6"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projector:${var.streetname_registry_version}"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/projections-syndication:${var.streetname_registry_version}"
 
-  cache_cpu      = 256
-  cache_memory   = 512
+  cache_cpu      = var.streetname_registry_cache_cpu
+  cache_memory   = var.streetname_registry_cache_memory
+  cache_enabled  = var.streetname_registry_cache_enabled
   cache_schedule = "cron(0/5 * * * ? *)"
-  cache_enabled  = true
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 

@@ -1,3 +1,18 @@
+variable "public_api_version" {
+}
+
+variable "public_api_cpu" {
+}
+
+variable "public_api_memory" {
+}
+
+variable "public_api_min_instances" {
+}
+
+variable "public_api_max_instances" {
+}
+
 module "public-api" {
   source = "../public-api"
 
@@ -11,11 +26,11 @@ module "public-api" {
   tag_contact     = var.tag_contact
 
   app            = "basisregisters"
-  cpu            = 256
-  memory         = 512
-  min_instances  = 2
-  max_instances  = 4
-  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:2.38.17"
+  cpu            = var.public_api_cpu
+  memory         = var.public_api_memory
+  min_instances  = var.public_api_min_instances
+  max_instances  = var.public_api_max_instances
+  image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:${var.public_api_version}"
   container_port = 2080
 
   extract_bundler_cpu      = 256

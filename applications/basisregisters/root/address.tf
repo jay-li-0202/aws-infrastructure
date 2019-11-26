@@ -1,6 +1,36 @@
 variable "address_password" {
 }
 
+variable "address_registry_version" {
+}
+
+variable "address_registry_api_cpu" {
+}
+
+variable "address_registry_api_memory" {
+}
+
+variable "address_registry_api_min_instances" {
+}
+
+variable "address_registry_api_max_instances" {
+}
+
+variable "address_registry_projections_cpu" {
+}
+
+variable "address_registry_projections_memory" {
+}
+
+variable "address_registry_cache_cpu" {
+}
+
+variable "address_registry_cache_memory" {
+}
+
+variable "address_registry_cache_enabled" {
+}
+
 module "address-registry" {
   source = "../grar/address"
 
@@ -16,24 +46,24 @@ module "address-registry" {
   app        = "basisregisters"
   port_range = 5000
 
-  api_cpu           = 512
-  api_memory        = 2048
-  api_min_instances = 2
-  api_max_instances = 6
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:1.16.16"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-crab-import:1.16.16"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-extract:1.16.16"
+  api_cpu           = var.address_registry_api_cpu
+  api_memory        = var.address_registry_api_memory
+  api_min_instances = var.address_registry_api_min_instances
+  api_max_instances = var.address_registry_api_max_instances
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:${var.address_registry_version}"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-crab-import:${var.address_registry_version}"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-extract:${var.address_registry_version}"
 
-  projections_cpu           = 2048
-  projections_memory        = 4096
+  projections_cpu           = var.address_registry_projections_cpu
+  projections_memory        = var.address_registry_projections_memory
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projector:1.16.16"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projections-syndication:1.16.16"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projector:${var.address_registry_version}"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/projections-syndication:${var.address_registry_version}"
 
-  cache_cpu      = 256
-  cache_memory   = 512
+  cache_cpu      = var.address_registry_cache_cpu
+  cache_memory   = var.address_registry_cache_memory
+  cache_enabled  = var.address_registry_cache_enabled
   cache_schedule = "cron(0/5 * * * ? *)"
-  cache_enabled  = false
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 

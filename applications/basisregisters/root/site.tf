@@ -1,3 +1,18 @@
+variable "site_version" {
+}
+
+variable "site_cpu" {
+}
+
+variable "site_memory" {
+}
+
+variable "site_min_instances" {
+}
+
+variable "site_max_instances" {
+}
+
 module "site" {
   source = "../site"
 
@@ -12,12 +27,12 @@ module "site" {
 
   app = "basisregisters"
 
-  site_version       = "1.14.1"
-  site_cpu           = 256
-  site_memory        = 512
-  site_min_instances = 2
-  site_max_instances = 4
-  site_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/basisregisters/site:1.14.1"
+  site_version       = var.site_version
+  site_cpu           = var.site_cpu
+  site_memory        = var.site_memory
+  site_min_instances = var.site_min_instances
+  site_max_instances = var.site_max_instances
+  site_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/basisregisters/site:${var.site_version}"
   site_port          = 80
 
   ecs_sg_id = data.terraform_remote_state.fargate.outputs.fargate_security_group_id

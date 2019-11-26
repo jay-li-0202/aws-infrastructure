@@ -12,9 +12,9 @@ resource "aws_acm_certificate" "api" {
   domain_name       = "dienstverlening-api.${var.cert_public_zone_name}"
 
   subject_alternative_names = [
-    "dienstverlening.${var.cert_alias_zone_name}",
-    "dienstverlening-api.${var.cert_alias_zone_name}",
     "dienstverlening.${var.cert_public_zone_name}",
+    "dienstverlening-api.${var.cert_alias_zone_name}",
+    "dienstverlening.${var.cert_alias_zone_name}",
   ]
 
   lifecycle {

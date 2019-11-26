@@ -1,6 +1,6 @@
 resource "aws_api_gateway_rest_api" "bastions" {
-  name                     = "bastions-api"
-  description              = "Bastions Api // ${var.environment_label} ${var.environment_name}"
+  name        = "bastions-api"
+  description = "Bastions Api // ${var.environment_label} ${var.environment_name}"
 
   minimum_compression_size = 0
   api_key_source           = "HEADER"

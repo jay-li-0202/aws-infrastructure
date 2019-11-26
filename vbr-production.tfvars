@@ -53,9 +53,9 @@ sql_family        = "sqlserver-se-14.0"
 sql_instance_type = "db.r5.xlarge"
 sql_username      = "basisregisters"
 // sql_password = "x"
-sql_storage                 = 2500
-sql_backup_retention_period = 5
-sql_multi_az                = false
+sql_storage                               = 2500
+sql_backup_retention_period               = 5
+sql_multi_az                              = false
 sql_performance_insights_retention_period = 731
 
 // Azure WMS Database Information
@@ -80,4 +80,99 @@ extracts_expiration_days   = 30
 api_anonymous_rate_limit_per_5min = 100
 
 portal_fqdn = "d2ae27z35yww91.cloudfront.net"
-auth_fqdn = "d1hfinbx08ox6c.cloudfront.net"
+auth_fqdn   = "d1hfinbx08ox6c.cloudfront.net"
+
+// Registries
+site_version       = "1.14.1"
+site_cpu           = 256
+site_memory        = 512
+site_min_instances = 2
+site_max_instances = 4
+
+public_api_version       = "2.40.0"
+public_api_cpu           = 256
+public_api_memory        = 512
+public_api_min_instances = 2
+public_api_max_instances = 4
+
+municipality_registry_version            = "2.15.6"
+municipality_registry_api_cpu            = 256
+municipality_registry_api_memory         = 512
+municipality_registry_api_min_instances  = 2
+municipality_registry_api_max_instances  = 4
+municipality_registry_projections_cpu    = 2048
+municipality_registry_projections_memory = 4096
+municipality_registry_cache_cpu          = 256
+municipality_registry_cache_memory       = 512
+municipality_registry_cache_enabled      = true
+
+postal_registry_version            = "1.14.5"
+postal_registry_api_cpu            = 512
+postal_registry_api_memory         = 1024
+postal_registry_api_min_instances  = 2
+postal_registry_api_max_instances  = 4
+postal_registry_projections_cpu    = 2048
+postal_registry_projections_memory = 4096
+postal_registry_cache_cpu          = 256
+postal_registry_cache_memory       = 512
+postal_registry_cache_enabled      = true
+
+streetname_registry_version            = "1.19.3"
+streetname_registry_api_cpu            = 4096
+streetname_registry_api_memory         = 16384
+streetname_registry_api_min_instances  = 2
+streetname_registry_api_max_instances  = 4
+streetname_registry_projections_cpu    = 2048
+streetname_registry_projections_memory = 4096
+streetname_registry_cache_cpu          = 256
+streetname_registry_cache_memory       = 512
+streetname_registry_cache_enabled      = true
+
+address_registry_version            = "1.17.1"
+address_registry_api_cpu            = 4096
+address_registry_api_memory         = 16384
+address_registry_api_min_instances  = 2
+address_registry_api_max_instances  = 6
+address_registry_projections_cpu    = 4096
+address_registry_projections_memory = 16384
+address_registry_cache_cpu          = 256
+address_registry_cache_memory       = 512
+address_registry_cache_enabled      = false
+
+building_registry_version            = "1.14.0"
+building_registry_api_cpu            = 4096
+building_registry_api_memory         = 16384
+building_registry_api_min_instances  = 2
+building_registry_api_max_instances  = 4
+building_registry_projections_cpu    = 4096
+building_registry_projections_memory = 16384
+building_registry_cache_cpu          = 256
+building_registry_cache_memory       = 512
+building_registry_cache_enabled      = false
+
+parcel_registry_version            = "2.2.5"
+parcel_registry_api_cpu            = 4096
+parcel_registry_api_memory         = 16384
+parcel_registry_api_min_instances  = 2
+parcel_registry_api_max_instances  = 4
+parcel_registry_projections_cpu    = 4096
+parcel_registry_projections_memory = 16384
+parcel_registry_cache_cpu          = 256
+parcel_registry_cache_memory       = 512
+parcel_registry_cache_enabled      = false
+
+publicservice_registry_version            = "1.12.2"
+publicservice_registry_ui_cpu             = 256
+publicservice_registry_ui_memory          = 512
+publicservice_registry_api_cpu            = 256
+publicservice_registry_api_memory         = 512
+publicservice_registry_api_min_instances  = 2
+publicservice_registry_api_max_instances  = 4
+publicservice_registry_projections_cpu    = 256
+publicservice_registry_projections_memory = 1024
+publicservice_registry_cache_cpu          = 256
+publicservice_registry_cache_memory       = 512
+publicservice_registry_cache_enabled      = true
+publicservice_registry_orafin_cpu         = 256
+publicservice_registry_orafin_memory      = 512
+publicservice_registry_orafin_enabled     = true

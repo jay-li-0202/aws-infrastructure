@@ -1,6 +1,36 @@
 variable "municipality_password" {
 }
 
+variable "municipality_registry_version" {
+}
+
+variable "municipality_registry_api_cpu" {
+}
+
+variable "municipality_registry_api_memory" {
+}
+
+variable "municipality_registry_api_min_instances" {
+}
+
+variable "municipality_registry_api_max_instances" {
+}
+
+variable "municipality_registry_projections_cpu" {
+}
+
+variable "municipality_registry_projections_memory" {
+}
+
+variable "municipality_registry_cache_cpu" {
+}
+
+variable "municipality_registry_cache_memory" {
+}
+
+variable "municipality_registry_cache_enabled" {
+}
+
 module "municipality-registry" {
   source = "../grar/municipality"
 
@@ -16,22 +46,22 @@ module "municipality-registry" {
   app        = "basisregisters"
   port_range = 2000
 
-  api_cpu           = 256
-  api_memory        = 512
-  api_min_instances = 2
-  api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:2.15.6"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:2.15.6"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:2.15.6"
+  api_cpu           = var.municipality_registry_api_cpu
+  api_memory        = var.municipality_registry_api_memory
+  api_min_instances = var.municipality_registry_api_min_instances
+  api_max_instances = var.municipality_registry_api_max_instances
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:${var.municipality_registry_version}"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-crab-import:${var.municipality_registry_version}"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-extract:${var.municipality_registry_version}"
 
-  projections_cpu           = 256
-  projections_memory        = 512
+  projections_cpu           = var.municipality_registry_projections_cpu
+  projections_memory        = var.municipality_registry_projections_memory
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:2.15.6"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/projector:${var.municipality_registry_version}"
 
-  cache_cpu      = 256
-  cache_memory   = 512
-  cache_enabled  = true
+  cache_cpu      = var.municipality_registry_cache_cpu
+  cache_memory   = var.municipality_registry_cache_memory
+  cache_enabled  = var.municipality_registry_cache_enabled
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint

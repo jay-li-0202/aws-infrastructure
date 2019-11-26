@@ -1,6 +1,36 @@
 variable "postal_password" {
 }
 
+variable "postal_registry_version" {
+}
+
+variable "postal_registry_api_cpu" {
+}
+
+variable "postal_registry_api_memory" {
+}
+
+variable "postal_registry_api_min_instances" {
+}
+
+variable "postal_registry_api_max_instances" {
+}
+
+variable "postal_registry_projections_cpu" {
+}
+
+variable "postal_registry_projections_memory" {
+}
+
+variable "postal_registry_cache_cpu" {
+}
+
+variable "postal_registry_cache_memory" {
+}
+
+variable "postal_registry_cache_enabled" {
+}
+
 module "postal-registry" {
   source = "../grar/postal"
 
@@ -16,24 +46,24 @@ module "postal-registry" {
   app        = "basisregisters"
   port_range = 3000
 
-  api_cpu           = 256
-  api_memory        = 512
-  api_min_instances = 2
-  api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:1.14.5"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:1.14.5"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:1.14.5"
+  api_cpu           = var.postal_registry_api_cpu
+  api_memory        = var.postal_registry_api_memory
+  api_min_instances = var.postal_registry_api_min_instances
+  api_max_instances = var.postal_registry_api_max_instances
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-legacy:${var.postal_registry_version}"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-crab-import:${var.postal_registry_version}"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/api-extract:${var.postal_registry_version}"
 
-  projections_cpu           = 256
-  projections_memory        = 512
+  projections_cpu           = var.postal_registry_projections_cpu
+  projections_memory        = var.postal_registry_projections_memory
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:1.14.5"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:1.14.5"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projector:${var.postal_registry_version}"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/postal-registry/projections-syndication:${var.postal_registry_version}"
 
-  cache_cpu      = 256
-  cache_memory   = 512
+  cache_cpu      = var.postal_registry_cache_cpu
+  cache_memory   = var.postal_registry_cache_memory
+  cache_enabled  = var.postal_registry_cache_enabled
   cache_schedule = "cron(0/5 * * * ? *)"
-  cache_enabled  = true
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 

@@ -1,6 +1,51 @@
 variable "publicservice_password" {
 }
 
+variable "publicservice_registry_version" {
+}
+
+variable "publicservice_registry_ui_cpu" {
+}
+
+variable "publicservice_registry_ui_memory" {
+}
+
+variable "publicservice_registry_api_cpu" {
+}
+
+variable "publicservice_registry_api_memory" {
+}
+
+variable "publicservice_registry_api_min_instances" {
+}
+
+variable "publicservice_registry_api_max_instances" {
+}
+
+variable "publicservice_registry_projections_cpu" {
+}
+
+variable "publicservice_registry_projections_memory" {
+}
+
+variable "publicservice_registry_cache_cpu" {
+}
+
+variable "publicservice_registry_cache_memory" {
+}
+
+variable "publicservice_registry_cache_enabled" {
+}
+
+variable "publicservice_registry_orafin_cpu" {
+}
+
+variable "publicservice_registry_orafin_memory" {
+}
+
+variable "publicservice_registry_orafin_enabled" {
+}
+
 variable "publicservice_orafin_ftp_host" {
 }
 
@@ -45,39 +90,38 @@ module "publicservice-registry" {
     "8000-8007",
   ]
 
-  api_version       = "1.12.2"
-  api_cpu           = 256
-  api_memory        = 512
-  api_min_instances = 2
-  api_max_instances = 4
-  api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:1.12.2"
+  api_version       = var.publicservice_registry_version
+  api_cpu           = var.publicservice_registry_api_cpu
+  api_memory        = var.publicservice_registry_api_memory
+  api_min_instances = var.publicservice_registry_api_min_instances
+  api_max_instances = var.publicservice_registry_api_max_instances
+  api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:${var.publicservice_registry_version}"
 
-  orafin_cpu    = 256
-  orafin_memory = 512
+  orafin_cpu     = var.publicservice_registry_orafin_cpu
+  orafin_memory  = var.publicservice_registry_orafin_memory
+  orafin_enabled = var.publicservice_registry_orafin_enabled
   // Every day at 20:00
-  orafin_schedule = "cron(0 20 * * ? *)"
-  // orafin_schedule     = "cron(0/5 * * * ? *)"
-  orafin_enabled      = true
-  orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:1.12.2"
+  orafin_schedule     = "cron(0 20 * * ? *)"
+  orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:${var.publicservice_registry_version}"
   orafin_ftp_host     = var.publicservice_orafin_ftp_host
   orafin_ftp_user     = var.publicservice_orafin_ftp_user
   orafin_ftp_password = var.publicservice_orafin_ftp_password
   orafin_ftp_path     = "IN"
 
-  projections_cpu           = 256
-  projections_memory        = 1024
+  projections_cpu           = var.publicservice_registry_projections_cpu
+  projections_memory        = var.publicservice_registry_projections_memory
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:1.12.2"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/projector:${var.publicservice_registry_version}"
 
-  ui_cpu           = 256
-  ui_memory        = 512
+  ui_cpu           = var.publicservice_registry_ui_cpu
+  ui_memory        = var.publicservice_registry_ui_memory
   ui_min_instances = 2
-  ui_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:1.12.2"
+  ui_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:${var.publicservice_registry_version}"
 
-  cache_cpu      = 256
-  cache_memory   = 512
+  cache_cpu      = var.publicservice_registry_cache_cpu
+  cache_memory   = var.publicservice_registry_cache_memory
+  cache_enabled  = var.publicservice_registry_cache_enabled
   cache_schedule = "cron(0/5 * * * ? *)"
-  cache_enabled  = true
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 

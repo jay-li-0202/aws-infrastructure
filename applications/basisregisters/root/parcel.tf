@@ -1,6 +1,36 @@
 variable "parcel_password" {
 }
 
+variable "parcel_registry_version" {
+}
+
+variable "parcel_registry_api_cpu" {
+}
+
+variable "parcel_registry_api_memory" {
+}
+
+variable "parcel_registry_api_min_instances" {
+}
+
+variable "parcel_registry_api_max_instances" {
+}
+
+variable "parcel_registry_projections_cpu" {
+}
+
+variable "parcel_registry_projections_memory" {
+}
+
+variable "parcel_registry_cache_cpu" {
+}
+
+variable "parcel_registry_cache_memory" {
+}
+
+variable "parcel_registry_cache_enabled" {
+}
+
 module "parcel-registry" {
   source = "../grar/parcel"
 
@@ -16,24 +46,24 @@ module "parcel-registry" {
   app        = "basisregisters"
   port_range = 7000
 
-  api_cpu           = 256
-  api_memory        = 2048
-  api_min_instances = 2
-  api_max_instances = 4
-  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-legacy:2.2.5"
-  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-crab-import:2.2.5"
-  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-extract:2.2.5"
+  api_cpu           = var.parcel_registry_api_cpu
+  api_memory        = var.parcel_registry_api_memory
+  api_min_instances = var.parcel_registry_api_min_instances
+  api_max_instances = var.parcel_registry_api_max_instances
+  legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-legacy:${var.parcel_registry_version}"
+  import_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-crab-import:${var.parcel_registry_version}"
+  extract_api_image = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/api-extract:${var.parcel_registry_version}"
 
-  projections_cpu           = 256
-  projections_memory        = 1024
+  projections_cpu           = var.parcel_registry_projections_cpu
+  projections_memory        = var.parcel_registry_projections_memory
   projections_min_instances = 1
-  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projector:2.2.5"
-  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projections-syndication:2.2.5"
+  projections_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projector:${var.parcel_registry_version}"
+  syndication_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/parcel-registry/projections-syndication:${var.parcel_registry_version}"
 
-  cache_cpu      = 256
-  cache_memory   = 512
+  cache_cpu      = var.parcel_registry_cache_cpu
+  cache_memory   = var.parcel_registry_cache_memory
+  cache_enabled  = var.parcel_registry_cache_enabled
   cache_schedule = "cron(0/5 * * * ? *)"
-  cache_enabled  = false
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
 
