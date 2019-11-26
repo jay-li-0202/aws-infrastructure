@@ -47,7 +47,7 @@ cache_instance_type   = "cache.m5.large"
 cache_cluster_size    = 3
 
 // AWS SQL Server Information
-sql_version       = "14.00.3192.2.v1"
+sql_version       = "14.00.3223.3.v1"
 sql_major_version = "14.00"
 sql_family        = "sqlserver-se-14.0"
 sql_instance_type = "db.r5.xlarge"
