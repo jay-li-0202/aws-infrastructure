@@ -89,7 +89,7 @@ site_memory        = 512
 site_min_instances = 2
 site_max_instances = 4
 
-public_api_version       = "2.40.0"
+public_api_version       = "2.40.2"
 public_api_cpu           = 256
 public_api_memory        = 512
 public_api_min_instances = 2
