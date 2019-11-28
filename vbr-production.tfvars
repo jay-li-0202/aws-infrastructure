@@ -95,7 +95,7 @@ public_api_memory        = 512
 public_api_min_instances = 2
 public_api_max_instances = 4
 
-municipality_registry_version            = "2.15.6"
+municipality_registry_version            = "2.15.7"
 municipality_registry_api_cpu            = 256
 municipality_registry_api_memory         = 512
 municipality_registry_api_min_instances  = 2
@@ -106,7 +106,7 @@ municipality_registry_cache_cpu          = 256
 municipality_registry_cache_memory       = 512
 municipality_registry_cache_enabled      = true
 
-postal_registry_version            = "1.14.5"
+postal_registry_version            = "1.14.6"
 postal_registry_api_cpu            = 512
 postal_registry_api_memory         = 1024
 postal_registry_api_min_instances  = 2
@@ -117,7 +117,7 @@ postal_registry_cache_cpu          = 256
 postal_registry_cache_memory       = 512
 postal_registry_cache_enabled      = true
 
-streetname_registry_version            = "1.19.3"
+streetname_registry_version            = "1.19.4"
 streetname_registry_api_cpu            = 4096
 streetname_registry_api_memory         = 16384
 streetname_registry_api_min_instances  = 2
