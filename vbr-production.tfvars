@@ -128,7 +128,7 @@ streetname_registry_cache_cpu          = 256
 streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 
-address_registry_version            = "1.17.1"
+address_registry_version            = "1.17.2"
 address_registry_api_cpu            = 4096
 address_registry_api_memory         = 16384
 address_registry_api_min_instances  = 2
