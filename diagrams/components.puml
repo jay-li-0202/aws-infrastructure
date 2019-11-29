@@ -369,6 +369,7 @@ package projector_sln as "projector (3.3.0)"<<nuget>> {
 
   component projector as "projector"<<library>>
 
+  projector --> api
   projector --> projection_handling_runner
   projector --> projection_handling_connector
 }
