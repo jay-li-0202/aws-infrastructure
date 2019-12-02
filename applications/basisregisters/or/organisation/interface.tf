@@ -126,6 +126,10 @@ variable "public_zone_name" {
   type = string
 }
 
+variable "alias_zone_name" {
+  type = string
+}
+
 variable "private_zone_name" {
   type = string
 }
@@ -155,33 +159,33 @@ variable "fargate_cluster_arn" {
   type = string
 }
 
-// variable "api_version" {
-//   type = string
-// }
+variable "api_version" {
+  type = string
+}
 
-// variable "api_min_instances" {
-//   type    = string
-//   default = 1
-// }
+variable "api_min_instances" {
+  type    = string
+  default = 1
+}
 
-// variable "api_max_instances" {
-//   type    = string
-//   default = 2
-// }
+variable "api_max_instances" {
+  type    = string
+  default = 2
+}
 
-// variable "api_image" {
-//   type = string
-// }
+variable "api_image" {
+  type = string
+}
 
-// variable "api_cpu" {
-//   type    = string
-//   default = 256
-// }
+variable "api_cpu" {
+  type    = string
+  default = 256
+}
 
-// variable "api_memory" {
-//   type    = string
-//   default = 512
-// }
+variable "api_memory" {
+  type    = string
+  default = 512
+}
 
 // variable "orafin_enabled" {
 //   type    = string
@@ -270,24 +274,24 @@ variable "fargate_cluster_arn" {
 //   default = true
 // }
 
-// variable "ui_image" {
-//   type = string
-// }
+variable "ui_image" {
+  type = string
+}
 
-// variable "ui_min_instances" {
-//   type    = string
-//   default = 1
-// }
+variable "ui_min_instances" {
+  type    = string
+  default = 1
+}
 
-// variable "ui_cpu" {
-//   type    = string
-//   default = 256
-// }
+variable "ui_cpu" {
+  type    = string
+  default = 256
+}
 
-// variable "ui_memory" {
-//   type    = string
-//   default = 512
-// }
+variable "ui_memory" {
+  type    = string
+  default = 512
+}
 
 variable "sa_user" {
   type = string
@@ -312,6 +316,10 @@ variable "db_user" {
 }
 
 variable "db_password" {
+  type = string
+}
+
+variable "elasticsearch_server" {
   type = string
 }
 

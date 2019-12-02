@@ -159,6 +159,17 @@ data "terraform_remote_state" "cache" {
   }
 }
 
+data "terraform_remote_state" "elasticsearch" {
+  backend = "s3"
+
+  config = {
+    bucket  = var.state_bucket
+    region  = var.aws_region
+    key     = "elasticsearch/terraform.tfstate"
+    profile = var.aws_profile
+  }
+}
+
 data "terraform_remote_state" "datadog" {
   backend = "s3"
 

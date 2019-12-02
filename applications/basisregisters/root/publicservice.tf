@@ -4,6 +4,9 @@ variable "publicservice_password" {
 variable "publicservice_registry_version" {
 }
 
+variable "publicservice_registry_ui_min_instances" {
+}
+
 variable "publicservice_registry_ui_cpu" {
 }
 
@@ -115,7 +118,7 @@ module "publicservice-registry" {
 
   ui_cpu           = var.publicservice_registry_ui_cpu
   ui_memory        = var.publicservice_registry_ui_memory
-  ui_min_instances = 2
+  ui_min_instances = var.publicservice_registry_ui_min_instances
   ui_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/ui:${var.publicservice_registry_version}"
 
   cache_cpu      = var.publicservice_registry_cache_cpu
