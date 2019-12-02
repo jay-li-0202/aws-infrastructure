@@ -33,7 +33,7 @@ alias_zone_name              = "basisregisters.vlaanderen.be"
 organisation_alias_zone_name = "wegwijs.vlaanderen.be"
 
 // Elasticsearch Information
-elasticsearch_version              = "6.5"
+elasticsearch_version              = "7.1"
 elasticsearch_volume_size          = 30
 elasticsearch_master_instance_type = "t2.small.elasticsearch"
 elasticsearch_master_cluster_size  = 3
@@ -178,7 +178,7 @@ publicservice_registry_orafin_cpu         = 256
 publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 
-organisation_registry_version            = "0.0.0"
+organisation_registry_version            = "1.0.2"
 organisation_registry_ui_min_instances   = 2
 organisation_registry_ui_cpu             = 256
 organisation_registry_ui_memory          = 512
