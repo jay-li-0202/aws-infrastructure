@@ -6,7 +6,8 @@
     "networkMode": "awsvpc",
     "environment" : [
       { "name": "API_VERSION", "value": "${api_version}" },
-      { "name": "API_ENDPOINT", "value": "https://organisatie-api.${public_zone_name}/" }
+      { "name": "API_ENDPOINT", "value": "https://organisatie-api.${public_zone_name}" },
+      { "name": "UI_ENDPOINT", "value": "https://organisatie.${public_zone_name}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
