@@ -178,11 +178,11 @@ publicservice_registry_orafin_cpu         = 256
 publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 
-organisation_registry_version            = "1.0.2"
+organisation_registry_version            = "1.0.3"
 organisation_registry_ui_min_instances   = 2
 organisation_registry_ui_cpu             = 256
 organisation_registry_ui_memory          = 512
 organisation_registry_api_cpu            = 256
-organisation_registry_api_memory         = 512
+organisation_registry_api_memory         = 1024
 organisation_registry_api_min_instances  = 1
 organisation_registry_api_max_instances  = 1
