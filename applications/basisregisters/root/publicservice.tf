@@ -100,11 +100,10 @@ module "publicservice-registry" {
   api_max_instances = var.publicservice_registry_api_max_instances
   api_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/api:${var.publicservice_registry_version}"
 
-  orafin_cpu     = var.publicservice_registry_orafin_cpu
-  orafin_memory  = var.publicservice_registry_orafin_memory
-  orafin_enabled = var.publicservice_registry_orafin_enabled
-  // Every day at 20:00
-  orafin_schedule     = "cron(0 20 * * ? *)"
+  orafin_cpu          = var.publicservice_registry_orafin_cpu
+  orafin_memory       = var.publicservice_registry_orafin_memory
+  orafin_enabled      = var.publicservice_registry_orafin_enabled
+  orafin_schedule     = "cron(0 20 * * ? *)" // Every day at 20:00
   orafin_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-service-registry/batch-orafin:${var.publicservice_registry_version}"
   orafin_ftp_host     = var.publicservice_orafin_ftp_host
   orafin_ftp_user     = var.publicservice_orafin_ftp_user

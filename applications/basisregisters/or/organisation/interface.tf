@@ -187,92 +187,105 @@ variable "api_memory" {
   default = 512
 }
 
-// variable "orafin_enabled" {
-//   type    = string
-//   default = true
-// }
+variable "batch_agentschapzorgengezondheidftpdump_enabled" {
+  type = string
+}
 
-// variable "orafin_image" {
-//   type = string
-// }
+variable "batch_agentschapzorgengezondheidftpdump_image" {
+  type = string
+}
 
-// variable "orafin_cpu" {
-//   type    = string
-//   default = 256
-// }
+variable "batch_agentschapzorgengezondheidftpdump_cpu" {
+  type = string
+}
 
-// variable "orafin_memory" {
-//   type    = string
-//   default = 512
-// }
+variable "batch_agentschapzorgengezondheidftpdump_memory" {
+  type = string
+}
 
-// variable "orafin_schedule" {
-//   type    = string
-//   default = "cron(0/5 * * * ? *)"
-// }
+variable "batch_agentschapzorgengezondheidftpdump_schedule" {
+  type = string
+}
 
-// variable "orafin_ftp_host" {
-//   type = string
-// }
+variable "batch_vlaanderenbe_enabled" {
+  type = string
+}
 
-// variable "orafin_ftp_user" {
-//   type = string
-// }
+variable "batch_vlaanderenbe_image" {
+  type = string
+}
 
-// variable "orafin_ftp_password" {
-//   type = string
-// }
+variable "batch_vlaanderenbe_cpu" {
+  type = string
+}
 
-// variable "orafin_ftp_path" {
-//   type = string
-// }
+variable "batch_vlaanderenbe_memory" {
+  type = string
+}
 
-// variable "projections_image" {
-//   type = string
-// }
+variable "batch_vlaanderenbe_schedule" {
+  type = string
+}
 
-// variable "projections_min_instances" {
-//   type    = string
-//   default = 1
-// }
+variable "projections_elasticsearch_enabled" {
+  type = string
+}
 
-// variable "projections_cpu" {
-//   type    = string
-//   default = 256
-// }
+variable "projections_elasticsearch_image" {
+  type = string
+}
 
-// variable "projections_memory" {
-//   type    = string
-//   default = 512
-// }
+variable "projections_elasticsearch_cpu" {
+  type = string
+}
 
-// variable "cache_cpu" {
-//   type    = string
-//   default = 256
-// }
+variable "projections_elasticsearch_memory" {
+  type = string
+}
 
-// variable "cache_memory" {
-//   type    = string
-//   default = 512
-// }
+variable "projections_elasticsearch_schedule" {
+  type = string
+}
 
-// variable "cache_schedule" {
-//   type    = string
-//   default = "cron(0/5 * * * ? *)"
-// }
+variable "projections_delegations_enabled" {
+  type = string
+}
 
-// variable "cache_server" {
-//   type = string
-// }
+variable "projections_delegations_image" {
+  type = string
+}
 
-// variable "cache_image" {
-//   type = string
-// }
+variable "projections_delegations_cpu" {
+  type = string
+}
 
-// variable "cache_enabled" {
-//   type    = string
-//   default = true
-// }
+variable "projections_delegations_memory" {
+  type = string
+}
+
+variable "projections_delegations_schedule" {
+  type = string
+}
+
+variable "projections_reporting_enabled" {
+  type = string
+}
+
+variable "projections_reporting_image" {
+  type = string
+}
+
+variable "projections_reporting_cpu" {
+  type = string
+}
+
+variable "projections_reporting_memory" {
+  type = string
+}
+
+variable "projections_reporting_schedule" {
+  type = string
+}
 
 variable "ui_image" {
   type = string

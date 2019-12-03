@@ -44,6 +44,51 @@ variable "organisation_registry_api_min_instances" {
 variable "organisation_registry_api_max_instances" {
 }
 
+variable "organisation_registry_batch_agentschapzorgengezondheidftpdump_cpu" {
+}
+
+variable "organisation_registry_batch_agentschapzorgengezondheidftpdump_memory" {
+}
+
+variable "organisation_registry_batch_agentschapzorgengezondheidftpdump_enabled" {
+}
+
+variable "organisation_registry_batch_vlaanderenbe_cpu" {
+}
+
+variable "organisation_registry_batch_vlaanderenbe_memory" {
+}
+
+variable "organisation_registry_batch_vlaanderenbe_enabled" {
+}
+
+variable "organisation_registry_projections_elasticsearch_cpu" {
+}
+
+variable "organisation_registry_projections_elasticsearch_memory" {
+}
+
+variable "organisation_registry_projections_elasticsearch_enabled" {
+}
+
+variable "organisation_registry_projections_delegations_cpu" {
+}
+
+variable "organisation_registry_projections_delegations_memory" {
+}
+
+variable "organisation_registry_projections_delegations_enabled" {
+}
+
+variable "organisation_registry_projections_reporting_cpu" {
+}
+
+variable "organisation_registry_projections_reporting_memory" {
+}
+
+variable "organisation_registry_projections_reporting_enabled" {
+}
+
 variable "organisation_acm_host" {
 }
 
@@ -90,6 +135,36 @@ module "organisation-registry" {
   ui_memory        = var.organisation_registry_ui_memory
   ui_min_instances = var.organisation_registry_ui_min_instances
   ui_image         = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/ui:${var.organisation_registry_version}"
+
+  batch_agentschapzorgengezondheidftpdump_cpu      = var.organisation_registry_batch_agentschapzorgengezondheidftpdump_cpu
+  batch_agentschapzorgengezondheidftpdump_memory   = var.organisation_registry_batch_agentschapzorgengezondheidftpdump_memory
+  batch_agentschapzorgengezondheidftpdump_enabled  = var.organisation_registry_batch_agentschapzorgengezondheidftpdump_enabled
+  batch_agentschapzorgengezondheidftpdump_schedule = "cron(30 3 * * ? *)" // Every day at 3:30
+  batch_agentschapzorgengezondheidftpdump_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/batch-agentschapzorgengezondheidftpdump:${var.organisation_registry_version}"
+
+  batch_vlaanderenbe_cpu      = var.organisation_registry_batch_vlaanderenbe_cpu
+  batch_vlaanderenbe_memory   = var.organisation_registry_batch_vlaanderenbe_memory
+  batch_vlaanderenbe_enabled  = var.organisation_registry_batch_vlaanderenbe_enabled
+  batch_vlaanderenbe_schedule = "cron(0/30 * * * ? *)" // Every 30 minutes
+  batch_vlaanderenbe_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/batch-vlaanderenbe:${var.organisation_registry_version}"
+
+  projections_elasticsearch_cpu      = var.organisation_registry_projections_elasticsearch_cpu
+  projections_elasticsearch_memory   = var.organisation_registry_projections_elasticsearch_memory
+  projections_elasticsearch_enabled  = var.organisation_registry_projections_elasticsearch_enabled
+  projections_elasticsearch_schedule = "cron(0/5 * * * ? *)" // Every 5 minutes
+  projections_elasticsearch_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-elasticsearch:${var.organisation_registry_version}"
+
+  projections_delegations_cpu      = var.organisation_registry_projections_delegations_cpu
+  projections_delegations_memory   = var.organisation_registry_projections_delegations_memory
+  projections_delegations_enabled  = var.organisation_registry_projections_delegations_enabled
+  projections_delegations_schedule = "cron(0/2 * * * ? *)" // Every 2 minutes
+  projections_delegations_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-delegations:${var.organisation_registry_version}"
+
+  projections_reporting_cpu      = var.organisation_registry_projections_reporting_cpu
+  projections_reporting_memory   = var.organisation_registry_projections_reporting_memory
+  projections_reporting_enabled  = var.organisation_registry_projections_reporting_enabled
+  projections_reporting_schedule = "cron(0/2 * * * ? *)" // Every 2 minutes
+  projections_reporting_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-reporting:${var.organisation_registry_version}"
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
   sa_user     = var.sql_username
