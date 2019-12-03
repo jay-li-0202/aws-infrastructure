@@ -31,7 +31,23 @@
       { "name": "Toggles__ApiAvailable", "value": "True" },
       { "name": "Toggles__ApplicationAvailable", "value": "True" },
 
-      { "name": "Api__RijksRegisterCertificatePwd", "value": "" }
+      { "name": "Api__RijksRegisterCertificatePwd", "value": "" },
+
+      { "name": "OIDCAuth__Authority", "value": "" },
+      { "name": "OIDCAuth__AuthorizationRedirectUri", "value": "" },
+      { "name": "OIDCAuth__AuthorizationIssuer", "value": "" },
+      { "name": "OIDCAuth__AuthorizationEndpoint", "value": "" },
+      { "name": "OIDCAuth__UserInfoEndPoint", "value": "" },
+      { "name": "OIDCAuth__EndSessionEndPoint", "value": "" },
+      { "name": "OIDCAuth__JwksUri", "value": "" },
+      { "name": "OIDCAuth__PostLogoutRedirectUri", "value": "" },
+      { "name": "OIDCAuth__ClientId", "value": "" },
+      { "name": "OIDCAuth__ClientSecret", "value": "" },
+      { "name": "OIDCAuth__TokenEndPoint", "value": "" },
+      { "name": "OIDCAuth__JwtSharedSigningKey", "value": "" },
+      { "name": "OIDCAuth__JwtIssuer", "value": "" },
+      { "name": "OIDCAuth__JwtAudience", "value": "" },
+      { "name": "OIDCAuth__Developers", "value": "" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
