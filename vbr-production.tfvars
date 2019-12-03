@@ -150,7 +150,7 @@ building_registry_cache_cpu          = 256
 building_registry_cache_memory       = 512
 building_registry_cache_enabled      = false
 
-parcel_registry_version            = "2.2.6"
+parcel_registry_version            = "2.3.0"
 parcel_registry_api_cpu            = 4096
 parcel_registry_api_memory         = 16384
 parcel_registry_api_min_instances  = 2
