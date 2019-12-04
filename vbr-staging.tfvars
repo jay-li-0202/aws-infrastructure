@@ -27,8 +27,8 @@ vpc_cidr_block = "172.21.0.0/16"
 //admin_cidr_blocks = []
 
 // DNS Information
-public_zone_name  = "staging-basisregisters.vlaanderen"
-private_zone_name = "staging-basisregisters.local"
+public_zone_name             = "staging-basisregisters.vlaanderen"
+private_zone_name            = "staging-basisregisters.local"
 alias_zone_name              = "basisregisters.dev-vlaanderen.be"
 organisation_alias_zone_name = "wegwijs.dev-vlaanderen.be"
 
@@ -47,15 +47,14 @@ cache_instance_type   = "cache.t2.medium"
 cache_cluster_size    = 3
 
 // SQL Server Information
-sql_version       = "14.00.3223.3.v1"
-sql_major_version = "14.00"
-sql_family        = "sqlserver-se-14.0"
-sql_instance_type = "db.r4.large"
-sql_username      = "basisregisters"
-// sql_password = "x"
-sql_storage                 = 500
-sql_backup_retention_period = 2
-sql_multi_az                = false
+sql_version                               = "14.00.3223.3.v1"
+sql_major_version                         = "14.00"
+sql_family                                = "sqlserver-se-14.0"
+sql_instance_type                         = "db.r5.large"
+sql_username                              = "basisregisters"
+sql_storage                               = 2500
+sql_backup_retention_period               = 2
+sql_multi_az                              = false
 sql_performance_insights_retention_period = 7
 
 // Azure WMS Database Information
@@ -80,4 +79,4 @@ extracts_expiration_days   = 30
 api_anonymous_rate_limit_per_5min = 100
 
 portal_fqdn = "d2gtj4t3cfp7t.cloudfront.net"
-auth_fqdn = "d3g80n6oqcib3n.cloudfront.net"
+auth_fqdn   = "d3g80n6oqcib3n.cloudfront.net"

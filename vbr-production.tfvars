@@ -47,12 +47,11 @@ cache_instance_type   = "cache.m5.large"
 cache_cluster_size    = 3
 
 // AWS SQL Server Information
-sql_version       = "14.00.3223.3.v1"
-sql_major_version = "14.00"
-sql_family        = "sqlserver-se-14.0"
-sql_instance_type = "db.r5.xlarge"
-sql_username      = "basisregisters"
-// sql_password = "x"
+sql_version                               = "14.00.3223.3.v1"
+sql_major_version                         = "14.00"
+sql_family                                = "sqlserver-se-14.0"
+sql_instance_type                         = "db.r5.xlarge"
+sql_username                              = "basisregisters"
 sql_storage                               = 2500
 sql_backup_retention_period               = 5
 sql_multi_az                              = false
