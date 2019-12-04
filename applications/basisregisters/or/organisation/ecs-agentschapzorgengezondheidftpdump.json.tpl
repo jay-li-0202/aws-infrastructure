@@ -9,6 +9,10 @@
 
       { "name": "Configuration__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
+      { "name": "AgentschapZorgEnGezondheidFtpDump__Host", "value": "${ftp_host}" },
+      { "name": "AgentschapZorgEnGezondheidFtpDump__User", "value": "${ftp_user}" },
+      { "name": "AgentschapZorgEnGezondheidFtpDump__Pass", "value": "${ftp_password}" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },

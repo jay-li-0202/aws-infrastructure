@@ -53,6 +53,15 @@ variable "organisation_registry_batch_agentschapzorgengezondheidftpdump_memory" 
 variable "organisation_registry_batch_agentschapzorgengezondheidftpdump_enabled" {
 }
 
+variable "organisation_agentschapzorgengezondheidftpdump_ftp_host" {
+}
+
+variable "organisation_agentschapzorgengezondheidftpdump_ftp_user" {
+}
+
+variable "organisation_agentschapzorgengezondheidftpdump_ftp_password" {
+}
+
 variable "organisation_registry_batch_vlaanderenbe_cpu" {
 }
 
@@ -141,6 +150,9 @@ module "organisation-registry" {
   batch_agentschapzorgengezondheidftpdump_enabled  = var.organisation_registry_batch_agentschapzorgengezondheidftpdump_enabled
   batch_agentschapzorgengezondheidftpdump_schedule = "cron(30 3 * * ? *)" // Every day at 3:30
   batch_agentschapzorgengezondheidftpdump_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/batch-agentschapzorgengezondheidftpdump:${var.organisation_registry_version}"
+  batch_agentschapzorgengezondheidftpdump_ftp_host = var.organisation_agentschapzorgengezondheidftpdump_ftp_host
+  batch_agentschapzorgengezondheidftpdump_ftp_user = var.organisation_agentschapzorgengezondheidftpdump_ftp_user
+  batch_agentschapzorgengezondheidftpdump_ftp_password = var.organisation_agentschapzorgengezondheidftpdump_ftp_password
 
   batch_vlaanderenbe_cpu      = var.organisation_registry_batch_vlaanderenbe_cpu
   batch_vlaanderenbe_memory   = var.organisation_registry_batch_vlaanderenbe_memory

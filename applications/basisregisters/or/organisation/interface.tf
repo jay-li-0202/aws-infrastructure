@@ -207,6 +207,18 @@ variable "batch_agentschapzorgengezondheidftpdump_schedule" {
   type = string
 }
 
+variable "batch_agentschapzorgengezondheidftpdump_ftp_host" {
+  type = string
+}
+
+variable "batch_agentschapzorgengezondheidftpdump_ftp_user" {
+  type = string
+}
+
+variable "batch_agentschapzorgengezondheidftpdump_ftp_password" {
+  type = string
+}
+
 variable "batch_vlaanderenbe_enabled" {
   type = string
 }

@@ -39,6 +39,9 @@ data "template_file" "agentschapzorgengezondheidftpdump" {
     db_name          = var.db_name
     db_user          = var.db_user
     db_pass          = var.db_password
+    ftp_host     = var.batch_agentschapzorgengezondheidftpdump_ftp_host
+    ftp_user     = var.batch_agentschapzorgengezondheidftpdump_ftp_user
+    ftp_password = var.batch_agentschapzorgengezondheidftpdump_ftp_password
   }
 }
 
