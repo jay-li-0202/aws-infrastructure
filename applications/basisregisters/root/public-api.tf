@@ -13,6 +13,38 @@ variable "public_api_min_instances" {
 variable "public_api_max_instances" {
 }
 
+variable "municipality_registry_public_api_cache" {
+  type = string
+}
+
+variable "postal_registry_public_api_cache" {
+  type = string
+}
+
+variable "streetname_registry_public_api_cache" {
+  type = string
+}
+
+variable "address_registry_public_api_cache" {
+  type = string
+}
+
+variable "building_registry_public_api_cache" {
+  type = string
+}
+
+variable "parcel_registry_public_api_cache" {
+  type = string
+}
+
+variable "publicservice_registry_public_api_cache" {
+  type = string
+}
+
+variable "organisation_registry_public_api_cache" {
+  type = string
+}
+
 module "public-api" {
   source = "../public-api"
 
@@ -32,6 +64,15 @@ module "public-api" {
   max_instances  = var.public_api_max_instances
   image          = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/api-legacy:${var.public_api_version}"
   container_port = 2080
+
+  municipality_registry_public_api_cache  = var.municipality_registry_public_api_cache
+  postal_registry_public_api_cache        = var.postal_registry_public_api_cache
+  streetname_registry_public_api_cache    = var.streetname_registry_public_api_cache
+  address_registry_public_api_cache       = var.address_registry_public_api_cache
+  building_registry_public_api_cache      = var.building_registry_public_api_cache
+  parcel_registry_public_api_cache        = var.parcel_registry_public_api_cache
+  publicservice_registry_public_api_cache = var.publicservice_registry_public_api_cache
+  organisation_registry_public_api_cache  = var.organisation_registry_public_api_cache
 
   extract_bundler_cpu      = 256
   extract_bundler_memory   = 512
