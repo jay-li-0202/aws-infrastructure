@@ -91,6 +91,15 @@ data "template_file" "api" {
     public_zone_name       = replace(var.public_zone_name, "/[.]$/", "")
     private_zone_name      = replace(var.private_zone_name, "/[.]$/", "")
     disco_zone_name        = replace(var.disco_zone_name, "/[.]$/", "")
+
+    municipality_registry_cache  = var.municipality_registry_public_api_cache
+    postal_registry_cache        = var.postal_registry_public_api_cache
+    streetname_registry_cache    = var.streetname_registry_public_api_cache
+    address_registry_cache       = var.address_registry_public_api_cache
+    building_registry_cache      = var.building_registry_public_api_cache
+    parcel_registry_cache        = var.parcel_registry_public_api_cache
+    publicservice_registry_cache = var.publicservice_registry_public_api_cache
+    organisation_registry_cache  = var.organisation_registry_public_api_cache
   }
 }
 

@@ -21,24 +21,24 @@ data "template_file" "vlaanderenbe" {
   template = file("${path.module}/ecs-vlaanderenbe.json.tpl")
 
   vars = {
-    environment_name = lower(replace(var.environment_name, " ", "-"))
-    datadog_api_key  = var.datadog_api_key
-    disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
-    app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-registry-vlaanderenbe"
-    logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-registry"
-    vlaanderenbe_image     = var.batch_vlaanderenbe_image
-    region           = var.region
-    datadog_env      = var.datadog_env
-    tag_environment  = var.tag_environment
-    tag_product      = var.tag_product
-    tag_program      = var.tag_program
-    tag_contact      = var.tag_contact
-    public_zone_name = replace(var.public_zone_name, "/[.]$/", "")
-    disco_zone_name  = replace(var.disco_zone_name, "/[.]$/", "")
-    db_server        = var.db_server
-    db_name          = var.db_name
-    db_user          = var.db_user
-    db_pass          = var.db_password
+    environment_name   = lower(replace(var.environment_name, " ", "-"))
+    datadog_api_key    = var.datadog_api_key
+    disco_namespace    = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
+    app_name           = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-registry-vlaanderenbe"
+    logging_name       = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-registry"
+    vlaanderenbe_image = var.batch_vlaanderenbe_image
+    region             = var.region
+    datadog_env        = var.datadog_env
+    tag_environment    = var.tag_environment
+    tag_product        = var.tag_product
+    tag_program        = var.tag_program
+    tag_contact        = var.tag_contact
+    public_zone_name   = replace(var.public_zone_name, "/[.]$/", "")
+    disco_zone_name    = replace(var.disco_zone_name, "/[.]$/", "")
+    db_server          = var.db_server
+    db_name            = var.db_name
+    db_user            = var.db_user
+    db_pass            = var.db_password
   }
 }
 

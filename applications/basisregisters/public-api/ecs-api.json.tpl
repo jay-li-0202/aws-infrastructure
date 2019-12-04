@@ -34,7 +34,7 @@
 
       { "name": "ApiConfiguration__MunicipalityRegistry__ApiUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1" },
       { "name": "ApiConfiguration__MunicipalityRegistry__HealthUrl", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/health" },
-      { "name": "ApiConfiguration__MunicipalityRegistry__UseCache", "value": "true" },
+      { "name": "ApiConfiguration__MunicipalityRegistry__UseCache", "value": "${municipality_registry_cache}" },
       { "name": "ApiConfiguration__MunicipalityRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
       { "name": "ApiConfiguration__MunicipalityRegistry__DetailUrl", "value": "https://api.${alias_zone_name}/v1/gemeenten/{0}" },
       { "name": "ApiConfiguration__MunicipalityRegistry__VolgendeUrl", "value": "https://api.${alias_zone_name}/v1/gemeenten?offset={0}&limit={1}" },
@@ -42,7 +42,7 @@
 
       { "name": "ApiConfiguration__PostalRegistry__ApiUrl", "value": "http://${disco_namespace}-postal-registry-api.${disco_zone_name}:3002/v1" },
       { "name": "ApiConfiguration__PostalRegistry__HealthUrl", "value": "http://${disco_namespace}-postal-registry-api.${disco_zone_name}:3002/health" },
-      { "name": "ApiConfiguration__PostalRegistry__UseCache", "value": "true" },
+      { "name": "ApiConfiguration__PostalRegistry__UseCache", "value": "${postal_registry_cache}" },
       { "name": "ApiConfiguration__PostalRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/postinfo" },
       { "name": "ApiConfiguration__PostalRegistry__DetailUrl", "value": "https://api.${alias_zone_name}/v1/postinfo/{0}" },
       { "name": "ApiConfiguration__PostalRegistry__VolgendeUrl", "value": "https://api.${alias_zone_name}/v1/postinfo?offset={0}&limit={1}" },
@@ -50,7 +50,7 @@
 
       { "name": "ApiConfiguration__StreetNameRegistry__ApiUrl", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002/v1" },
       { "name": "ApiConfiguration__StreetNameRegistry__HealthUrl", "value": "http://${disco_namespace}-streetname-registry-api.${disco_zone_name}:4002/health" },
-      { "name": "ApiConfiguration__StreetNameRegistry__UseCache", "value": "true" },
+      { "name": "ApiConfiguration__StreetNameRegistry__UseCache", "value": "${streetname_registry_cache}" },
       { "name": "ApiConfiguration__StreetNameRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/straatnaam" },
       { "name": "ApiConfiguration__StreetNameRegistry__GemeenteNaamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
       { "name": "ApiConfiguration__StreetNameRegistry__DetailUrl", "value": "https://api.${alias_zone_name}/v1/straatnamen/{0}" },
@@ -60,7 +60,7 @@
 
       { "name": "ApiConfiguration__AddressRegistry__ApiUrl", "value": "http://${disco_namespace}-address-registry-api.${disco_zone_name}:5002/v1" },
       { "name": "ApiConfiguration__AddressRegistry__HealthUrl", "value": "http://${disco_namespace}-address-registry-api.${disco_zone_name}:5002/health" },
-      { "name": "ApiConfiguration__AddressRegistry__UseCache", "value": "false" },
+      { "name": "ApiConfiguration__AddressRegistry__UseCache", "value": "${address_registry_cache}" },
       { "name": "ApiConfiguration__AddressRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/adres" },
       { "name": "ApiConfiguration__AddressRegistry__GemeenteNaamruimte", "value": "https://data.vlaanderen.be/id/gemeente" },
       { "name": "ApiConfiguration__AddressRegistry__PostInfoNaamruimte", "value": "https://data.vlaanderen.be/id/postinfo" },
@@ -75,6 +75,7 @@
 
       { "name": "ApiConfiguration__BuildingRegistry__ApiUrl", "value": "http://${disco_namespace}-building-registry-api.${disco_zone_name}:6002/v1" },
       { "name": "ApiConfiguration__BuildingRegistry__HealthUrl", "value": "http://${disco_namespace}-building-registry-api.${disco_zone_name}:6002/health" },
+      { "name": "ApiConfiguration__BuildingRegistry__UseCache", "value": "${building_registry_cache}" },
       { "name": "ApiConfiguration__BuildingRegistry__GebouwNaamruimte", "value": "https://data.vlaanderen.be/id/gebouw" },
       { "name": "ApiConfiguration__BuildingRegistry__GebouweenheidNaamruimte", "value": "https://data.vlaanderen.be/id/gebouweenheid" },
       { "name": "ApiConfiguration__BuildingRegistry__GebouwDetailUrl", "value": "https://api.${alias_zone_name}/v1/gebouwen/{0}" },
@@ -87,7 +88,7 @@
 
       { "name": "ApiConfiguration__ParcelRegistry__ApiUrl", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/v1" },
       { "name": "ApiConfiguration__ParcelRegistry__HealthUrl", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/health" },
-      { "name": "ApiConfiguration__ParcelRegistry__UseCache", "value": "false" },
+      { "name": "ApiConfiguration__ParcelRegistry__UseCache", "value": "${parcel_registry_cache}" },
       { "name": "ApiConfiguration__ParcelRegistry__Naamruimte", "value": "https://data.vlaanderen.be/id/perceel" },
       { "name": "ApiConfiguration__ParcelRegistry__DetailUrl", "value": "https://api.${alias_zone_name}/v1/percelen/{0}" },
       { "name": "ApiConfiguration__ParcelRegistry__AdresDetailUrl", "value": "https://api.${alias_zone_name}/v1/adressen/{0}" },
@@ -96,7 +97,9 @@
 
       { "name": "ApiConfiguration__PublicServiceRegistry__ApiUrl", "value": "http://${disco_namespace}-publicservice-registry-api.${disco_zone_name}:8002/v1" },
       { "name": "ApiConfiguration__PublicServiceRegistry__HealthUrl", "value": "http://${disco_namespace}-publicservice-registry-api.${disco_zone_name}:8002/health" },
-      { "name": "ApiConfiguration__PublicServiceRegistry__UseCache", "value": "false" }
+      { "name": "ApiConfiguration__PublicServiceRegistry__UseCache", "value": "${publicservice_registry_cache}" },
+
+      { "name": "ApiConfiguration__OrganisationRegistry__UseCache", "value": "${organisation_registry_cache}" }
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",

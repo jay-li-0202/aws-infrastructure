@@ -26,7 +26,7 @@ data "template_file" "reporting" {
     disco_namespace  = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}"
     app_name         = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-registry-reporting"
     logging_name     = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-registry"
-    reporting_image     = var.projections_reporting_image
+    reporting_image  = var.projections_reporting_image
     region           = var.region
     datadog_env      = var.datadog_env
     tag_environment  = var.tag_environment

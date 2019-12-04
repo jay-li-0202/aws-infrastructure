@@ -209,6 +209,38 @@ variable "extract_bundler_schedule" {
   default = "cron(0 22 * * ? *)"
 }
 
+variable "municipality_registry_public_api_cache" {
+  type = string
+}
+
+variable "postal_registry_public_api_cache" {
+  type = string
+}
+
+variable "streetname_registry_public_api_cache" {
+  type = string
+}
+
+variable "address_registry_public_api_cache" {
+  type = string
+}
+
+variable "building_registry_public_api_cache" {
+  type = string
+}
+
+variable "parcel_registry_public_api_cache" {
+  type = string
+}
+
+variable "publicservice_registry_public_api_cache" {
+  type = string
+}
+
+variable "organisation_registry_public_api_cache" {
+  type = string
+}
+
 output "task_security_group_id" {
   value = var.ecs_sg_id
 }

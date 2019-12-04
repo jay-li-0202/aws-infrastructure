@@ -105,6 +105,7 @@ municipality_registry_projections_memory = 512
 municipality_registry_cache_cpu          = 256
 municipality_registry_cache_memory       = 512
 municipality_registry_cache_enabled      = true
+municipality_registry_public_api_cache   = true
 
 postal_registry_version            = "1.14.7"
 postal_registry_api_cpu            = 256
@@ -116,6 +117,7 @@ postal_registry_projections_memory = 512
 postal_registry_cache_cpu          = 256
 postal_registry_cache_memory       = 512
 postal_registry_cache_enabled      = true
+postal_registry_public_api_cache   = true
 
 streetname_registry_version            = "1.19.5"
 streetname_registry_api_cpu            = 512
@@ -127,6 +129,7 @@ streetname_registry_projections_memory = 1024
 streetname_registry_cache_cpu          = 256
 streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
+streetname_registry_public_api_cache   = false
 
 address_registry_version            = "1.17.4"
 address_registry_api_cpu            = 4096
@@ -138,6 +141,7 @@ address_registry_projections_memory = 16384
 address_registry_cache_cpu          = 256
 address_registry_cache_memory       = 512
 address_registry_cache_enabled      = false
+address_registry_public_api_cache   = false
 
 building_registry_version            = "1.14.1"
 building_registry_api_cpu            = 4096
@@ -149,6 +153,7 @@ building_registry_projections_memory = 16384
 building_registry_cache_cpu          = 256
 building_registry_cache_memory       = 512
 building_registry_cache_enabled      = false
+building_registry_public_api_cache   = false
 
 parcel_registry_version            = "2.3.0"
 parcel_registry_api_cpu            = 4096
@@ -160,6 +165,7 @@ parcel_registry_projections_memory = 16384
 parcel_registry_cache_cpu          = 256
 parcel_registry_cache_memory       = 512
 parcel_registry_cache_enabled      = false
+parcel_registry_public_api_cache   = false
 
 publicservice_registry_version            = "1.12.2"
 publicservice_registry_ui_min_instances   = 2
@@ -177,6 +183,7 @@ publicservice_registry_cache_enabled      = true
 publicservice_registry_orafin_cpu         = 256
 publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
+publicservice_registry_public_api_cache   = false
 
 organisation_registry_version                                         = "1.1.0"
 organisation_registry_ui_min_instances                                = 2
@@ -201,3 +208,4 @@ organisation_registry_projections_delegations_enabled                 = false
 organisation_registry_projections_reporting_cpu                       = 256
 organisation_registry_projections_reporting_memory                    = 512
 organisation_registry_projections_reporting_enabled                   = false
+organisation_registry_public_api_cache                                = false
