@@ -36,12 +36,6 @@ resource "aws_ecs_service" "api" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.import.id
-    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-api-import"
-    container_port   = var.port_range
-  }
-
-  load_balancer {
     target_group_arn = aws_lb_target_group.extract.id
     container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-municipality-registry-api-extract"
     container_port   = var.port_range + 4
@@ -50,21 +44,6 @@ resource "aws_ecs_service" "api" {
   service_registries {
     registry_arn = aws_service_discovery_service.api.arn
   }
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "attribute:ecs.availability-zone"
-  // }
-
-  // ordered_placement_strategy {
-  //   type   = "spread"
-  //   field  = "instanceId"
-  // }
-
-  # [after initial apply] don't override changes made to task_definition
-  # from outside of terraform (i.e.; fargate cli)
-  // lifecycle {
-  //   ignore_changes = ["task_definition"]
-  // }
 }
 
 resource "aws_ecs_task_definition" "api" {

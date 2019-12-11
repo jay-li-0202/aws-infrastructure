@@ -36,12 +36,6 @@ resource "aws_ecs_service" "api" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.import.id
-    container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-api-import"
-    container_port   = var.port_range
-  }
-
-  load_balancer {
     target_group_arn = aws_lb_target_group.extract.id
     container_name   = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-postal-registry-api-extract"
     container_port   = var.port_range + 4
@@ -99,8 +93,6 @@ data "template_file" "api" {
     db_user           = var.db_user
     db_pass           = var.db_password
   }
-  // private_zone_name = "${replace(var.private_zone_name, "/[.]$/", "")}"
-  // disco_zone_name   = "${replace(var.disco_zone_name, "/[.]$/", "")}"
 }
 
 resource "aws_appautoscaling_target" "api" {

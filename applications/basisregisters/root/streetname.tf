@@ -10,6 +10,12 @@ variable "streetname_registry_api_cpu" {
 variable "streetname_registry_api_memory" {
 }
 
+variable "streetname_registry_import_api_cpu" {
+}
+
+variable "streetname_registry_import_api_memory" {
+}
+
 variable "streetname_registry_api_min_instances" {
 }
 
@@ -48,6 +54,8 @@ module "streetname-registry" {
 
   api_cpu           = var.streetname_registry_api_cpu
   api_memory        = var.streetname_registry_api_memory
+  import_api_cpu    = var.streetname_registry_import_api_cpu
+  import_api_memory = var.streetname_registry_import_api_memory
   api_min_instances = var.streetname_registry_api_min_instances
   api_max_instances = var.streetname_registry_api_max_instances
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/streetname-registry/api-legacy:${var.streetname_registry_version}"
