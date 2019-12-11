@@ -184,6 +184,16 @@ variable "api_memory" {
   default = 512
 }
 
+variable "import_api_cpu" {
+  type    = string
+  default = 256
+}
+
+variable "import_api_memory" {
+  type    = string
+  default = 512
+}
+
 variable "projections_image" {
   type = string
 }
