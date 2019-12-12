@@ -8,6 +8,7 @@ resource "aws_lb" "main" {
   enable_deletion_protection = false
   ip_address_type            = "ipv4"
   enable_http2               = true
+  idle_timeout               = 3600
 
   access_logs {
     enabled = true

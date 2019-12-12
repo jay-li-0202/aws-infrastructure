@@ -10,6 +10,12 @@ variable "municipality_registry_api_cpu" {
 variable "municipality_registry_api_memory" {
 }
 
+variable "municipality_registry_import_api_cpu" {
+}
+
+variable "municipality_registry_import_api_memory" {
+}
+
 variable "municipality_registry_api_min_instances" {
 }
 
@@ -48,6 +54,8 @@ module "municipality-registry" {
 
   api_cpu           = var.municipality_registry_api_cpu
   api_memory        = var.municipality_registry_api_memory
+  import_api_cpu    = var.municipality_registry_import_api_cpu
+  import_api_memory = var.municipality_registry_import_api_memory
   api_min_instances = var.municipality_registry_api_min_instances
   api_max_instances = var.municipality_registry_api_max_instances
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/municipality-registry/api-legacy:${var.municipality_registry_version}"

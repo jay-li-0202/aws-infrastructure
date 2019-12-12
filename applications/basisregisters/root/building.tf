@@ -10,6 +10,12 @@ variable "building_registry_api_cpu" {
 variable "building_registry_api_memory" {
 }
 
+variable "building_registry_import_api_cpu" {
+}
+
+variable "building_registry_import_api_memory" {
+}
+
 variable "building_registry_api_min_instances" {
 }
 
@@ -48,6 +54,8 @@ module "building-registry" {
 
   api_cpu           = var.building_registry_api_cpu
   api_memory        = var.building_registry_api_memory
+  import_api_cpu    = var.building_registry_import_api_cpu
+  import_api_memory = var.building_registry_import_api_memory
   api_min_instances = var.building_registry_api_min_instances
   api_max_instances = var.building_registry_api_max_instances
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/building-registry/api-legacy:${var.building_registry_version}"

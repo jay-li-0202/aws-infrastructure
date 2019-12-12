@@ -10,6 +10,12 @@ variable "address_registry_api_cpu" {
 variable "address_registry_api_memory" {
 }
 
+variable "address_registry_import_api_cpu" {
+}
+
+variable "address_registry_import_api_memory" {
+}
+
 variable "address_registry_api_min_instances" {
 }
 
@@ -48,6 +54,8 @@ module "address-registry" {
 
   api_cpu           = var.address_registry_api_cpu
   api_memory        = var.address_registry_api_memory
+  import_api_cpu    = var.address_registry_import_api_cpu
+  import_api_memory = var.address_registry_import_api_memory
   api_min_instances = var.address_registry_api_min_instances
   api_max_instances = var.address_registry_api_max_instances
   legacy_api_image  = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/api-legacy:${var.address_registry_version}"
