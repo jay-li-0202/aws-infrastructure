@@ -97,9 +97,7 @@
 
       { "name": "ApiConfiguration__PublicServiceRegistry__ApiUrl", "value": "http://${disco_namespace}-publicservice-registry-api.${disco_zone_name}:8002/v1" },
       { "name": "ApiConfiguration__PublicServiceRegistry__HealthUrl", "value": "http://${disco_namespace}-publicservice-registry-api.${disco_zone_name}:8002/health" },
-      { "name": "ApiConfiguration__PublicServiceRegistry__UseCache", "value": "${publicservice_registry_cache}" },
-
-      { "name": "ApiConfiguration__OrganisationRegistry__UseCache", "value": "${organisation_registry_cache}" }
+      { "name": "ApiConfiguration__PublicServiceRegistry__UseCache", "value": "${publicservice_registry_cache}" }      
     ],
     "dockerLabels": {
       "environment": "${tag_environment}",
