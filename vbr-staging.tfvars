@@ -136,7 +136,7 @@ streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 streetname_registry_public_api_cache   = false
 
-address_registry_version            = "1.17.8"
+address_registry_version            = "1.18.2"
 address_registry_api_cpu            = 4096
 address_registry_api_memory         = 16384
 address_registry_import_api_cpu     = 4096
@@ -150,7 +150,7 @@ address_registry_cache_memory       = 512
 address_registry_cache_enabled      = false
 address_registry_public_api_cache   = false
 
-building_registry_version            = "1.14.4"
+building_registry_version            = "1.14.6"
 building_registry_api_cpu            = 4096
 building_registry_api_memory         = 16384
 building_registry_import_api_cpu     = 4096
@@ -164,7 +164,7 @@ building_registry_cache_memory       = 512
 building_registry_cache_enabled      = false
 building_registry_public_api_cache   = false
 
-parcel_registry_version            = "2.3.2"
+parcel_registry_version            = "2.3.3"
 parcel_registry_api_cpu            = 4096
 parcel_registry_api_memory         = 16384
 parcel_registry_import_api_cpu     = 4096

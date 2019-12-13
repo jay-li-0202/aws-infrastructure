@@ -62,7 +62,7 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}-syndication" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
-      { "name": "SyndicationFeeds__Address", "value": "http://${disco_namespace}-address-registry-api.${disco_zone_name}:5002/v1/gemeenten/sync" },
+      { "name": "SyndicationFeeds__Address", "value": "http://${disco_namespace}-address-registry-api.${disco_zone_name}:5002/v1/adressen/sync" },
       { "name": "SyndicationFeeds__AddressPollingInMilliseconds", "value": "5000" },
 
       { "name": "SyndicationFeeds__Parcel", "value": "http://${disco_namespace}-parcel-registry-api.${disco_zone_name}:7002/v1/percelen/sync" },
