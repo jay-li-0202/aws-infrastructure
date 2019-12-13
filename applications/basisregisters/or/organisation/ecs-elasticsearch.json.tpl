@@ -7,7 +7,18 @@
     "environment" : [
       { "name": "ASPNETCORE_ENVIRONMENT", "value": "${environment_name}" },
 
+      { "name": "Infrastructure__EventStoreConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "Infrastructure__EventStoreAdministrationConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "Infrastructure__EventStoreCommandTimeout", "value": "3000" },
+
       { "name": "Configuration__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+
+      { "name": "SqlServer__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+      { "name": "SqlServer__MigrationsConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
+
+      { "name": "ElasticSearch__ConnectionString", "value": "${es_server}" },
+      { "name": "ElasticSearch__User", "value": "" },
+      { "name": "ElasticSearch__Pass", "value": "" },
 
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
