@@ -170,15 +170,6 @@ package event_handling_sln as "event-handling (1.1.1)"<<nuget>> {
   event_handling_autofac --> event_handling
 }
 
-component redis_populator as "redis-populator (1.5.0)"<<tool>>
-'https://github.com/Informatievlaanderen/redis-populator
-'Populate a Redis cache based on a list of URLs.
-redis_populator --> datadog_tracing
-redis_populator --> datadog_tracing_aspnetcore
-redis_populator --> datadog_tracing_sql
-redis_populator --> datadog_tracing_sqlstreamstore
-redis_populator --> datadog_tracing_autofac
-
 package command_handling_sln as "command-handling (3.2.0)"<<nuget>> {
   'https://github.com/Informatievlaanderen/command-handling
   'Lightweight infrastructure for doing command handling and eventsourcing using aggregates.
@@ -290,6 +281,15 @@ package projection_handling_sln as "projection-handling (4.3.0)"<<nuget>> {
   projection_handling_testing_xunit --> projection_handling_connector_testing
   projection_handling_testing_xunit --> projection_handling_sqlstreamstore
 }
+
+component redis_populator as "redis-populator (1.5.0)"<<tool>>
+'https://github.com/Informatievlaanderen/redis-populator
+'Populate a Redis cache based on a list of URLs.
+redis_populator --> datadog_tracing
+redis_populator --> datadog_tracing_aspnetcore
+redis_populator --> datadog_tracing_sql
+redis_populator --> datadog_tracing_sqlstreamstore
+redis_populator --> datadog_tracing_autofac
 
 component infrastructure_tests as "infrastructure-tests (1.1.0)"<<tool>>
 'https://github.com/Informatievlaanderen/infrastructure-tests
