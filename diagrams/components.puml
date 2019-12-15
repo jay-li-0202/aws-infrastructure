@@ -232,17 +232,6 @@ component json_serializer_settings as "json-serializer-settings (1.3.0)"<<librar
 json_serializer_settings --> trim_string_jsonconverter
 json_serializer_settings --> rfc3339_datetimeoffset
 
-package swagger_sln as "swagger (1.3.0)"<<nuget>> {
-  'https://github.com/Informatievlaanderen/swagger
-  'Swagger and ReDoc Helpers.
-  component swagger as "swagger"<<library>>
-  component swagger_redoc as "swagger-redoc"<<library>>
-
-  'TODO: Check if this is actually needed?
-  swagger --> json_serializer_settings
-  swagger_redoc --> swagger
-}
-
 package projection_handling_sln as "projection-handling (4.3.0)"<<nuget>> {
   'https://github.com/Informatievlaanderen/projection-handling
   'Lightweight projection handling infrastructure.
@@ -280,6 +269,17 @@ package projection_handling_sln as "projection-handling (4.3.0)"<<nuget>> {
 
   projection_handling_testing_xunit --> projection_handling_connector_testing
   projection_handling_testing_xunit --> projection_handling_sqlstreamstore
+}
+
+package swagger_sln as "swagger (1.3.0)"<<nuget>> {
+  'https://github.com/Informatievlaanderen/swagger
+  'Swagger and ReDoc Helpers.
+  component swagger as "swagger"<<library>>
+  component swagger_redoc as "swagger-redoc"<<library>>
+
+  'TODO: Check if this is actually needed?
+  swagger --> json_serializer_settings
+  swagger_redoc --> swagger
 }
 
 component redis_populator as "redis-populator (1.5.0)"<<tool>>
