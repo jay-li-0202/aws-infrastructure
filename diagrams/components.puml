@@ -76,7 +76,6 @@ component hexbyte_converter as "hexbyte-converter (1.1.0)"<<library>>
 'https://github.com/Informatievlaanderen/hexbyte-converter
 'Easily convert between byte array and hex strings.
 
-
 component hashcode_calculator as "hashcode-calculator (1.1.0)"<<library>>
 'https://github.com/Informatievlaanderen/hashcode-calculator
 'Calculates hashcode based on given fields.
@@ -130,7 +129,6 @@ package api_helpers <<Rectangle>> {
 component ef_entity_configuration as "ef-entity-configuration (1.1.0)"<<library>>
 'https://github.com/Informatievlaanderen/ef-entity-configuration
 'Auto discover IEntityTypeConfiguration classes.
-
 
 component blob_store as "blob-store (1.2.0)"<<library>>
 'https://github.com/Informatievlaanderen/blob-store
