@@ -88,7 +88,7 @@ site_memory        = 512
 site_min_instances = 2
 site_max_instances = 4
 
-public_api_version       = "2.40.3"
+public_api_version       = "2.41.0"
 public_api_cpu           = 256
 public_api_memory        = 512
 public_api_min_instances = 2
@@ -136,7 +136,7 @@ streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 streetname_registry_public_api_cache   = false
 
-address_registry_version            = "1.17.5"
+address_registry_version            = "1.18.2"
 address_registry_api_cpu            = 4096
 address_registry_api_memory         = 16384
 address_registry_import_api_cpu     = 4096
@@ -150,7 +150,7 @@ address_registry_cache_memory       = 512
 address_registry_cache_enabled      = false
 address_registry_public_api_cache   = false
 
-building_registry_version            = "1.14.2"
+building_registry_version            = "1.14.9"
 building_registry_api_cpu            = 4096
 building_registry_api_memory         = 16384
 building_registry_import_api_cpu     = 4096
@@ -164,7 +164,7 @@ building_registry_cache_memory       = 512
 building_registry_cache_enabled      = false
 building_registry_public_api_cache   = false
 
-parcel_registry_version            = "2.3.1"
+parcel_registry_version            = "2.3.3"
 parcel_registry_api_cpu            = 4096
 parcel_registry_api_memory         = 16384
 parcel_registry_import_api_cpu     = 4096
@@ -196,7 +196,7 @@ publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 publicservice_registry_public_api_cache   = false
 
-organisation_registry_version                                         = "1.1.0"
+organisation_registry_version                                         = "1.6.1"
 organisation_registry_scheduler_cpu                                   = 256
 organisation_registry_scheduler_memory                                = 512
 organisation_registry_scheduler_enabled                               = false
