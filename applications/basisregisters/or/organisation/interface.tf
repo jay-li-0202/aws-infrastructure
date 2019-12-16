@@ -209,6 +209,10 @@ variable "scheduler_memory" {
   default = 512
 }
 
+variable "scheduler_bearer" {
+  type = string
+}
+
 variable "batch_agentschapzorgengezondheidftpdump_enabled" {
   type = string
 }

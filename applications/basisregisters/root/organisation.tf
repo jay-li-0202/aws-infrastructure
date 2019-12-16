@@ -32,6 +32,9 @@ variable "organisation_registry_scheduler_memory" {
 variable "organisation_registry_scheduler_enabled" {
 }
 
+variable "organisation_registry_scheduler_bearer" {
+}
+
 variable "organisation_registry_ui_min_instances" {
 }
 
@@ -159,6 +162,7 @@ module "organisation-registry" {
   scheduler_enabled = var.organisation_registry_scheduler_enabled
   scheduler_schedule = "cron(0 * * * ? *)" // Every hour
   scheduler_image   = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/scheduler:${var.organisation_registry_version}"
+  scheduler_bearer  = var.organisation_registry_scheduler_bearer
 
   batch_agentschapzorgengezondheidftpdump_cpu          = var.organisation_registry_batch_agentschapzorgengezondheidftpdump_cpu
   batch_agentschapzorgengezondheidftpdump_memory       = var.organisation_registry_batch_agentschapzorgengezondheidftpdump_memory

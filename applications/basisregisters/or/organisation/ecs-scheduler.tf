@@ -39,6 +39,7 @@ data "template_file" "scheduler" {
     db_name           = var.db_name
     db_user           = var.db_user
     db_pass           = var.db_password
+    api_bearer        = var.scheduler_bearer
   }
 }
 
