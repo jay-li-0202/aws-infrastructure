@@ -187,6 +187,28 @@ variable "api_memory" {
   default = 512
 }
 
+variable "scheduler_image" {
+  type = string
+}
+
+variable "scheduler_enabled" {
+  type = string
+}
+
+variable "scheduler_schedule" {
+  type = string
+}
+
+variable "scheduler_cpu" {
+  type    = string
+  default = 256
+}
+
+variable "scheduler_memory" {
+  type    = string
+  default = 512
+}
+
 variable "batch_agentschapzorgengezondheidftpdump_enabled" {
   type = string
 }
