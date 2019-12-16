@@ -223,6 +223,7 @@ module "organisation-registry" {
     "organisation-registry/projections-reporting",
     "organisation-registry/batch-agentschapzorgengezondheidftpdump",
     "organisation-registry/ui",
+    "organisation-registry/scheduler",
   ]
 }
 
