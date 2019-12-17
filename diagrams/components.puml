@@ -138,6 +138,10 @@ component shaperon as "shaperon (4.2.0)"<<library>>
 'https://github.com/Informatievlaanderen/shaperon
 'Lightweight dbase and shape record handling.
 
+component aws_distributed_mutex as "aws-distributed-mutex (1.0.0)"<<library>>
+'https://github.com/Informatievlaanderen/aws-distributed-mutex
+'A distributed lock (mutex) implementation for AWS using DynamoDB.
+
 'TODO: Fix build and update version number
 component rfc3339_datetimeoffset as "rfc3339-datetimeoffset (1.2.0)"<<library>>
 'https://github.com/Informatievlaanderen/rfc3339-datetimeoffset
