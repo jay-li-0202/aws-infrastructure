@@ -20,6 +20,12 @@
       { "name": "ElasticSearch__User", "value": "" },
       { "name": "ElasticSearch__Pass", "value": "" },
 
+      { "name": "ElasticSearch__LockTableName", "value": "__DistributedLocks__" },
+      { "name": "ElasticSearch__LockLeasePeriodInMinutes", "value": "5" },
+      { "name": "ElasticSearch__LockRegionEndPoint", "value": "${region}" },
+      { "name": "ElasticSearch__LockAccessKeyId", "value": "${access_key}" },
+      { "name": "ElasticSearch__LockAccessKeySecret", "value": "${access_secret}" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },

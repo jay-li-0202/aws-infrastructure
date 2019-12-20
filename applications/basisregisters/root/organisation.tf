@@ -92,6 +92,12 @@ variable "organisation_registry_projections_elasticsearch_memory" {
 variable "organisation_registry_projections_elasticsearch_enabled" {
 }
 
+variable "organisation_registry_projections_elasticsearch_access_key" {
+}
+
+variable "organisation_registry_projections_elasticsearch_secret_key" {
+}
+
 variable "organisation_registry_projections_delegations_cpu" {
 }
 
@@ -185,11 +191,13 @@ module "organisation-registry" {
   batch_vlaanderenbe_schedule = "cron(0/30 * * * ? *)" // Every 30 minutes
   batch_vlaanderenbe_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/batch-vlaanderenbe:${var.organisation_registry_version}"
 
-  projections_elasticsearch_cpu      = var.organisation_registry_projections_elasticsearch_cpu
-  projections_elasticsearch_memory   = var.organisation_registry_projections_elasticsearch_memory
-  projections_elasticsearch_enabled  = var.organisation_registry_projections_elasticsearch_enabled
-  projections_elasticsearch_schedule = "cron(0/5 * * * ? *)" // Every 5 minutes
-  projections_elasticsearch_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-elasticsearch:${var.organisation_registry_version}"
+  projections_elasticsearch_cpu        = var.organisation_registry_projections_elasticsearch_cpu
+  projections_elasticsearch_memory     = var.organisation_registry_projections_elasticsearch_memory
+  projections_elasticsearch_enabled    = var.organisation_registry_projections_elasticsearch_enabled
+  projections_elasticsearch_schedule   = "cron(0/5 * * * ? *)" // Every 5 minutes
+  projections_elasticsearch_access_key = var.organisation_registry_projections_elasticsearch_access_key
+  projections_elasticsearch_secret_key = var.organisation_registry_projections_elasticsearch_secret_key
+  projections_elasticsearch_image      = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-elasticsearch:${var.organisation_registry_version}"
 
   projections_delegations_cpu        = var.organisation_registry_projections_delegations_cpu
   projections_delegations_memory     = var.organisation_registry_projections_delegations_memory

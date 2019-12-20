@@ -285,6 +285,14 @@ variable "projections_elasticsearch_schedule" {
   type = string
 }
 
+variable "projections_elasticsearch_access_key" {
+  type = string
+}
+
+variable "projections_elasticsearch_secret_key" {
+  type = string
+}
+
 variable "projections_delegations_enabled" {
   type = string
 }
