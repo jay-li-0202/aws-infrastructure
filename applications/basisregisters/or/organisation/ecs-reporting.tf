@@ -39,6 +39,8 @@ data "template_file" "reporting" {
     db_name          = var.db_name
     db_user          = var.db_user
     db_pass          = var.db_password
+    access_key       = var.projections_reporting_access_key
+    access_secret    = var.projections_reporting_secret_key
   }
 }
 
