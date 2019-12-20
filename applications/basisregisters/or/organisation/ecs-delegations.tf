@@ -39,6 +39,8 @@ data "template_file" "delegations" {
     db_name           = var.db_name
     db_user           = var.db_user
     db_pass           = var.db_password
+    access_key        = var.projections_delegations_access_key
+    access_secret     = var.projections_delegations_secret_key
   }
 }
 

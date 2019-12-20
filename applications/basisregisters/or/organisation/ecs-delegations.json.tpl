@@ -15,6 +15,12 @@
 
       { "name": "Configuration__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
+      { "name": "DelegationsRunner__LockTableName", "value": "__DistributedLocks__" },
+      { "name": "DelegationsRunner__LockLeasePeriodInMinutes", "value": "5" },
+      { "name": "DelegationsRunner__LockRegionEndPoint", "value": "${region}" },
+      { "name": "DelegationsRunner__LockAccessKeyId", "value": "${access_key}" },
+      { "name": "DelegationsRunner__LockAccessKeySecret", "value": "${access_secret}" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },

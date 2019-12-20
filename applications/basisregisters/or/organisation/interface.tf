@@ -305,6 +305,14 @@ variable "projections_delegations_schedule" {
   type = string
 }
 
+variable "projections_delegations_access_key" {
+  type = string
+}
+
+variable "projections_delegations_secret_key" {
+  type = string
+}
+
 variable "projections_reporting_enabled" {
   type = string
 }
