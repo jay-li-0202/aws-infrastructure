@@ -67,6 +67,10 @@ variable "sa_pass" {
   type = string
 }
 
+variable "sql_port" {
+  type = string
+}
+
 variable "db_edition" {
   type    = string
   default = "Standard"

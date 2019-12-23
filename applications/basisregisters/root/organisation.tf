@@ -219,6 +219,7 @@ module "organisation-registry" {
   sa_user     = var.sql_username
   sa_pass     = var.sql_password
   db_password = var.organisation_password
+  sql_port    = var.sql_ssh_port_forward
 
   elasticsearch_server = data.terraform_remote_state.elasticsearch.outputs.es_endpoint
 

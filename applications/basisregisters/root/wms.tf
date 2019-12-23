@@ -62,6 +62,7 @@ module "wms" {
   db_type            = var.wms_db_type
   rg_name            = var.wms_rg_name
   db_server          = var.wms_db_server
+  sql_port           = var.wms_ssh_port_forward
 
   public_zone_id = data.terraform_remote_state.dns.outputs.public_zone_id
 }

@@ -131,6 +131,7 @@ module "publicservice-registry" {
   sa_user     = var.sql_username
   sa_pass     = var.sql_password
   db_password = var.publicservice_password
+  sql_port    = var.sql_ssh_port_forward
 
   acm_host               = var.publicservice_acm_host
   acm_cookie_name        = var.publicservice_acm_cookie_name

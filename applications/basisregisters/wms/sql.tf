@@ -44,31 +44,31 @@ resource "null_resource" "db_setup" {
   }
 
   provisioner "local-exec" {
-    command     = "sqlcmd -S tcp:127.0.0.1,10001 -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d master -q \"${data.template_file.sql1.rendered}\""
+    command     = "sqlcmd -S tcp:127.0.0.1,${var.sql_port} -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d master -q \"${data.template_file.sql1.rendered}\""
     interpreter = ["bash", "-c"]
     on_failure  = "continue"
   }
 
   provisioner "local-exec" {
-    command     = "sqlcmd -S tcp:127.0.0.1,10001 -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d ${var.db_name} -q \"${data.template_file.sql2.rendered}\""
+    command     = "sqlcmd -S tcp:127.0.0.1,${var.sql_port} -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d ${var.db_name} -q \"${data.template_file.sql2.rendered}\""
     interpreter = ["bash", "-c"]
     on_failure  = "continue"
   }
 
   provisioner "local-exec" {
-    command     = "sqlcmd -S tcp:127.0.0.1,10001 -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d ${var.db_name} -q \"${data.template_file.sql3.rendered}\""
+    command     = "sqlcmd -S tcp:127.0.0.1,${var.sql_port} -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d ${var.db_name} -q \"${data.template_file.sql3.rendered}\""
     interpreter = ["bash", "-c"]
     on_failure  = "continue"
   }
 
   provisioner "local-exec" {
-    command     = "sqlcmd -S tcp:127.0.0.1,10001 -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d master -q \"${data.template_file.sql4.rendered}\""
+    command     = "sqlcmd -S tcp:127.0.0.1,${var.sql_port} -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d master -q \"${data.template_file.sql4.rendered}\""
     interpreter = ["bash", "-c"]
     on_failure  = "continue"
   }
 
   provisioner "local-exec" {
-    command     = "sqlcmd -S tcp:127.0.0.1,10001 -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d ${var.db_name} -q \"${data.template_file.sql5.rendered}\""
+    command     = "sqlcmd -S tcp:127.0.0.1,${var.sql_port} -U ${var.sa_user}@${azurerm_sql_server.wms.fully_qualified_domain_name} -P ${var.sa_pass} -d ${var.db_name} -q \"${data.template_file.sql5.rendered}\""
     interpreter = ["bash", "-c"]
     on_failure  = "continue"
   }

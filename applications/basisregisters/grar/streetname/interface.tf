@@ -183,6 +183,10 @@ variable "sa_pass" {
   type = string
 }
 
+variable "sql_port" {
+  type = string
+}
+
 variable "db_server" {
   type = string
 }

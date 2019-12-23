@@ -140,6 +140,10 @@ variable "sa_pass" {
   type = string
 }
 
+variable "sql_port" {
+  type = string
+}
+
 variable "fargate_cluster_name" {
   type = string
 }

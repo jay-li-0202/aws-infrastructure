@@ -77,6 +77,12 @@ variable "admin_cidr_blocks" {
   type = list(string)
 }
 
+variable "sql_ssh_port_forward" {
+}
+
+variable "wms_ssh_port_forward" {
+}
+
 provider "aws" {
   version             = "~> 2.32.0"
   region              = var.aws_region

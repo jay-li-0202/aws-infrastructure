@@ -78,6 +78,7 @@ module "municipality-registry" {
   sa_user     = var.sql_username
   sa_pass     = var.sql_password
   db_password = var.municipality_password
+  sql_port    = var.sql_ssh_port_forward
 
   ops_lb_arn          = module.ops-api.lb_arn
   ops_lb_listener_arn = module.ops-api.lb_listener_arn

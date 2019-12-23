@@ -56,16 +56,18 @@ sql_storage                               = 2500
 sql_backup_retention_period               = 5
 sql_multi_az                              = false
 sql_performance_insights_retention_period = 731
+sql_ssh_port_forward                      = 9001
 
 // Azure WMS Database Information
-wms_user        = "wms"
-wms_db_server   = "vbr-wms"
-wms_db_name     = "vbr-wms"
-wms_location    = "West Europe"
-wms_db_edition  = "Standard"
-wms_db_max_size = "268435456000" // 250GB
-wms_db_type     = "S2"
-wms_rg_name     = "vbr-wms"
+wms_user             = "wms"
+wms_db_server        = "vbr-wms"
+wms_db_name          = "vbr-wms"
+wms_location         = "West Europe"
+wms_db_edition       = "Standard"
+wms_db_max_size      = "268435456000" // 250GB
+wms_db_type          = "S2"
+wms_rg_name          = "vbr-wms"
+wms_ssh_port_forward = 10001
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services
