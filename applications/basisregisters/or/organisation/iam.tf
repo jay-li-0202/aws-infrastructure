@@ -1,5 +1,5 @@
 resource "aws_iam_user" "mutex" {
-  name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-mutex"
+  name          = "${var.app}-${lower(replace(var.environment_name, " ", "-"))}-organisation-mutex"
   path          = "/"
   force_destroy = true
 
