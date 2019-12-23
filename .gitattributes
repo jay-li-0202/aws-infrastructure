@@ -26,3 +26,6 @@
 *.list text
 *.yml text
 *.json text
+
+# Git crypt
+*.secret.tfvars filter=git-crypt diff=git-crypt
