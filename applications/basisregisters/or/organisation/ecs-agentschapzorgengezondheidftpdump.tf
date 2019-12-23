@@ -42,6 +42,8 @@ data "template_file" "agentschapzorgengezondheidftpdump" {
     ftp_host                                = var.batch_agentschapzorgengezondheidftpdump_ftp_host
     ftp_user                                = var.batch_agentschapzorgengezondheidftpdump_ftp_user
     ftp_password                            = var.batch_agentschapzorgengezondheidftpdump_ftp_password
+    access_key                              = aws_iam_access_key.mutex.id
+    access_secret                           = aws_iam_access_key.mutex.secret
   }
 }
 

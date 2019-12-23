@@ -92,12 +92,6 @@ variable "organisation_registry_projections_elasticsearch_memory" {
 variable "organisation_registry_projections_elasticsearch_enabled" {
 }
 
-variable "organisation_registry_projections_elasticsearch_access_key" {
-}
-
-variable "organisation_registry_projections_elasticsearch_secret_key" {
-}
-
 variable "organisation_registry_projections_delegations_cpu" {
 }
 
@@ -105,12 +99,6 @@ variable "organisation_registry_projections_delegations_memory" {
 }
 
 variable "organisation_registry_projections_delegations_enabled" {
-}
-
-variable "organisation_registry_projections_delegations_access_key" {
-}
-
-variable "organisation_registry_projections_delegations_secret_key" {
 }
 
 variable "organisation_registry_projections_reporting_cpu" {
@@ -195,24 +183,18 @@ module "organisation-registry" {
   projections_elasticsearch_memory     = var.organisation_registry_projections_elasticsearch_memory
   projections_elasticsearch_enabled    = var.organisation_registry_projections_elasticsearch_enabled
   projections_elasticsearch_schedule   = "cron(0/5 * * * ? *)" // Every 5 minutes
-  projections_elasticsearch_access_key = var.organisation_registry_projections_elasticsearch_access_key
-  projections_elasticsearch_secret_key = var.organisation_registry_projections_elasticsearch_secret_key
   projections_elasticsearch_image      = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-elasticsearch:${var.organisation_registry_version}"
 
   projections_delegations_cpu        = var.organisation_registry_projections_delegations_cpu
   projections_delegations_memory     = var.organisation_registry_projections_delegations_memory
   projections_delegations_enabled    = var.organisation_registry_projections_delegations_enabled
   projections_delegations_schedule   = "cron(0/2 * * * ? *)" // Every 2 minutes
-  projections_delegations_access_key = var.organisation_registry_projections_delegations_access_key
-  projections_delegations_secret_key = var.organisation_registry_projections_delegations_secret_key
   projections_delegations_image      = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-delegations:${var.organisation_registry_version}"
 
   projections_reporting_cpu          = var.organisation_registry_projections_reporting_cpu
   projections_reporting_memory       = var.organisation_registry_projections_reporting_memory
   projections_reporting_enabled      = var.organisation_registry_projections_reporting_enabled
   projections_reporting_schedule     = "cron(0/2 * * * ? *)" // Every 2 minutes
-  projections_reporting_access_key = var.organisation_registry_projections_reporting_access_key
-  projections_reporting_secret_key = var.organisation_registry_projections_reporting_secret_key
   projections_reporting_image        = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/organisation-registry/projections-reporting:${var.organisation_registry_version}"
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address

@@ -13,6 +13,12 @@
       { "name": "AgentschapZorgEnGezondheidFtpDump__User", "value": "${ftp_user}" },
       { "name": "AgentschapZorgEnGezondheidFtpDump__Pass", "value": "${ftp_password}" },
 
+      { "name": "ReportingRunner__LockTableName", "value": "__DistributedLocks__" },
+      { "name": "ReportingRunner__LockLeasePeriodInMinutes", "value": "5" },
+      { "name": "ReportingRunner__LockRegionEndPoint", "value": "${region}" },
+      { "name": "ReportingRunner__LockAccessKeyId", "value": "${access_key}" },
+      { "name": "ReportingRunner__LockAccessKeySecret", "value": "${access_secret}" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
