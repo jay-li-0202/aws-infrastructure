@@ -325,14 +325,6 @@ variable "projections_reporting_schedule" {
   type = string
 }
 
-variable "projections_reporting_access_key" {
-  type = string
-}
-
-variable "projections_reporting_secret_key" {
-  type = string
-}
-
 variable "ui_image" {
   type = string
 }
