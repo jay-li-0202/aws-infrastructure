@@ -3,8 +3,6 @@
 *.tfstate.backup
 .terraform.tfstate.lock.info
 
-COMMANDS.*.md
-
 .vs/
 .fake/
 .idea/

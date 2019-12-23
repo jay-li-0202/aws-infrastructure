@@ -29,3 +29,4 @@
 
 # Git crypt
 *.secret.tfvars filter=git-crypt diff=git-crypt
+COMMANDS.*.md filter=git-crypt diff=git-crypt
