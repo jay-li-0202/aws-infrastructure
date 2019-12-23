@@ -23,9 +23,6 @@ environment_name  = "Production"
 // VPC Information
 vpc_cidr_block = "172.21.0.0/16"
 
-// Privileged IPs
-//admin_cidr_blocks = []
-
 // DNS Information
 public_zone_name             = "basisregisters.vlaanderen"
 private_zone_name            = "basisregisters.local"
@@ -41,7 +38,7 @@ elasticsearch_data_instance_type   = "t2.medium.elasticsearch"
 elasticsearch_data_cluster_size    = 4
 
 // ElastiCache Information
-cache_redis_version   = "5.0.5"
+cache_redis_version   = "5.0.6"
 cache_parameter_group = "default.redis5.0.cluster.on"
 cache_instance_type   = "cache.m5.large"
 cache_cluster_size    = 3
@@ -78,7 +75,7 @@ logs_expiration_days       = 30
 cloudtrail_expiration_days = 30
 extracts_expiration_days   = 30
 
-api_anonymous_rate_limit_per_5min = 100
+api_anonymous_rate_limit_per_5min = 100000
 
 portal_fqdn = "d2ae27z35yww91.cloudfront.net"
 auth_fqdn   = "d1hfinbx08ox6c.cloudfront.net"
@@ -138,7 +135,7 @@ streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 streetname_registry_public_api_cache   = false
 
-address_registry_version            = "1.18.2"
+address_registry_version            = "1.18.5"
 address_registry_api_cpu            = 4096
 address_registry_api_memory         = 16384
 address_registry_import_api_cpu     = 4096
@@ -152,7 +149,7 @@ address_registry_cache_memory       = 512
 address_registry_cache_enabled      = false
 address_registry_public_api_cache   = false
 
-building_registry_version            = "1.14.9"
+building_registry_version            = "1.14.14"
 building_registry_api_cpu            = 4096
 building_registry_api_memory         = 16384
 building_registry_import_api_cpu     = 4096
@@ -198,7 +195,7 @@ publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 publicservice_registry_public_api_cache   = false
 
-organisation_registry_version                                         = "1.6.1"
+organisation_registry_version                                         = "1.8.2"
 organisation_registry_scheduler_cpu                                   = 256
 organisation_registry_scheduler_memory                                = 512
 organisation_registry_scheduler_enabled                               = false

@@ -23,9 +23,6 @@ environment_name  = "Staging"
 // VPC Information
 vpc_cidr_block = "172.21.0.0/16"
 
-// Privileged IPs
-//admin_cidr_blocks = []
-
 // DNS Information
 public_zone_name             = "staging-basisregisters.vlaanderen"
 private_zone_name            = "staging-basisregisters.local"
@@ -33,7 +30,7 @@ alias_zone_name              = "basisregisters.dev-vlaanderen.be"
 organisation_alias_zone_name = "wegwijs.dev-vlaanderen.be"
 
 // Elasticsearch Information
-elasticsearch_version              = "6.5"
+elasticsearch_version              = "6.8"
 elasticsearch_volume_size          = 30
 elasticsearch_master_instance_type = "t2.small.elasticsearch"
 elasticsearch_master_cluster_size  = 3
@@ -41,7 +38,7 @@ elasticsearch_data_instance_type   = "t2.small.elasticsearch"
 elasticsearch_data_cluster_size    = 2
 
 // ElastiCache Information
-cache_redis_version   = "5.0.5"
+cache_redis_version   = "5.0.6"
 cache_parameter_group = "default.redis5.0.cluster.on"
 cache_instance_type   = "cache.t2.medium"
 cache_cluster_size    = 3
@@ -56,16 +53,18 @@ sql_storage                               = 2500
 sql_backup_retention_period               = 2
 sql_multi_az                              = false
 sql_performance_insights_retention_period = 7
+sql_ssh_port_forward                      = 19001
 
 // Azure WMS Database Information
-wms_user        = "wms"
-wms_db_server   = "vbr-wms-staging"
-wms_db_name     = "vbr-wms"
-wms_location    = "West Europe"
-wms_db_edition  = "Standard"
-wms_db_max_size = "268435456000" // 250GB
-wms_db_type     = "S1"
-wms_rg_name     = "vbr-wms-staging"
+wms_user             = "wms"
+wms_db_server        = "vbr-wms-staging"
+wms_db_name          = "vbr-wms"
+wms_location         = "West Europe"
+wms_db_edition       = "Standard"
+wms_db_max_size      = "268435456000" // 250GB
+wms_db_type          = "S1"
+wms_rg_name          = "vbr-wms-staging"
+wms_ssh_port_forward = 20001
 
 // Datadog Information
 // datadog_external_id = "x" // https://app.datadoghq.com/account/settings#integrations/amazon_web_services
@@ -76,7 +75,7 @@ logs_expiration_days       = 30
 cloudtrail_expiration_days = 30
 extracts_expiration_days   = 30
 
-api_anonymous_rate_limit_per_5min = 100
+api_anonymous_rate_limit_per_5min = 100000
 
 portal_fqdn = "d2gtj4t3cfp7t.cloudfront.net"
 auth_fqdn   = "d3g80n6oqcib3n.cloudfront.net"
@@ -136,7 +135,7 @@ streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 streetname_registry_public_api_cache   = false
 
-address_registry_version            = "1.18.2"
+address_registry_version            = "1.18.5"
 address_registry_api_cpu            = 4096
 address_registry_api_memory         = 16384
 address_registry_import_api_cpu     = 4096
@@ -150,7 +149,7 @@ address_registry_cache_memory       = 512
 address_registry_cache_enabled      = false
 address_registry_public_api_cache   = false
 
-building_registry_version            = "1.14.8"
+building_registry_version            = "1.14.14"
 building_registry_api_cpu            = 4096
 building_registry_api_memory         = 16384
 building_registry_import_api_cpu     = 4096
@@ -196,7 +195,7 @@ publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 publicservice_registry_public_api_cache   = false
 
-organisation_registry_version                                         = "1.6.1"
+organisation_registry_version                                         = "1.8.2"
 organisation_registry_scheduler_cpu                                   = 256
 organisation_registry_scheduler_memory                                = 512
 organisation_registry_scheduler_enabled                               = true
