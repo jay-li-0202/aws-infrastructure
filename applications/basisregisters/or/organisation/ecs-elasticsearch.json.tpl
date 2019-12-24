@@ -16,7 +16,7 @@
       { "name": "SqlServer__ConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
       { "name": "SqlServer__MigrationsConnectionString", "value": "Server=${db_server};Database=${db_name};User=${db_user};Password=${db_pass};" },
 
-      { "name": "ElasticSearch__ConnectionString", "value": "${es_server}" },
+      { "name": "ElasticSearch__ConnectionString", "value": "https://${es_server}" },
       { "name": "ElasticSearch__User", "value": "" },
       { "name": "ElasticSearch__Pass", "value": "" },
 
