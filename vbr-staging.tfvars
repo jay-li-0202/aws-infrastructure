@@ -195,7 +195,7 @@ publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 publicservice_registry_public_api_cache   = false
 
-organisation_registry_version                                         = "1.8.2"
+organisation_registry_version                                         = "1.9.0"
 organisation_registry_scheduler_cpu                                   = 256
 organisation_registry_scheduler_memory                                = 512
 organisation_registry_scheduler_enabled                               = true
@@ -214,7 +214,7 @@ organisation_registry_batch_vlaanderenbe_memory                       = 512
 organisation_registry_batch_vlaanderenbe_enabled                      = false
 organisation_registry_projections_elasticsearch_cpu                   = 256
 organisation_registry_projections_elasticsearch_memory                = 512
-organisation_registry_projections_elasticsearch_enabled               = false
+organisation_registry_projections_elasticsearch_enabled               = true
 organisation_registry_projections_delegations_cpu                     = 256
 organisation_registry_projections_delegations_memory                  = 512
 organisation_registry_projections_delegations_enabled                 = true
