@@ -89,6 +89,9 @@ module "elasticsearch" {
 
   private_zone_id = data.terraform_remote_state.dns.outputs.private_zone_id
 
+  bastion_sg_id = data.terraform_remote_state.bastions.outputs.bastion_security_group_id
+  ecs_sg_id     = data.terraform_remote_state.fargate.outputs.fargate_security_group_id
+
   log_group_retention_in_days = 120
 }
 
@@ -110,6 +113,28 @@ data "terraform_remote_state" "dns" {
     bucket  = var.state_bucket
     region  = var.aws_region
     key     = "dns/terraform.tfstate"
+    profile = var.aws_profile
+  }
+}
+
+data "terraform_remote_state" "bastions" {
+  backend = "s3"
+
+  config = {
+    bucket  = var.state_bucket
+    region  = var.aws_region
+    key     = "bastions/terraform.tfstate"
+    profile = var.aws_profile
+  }
+}
+
+data "terraform_remote_state" "fargate" {
+  backend = "s3"
+
+  config = {
+    bucket  = var.state_bucket
+    region  = var.aws_region
+    key     = "fargate/terraform.tfstate"
     profile = var.aws_profile
   }
 }

@@ -73,6 +73,14 @@ variable "volume_size" {
   default = "10"
 }
 
+variable "bastion_sg_id" {
+  type = string
+}
+
+variable "ecs_sg_id" {
+  type = string
+}
+
 variable "subnet_ids" {
   type = list(string)
 }

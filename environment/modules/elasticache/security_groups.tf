@@ -12,7 +12,7 @@ resource "aws_security_group" "elasticache" {
   }
 }
 
-# Incoming SQL
+# Incoming Redis
 resource "aws_security_group_rule" "ingress_bastion" {
   description              = "Bastion To Redis"
   type                     = "ingress"
