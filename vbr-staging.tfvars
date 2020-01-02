@@ -195,7 +195,7 @@ publicservice_registry_orafin_memory      = 512
 publicservice_registry_orafin_enabled     = true
 publicservice_registry_public_api_cache   = false
 
-organisation_registry_version                                         = "1.9.0"
+organisation_registry_version                                         = "1.9.1"
 organisation_registry_scheduler_cpu                                   = 256
 organisation_registry_scheduler_memory                                = 512
 organisation_registry_scheduler_enabled                               = true
