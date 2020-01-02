@@ -1,18 +1,18 @@
 locals {
   zonemap = map(
-    "${var.cert_public_zone_name}", var.cert_public_zone_id,
+    var.cert_public_zone_name, var.cert_public_zone_id,
     "www.${var.cert_public_zone_name}", var.cert_public_zone_id,
     "www.${var.cert_alias_zone_name}", var.cert_alias_zone_id,
-    "${var.cert_alias_zone_name}", var.cert_alias_zone_id,
+    var.cert_alias_zone_name, var.cert_alias_zone_id,
   )
 }
 
 resource "aws_acm_certificate" "main" {
   validation_method = "DNS"
-  domain_name       = "${var.cert_public_zone_name}"
+  domain_name       = var.cert_public_zone_name
 
   subject_alternative_names = [
-    "${var.cert_alias_zone_name}",
+    var.cert_alias_zone_name,
     "www.${var.cert_public_zone_name}",
     "www.${var.cert_alias_zone_name}",
   ]

@@ -20,7 +20,7 @@ resource "aws_ecs_task_definition" "bastion" {
   memory                   = "512"
   execution_role_arn       = var.task_execution_role_arn
 
-  // task_role_arn         = "${aws_iam_role.app_role.arn}"
+  // task_role_arn         = aws_iam_role.app_role.arn
   container_definitions = data.template_file.bastion.rendered
 
   tags = {

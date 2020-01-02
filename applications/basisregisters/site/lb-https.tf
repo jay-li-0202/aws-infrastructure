@@ -18,7 +18,7 @@ resource "aws_lb_listener_rule" "redirect_alternate_host_headers" {
     type = "redirect"
 
     redirect {
-      host        = "${replace(var.public_zone_name, "/[.]$/", "")}"
+      host        = replace(var.public_zone_name, "/[.]$/", "")
       status_code = "HTTP_301"
     }
   }

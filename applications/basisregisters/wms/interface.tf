@@ -35,11 +35,11 @@ variable "public_zone_id" {
 }
 
 variable "rg_name" {
-  type = "string"
+  type = string
 }
 
 variable "db_server" {
-  type = "string"
+  type = string
 }
 
 variable "db_name" {

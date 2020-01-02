@@ -32,40 +32,40 @@ variable "app" {
 
 variable "public_zone_name" {
   description = "The domain name to configure SES."
-  type        = "string"
+  type        = string
 }
 
 variable "enable_verification" {
   description = "Control whether or not to verify SES DNS records."
-  type        = "string"
+  type        = string
   default     = true
 }
 
 variable "create_spf_txt_records" {
   description = "Control whether or not to create SES DNS SPF TXT records."
-  type        = "string"
+  type        = string
   default     = true
 }
 
 variable "create_spf_records" {
   description = "Control whether or not to create SES DNS SPF records."
-  type        = "string"
+  type        = string
   default     = true
 }
 
 variable "mail_from_domain" {
   description = " Subdomain (of the route53 zone) which is to be used as MAIL FROM address"
-  type        = "string"
+  type        = string
 }
 
 variable "public_zone_id" {
   description = "Route53 host zone ID to enable SES."
-  type        = "string"
+  type        = string
 }
 
 variable "dmarc_rua" {
   description = "Email address for capturing DMARC aggregate reports."
-  type        = "string"
+  type        = string
 }
 
 output "smtp_password" {

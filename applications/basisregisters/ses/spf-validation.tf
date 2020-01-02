@@ -7,7 +7,7 @@ resource "aws_route53_record" "spf_mail_from" {
 }
 
 resource "aws_route53_record" "txt_domain" {
-  count   = "${var.create_spf_txt_records ? 1 : 0}"
+  count   = var.create_spf_txt_records ? 1 : 0
   zone_id = var.public_zone_id
   name    = var.public_zone_name
   type    = "TXT"
@@ -16,7 +16,7 @@ resource "aws_route53_record" "txt_domain" {
 }
 
 resource "aws_route53_record" "spf_domain" {
-  count   = "${var.create_spf_records ? 1 : 0}"
+  count   = var.create_spf_records ? 1 : 0
   zone_id = var.public_zone_id
   name    = var.public_zone_name
   type    = "SPF"

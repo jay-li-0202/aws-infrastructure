@@ -35,7 +35,7 @@ locals {
   }"
 
   # Pick non-empty header values
-  header_values = "${compact(values(local.headers))}"
+  header_values = compact(values(local.headers))
 
   # Pick names that from non-empty header values
   header_names = "${matchkeys(

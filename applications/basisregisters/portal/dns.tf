@@ -3,7 +3,7 @@ resource "aws_route53_record" "portal" {
   name    = "portal"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.portal_fqdn}"]
+  records = [var.portal_fqdn]
 }
 
 resource "aws_route53_record" "auth" {
@@ -11,5 +11,5 @@ resource "aws_route53_record" "auth" {
   name    = "auth"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.auth_fqdn}"]
+  records = [var.auth_fqdn]
 }

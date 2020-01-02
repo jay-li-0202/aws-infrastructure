@@ -45,7 +45,7 @@ resource "aws_s3_bucket" "extract" {
   }
 
   logging {
-    target_bucket = "${aws_s3_bucket.extract-logs.id}"
+    target_bucket = aws_s3_bucket.extract-logs.id
     target_prefix = "log/"
   }
 

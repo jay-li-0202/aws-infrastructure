@@ -56,5 +56,5 @@ resource "aws_route53_record" "wms" {
   type    = "CNAME"
   name    = "wms"
   ttl     = "60"
-  records = ["${azurerm_sql_server.wms.fully_qualified_domain_name}"]
+  records = [azurerm_sql_server.wms.fully_qualified_domain_name]
 }

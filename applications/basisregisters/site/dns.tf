@@ -15,5 +15,5 @@ resource "aws_route53_record" "www" {
   name    = "www"
   type    = "CNAME"
   ttl     = "60"
-  records = ["${var.public_zone_name}"]
+  records = [var.public_zone_name]
 }

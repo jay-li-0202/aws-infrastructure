@@ -17,5 +17,5 @@ resource "aws_lb" "api" {
 
 resource "aws_api_gateway_vpc_link" "api" {
   name        = "${var.app}-api"
-  target_arns = ["${aws_lb.api.arn}"]
+  target_arns = [aws_lb.api.arn]
 }

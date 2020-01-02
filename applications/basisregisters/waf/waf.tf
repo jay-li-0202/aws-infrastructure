@@ -25,7 +25,7 @@ resource "aws_wafregional_byte_match_set" "api_key" {
 }
 
 resource "aws_wafregional_rate_based_rule" "api_key" {
-  depends_on  = ["aws_wafregional_byte_match_set.api_key"]
+  depends_on  = [aws_wafregional_byte_match_set.api_key]
   name        = "missing-api-key"
   metric_name = "MissingApiKey"
 
@@ -33,7 +33,7 @@ resource "aws_wafregional_rate_based_rule" "api_key" {
   rate_key   = "IP"
 
   predicate {
-    data_id = "${aws_wafregional_byte_match_set.api_key.id}"
+    data_id = aws_wafregional_byte_match_set.api_key.id
     negated = true
     type    = "ByteMatch"
   }
@@ -53,7 +53,7 @@ resource "aws_wafregional_web_acl" "api_key" {
     }
 
     priority = 1
-    rule_id  = "${aws_wafregional_rate_based_rule.api_key.id}"
+    rule_id  = aws_wafregional_rate_based_rule.api_key.id
     type     = "RATE_BASED"
   }
 }

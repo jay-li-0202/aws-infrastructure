@@ -11,17 +11,17 @@
 
 // variable "receive_s3_bucket" {
 //   description = "Name of the S3 bucket to store received emails."
-//   type        = "string"
+//   type        = string
 // }
 
 // variable "receive_s3_prefix" {
 //   description = "The key prefix of the S3 bucket to store received emails."
-//   type        = "string"
+//   type        = string
 // }
 
 // variable "ses_rule_set" {
 //   description = "Name of the SES rule set to associate rules with."
-//   type        = "string"
+//   type        = string
 // }
 
 // resource "aws_ses_receipt_rule" "main" {
