@@ -34,6 +34,8 @@ data "template_file" "extract-bundler" {
     tag_program            = var.tag_program
     tag_contact            = var.tag_contact
     extract_bundler_bucket = aws_s3_bucket.extract.id
+    extract_iam_key        = aws_iam_access_key.bundler.id
+    extract_iam_secret     = aws_iam_access_key.bundler.secret
     public_zone_name       = replace(var.public_zone_name, "/[.]$/", "")
     disco_zone_name        = replace(var.disco_zone_name, "/[.]$/", "")
   }

@@ -10,6 +10,9 @@
       { "name": "S3_DESTINATIONPATH", "value": "" },
       { "name": "BUNDLENAME", "value": "basisregisters" },
 
+      { "name": "AWS_ACCESS_KEY_ID", "value": "${extract_iam_key}" },
+      { "name": "AWS_SECRET_ACCESS_KEY", "value": "${extract_iam_secret}" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },
