@@ -13,6 +13,12 @@ variable "public_api_min_instances" {
 variable "public_api_max_instances" {
 }
 
+variable "public_api_extract_bundler_enabled" {
+}
+
+variable "public_api_extract_bundler_version" {
+}
+
 variable "municipality_registry_public_api_cache" {
   type = string
 }
@@ -77,8 +83,8 @@ module "public-api" {
   extract_bundler_cpu      = 256
   extract_bundler_memory   = 512
   extract_bundler_schedule = "cron(0 22 * * ? *)"
-  extract_bundler_enabled  = false
-  extract_bundler_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/extract-bundler:1.1.1"
+  extract_bundler_enabled  = var.public_api_extract_bundler_enabled
+  extract_bundler_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/public-api/extract-bundler:${var.public_api_extract_bundler_version}"
 
   lb_port     = 80
   lb_protocol = "TCP"

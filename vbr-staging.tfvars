@@ -92,6 +92,8 @@ public_api_cpu           = 256
 public_api_memory        = 512
 public_api_min_instances = 2
 public_api_max_instances = 4
+public_api_extract_bundler_version      = "1.1.2"
+public_api_extract_bundler_enabled      = true
 
 municipality_registry_version            = "3.1.1"
 municipality_registry_api_cpu            = 256
