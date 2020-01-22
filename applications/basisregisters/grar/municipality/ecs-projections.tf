@@ -81,6 +81,8 @@ data "template_file" "projections" {
     db_name           = var.db_name
     db_user           = var.db_user
     db_pass           = var.db_password
+    access_key        = aws_iam_access_key.mutex.id
+    access_secret     = aws_iam_access_key.mutex.secret
   }
 }
 

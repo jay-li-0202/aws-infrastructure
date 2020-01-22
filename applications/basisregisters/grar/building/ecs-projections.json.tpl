@@ -17,6 +17,15 @@
       { "name": "ConnectionStrings__WmsProjections", "value": "Server=${wms_server};Database=${wms_name};User=${wms_user};Password=${wms_pass};" },
       { "name": "ConnectionStrings__WmsProjectionsAdmin", "value": "Server=${wms_server};Database=${wms_name};User=${wms_user};Password=${wms_pass};" },
 
+      { "name": "DistributedLock__Region", "value": "${region}" },
+      { "name": "DistributedLock__AccessKeyId", "value": "${access_key}" },
+      { "name": "DistributedLock__AccessKeySecret", "value": "${access_secret}" },
+      { "name": "DistributedLock__TableName", "value": "${app_name}-lock" },
+      { "name": "DistributedLock__LeasePeriodInMinutes", "value": "5" },
+      { "name": "DistributedLock__ThrowOnFailedRenew", "value": "true" },
+      { "name": "DistributedLock__TerminateApplicationOnFailedRenew", "value": "true" },
+      { "name": "DistributedLock__Enabled", "value": "true" },
+
       { "name": "DataDog__Enabled", "value": "true" },
       { "name": "DataDog__Debug", "value": "false" },
       { "name": "DataDog__ServiceName", "value": "${app_name}" },

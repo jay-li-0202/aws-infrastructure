@@ -79,16 +79,17 @@ data "template_file" "projections" {
     tag_program       = var.tag_program
     tag_contact       = var.tag_contact
     public_zone_name  = replace(var.public_zone_name, "/[.]$/", "")
-    // private_zone_name = replace(var.private_zone_name, "/[.]$/", "")
-    disco_zone_name = replace(var.disco_zone_name, "/[.]$/", "")
-    db_server       = var.db_server
-    db_name         = var.db_name
-    db_user         = var.db_user
-    db_pass         = var.db_password
-    wms_server      = var.wms_db_server
-    wms_name        = var.wms_db_name
-    wms_user        = var.wms_db_user
-    wms_pass        = var.wms_db_password
+    disco_zone_name   = replace(var.disco_zone_name, "/[.]$/", "")
+    db_server         = var.db_server
+    db_name           = var.db_name
+    db_user           = var.db_user
+    db_pass           = var.db_password
+    wms_server        = var.wms_db_server
+    wms_name          = var.wms_db_name
+    wms_user          = var.wms_db_user
+    wms_pass          = var.wms_db_password
+    access_key        = aws_iam_access_key.mutex.id
+    access_secret     = aws_iam_access_key.mutex.secret
   }
 }
 
