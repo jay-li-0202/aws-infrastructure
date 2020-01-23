@@ -69,6 +69,15 @@
       { "name": "DataDog__ServiceName", "value": "${app_name}-syndication" },
       { "name": "DataDog__HostIp", "value": "localhost" },
 
+      { "name": "DistributedLock__Region", "value": "${region}" },
+      { "name": "DistributedLock__AccessKeyId", "value": "${access_key}" },
+      { "name": "DistributedLock__AccessKeySecret", "value": "${access_secret}" },
+      { "name": "DistributedLock__TableName", "value": "${app_name}-lock" },
+      { "name": "DistributedLock__LeasePeriodInMinutes", "value": "5" },
+      { "name": "DistributedLock__ThrowOnFailedRenew", "value": "true" },
+      { "name": "DistributedLock__TerminateApplicationOnFailedRenew", "value": "true" },
+      { "name": "DistributedLock__Enabled", "value": "true" },
+
       { "name": "SyndicationFeeds__Municipality", "value": "http://${disco_namespace}-municipality-registry-api.${disco_zone_name}:2002/v1/gemeenten/sync" },
       { "name": "SyndicationFeeds__MunicipalityPollingInMilliseconds", "value": "5000" },
 
