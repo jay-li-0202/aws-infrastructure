@@ -62,7 +62,7 @@ wms_db_name          = "vbr-wms"
 wms_location         = "West Europe"
 wms_db_edition       = "Standard"
 wms_db_max_size      = "268435456000" // 250GB
-wms_db_type          = "S1"
+wms_db_type          = "S2"
 wms_rg_name          = "vbr-wms-staging"
 wms_ssh_port_forward = 20001
 
