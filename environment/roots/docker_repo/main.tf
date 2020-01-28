@@ -118,6 +118,7 @@ module "address-registry" {
     "address-registry/api-extract",
     "address-registry/projector",
     "address-registry/projections-syndication",
+    "address-registry/cache-warmer",
   ]
 }
 

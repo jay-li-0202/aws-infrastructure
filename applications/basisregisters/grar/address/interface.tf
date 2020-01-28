@@ -248,3 +248,25 @@ variable "cache_schedule" {
   type    = string
   default = "cron(0/5 * * * ? *)"
 }
+
+variable "cache_warmer_image" {
+  type = string
+}
+
+variable "cache_warmer_enabled" {
+  type = string
+}
+
+variable "cache_warmer_schedule" {
+  type = string
+}
+
+variable "cache_warmer_cpu" {
+  type    = string
+  default = 256
+}
+
+variable "cache_warmer_memory" {
+  type    = string
+  default = 512
+}
