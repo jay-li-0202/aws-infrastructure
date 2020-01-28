@@ -37,6 +37,15 @@ variable "address_registry_cache_memory" {
 variable "address_registry_cache_enabled" {
 }
 
+variable "address_registry_cache_warmer_cpu" {
+}
+
+variable "address_registry_cache_warmer_memory" {
+}
+
+variable "address_registry_cache_warmer_enabled" {
+}
+
 module "address-registry" {
   source = "../grar/address"
 
@@ -74,6 +83,12 @@ module "address-registry" {
   cache_schedule = "cron(0/5 * * * ? *)"
   cache_image    = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/redis/redis-populator:1.7.1"
   cache_server   = data.terraform_remote_state.cache.outputs.cache_endpoint
+
+  cache_warmer_cpu     = var.address_registry_cache_warmer_cpu
+  cache_warmer_memory  = var.address_registry_cache_warmer_memory
+  cache_warmer_enabled = var.address_registry_cache_warmer_enabled
+  cache_warmer_schedule = "cron(0 1 * * ? *)" // Every day at 1 in the morning
+  cache_warmer_image   = "${var.aws_account_id}.dkr.ecr.eu-west-1.amazonaws.com/address-registry/cache-warmer:${var.address_registry_version}"
 
   db_server   = data.terraform_remote_state.sqlserver.outputs.address
   sa_user     = var.sql_username
