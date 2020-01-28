@@ -87,7 +87,7 @@ site_memory        = 512
 site_min_instances = 2
 site_max_instances = 4
 
-public_api_version       = "2.42.1"
+public_api_version       = "3.0.2"
 public_api_cpu           = 256
 public_api_memory        = 512
 public_api_min_instances = 2
@@ -137,7 +137,7 @@ streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 streetname_registry_public_api_cache   = false
 
-address_registry_version                = "2.5.0"
+address_registry_version                = "2.5.1"
 address_registry_api_cpu                = 4096
 address_registry_api_memory             = 16384
 address_registry_import_api_cpu         = 4096
