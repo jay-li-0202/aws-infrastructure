@@ -87,12 +87,12 @@ site_memory        = 512
 site_min_instances = 2
 site_max_instances = 4
 
-public_api_version       = "2.42.0"
+public_api_version       = "2.42.1"
 public_api_cpu           = 256
 public_api_memory        = 512
 public_api_min_instances = 2
 public_api_max_instances = 4
-public_api_extract_bundler_version      = "1.1.2"
+public_api_extract_bundler_version      = "1.1.3"
 public_api_extract_bundler_enabled      = true
 
 municipality_registry_version            = "3.1.1"
@@ -109,7 +109,7 @@ municipality_registry_cache_memory       = 512
 municipality_registry_cache_enabled      = true
 municipality_registry_public_api_cache   = true
 
-postal_registry_version            = "2.1.1"
+postal_registry_version            = "2.3.2"
 postal_registry_api_cpu            = 256
 postal_registry_api_memory         = 512
 postal_registry_import_api_cpu     = 256
@@ -123,7 +123,7 @@ postal_registry_cache_memory       = 512
 postal_registry_cache_enabled      = true
 postal_registry_public_api_cache   = true
 
-streetname_registry_version            = "2.1.1"
+streetname_registry_version            = "2.3.1"
 streetname_registry_api_cpu            = 512
 streetname_registry_api_memory         = 1024
 streetname_registry_import_api_cpu     = 512
@@ -137,7 +137,7 @@ streetname_registry_cache_memory       = 512
 streetname_registry_cache_enabled      = true
 streetname_registry_public_api_cache   = false
 
-address_registry_version            = "2.1.2"
+address_registry_version            = "2.4.5"
 address_registry_api_cpu            = 4096
 address_registry_api_memory         = 16384
 address_registry_import_api_cpu     = 4096
@@ -151,7 +151,7 @@ address_registry_cache_memory       = 512
 address_registry_cache_enabled      = false
 address_registry_public_api_cache   = false
 
-building_registry_version            = "1.14.14"
+building_registry_version            = "2.3.2"
 building_registry_api_cpu            = 4096
 building_registry_api_memory         = 16384
 building_registry_import_api_cpu     = 4096
@@ -165,7 +165,7 @@ building_registry_cache_memory       = 512
 building_registry_cache_enabled      = false
 building_registry_public_api_cache   = false
 
-parcel_registry_version            = "2.3.3"
+parcel_registry_version            = "3.3.3"
 parcel_registry_api_cpu            = 4096
 parcel_registry_api_memory         = 16384
 parcel_registry_import_api_cpu     = 4096
