@@ -23,15 +23,15 @@
   register: add_repository_key
   ignore_errors: true
 
-- name: Docker | Ensure curl is present (on older systems without SNI).
-  package: name=curl state=present
-  when: add_repository_key|failed
+# - name: Docker | Ensure curl is present (on older systems without SNI).
+#   package: name=curl state=present
+#   when: add_repository_key|failed
 
-- name: Docker | Add Docker apt key (alternative for older systems without SNI).
-  shell: "curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
-  args:
-    warn: no
-  when: add_repository_key|failed
+# - name: Docker | Add Docker apt key (alternative for older systems without SNI).
+#   shell: "curl -sSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -"
+#   args:
+#     warn: no
+#   when: add_repository_key|failed
 
 - name: Docker | Add Docker repository.
   apt_repository:
