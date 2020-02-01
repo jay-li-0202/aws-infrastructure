@@ -468,19 +468,19 @@ package municipality_registry_sln as "municipality-registry (2.11.0)"<<nuget>> {
   municipality_registry --> grar_provenance
 }
 
-
-
-
-
-
 'component postal_registry as "postal-registry"<<registry>>
 'component streetname_registry as "streetname-registry"<<registry>>
 'component address_registry as "address-registry"<<registry>>
 'component building_registry as "building-registry"<<registry>>
 'component parcel_registry as "parcel-registry"<<registry>>
 'component publicservice_registry as "publicservice-registry"<<registry>>
+'component organisation_registry as "organisation-registry"<<registry>>
+'component road_registry as "road-registry"<<registry>>
 
 'component public_api as "public-api"<<registry>>
+
+'poc-crab-edit
+'sqlstreamstore-s3-backup
 
 'component aws_infrastructure as "aws-infrastructure"<<tool>>
 'aws_infrastructure --> public_api
